@@ -103,23 +103,3 @@ main{
     height: 100%;
     border-width: 0;
 }
-
-.text-input{
-    width: auto;
-    border-radius: 25px;
-    padding: 0 10px;
-    margin-top: 30px;
-    height: 40px;
-    font-size: 18px;
-    border: 2px solid;
-    background-color: var(--background-color);
-
-    &::placeholder{
-        color: var(--search-color);
-    }
-
-    &:focus{
-        background-color: #ffffff;
-        outline-color: var(--primary-button-color);
-    }
-}
