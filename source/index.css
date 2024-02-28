@@ -108,19 +108,20 @@ main{
     height: auto;
     width: auto;
     margin: 30px 50px;
-}
-
-.feed_row{
     display: flex;
     flex-direction: row;
+}
+
+.feed_column{
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
 }
 
 .feed_item{
-    margin: 0 10px;
+    margin: 10px 10px;
     border-radius: 25px;
-    height: 500px;
-    width: 300px;
+    width: 250px;
     display: flex;
     flex-direction: column;
 }
@@ -128,6 +129,4 @@ img{
     margin: auto;
     border-radius: 25px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
