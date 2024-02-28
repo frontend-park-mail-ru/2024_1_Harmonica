@@ -1,0 +1,48 @@
+:root{
+    --background-color: #F6F6F6;
+    --primary-button-color: #FF8E6E;
+    --secondary-button-color: #FFBB91;
+    --window-color: #D5D5D5;
+    --search-color: #A6A6A6;
+}
+
+.window{
+    height: 400px;
+    width: 300px;
+    margin: 20px auto;
+    background-color: var(--window-color);
+    border-radius: 25px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.window_title{
+    text-align: center;
+    font-size: 25px;
+    margin: 20px 0;
+}
+
+.window_login-fields{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.window_input-fields{
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-field{
+    display: flex;
+    flex-direction: column;
+    vertical-align: bottom;
+
+    .btn{
+        margin-top: 15px;
+    }
+}
