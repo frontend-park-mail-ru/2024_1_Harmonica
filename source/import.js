@@ -1,0 +1,1 @@
+import "./components/widget/navbar/navbar.precompiled.js"

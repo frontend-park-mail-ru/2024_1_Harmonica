@@ -1,0 +1,132 @@
+:root{
+    --background-color: #F6F6F6;
+    --primary-button-color: #FF8E6E;
+    --secondary-button-color: #FFBB91;
+    --window-color: #D5D5D5;
+    --search-color: #777777;
+}
+
+* {
+    margin: 0;
+    font-family: Roboto, serif;
+}
+
+html, body{
+    background-color: var(--background-color);
+    height: 100%;
+}
+
+main{
+    margin: 0;
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+.navbar{
+    width: 100%;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    background-color: var(--background-color);
+}
+
+.navbar_row{
+    height: 50px;
+    padding: 10px;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar_left-block{
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    gap: 10px;
+}
+
+.logo{
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar_right-block{
+    float: right;
+    height: 100%;
+    display: flex;
+    gap: 10px;
+
+    .btn{
+        width: 120px;
+    }
+}
+
+.primary-btn{
+    background-color: var(--primary-button-color);
+    font-size: 20px;
+}
+
+.secondary-btn{
+    background-color: var(--secondary-button-color);
+    font-size: 20px;
+}
+
+.search{
+    width: 500px;
+    border-width: 0;
+    border-radius: 25px;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 18px;
+    background-color: var(--window-color);
+    color: var(--search-color);
+
+    &::placeholder{
+        color: var(--search-color);
+    }
+
+    &:focus{
+        outline-color: var(--search-color);
+    }
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn{
+    padding: 10px 20px;
+    border-radius: 25px;
+    height: 100%;
+    border-width: 0;
+}
+
+.feed{
+    height: auto;
+    width: auto;
+    margin: 30px 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.feed_column{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.feed_item{
+    margin: 10px 10px;
+    border-radius: 25px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+img{
+    margin: auto;
+    border-radius: 25px;
+    width: 100%;
+}
