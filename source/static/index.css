@@ -102,28 +102,27 @@ main{
     border-radius: 25px;
     height: 100%;
     border-width: 0;
+    width: fit-content;
 }
 
 .feed{
     height: auto;
     width: auto;
     margin: 30px 50px;
-    display: flex;
-    flex-direction: row;
+    gap: 0;
+    column-count: 5;
 }
 
 .feed_column{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+
 }
 
 .feed_item{
+    display: inline-block;
     margin: 10px 10px;
     border-radius: 25px;
     width: 250px;
-    display: flex;
-    flex-direction: column;
+    height: fit-content;
 }
 img{
     margin: auto;

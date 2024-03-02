@@ -59,8 +59,12 @@ main{
     display: flex;
     gap: 10px;
 
-    .btn{
+    .primary-btn{
         width: 120px;
+    }
+
+    .secondary-btn{
+        width: 180px;
     }
 }
 
@@ -108,22 +112,16 @@ main{
     height: auto;
     width: auto;
     margin: 30px 50px;
-    display: flex;
-    flex-direction: row;
-}
-
-.feed_column{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+    gap: 0;
+    column-count: 5;
 }
 
 .feed_item{
+    display: inline-block;
     margin: 10px 10px;
     border-radius: 25px;
     width: 250px;
-    display: flex;
-    flex-direction: column;
+    height: fit-content;
 }
 img{
     margin: auto;
