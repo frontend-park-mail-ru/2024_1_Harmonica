@@ -51,6 +51,7 @@ main{
     font-size: 28px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .navbar_right-block{
@@ -121,8 +122,12 @@ main{
     margin: 10px 10px;
     border-radius: 25px;
     width: 250px;
-    height: fit-content;
 }
+
+.feed_item_error{
+    background-color: var(--window-color);
+}
+
 img{
     margin: auto;
     border-radius: 25px;

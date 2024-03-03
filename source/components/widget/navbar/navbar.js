@@ -6,7 +6,7 @@ export const Navbar = () => {
     const template = Handlebars.templates.navbar;
     const root = document.getElementById("navbar");
 
-    const userInfo = {user: undefined};
+    const userInfo = {"user": localStorage.getItem("user")};
     root.innerHTML = template(userInfo);
 
     const logoButton = root.querySelector("#navbar_logo");
@@ -17,6 +17,7 @@ export const Navbar = () => {
     if (userInfo.user){
         const logoutButton = root.querySelector("#navbar_logout_button");
         logoutButton.addEventListener("click", () => {
+            Navbar();
             Feed();
         })
     } else {
