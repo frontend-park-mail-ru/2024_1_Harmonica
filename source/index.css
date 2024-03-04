@@ -135,6 +135,7 @@ img{
 }
 
 .input_error{
+    white-space: pre-line;
     line-height: 25px;
     margin: 5px 10px;
     color: #ff4545;

@@ -15,24 +15,24 @@ export const Login = () => {
       event.preventDefault();
       const email = root.querySelector("#login_email").value;
       const password = root.querySelector("#login_password").value;
-      const post = {"email": email, "password": password};
 
       const emailErrBlock = root.querySelector("#login_email_error");
-      if (!emailValidation(post.email)){
-          emailErrBlock.innerHTML = "В поле введен невалидный email!\nПример: example@email.com";
+      if (!emailValidation(email)){
+          emailErrBlock.innerHTML = "В поле введен невалидный email!Пример: example@email.com";
           return;
       } else {
           emailErrBlock.innerHTML = "";
       }
 
       const passErrBlock = root.querySelector("#login_password_error");
-      if (!passwordValidation(post.password)){
+      if (!passwordValidation(password)){
           passErrBlock.innerHTML = "В поле введен невалидный пароль!";
           return;
       } else {
           passErrBlock.innerHTML = "";
       }
 
+      const post = {"email": email, "password": password};
       const response = await api.login(post);
       if (response !== null) {
         localStorage.setItem("user", JSON.stringify(response));
