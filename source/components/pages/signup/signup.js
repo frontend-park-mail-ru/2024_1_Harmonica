@@ -1,8 +1,7 @@
 import {API} from "../../../modules/API.js";
-import {Feed} from "../feed/feed.js";
 import {Login} from "../login/login.js";
-import {Navbar} from "../../widget/navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../../modules/validation.js";
+import {errors} from "../../../modules/config.js";
 
 export const Signup = () => {
   const template = Handlebars.templates.signup;
@@ -49,8 +48,20 @@ export const Signup = () => {
     }
 
     const post = {"email": email, "password": password, "nickname": nickname};
-    if (await api.signup(post)) {
+    const response = await api.signup(post);
+    if (response.user !== null) {
       Login();
+    } else {
+      switch (response.code) {
+        case 9:
+          const emailErrBlock = root.querySelector("#signup_email_error");
+          emailErrBlock.innerHTML = errors[9];
+          break;
+        case 10:
+          const nickErrBlock = root.querySelector("#signup_nickname_error");
+          nickErrBlock.innerHTML = errors[10];
+          break;
+      }
     }
   });
 

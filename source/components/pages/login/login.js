@@ -3,6 +3,7 @@ import {Feed} from "../feed/feed.js";
 import {Signup} from "../signup/signup.js";
 import {Navbar} from "../../widget/navbar/navbar.js";
 import {emailValidation, passwordValidation} from "../../../modules/validation.js";
+import {errors} from "../../../modules/config.js";
 
 export const Login = () => {
   const template = Handlebars.templates.login;
@@ -34,10 +35,21 @@ export const Login = () => {
 
       const post = {"email": email, "password": password};
       const response = await api.login(post);
-      if (response !== null) {
+      if (response.user !== null) {
         localStorage.setItem("user", JSON.stringify(response));
         Navbar();
         Feed();
+      } else {
+          switch (response.code){
+              case 7:
+                  const emailErrBlock = root.querySelector("#login_email_error");
+                  emailErrBlock.innerHTML = errors[7];
+                  break;
+              case 8:
+                  const passErrBlock = root.querySelector("#login_password_error");
+                  passErrBlock.innerHTML = errors[8];
+                  break;
+          }
       }
   });
 
