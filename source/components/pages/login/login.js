@@ -2,6 +2,7 @@ import {API} from "../../../modules/API.js";
 import {Feed} from "../feed/feed.js";
 import {Signup} from "../signup/signup.js";
 import {Navbar} from "../../widget/navbar/navbar.js";
+import {emailValidation, passwordValidation} from "../../../modules/validation.js";
 
 export const Login = () => {
   const template = Handlebars.templates.login;
@@ -10,11 +11,28 @@ export const Login = () => {
 
   const api = new API();
   const enterButton = root.querySelector("#login_enter_button");
-  enterButton.addEventListener("click", async (event) =>{
+  enterButton.addEventListener("click", async (event) => {
       event.preventDefault();
       const email = root.querySelector("#login_email").value;
       const password = root.querySelector("#login_password").value;
       const post = {"email": email, "password": password};
+
+      const emailErrBlock = root.querySelector("#login_email_error");
+      if (!emailValidation(post.email)){
+          emailErrBlock.innerHTML = "В поле введен невалидный email!\nПример: example@email.com";
+          return;
+      } else {
+          emailErrBlock.innerHTML = "";
+      }
+
+      const passErrBlock = root.querySelector("#login_password_error");
+      if (!passwordValidation(post.password)){
+          passErrBlock.innerHTML = "В поле введен невалидный пароль!";
+          return;
+      } else {
+          passErrBlock.innerHTML = "";
+      }
+
       const response = await api.login(post);
       if (response !== null) {
         localStorage.setItem("user", JSON.stringify(response));

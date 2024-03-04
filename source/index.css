@@ -133,3 +133,9 @@ img{
     border-radius: 25px;
     width: 100%;
 }
+
+.input_error{
+    line-height: 25px;
+    margin: 5px 10px;
+    color: #ff4545;
+}
