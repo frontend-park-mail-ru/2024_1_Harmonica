@@ -1,0 +1,6 @@
+(function() {
+  var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['signup'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<main>\n    <div class=\"window\">\n        <h3 class=\"window_title\">Зарегистрируйтесь, чтобы продолжить!</h3>\n        <form action=\"\" class=\"window_login-fields\">\n            <div class=\"window_input-fields\">\n                <input type=\"text\" class=\"text-input\" placeholder=\"Имя пользователя\" id=\"register_nickname\">\n                <input type=\"email\" class=\"text-input\" placeholder=\"Email\" id=\"register_email\">\n                <input type=\"password\" class=\"text-input\" placeholder=\"Пароль\" id=\"register_password\">\n                <input type=\"password\" class=\"text-input\" placeholder=\"Повторите пароль\" id=\"register_repeat_password\">\n            </div>\n            <div class=\"button-field\">\n                <button type=\"submit\" class=\"primary-btn btn\" id=\"signup_enter_button\">Регистрация</button>\n                <button type=\"button\" class=\"secondary-btn btn\" id=\"signup_login_button\">Войти</button>\n            </div>\n        </form>\n    </div>\n</main>";
+},"useData":true});
+})();
