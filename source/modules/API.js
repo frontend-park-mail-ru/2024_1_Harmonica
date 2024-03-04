@@ -4,36 +4,36 @@ export class API {
     async login (post) {
         const url = backendAPI + "/login";
         const response = await fetch(url, {
+            method: "POST",
             headers: {
-                method: "POST",
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
             },
+            credentials: 'include',
             body: JSON.stringify(post),
         });
         const body = response.json();
-        return `Login ok: ${response.ok}`;
-
-        /*const body = {
-            user: {
-                email: post.email,
-                nickname: "nickname",
-                user_id: "123",
-            },
-        };*/
+        if (response.status !== 200) {
+            return null;
+        }
         return body.user;
     }
 
     async signup(post){
         const url = backendAPI + "/register";
         const response = await fetch(url, {
+            method: "POST",
             headers: {
-                method: "POST",
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
             },
+            credentials: 'include',
             body: JSON.stringify(post),
         });
-        const body = response.json();
-
+        if (response.status !== 200) {
+            return false;
+        }
+        return true;
         /*const body = {
             user: {
                 email: "email",
@@ -41,17 +41,16 @@ export class API {
                 user_id: "123"
             },
         };*/
-        return body.user;
     }
 
     async logout() {
-        localStorage.removeItem("user");
         const url = backendAPI + "/logout";
-        const response = await fetch(url, {
+        await fetch(url, {
             headers: {
-                method: "GET",
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
             },
+            credentials: 'include',
         });
     }
 
@@ -63,7 +62,9 @@ export class API {
             headers: {
                 method: "GET",
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": true,
             },
+            credentials: 'include',
         });
         const body = response.json();
         return body.pins;

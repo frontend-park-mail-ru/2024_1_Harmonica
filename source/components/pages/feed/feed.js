@@ -1,4 +1,4 @@
-import {Pins} from '../../widget/pins/pins.js';
+//import {Pins} from '../../widget/pins/pins.js';
 import {API} from "../../../modules/API.js";
 
 export const Feed = () => {
@@ -8,5 +8,5 @@ export const Feed = () => {
 
   const api = new API();
   const pins = api.feed();
-  Pins(pins);
+  //Pins(pins);
 };

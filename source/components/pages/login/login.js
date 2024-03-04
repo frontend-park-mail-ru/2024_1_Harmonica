@@ -10,13 +10,17 @@ export const Login = () => {
 
   const api = new API();
   const enterButton = root.querySelector("#login_enter_button");
-  enterButton.addEventListener("click", () =>{
+  enterButton.addEventListener("click", async (event) =>{
+      event.preventDefault();
       const email = root.querySelector("#login_email").value;
       const password = root.querySelector("#login_password").value;
       const post = {"email": email, "password": password};
-      localStorage.setItem("user", JSON.stringify(api.login(post)));
-      Navbar();
-      Feed();
+      const response = await api.login(post);
+      if (response !== null) {
+        localStorage.setItem("user", JSON.stringify(response));
+        Navbar();
+        Feed();
+      }
   });
 
   const signupButton = root.querySelector("#login_signup_button");
@@ -24,3 +28,11 @@ export const Login = () => {
       Signup();
   });
 };
+
+export const Logout = () => {
+  localStorage.removeItem("user");
+  const api = new API();
+  api.logout();
+  Navbar();
+  Login();
+}

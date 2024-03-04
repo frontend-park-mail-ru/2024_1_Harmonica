@@ -1,6 +1,7 @@
 import {Feed} from "../../pages/feed/feed.js";
-import {Login} from "../../pages/login/login.js";
+import {Login, Logout} from "../../pages/login/login.js";
 import {Signup} from "../../pages/signup/signup.js";
+
 
 export const Navbar = () => {
     const template = Handlebars.templates.navbar;
@@ -17,8 +18,7 @@ export const Navbar = () => {
     if (userInfo.user){
         const logoutButton = root.querySelector("#navbar_logout_button");
         logoutButton.addEventListener("click", () => {
-            Navbar();
-            Feed();
+            Logout();
         })
     } else {
         const loginButton = root.querySelector("#navbar_login_button");

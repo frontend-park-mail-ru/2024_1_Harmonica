@@ -10,10 +10,16 @@ export const Signup = () => {
 
   const api = new API();
   const signupButton = root.querySelector("#signup_enter_button");
-  signupButton.addEventListener("click", () => {
-    alert(api.signup());
-    Navbar();
-    Feed();
+  signupButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const nickname = root.querySelector("#register_nickname").value;
+    const email = root.querySelector("#register_email").value;
+    const password = root.querySelector("#register_password").value;
+    const repeatPassword = root.querySelector("#register_repeat_password").value; // Проверять совпадения
+    const post = {"email": email, "password": password, "nickname": nickname};
+    if (await api.signup(post)) {
+      Login();
+    }
   });
 
   const loginButton = root.querySelector("#signup_login_button");
