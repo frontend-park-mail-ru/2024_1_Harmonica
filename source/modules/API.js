@@ -30,17 +30,7 @@ export class API {
             credentials: 'include',
             body: JSON.stringify(post),
         });
-        if (response.status !== 200) {
-            return false;
-        }
-        return true;
-        /*const body = {
-            user: {
-                email: "email",
-                nickname: "nickname",
-                user_id: "123"
-            },
-        };*/
+        return response.json();
     }
 
     async logout() {
@@ -59,14 +49,14 @@ export class API {
             page: '0',
         });
         const response = await fetch(url, {
+            method: "GET",
             headers: {
-                method: "GET",
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials": true,
             },
             credentials: 'include',
         });
-        const body = response.json();
+        const body = await response.json();
         return body.pins;
     }
 }

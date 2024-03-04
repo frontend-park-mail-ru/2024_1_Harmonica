@@ -1,3 +1,7 @@
 const loginValidation = () => {
 
 };
+
+const signupValidation = () => {
+
+};
