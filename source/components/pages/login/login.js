@@ -16,6 +16,8 @@ export const Login = () => {
   enterButton.addEventListener("click", async (event) => {
       event.preventDefault();
       const email = root.querySelector("#login_email").value;
+      console.log(root.querySelector("#login_email"));
+      console.log(root.querySelector("#login_email").value)
       const password = root.querySelector("#login_password").value;
 
       const emailErrBlock = root.querySelector("#login_email_error");
