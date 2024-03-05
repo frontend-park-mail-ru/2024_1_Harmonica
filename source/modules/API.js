@@ -17,6 +17,16 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
+        if (response.status >= 400){
+            const body = await response.json();
+            return {
+                status: response.status,
+                statusText: response.statusText,
+                body: {
+                    code: body.code,
+                },
+            }
+        }
         return {
             status: response.status,
             body: response.body,
@@ -38,6 +48,16 @@ export class API {
             });
         } catch (error){
             return errCheck(error);
+        }
+        if (response.status >= 400){
+            const body = await response.json();
+            return {
+                status: response.status,
+                statusText: response.statusText,
+                body: {
+                    code: body.code,
+                },
+            }
         }
         return{
             status: response.status,

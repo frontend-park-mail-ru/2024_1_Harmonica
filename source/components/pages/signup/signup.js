@@ -59,7 +59,7 @@ export const Signup = () => {
     const post = {"email": email, "password": password, "nickname": nickname};
     const response = await api.signup(post);
     if (response.status >= 400) {
-      switch (response.code) {
+      switch (response.body.code) {
         case 9:
           const emailErrBlock = root.querySelector("#signup_email_error");
           emailErrBlock.innerHTML = errors[9];

@@ -1,4 +1,4 @@
-import {errors, errorsHTML} from "../../../modules/config.js";
+import {errors} from "../../../modules/config.js";
 
 export const Error = (response) => {
     const template = Handlebars.templates.error;
@@ -8,5 +8,4 @@ export const Error = (response) => {
         "message": response.statusText,
         "description": errors[response.body.code],
     });
-    console.log(response.code);
 }
