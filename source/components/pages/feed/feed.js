@@ -8,10 +8,10 @@ export const Feed = async () => {
   root.innerHTML = template({});
 
   const api = new API();
-  const pins = await api.feed();
-  if (pins.method === "ERROR"){
-    Error(pins);
+  const response = await api.feed();
+  if (response.status >= 400){
+    Error(response);
     return;
   }
-  Pins(pins);
+  Pins(response.pins);
 };

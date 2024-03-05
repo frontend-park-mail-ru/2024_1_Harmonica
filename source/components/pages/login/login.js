@@ -38,8 +38,8 @@ export const Login = () => {
 
       const post = {"email": email, "password": password};
       const response = await api.login(post);
-      if (response.method === "ERROR") {
-          switch (response.code){
+      if (response.status >= 400) {
+          switch (response.body.code){
               case 7:
                   const emailErrBlock = root.querySelector("#login_email_error");
                   emailErrBlock.innerHTML = errors[7];
@@ -53,7 +53,7 @@ export const Login = () => {
                   break;
           }
       } else {
-          localStorage.setItem("user", JSON.stringify(response));
+          localStorage.setItem("user", JSON.stringify(response.body.user));
           Navbar();
           Feed();
       }
@@ -65,10 +65,14 @@ export const Login = () => {
   });
 };
 
-export const Logout = () => {
-  localStorage.removeItem("user");
-  const api = new API();
-  api.logout();
-  Navbar();
-  Login();
+export const Logout = async () => {
+    localStorage.removeItem("user");
+    const api = new API();
+    const response = await api.logout();
+    if (response.status >= 400){
+        Error(response);
+        return;
+    }
+    Navbar();
+    Feed();
 }

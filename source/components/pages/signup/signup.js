@@ -3,6 +3,8 @@ import {Login} from "../login/login.js";
 import {emailValidation, nicknameValidation, passwordValidation} from "../../../modules/validation.js";
 import {errors} from "../../../modules/config.js";
 import {Error} from "../error/error.js";
+import {Navbar} from "../../widget/navbar/navbar.js";
+import {Feed} from "../feed/feed.js";
 
 export const Signup = () => {
   const template = Handlebars.templates.signup;
@@ -56,7 +58,7 @@ export const Signup = () => {
 
     const post = {"email": email, "password": password, "nickname": nickname};
     const response = await api.signup(post);
-    if (response.method === "ERROR") {
+    if (response.status >= 400) {
       switch (response.code) {
         case 9:
           const emailErrBlock = root.querySelector("#signup_email_error");
@@ -71,7 +73,10 @@ export const Signup = () => {
           break;
       }
     } else {
-      Login();
+      // Login();
+      localStorage.setItem("user", JSON.stringify(response.body.user));
+      Navbar();
+      Feed();
     }
   });
 

@@ -17,11 +17,10 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
-        const body = response.json();
-        if (response.status !== 200) {
-            return response;
-        }
-        return body.user;
+        return {
+            status: response.status,
+            body: response.body,
+        };
     }
 
     async signup(post){
@@ -40,7 +39,10 @@ export class API {
         } catch (error){
             return errCheck(error);
         }
-        return response.json();
+        return{
+            status: response.status,
+            body: response.body,
+        };
     }
 
     async logout() {
@@ -57,7 +59,9 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
-        return response;
+        return {
+            status: response.status,
+        };
     }
 
     async feed(){
@@ -78,7 +82,10 @@ export class API {
             return errCheck(error);
         }
         const body = await response.json();
-        return body.pins;
+        return {
+            status: response.status,
+            pins: body.pins,
+        };
     }
 }
 
@@ -96,5 +103,11 @@ const errCheck = (error) => {
     } else {
         response = error;
     }
-    return response;
+    return {
+        status: response.status,
+        statusText: response.statusText,
+        body: {
+            code: response.body.code,
+        }
+    };
 }
