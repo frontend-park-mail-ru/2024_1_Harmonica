@@ -2,6 +2,7 @@ import {API} from "../../../modules/API.js";
 import {Login} from "../login/login.js";
 import {emailValidation, nicknameValidation, passwordValidation} from "../../../modules/validation.js";
 import {errors} from "../../../modules/config.js";
+import {Error} from "../error/error.js";
 
 export const Signup = () => {
   const template = Handlebars.templates.signup;
@@ -55,9 +56,7 @@ export const Signup = () => {
 
     const post = {"email": email, "password": password, "nickname": nickname};
     const response = await api.signup(post);
-    if (response.user !== null) {
-      Login();
-    } else {
+    if (response.method === "ERROR") {
       switch (response.code) {
         case 9:
           const emailErrBlock = root.querySelector("#signup_email_error");
@@ -67,7 +66,12 @@ export const Signup = () => {
           const nickErrBlock = root.querySelector("#signup_nickname_error");
           nickErrBlock.innerHTML = errors[10];
           break;
+        default:
+          Error(response);
+          break;
       }
+    } else {
+      Login();
     }
   });
 
