@@ -14,3 +14,10 @@ export const  errors = {
     10: "Пользователь с таким именем пользователя уже существует",
     11: "Ошибка базы данных",
 }
+
+export const errorsHTML = {
+    400: "Bad Request",
+    401: "Unauthorized",
+    403: "Forbidden",
+    500: "Internal Server Error",
+}

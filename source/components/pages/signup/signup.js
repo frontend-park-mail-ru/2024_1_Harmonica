@@ -1,6 +1,6 @@
 import {API} from "../../../modules/API.js";
 import {Login} from "../login/login.js";
-import {emailValidation, passwordValidation} from "../../../modules/validation.js";
+import {emailValidation, nicknameValidation, passwordValidation} from "../../../modules/validation.js";
 import {errors} from "../../../modules/config.js";
 
 export const Signup = () => {
@@ -18,8 +18,11 @@ export const Signup = () => {
     const repeatPassword = root.querySelector("#register_repeat_password").value;
 
     const emailErrBlock = root.querySelector("#signup_email_error");
+
+    let errorCheck;
     if (!emailValidation(email)){
       emailErrBlock.innerHTML = "В поле введен невалидный email!\nПример: example@email.com";
+      errorCheck = true;
     } else {
       emailErrBlock.innerHTML = "";
     }
@@ -28,22 +31,25 @@ export const Signup = () => {
     if (!passwordValidation(password)){
       passErrBlock.innerHTML = "В поле введен невалидный пароль! Пароль должен содержать:\n" +
           "–от 8 до 24 букв латинского алфавита\n–Хотя бы одну заглавную букву\n–Хотя бы одну цифру";
+      errorCheck = true;
     } else if (password !== repeatPassword){
       passErrBlock.innerHTML = "Пароли не совпадают";
+      errorCheck = true;
     }
     else {
       passErrBlock.innerHTML = "";
     }
 
     const nickErrBlock = root.querySelector("#signup_nickname_error");
-    if (!passwordValidation(nickname)){
+    if (!nicknameValidation(nickname)){
       nickErrBlock.innerHTML = "В поле введен невалидное имя пользователя!\nИмя пользователя должно содержать:\n" +
           "–от 3 до 20 букв латинского алфавита, цифр и знак '_'";
+      errorCheck = true;
     } else {
       nickErrBlock.innerHTML = "";
     }
 
-    if (nickErrBlock || emailErrBlock || passErrBlock) {
+    if (errorCheck) {
       return;
     }
 

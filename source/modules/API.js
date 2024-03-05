@@ -14,7 +14,7 @@ export class API {
         });
         const body = response.json();
         if (response.status !== 200) {
-            return null;
+            return response;
         }
         return body.user;
     }
@@ -35,13 +35,14 @@ export class API {
 
     async logout() {
         const url = backendAPI + "/logout";
-        await fetch(url, {
+        const response = await fetch(url, {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Credentials": true,
             },
             credentials: 'include',
         });
+        return response;
     }
 
     async feed(){
