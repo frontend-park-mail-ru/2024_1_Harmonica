@@ -4,9 +4,13 @@
         <form action="" class="window_login-fields">
             <div class="window_input-fields">
                 <input type="text" class="text-input" id="register_nickname" placeholder="Имя пользователя">
-                <input type="email" class="text-input" id="register_email" placeholder="Email">
+                <div class="input_error" id="signup_nickname_error"></div>
+                <input type="text" class="text-input" id="register_email" placeholder="Email">
+                <div class="input_error" id="signup_email_error"></div>
                 <input type="password" class="text-input" id="register_password"  placeholder="Пароль">
+                <div class="input_error" id="signup_password_error"></div>
                 <input type="password" class="text-input" id="register_repeat_password"  placeholder="Повторите пароль">
+                <div class="input_error" id="signup_repeat_password_error"></div>
             </div>
             <div class="button-field">
                 <button type="submit" class="primary-btn btn" id="signup_enter_button">Регистрация</button>

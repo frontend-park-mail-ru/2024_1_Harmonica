@@ -12,7 +12,7 @@ templates['navbar'] = template({"1":function(container,depth0,helpers,partials,d
         return undefined
     };
 
-  return "<header class=\"navbar\">\n    <div class=\"navbar_row\">\n        <div class=\"navbar_left-block\">\n            <div class=\"logo\" id=\"navbar_logo\">\n                <span class=\"\">Pinterest</span>\n            </div>\n            <input type=\"text\" placeholder=\"Search\" class=\"search\">\n        </div>\n        <div class=\"navbar_right-block\" id=\"navbar_login_menu\">\n"
+  return "<header class=\"navbar\">\n    <div class=\"navbar_row\">\n        <div class=\"navbar_left-block\">\n            <div class=\"logo\" id=\"navbar_logo\">\n                <span class=\"\">Pinterest</span>\n            </div>\n            <input type=\"text\" placeholder=\"Поиск\" class=\"search\">\n        </div>\n        <div class=\"navbar_right-block\" id=\"navbar_login_menu\">\n"
     + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"user") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":10,"column":12},"end":{"line":15,"column":19}}})) != null ? stack1 : "")
     + "        </div>\n    </div>\n</header>";
 },"useData":true});

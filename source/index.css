@@ -133,3 +133,31 @@ img{
     border-radius: 25px;
     width: 100%;
 }
+
+.input_error{
+    white-space: pre-line;
+    line-height: 25px;
+    margin: 5px 10px;
+    color: #ff4545;
+}
+
+.error{
+    width: auto;
+    height: auto;
+    min-height: 600px;
+    margin: 30px auto;
+    background-color: var(--background-color);
+    border-radius: 25px;
+}
+
+.error_status{
+    margin: 0 20px;
+    width: auto;
+    font-size: 40px;
+}
+
+.error_description{
+    margin: 20px 20px;
+    width: auto;
+    font-size: 20px;
+}
