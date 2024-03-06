@@ -19,39 +19,43 @@ export const Login = () => {
       const password = root.querySelector("#login_password").value;
 
       const emailErrBlock = root.querySelector("#login_email_error");
+      const passErrBlock = root.querySelector("#login_password_error");
       if (!emailValidation(email)){
+          passErrBlock.innerHTML = "";
           emailErrBlock.innerHTML = "В поле введен невалидный email!Пример: example@email.com";
           return;
-      } else {
-          emailErrBlock.innerHTML = "";
       }
 
-      const passErrBlock = root.querySelector("#login_password_error");
       if (!passwordValidation(password)){
+          emailErrBlock.innerHTML = "";
           passErrBlock.innerHTML = "В поле введен невалидный пароль!";
           return;
-      } else {
-          passErrBlock.innerHTML = "";
       }
 
       const post = {"email": email, "password": password};
       const response = await api.login(post);
       if (response.status >= 400) {
+          const emailErrBlock = root.querySelector("#login_email_error");
+          const passErrBlock = root.querySelector("#login_password_error");
           switch (response.body.code){
               case 7:
-                  const emailErrBlock = root.querySelector("#login_email_error");
-                  emailErrBlock.innerHTML = errors[7];
+                  if (!emailErrBlock.innerHTML) {
+                      passErrBlock.innerHTML = "";
+                      emailErrBlock.innerHTML = errors[7];
+                  }
                   break;
               case 8:
-                  const passErrBlock = root.querySelector("#login_password_error");
-                  passErrBlock.innerHTML = errors[8];
+                  if (!passErrBlock.innerHTML) {
+                      emailErrBlock.innerHTML = "";
+                      passErrBlock.innerHTML = errors[8];
+                  }
                   break;
               default:
                   Error(response);
                   break;
           }
       } else {
-          localStorage.setItem("user", JSON.stringify(response.body.user));
+          localStorage.setItem("user", JSON.stringify(response.body));
           Navbar();
           Feed();
       }
