@@ -3,7 +3,7 @@ import {backendAPI} from "./config.js";
 export class API {
     async login (post) {
         const url = backendAPI + "/login";
-        let response
+        let response;
         try {
             response = await fetch(url, {
                 method: "POST",
@@ -27,9 +27,10 @@ export class API {
                 },
             }
         }
+        const body = await response.json();
         return {
             status: response.status,
-            body: response.body,
+            body: body,
         };
     }
 
@@ -59,9 +60,10 @@ export class API {
                 },
             }
         }
+        const body = await response.json();
         return{
-            status: response.status,
-            body: response.body,
+            status: body.status,
+            body: body,
         };
     }
 

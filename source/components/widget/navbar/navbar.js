@@ -7,7 +7,8 @@ export const Navbar = () => {
     const template = Handlebars.templates.navbar;
     const root = document.getElementById("navbar");
 
-    const userInfo = {"user": localStorage.getItem("user")};
+    const userInfo = {"user": JSON.parse(localStorage.getItem("user"))};
+    console.log(userInfo, userInfo.user);
     root.innerHTML = template(userInfo);
 
     const logoButton = root.querySelector("#navbar_logo");

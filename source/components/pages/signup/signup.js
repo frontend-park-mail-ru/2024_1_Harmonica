@@ -74,7 +74,7 @@ export const Signup = () => {
       }
     } else {
       // Login();
-      localStorage.setItem("user", JSON.stringify(response.body.user));
+      localStorage.setItem("user", JSON.stringify(response.body));
       Navbar();
       Feed();
     }
