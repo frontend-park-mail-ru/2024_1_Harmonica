@@ -53,7 +53,6 @@
     padding: 0 10px;
     font-size: var(--focus-font-size);
     background-color: var(--window-color);
-    color: var(--search-color);
 
     &::placeholder{
         color: var(--search-color);
@@ -61,6 +60,7 @@
 
     &:focus{
         outline-color: var(--search-color);
+        background-color: color-mix(in srgb, var(--window-color), var(--background-color));
     }
 }
 

@@ -1,6 +1,6 @@
 import {Pins} from '../../widget/pins/pins.js';
-import {API} from "../../../modules/API.js";
-import {Error} from "../error/error.js";
+import {API} from '../../../modules/API.js';
+import {Error} from '../error/error.js';
 
 export const Feed = async () => {
   const template = Handlebars.templates.feed;
@@ -9,7 +9,7 @@ export const Feed = async () => {
 
   const api = new API();
   const response = await api.feed();
-  if (response.status >= 400){
+  if (response.status >= 400) {
     Error(response);
     return;
   }

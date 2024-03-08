@@ -1,6 +1,7 @@
 @import "components/widget/navbar/navbar.css";
 @import "components/pages/feed/feed.css";
 @import "components/pages/error/error.css";
+@import "components/pages/login/login.css";
 
 :root{
     --background-color: #F6F6F6;
@@ -9,7 +10,9 @@
     --window-color: #D5D5D5;
     --search-color: #777777;
     --select-color: #FFCCCC;
-    --input-border-radius: 10px;
+    --error-color: #ff4545;
+    --success-color: #5dde58;
+    --input-border-radius: 15px;
     --element-border-radius: 15px;
     --title-font-size: 25px;
     --focus-font-size: 18px;
@@ -86,7 +89,7 @@ main{
 
 .window_input-fields{
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -106,7 +109,7 @@ main{
     width: auto;
     border-radius: var(--element-border-radius);
     padding: 0 15px;
-    margin-top: 30px;
+    margin-top: 10px;
     height: 45px;
     font-size: var(--focus-font-size);
     border: 2px solid;
@@ -121,5 +124,11 @@ main{
         background-color: #ffffff;
         outline-color: var(--primary-button-color);
     }
+}
+
+.input_error{
+    margin: 5px 10px;
+    color: var(--error-color);
+    height: 20px;
 }
 
