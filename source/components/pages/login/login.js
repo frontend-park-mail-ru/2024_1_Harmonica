@@ -7,6 +7,15 @@ import {errors} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
 
 const ERROR_COLOR = '#ff4545';
+const errFields = [
+  {
+    errContent: '#login_email_error',
+    inputField: '#login_email',
+  },
+  {
+    errContent: '#login_password_error',
+    inputField: '#login_password',
+  }];
 
 export const Login = () => {
   const template = Handlebars.templates.login;
@@ -21,12 +30,12 @@ export const Login = () => {
     const password = root.querySelector('#login_password').value;
 
     if (!emailValidation(email)) {
-      emailAddErr(root, 'Это не похоже на email!');
+      errorHandle(root, '#login_email', 'Это не похоже на email!');
       return;
     }
 
     if (!passwordValidation(password)) {
-      passAddErr(root, 'В поле введен невалидный пароль!');
+      errorHandle(root, '#login_password', 'В поле введен невалидный пароль!');
       return;
     }
 
@@ -35,10 +44,10 @@ export const Login = () => {
     if (response.status >= 400) {
       switch (response.body.code) {
         case 7:
-          emailAddErr(root, errors[7]);
+          errorHandle(root, '#login_email', errors[7]);
           break;
         case 8:
-          passAddErr(root, errors[8]);
+          errorHandle(root, '#login_password', errors[8]);
           break;
         default:
           Error(response);
@@ -57,34 +66,22 @@ export const Login = () => {
   });
 };
 
-const emailAddErr = (root, error) => {
-  const emailErrBlock = root.querySelector('#login_email_error');
-  const passErrBlock = root.querySelector('#login_password_error');
-  passErrBlock.innerHTML = '';
-  if (!emailErrBlock.innerHTML) {
-    emailErrBlock.innerHTML = error;
+const errorHandle = (root, blockID, error) =>{
+  for (let block of errFields) {
+    const input = root.querySelector(block.inputField);
+    const errorField = root.querySelector(block.errContent);
+    if (block.inputField !== blockID) {
+      input.style.outlineColor = '';
+      input.style.borderColor = '';
+      errorField.innerHTML = '';
+      continue;
+    }
+    input.style.outlineColor = ERROR_COLOR;
+    input.style.borderColor = ERROR_COLOR;
+    if(errorField.innerHTML !== error){
+      errorField.innerHTML = error;
+    }
   }
-  const passInput = root.querySelector('#login_password');
-  const emailInput = root.querySelector('#login_email');
-  passInput.style.outlineColor = '';
-  passInput.style.borderColor = '';
-  emailInput.style.outlineColor = ERROR_COLOR;
-  emailInput.style.borderColor = ERROR_COLOR;
-};
-
-const passAddErr = (root, error) => {
-  const emailErrBlock = root.querySelector('#login_email_error');
-  const passErrBlock = root.querySelector('#login_password_error');
-  emailErrBlock.innerHTML = '';
-  if (!passErrBlock.innerHTML) {
-    passErrBlock.innerHTML = error;
-  }
-  const passInput = root.querySelector('#login_password');
-  const emailInput = root.querySelector('#login_email');
-  emailInput.style.outlineColor = '';
-  emailInput.style.borderColor = '';
-  passInput.style.outlineColor = ERROR_COLOR;
-  passInput.style.borderColor = ERROR_COLOR;
 };
 
 export const Logout = async () => {

@@ -21,7 +21,6 @@ export const Signup = () => {
     const repeatPassword = root.querySelector('#register_repeat_password').value;
 
     const emailErrBlock = root.querySelector('#signup_email_error');
-
     let errorCheck;
     if (!emailValidation(email)) {
       emailErrBlock.innerHTML = 'В поле введен невалидный email!\nПример: example@email.com';
