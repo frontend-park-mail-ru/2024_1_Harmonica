@@ -1,11 +1,29 @@
 import {API} from '../../../modules/API.js';
 import {Login} from '../login/login.js';
 import {emailValidation, nicknameValidation, passwordValidation} from '../../../modules/validation.js';
-import {errors} from '../../../modules/config.js';
+import {ERROR_COLOR, errors} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
 import {Feed} from '../feed/feed.js';
 
+const errFields = {
+ 'nickname': {
+   errContent: '#signup_nickname_error',
+   inputField: '#register_nickname',
+ },
+  'email': {
+    errContent: '#signup_email_error',
+    inputField: '#register_email',
+  },
+  'password': {
+    errContent: '#signup_password_error',
+    inputField: '#register_password',
+  },
+  'repPassword': {
+    errContent: '#signup_repeat_password_error',
+    inputField: '#register_repeat_password',
+  },
+}
 export const Signup = () => {
   const template = Handlebars.templates.signup;
   const root = document.getElementById('root');
@@ -20,34 +38,33 @@ export const Signup = () => {
     const password = root.querySelector('#register_password').value;
     const repeatPassword = root.querySelector('#register_repeat_password').value;
 
-    const emailErrBlock = root.querySelector('#signup_email_error');
     let errorCheck;
-    if (!emailValidation(email)) {
-      emailErrBlock.innerHTML = 'В поле введен невалидный email!\nПример: example@email.com';
+
+    if (!nicknameValidation(nickname)) {
+      errAdd(root, errFields.nickname, 'Имя пользователя неверно!');
       errorCheck = true;
     } else {
-      emailErrBlock.innerHTML = '';
+      errRemove(root, errFields.nickname);
     }
 
-    const passErrBlock = root.querySelector('#signup_password_error');
+    if (!emailValidation(email)) {
+      errAdd(root, errFields.email, 'Это не похоже на email!');
+      errorCheck = true;
+    } else {
+      errRemove(root, errFields.email);
+    }
+
     if (!passwordValidation(password)) {
-      passErrBlock.innerHTML = 'В поле введен невалидный пароль! Пароль должен содержать:\n' +
-          '–от 8 до 24 букв латинского алфавита\n–Хотя бы одну заглавную букву\n–Хотя бы одну цифру';
+      errAdd(root, errFields.password, 'В поле введен невалидный пароль!');
+      errAdd(root, errFields.repPassword, '');
       errorCheck = true;
     } else if (password !== repeatPassword) {
-      passErrBlock.innerHTML = 'Пароли не совпадают';
+      errAdd(root, errFields.password, 'Пароли не совпадают');
+      errAdd(root, errFields.repPassword, '');
       errorCheck = true;
     } else {
-      passErrBlock.innerHTML = '';
-    }
-
-    const nickErrBlock = root.querySelector('#signup_nickname_error');
-    if (!nicknameValidation(nickname)) {
-      nickErrBlock.innerHTML = 'В поле введен невалидное имя пользователя!\nИмя пользователя должно содержать:\n' +
-          '–от 3 до 20 букв латинского алфавита, цифр и знак \'_\'';
-      errorCheck = true;
-    } else {
-      nickErrBlock.innerHTML = '';
+      errRemove(root, errFields.password);
+      errRemove(root, errFields.repPassword);
     }
 
     if (errorCheck) {
@@ -59,19 +76,17 @@ export const Signup = () => {
     if (response.status >= 400) {
       switch (response.body.code) {
         case 9:
-          const emailErrBlock = root.querySelector('#signup_email_error');
-          emailErrBlock.innerHTML = errors[9];
+          errAdd(root, errFields.email, errors[9]);
           break;
         case 10:
-          const nickErrBlock = root.querySelector('#signup_nickname_error');
-          nickErrBlock.innerHTML = errors[10];
+          errRemove(root, errFields.email);
+          errAdd(root, errFields.nickname, errors[10]);
           break;
         default:
           Error(response);
           break;
       }
     } else {
-      // Login();
       localStorage.setItem('user', JSON.stringify(response.body));
       Navbar();
       Feed();
@@ -83,3 +98,24 @@ export const Signup = () => {
     Login();
   });
 };
+
+
+const errAdd = (root, block, error) => {
+  const errBlock = root.querySelector(block.errContent);
+  const input = root.querySelector(block.inputField);
+  if (errBlock.innerHTML !== error){
+    errBlock.innerHTML = error;
+  }
+  input.style.borderColor = ERROR_COLOR;
+  input.style.outlineColor = ERROR_COLOR;
+}
+
+const errRemove = (root, block) => {
+  const errBlock = root.querySelector(block.errContent);
+  const input = root.querySelector(block.inputField);
+  if (errBlock.innerHTML !== ''){
+    errBlock.innerHTML = '';
+  }
+  input.style.borderColor = '';
+  input.style.outlineColor = '';
+}

@@ -3,10 +3,9 @@ import {Feed} from '../feed/feed.js';
 import {Signup} from '../signup/signup.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
-import {errors} from '../../../modules/config.js';
+import {ERROR_COLOR, errors} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
 
-const ERROR_COLOR = '#ff4545';
 const errFields = [
   {
     errContent: '#login_email_error',
