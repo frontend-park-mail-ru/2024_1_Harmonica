@@ -8,7 +8,6 @@ export const Navbar = () => {
     const root = document.getElementById('navbar');
 
     const userInfo = {'user': JSON.parse(localStorage.getItem('user'))};
-    console.log(userInfo, userInfo.user);
     root.innerHTML = template(userInfo);
 
     const logoButton = root.querySelector('#navbar_logo');

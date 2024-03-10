@@ -1,28 +1,39 @@
 import {API} from '../../../modules/API.js';
 import {Login} from '../login/login.js';
-import {emailValidation, nicknameValidation, passwordValidation}
+import {emailValidation, nicknameValidation, passwordValidation, repPasswordValidation}
     from '../../../modules/validation.js';
-import {ERROR_COLOR, errors} from '../../../modules/config.js';
+import {ERROR_COLOR, errors, timeout} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
 import {Feed} from '../feed/feed.js';
+import {debounce} from '../../../modules/debounce.js';
 
 const errFields = {
     'nickname': {
         errContent: '#signup_nickname_error',
         inputField: '#register_nickname',
+        hint: '#nick_hint',
+        validationFunc: nicknameValidation,
+        errText: 'Имя пользователя неверно!',
     },
     'email': {
         errContent: '#signup_email_error',
         inputField: '#register_email',
+        validationFunc: emailValidation,
+        errText: 'Это не похоже на email!',
     },
     'password': {
         errContent: '#signup_password_error',
         inputField: '#register_password',
+        hint: '#pass_hint',
+        validationFunc: passwordValidation,
+        errText: 'В поле введен невалидный пароль!',
     },
     'repPassword': {
         errContent: '#signup_repeat_password_error',
         inputField: '#register_repeat_password',
+        validationFunc: repPasswordValidation,
+        errText: 'Пароли не совпадают',
     },
 };
 export const Signup = () => {
@@ -30,71 +41,97 @@ export const Signup = () => {
     const root = document.getElementById('root');
     root.innerHTML = template({});
 
-    const nicknameInput = root.querySelector('#register_nickname');
+    const nicknameInput = root.querySelector(errFields.nickname.inputField);
+    const passwordInput = root.querySelector(errFields.password.inputField);
+    const emailInput = root.querySelector(errFields.email.inputField);
+    const repeatPasswordInput = root.querySelector(errFields.repPassword.inputField);
+    const nickHint = root.querySelector(errFields.nickname.hint);
+    const passHint = root.querySelector(errFields.password.hint);
+
     nicknameInput.addEventListener('focus', (event) => {
         event.preventDefault();
-        const nickname = root.querySelector('#register_nickname').value;
-        if (!nickname || !nicknameValidation(nickname)) {
-            root.querySelector('#nick_hint').style.visibility = 'visible';
+        nickHint.style.visibility = 'visible';
+    });
+
+    passwordInput.addEventListener('focus', (event) => {
+        event.preventDefault();
+        passHint.style.visibility = 'visible';
+    });
+
+    nicknameInput.addEventListener('focusout', (event) => {
+        event.preventDefault();
+        if (nicknameValidation(nicknameInput.value)) {
+            nickHint.style.visibility = 'hidden';
         }
     });
 
-    const passwordInput = root.querySelector('#register_password');
-    passwordInput.addEventListener('focus', (event) => {
+    passwordInput.addEventListener('focusout', (event) => {
         event.preventDefault();
-        const password = root.querySelector('#register_password').value;
-        if (!password || !nicknameValidation(password)) {
-            root.querySelector('#pass_hint').style.visibility = 'visible';
+        if (passwordValidation(passwordInput.value)) {
+            passHint.style.visibility = 'hidden';
         }
+    });
+
+    nicknameInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const nickname = nicknameInput.value;
+        const check = debounce(inputValidate, timeout);
+        check(errFields.nickname, nickname);
+    });
+
+    emailInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const email = emailInput.value;
+        const check = debounce(inputValidate, timeout);
+        check(errFields.email, email);
+    });
+
+    passwordInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const password = passwordInput.value;
+        const check = debounce(inputValidate, timeout);
+        check(errFields.password, password);
+    });
+
+    repeatPasswordInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const password = passwordInput.value;
+        const repPassword = repeatPasswordInput.value;
+        const check = debounce(inputValidate, timeout);
+        check(errFields.repPassword, password, repPassword);
     });
 
     const api = new API();
     const signupButton = root.querySelector('#signup_enter_button');
     signupButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        const nickname = root.querySelector('#register_nickname').value;
-        const email = root.querySelector('#register_email').value;
-        const password = root.querySelector('#register_password').value;
-        const repeatPassword = root.querySelector('#register_repeat_password').value;
 
         let errorCheck;
 
-        if (!nicknameValidation(nickname)) {
-            errAdd(errFields.nickname, 'Имя пользователя неверно!');
-            root.querySelector('#nick_hint').style.visibility = 'visible';
-            errorCheck = true;
-        } else {
-            errRemove(errFields.nickname);
-            root.querySelector('#nick_hint').style.visibility = 'hidden';
-        }
-
-        if (!emailValidation(email)) {
-            errAdd(errFields.email, 'Это не похоже на email!');
-            errorCheck = true;
-        } else {
-            errRemove(errFields.email);
-        }
-
-        if (!passwordValidation(password)) {
-            errAdd(errFields.password, 'В поле введен невалидный пароль!');
-            errAdd(errFields.repPassword, '');
-            root.querySelector('#pass_hint').style.visibility = 'visible';
-            errorCheck = true;
-        } else if (password !== repeatPassword) {
-            errAdd(errFields.password, 'Пароли не совпадают');
-            errAdd(errFields.repPassword, '');
-            errorCheck = true;
-        } else {
-            errRemove(errFields.password);
-            errRemove(errFields.repPassword);
-            root.querySelector('#pass_hint').style.visibility = 'hidden';
+        for (const [key, value] of new Map(Object.entries(errFields))) {
+            const inputCont = [root.querySelector(value.inputField).value];
+            if (key === 'repPassword') {
+                inputCont.push(root.querySelector(errFields.password.inputField).value);
+            }
+            if (!value.validationFunc(...inputCont)) {
+                errContentChange(value, value.errText);
+                errCustomize(value, ERROR_COLOR);
+                errorCheck = true;
+            } else {
+                errContentChange(value, '');
+                errCustomize(value, '');
+            }
         }
 
         if (errorCheck) {
             return;
         }
 
-        const post = {'email': email, 'password': password, 'nickname': nickname};
+        const post = {
+            'email': emailInput.value,
+            'password': passwordInput.value,
+            'nickname': nicknameInput.value,
+        };
         const response = await api.signup(post);
         switch (response.code) {
         case 0:
@@ -106,10 +143,12 @@ export const Signup = () => {
             for (const err of response.errors) {
                 switch (err.code) {
                 case 9:
-                    errAdd(errFields.email, errors[9]);
+                    errContentChange(errFields.email, errors[9]);
+                    errCustomize(errFields.email, ERROR_COLOR);
                     break;
                 case 10:
-                    errAdd(errFields.nickname, errors[10]);
+                    errContentChange(errFields.nickname, errors[10]);
+                    errCustomize(errFields.nickname, ERROR_COLOR);
                     break;
                 }
             }
@@ -127,24 +166,36 @@ export const Signup = () => {
 };
 
 
-const errAdd = (block, error) => {
-    const root = document.body;
-    const errBlock = root.querySelector(block.errContent);
-    const input = root.querySelector(block.inputField);
-    if (errBlock.innerHTML !== error) {
-        errBlock.innerHTML = error;
+const errContentChange = (block, content) => {
+    const errBlock = document.querySelector(block.errContent);
+    if (errBlock.innerHTML !== content) {
+        errBlock.innerHTML = content;
     }
-    input.style.borderColor = ERROR_COLOR;
-    input.style.outlineColor = ERROR_COLOR;
 };
 
-const errRemove = (block) => {
-    const root = document.body;
-    const errBlock = root.querySelector(block.errContent);
-    const input = root.querySelector(block.inputField);
-    if (errBlock.innerHTML !== '') {
-        errBlock.innerHTML = '';
+const errCustomize = (block, color) => {
+    const input = document.querySelector(block.inputField);
+    const hint = document.querySelector(block.hint);
+
+    input.style.borderColor = color;
+    input.style.outlineColor = color;
+
+    if (hint) {
+        hint.style.borderColor = color;
+        hint.style.color = color;
     }
-    input.style.borderColor = '';
-    input.style.outlineColor = '';
+};
+
+const inputValidate = (field, ...args) => {
+    const hint = document.querySelector(field.hint);
+    if (!field.validationFunc(...args)) {
+        errContentChange(field, field.errText);
+        errCustomize(field, ERROR_COLOR);
+        if (hint) {
+            hint.style.visibility = 'visible';
+        }
+    } else {
+        errContentChange(field, '');
+        errCustomize(field, '');
+    }
 };

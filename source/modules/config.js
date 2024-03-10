@@ -19,3 +19,4 @@ export const errors = {
 };
 
 export const ERROR_COLOR = '#ff4545';
+export const timeout = 200;

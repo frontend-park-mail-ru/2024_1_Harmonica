@@ -13,3 +13,5 @@ export const nicknameValidation = (nick) => {
     const regular = new RegExp('^[0-9a-zA-Z_]{3,20}$');
     return regular.test(nick);
 };
+
+export const repPasswordValidation = (pass, repPass) => pass === repPass;
