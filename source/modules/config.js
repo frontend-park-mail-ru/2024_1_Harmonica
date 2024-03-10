@@ -1,5 +1,6 @@
 
-export const backendAPI = 'http://127.0.0.1:8080/api/v1';
+// export const backendAPI = 'http://89.111.174.111:8080/api/v1'; // PROD
+export const backendAPI = 'http://127.0.0.1:8080/api/v1'; // LOCAL
 
 export const errors = {
     1: 'Пользователь уже авторизован',
