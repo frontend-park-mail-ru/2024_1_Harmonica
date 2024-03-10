@@ -30,6 +30,24 @@ export const Signup = () => {
     const root = document.getElementById('root');
     root.innerHTML = template({});
 
+    const nicknameInput = root.querySelector('#register_nickname');
+    nicknameInput.addEventListener('focus', (event) => {
+        event.preventDefault();
+        const nickname = root.querySelector('#register_nickname').value;
+        if (!nickname || !nicknameValidation(nickname)){
+            root.querySelector('#nick_hint').style.visibility = "visible";
+        }
+    })
+
+    const passwordInput = root.querySelector('#register_password');
+    passwordInput.addEventListener('focus', (event) => {
+        event.preventDefault();
+        const password = root.querySelector('#register_password').value;
+        if (!password || !nicknameValidation(password)){
+            root.querySelector('#pass_hint').style.visibility = "visible";
+        }
+    })
+
     const api = new API();
     const signupButton = root.querySelector('#signup_enter_button');
     signupButton.addEventListener('click', async (event) => {
@@ -42,30 +60,34 @@ export const Signup = () => {
         let errorCheck;
 
         if (!nicknameValidation(nickname)) {
-            errAdd(root, errFields.nickname, 'Имя пользователя неверно!');
+            errAdd(errFields.nickname, 'Имя пользователя неверно!');
+            root.querySelector('#nick_hint').style.visibility = "visible";
             errorCheck = true;
         } else {
-            errRemove(root, errFields.nickname);
+            errRemove(errFields.nickname);
+            root.querySelector('#nick_hint').style.visibility = "hidden";
         }
 
         if (!emailValidation(email)) {
-            errAdd(root, errFields.email, 'Это не похоже на email!');
+            errAdd(errFields.email, 'Это не похоже на email!');
             errorCheck = true;
         } else {
-            errRemove(root, errFields.email);
+            errRemove(errFields.email);
         }
 
         if (!passwordValidation(password)) {
-            errAdd(root, errFields.password, 'В поле введен невалидный пароль!');
-            errAdd(root, errFields.repPassword, '');
+            errAdd(errFields.password, 'В поле введен невалидный пароль!');
+            errAdd(errFields.repPassword, '');
+            root.querySelector('#pass_hint').style.visibility = "visible";
             errorCheck = true;
         } else if (password !== repeatPassword) {
-            errAdd(root, errFields.password, 'Пароли не совпадают');
-            errAdd(root, errFields.repPassword, '');
+            errAdd(errFields.password, 'Пароли не совпадают');
+            errAdd(errFields.repPassword, '');
             errorCheck = true;
         } else {
-            errRemove(root, errFields.password);
-            errRemove(root, errFields.repPassword);
+            errRemove(errFields.password);
+            errRemove(errFields.repPassword);
+            root.querySelector('#pass_hint').style.visibility = "hidden";
         }
 
         if (errorCheck) {
@@ -74,23 +96,22 @@ export const Signup = () => {
 
         const post = {'email': email, 'password': password, 'nickname': nickname};
         const response = await api.signup(post);
-        if (response.status >= 400) {
-            switch (response.body.code) {
-            case 9:
-                errAdd(root, errFields.email, errors[9]);
-                break;
-            case 10:
-                errRemove(root, errFields.email);
-                errAdd(root, errFields.nickname, errors[10]);
-                break;
-            default:
-                Error(response);
-                break;
-            }
-        } else {
+        switch (response.body.code) {
+        case 0:
             localStorage.setItem('user', JSON.stringify(response.body));
             Navbar();
             Feed();
+            break;
+        case 9:
+            errAdd(errFields.email, errors[9]);
+            break;
+        case 10:
+            errRemove(errFields.email);
+            errAdd(errFields.nickname, errors[10]);
+            break;
+        default:
+            Error(response);
+            break;
         }
     });
 
@@ -101,7 +122,8 @@ export const Signup = () => {
 };
 
 
-const errAdd = (root, block, error) => {
+const errAdd = (block, error) => {
+    const root = document.body;
     const errBlock = root.querySelector(block.errContent);
     const input = root.querySelector(block.inputField);
     if (errBlock.innerHTML !== error) {
@@ -111,7 +133,8 @@ const errAdd = (root, block, error) => {
     input.style.outlineColor = ERROR_COLOR;
 };
 
-const errRemove = (root, block) => {
+const errRemove = (block) => {
+    const root = document.body;
     const errBlock = root.querySelector(block.errContent);
     const input = root.querySelector(block.inputField);
     if (errBlock.innerHTML !== '') {

@@ -17,19 +17,9 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
-        if (response.status >= 400) {
-            const body = await response.json();
-            return {
-                status: response.status,
-                statusText: response.statusText,
-                body: {
-                    code: body.code,
-                },
-            };
-        }
         const body = await response.json();
         return {
-            status: response.status,
+            code: 0,
             body: body,
         };
     }
@@ -62,7 +52,7 @@ export class API {
         }
         const body = await response.json();
         return {
-            status: body.status,
+            code: 0,
             body: body,
         };
     }
@@ -82,7 +72,7 @@ export class API {
             return errCheck(error);
         }
         return {
-            status: response.status,
+            code: 0,
         };
     }
 
@@ -105,31 +95,47 @@ export class API {
         }
         const body = await response.json();
         return {
-            status: response.status,
+            code: 0,
             pins: body.pins,
         };
     }
+
+    async isAuth() {
+        const url = backendAPI + '/is_auth';
+        let response;
+        try {
+            response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                },
+                credentials: 'include',
+            });
+        } catch (error) {
+            return errCheck(error);
+        }
+        const body = await response.json();
+        return {
+            code: 0,
+            body: body,
+        }
+    }
 }
 
-const errCheck = (error) => {
+const errCheck = async (error) => {
     let response;
     if (error.message && error.message === 'Failed to fetch') {
         response = {
             method: 'ERROR',
-            status: 500,
-            statusText: 'Internal Server Error',
             body: {
                 code: 50,
-            },
+            }
         };
     } else {
         response = error;
     }
     return {
-        status: response.status,
-        statusText: response.statusText,
-        body: {
-            code: response.body.code,
-        },
+        code: response.body.code,
     };
 };

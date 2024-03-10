@@ -9,7 +9,7 @@ export const Feed = async () => {
 
     const api = new API();
     const response = await api.feed();
-    if (response.status >= 400) {
+    if (response.code !== 0) {
         Error(response);
         return;
     }

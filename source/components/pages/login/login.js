@@ -40,22 +40,21 @@ export const Login = () => {
 
         const post = {'email': email, 'password': password};
         const response = await api.login(post);
-        if (response.status >= 400) {
-            switch (response.body.code) {
-            case 7:
-                errorHandle(root, '#login_email', errors[7]);
-                break;
-            case 8:
-                errorHandle(root, '#login_password', errors[8]);
-                break;
-            default:
-                Error(response);
-                break;
-            }
-        } else {
+        switch (response.code) {
+        case 0:
             localStorage.setItem('user', JSON.stringify(response.body));
             Navbar();
             Feed();
+            break;
+        case 7:
+            errorHandle(root, '#login_email', errors[7]);
+            break;
+        case 8:
+            errorHandle(root, '#login_password', errors[8]);
+            break;
+        default:
+            Error(response);
+            break;
         }
     });
 
@@ -87,7 +86,7 @@ export const Logout = async () => {
     localStorage.removeItem('user');
     const api = new API();
     const response = await api.logout();
-    if (response.status >= 400) {
+    if (response.code !== 0) {
         Error(response);
         return;
     }

@@ -2,6 +2,7 @@
 @import "components/pages/feed/feed.css";
 @import "components/pages/error/error.css";
 @import "components/pages/login/login.css";
+@import "components/pages/signup/signup.css";
 
 :root{
     --background-color: #F6F6F6;
@@ -109,7 +110,6 @@ main{
     width: auto;
     border-radius: var(--element-border-radius);
     padding: 0 15px;
-    margin-top: 10px;
     height: 45px;
     font-size: var(--focus-font-size);
     border: 2px solid;
