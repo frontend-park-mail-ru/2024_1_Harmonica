@@ -4,8 +4,8 @@ import {API} from './modules/API.js';
 
 const api = new API();
 const response = await api.isAuth();
-if (response.code !== 0){
-    localStorage.removeItem("user");
+if (response.code !== 0) {
+    localStorage.removeItem('user');
 }
 Navbar();
 Feed();

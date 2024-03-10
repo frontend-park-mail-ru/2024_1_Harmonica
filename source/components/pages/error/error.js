@@ -1,5 +1,3 @@
-import {errors} from '../../../modules/config.js';
-
 export const Error = (response) => {
     const template = Handlebars.templates.error;
     const root = document.getElementById('root');

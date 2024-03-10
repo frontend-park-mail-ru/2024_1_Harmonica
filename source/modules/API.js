@@ -43,11 +43,8 @@ export class API {
         if (response.status >= 400) {
             const body = await response.json();
             return {
-                status: response.status,
-                statusText: response.statusText,
-                body: {
-                    code: body.code,
-                },
+                code: 51,
+                errors: body.errors,
             };
         }
         const body = await response.json();
@@ -59,9 +56,8 @@ export class API {
 
     async logout() {
         const url = backendAPI + '/logout';
-        let response;
         try {
-            response = await fetch(url, {
+            await fetch(url, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -105,7 +101,7 @@ export class API {
         let response;
         try {
             response = await fetch(url, {
-                method: "GET",
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -119,7 +115,7 @@ export class API {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }
 
@@ -130,7 +126,7 @@ const errCheck = async (error) => {
             method: 'ERROR',
             body: {
                 code: 50,
-            }
+            },
         };
     } else {
         response = error;

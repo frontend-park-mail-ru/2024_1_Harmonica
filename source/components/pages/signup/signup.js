@@ -34,19 +34,19 @@ export const Signup = () => {
     nicknameInput.addEventListener('focus', (event) => {
         event.preventDefault();
         const nickname = root.querySelector('#register_nickname').value;
-        if (!nickname || !nicknameValidation(nickname)){
-            root.querySelector('#nick_hint').style.visibility = "visible";
+        if (!nickname || !nicknameValidation(nickname)) {
+            root.querySelector('#nick_hint').style.visibility = 'visible';
         }
-    })
+    });
 
     const passwordInput = root.querySelector('#register_password');
     passwordInput.addEventListener('focus', (event) => {
         event.preventDefault();
         const password = root.querySelector('#register_password').value;
-        if (!password || !nicknameValidation(password)){
-            root.querySelector('#pass_hint').style.visibility = "visible";
+        if (!password || !nicknameValidation(password)) {
+            root.querySelector('#pass_hint').style.visibility = 'visible';
         }
-    })
+    });
 
     const api = new API();
     const signupButton = root.querySelector('#signup_enter_button');
@@ -61,11 +61,11 @@ export const Signup = () => {
 
         if (!nicknameValidation(nickname)) {
             errAdd(errFields.nickname, 'Имя пользователя неверно!');
-            root.querySelector('#nick_hint').style.visibility = "visible";
+            root.querySelector('#nick_hint').style.visibility = 'visible';
             errorCheck = true;
         } else {
             errRemove(errFields.nickname);
-            root.querySelector('#nick_hint').style.visibility = "hidden";
+            root.querySelector('#nick_hint').style.visibility = 'hidden';
         }
 
         if (!emailValidation(email)) {
@@ -78,7 +78,7 @@ export const Signup = () => {
         if (!passwordValidation(password)) {
             errAdd(errFields.password, 'В поле введен невалидный пароль!');
             errAdd(errFields.repPassword, '');
-            root.querySelector('#pass_hint').style.visibility = "visible";
+            root.querySelector('#pass_hint').style.visibility = 'visible';
             errorCheck = true;
         } else if (password !== repeatPassword) {
             errAdd(errFields.password, 'Пароли не совпадают');
@@ -87,7 +87,7 @@ export const Signup = () => {
         } else {
             errRemove(errFields.password);
             errRemove(errFields.repPassword);
-            root.querySelector('#pass_hint').style.visibility = "hidden";
+            root.querySelector('#pass_hint').style.visibility = 'hidden';
         }
 
         if (errorCheck) {
@@ -96,18 +96,23 @@ export const Signup = () => {
 
         const post = {'email': email, 'password': password, 'nickname': nickname};
         const response = await api.signup(post);
-        switch (response.body.code) {
+        switch (response.code) {
         case 0:
             localStorage.setItem('user', JSON.stringify(response.body));
             Navbar();
             Feed();
             break;
-        case 9:
-            errAdd(errFields.email, errors[9]);
-            break;
-        case 10:
-            errRemove(errFields.email);
-            errAdd(errFields.nickname, errors[10]);
+        case 51:
+            for (const err of response.errors) {
+                switch (err.code) {
+                case 9:
+                    errAdd(errFields.email, errors[9]);
+                    break;
+                case 10:
+                    errAdd(errFields.nickname, errors[10]);
+                    break;
+                }
+            }
             break;
         default:
             Error(response);

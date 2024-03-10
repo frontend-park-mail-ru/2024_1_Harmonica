@@ -2,9 +2,7 @@
     position: absolute;
     white-space: pre-line;
     border: 2px solid;
-    border-color: var(--error-color);
     background-color: var(--background-color);
-    color: var(--error-color);
     border-radius: var(--element-border-radius);
     left: 320px;
     padding: 10px;
