@@ -100,6 +100,7 @@ const errorHandle = (root, blockID, error) =>{
 /**
 * Logout button handler: logouts user and refresh navbar
 * @function Logout
+* @async
  */
 export const Logout = async () => {
     localStorage.removeItem('user');

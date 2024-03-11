@@ -2,7 +2,7 @@
 
 /**
  * Check if email is valid
- * @function debounce
+ * @function emailValidation
  * @param {string} email - Email to check.
  * @return {boolean} True if email is valid and false otherwise.
  */
