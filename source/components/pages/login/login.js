@@ -1,3 +1,5 @@
+/** @module source/components/pages/login */
+
 import {API} from '../../../modules/API.js';
 import {Feed} from '../feed/feed.js';
 import {Signup} from '../signup/signup.js';
@@ -6,6 +8,7 @@ import {emailValidation, passwordValidation} from '../../../modules/validation.j
 import {ERROR_COLOR, errors} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
 
+/** Errors fields selectors */
 const errFields = [
     {
         errContent: '#login_email_error',
@@ -16,6 +19,11 @@ const errFields = [
         inputField: '#login_password',
     }];
 
+/**
+ * Provides login view on site by rendering 'Handlebars.templates.login'.
+ * @function Login
+ * @async
+ */
 export const Login = () => {
     const template = Handlebars.templates.login;
     const root = document.getElementById('root');
@@ -64,6 +72,13 @@ export const Login = () => {
     });
 };
 
+/**
+* Set an error-style to block in login form by document.root and id of block.
+* @function errorHandle
+ * @param {Document.rootElement} root - Root object to modify
+ * @param {string} blockID - Id of block to set error
+ * @param {string} error - Error message
+ */
 const errorHandle = (root, blockID, error) =>{
     for (const block of errFields) {
         const input = root.querySelector(block.inputField);
@@ -82,6 +97,10 @@ const errorHandle = (root, blockID, error) =>{
     }
 };
 
+/**
+* Logout button handler: logouts user and refresh navbar
+* @function Logout
+ */
 export const Logout = async () => {
     localStorage.removeItem('user');
     const api = new API();

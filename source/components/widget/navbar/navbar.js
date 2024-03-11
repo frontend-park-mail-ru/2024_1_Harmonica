@@ -1,8 +1,13 @@
+/** @module source/components/widget/navbar */
+
 import {Feed} from '../../pages/feed/feed.js';
 import {Login, Logout} from '../../pages/login/login.js';
 import {Signup} from '../../pages/signup/signup.js';
 
-
+/**
+ * Provides navbar view on site by rendering 'Handlebars.templates.navbar'
+ * @function Navbar
+ */
 export const Navbar = () => {
     const template = Handlebars.templates.navbar;
     const root = document.getElementById('navbar');

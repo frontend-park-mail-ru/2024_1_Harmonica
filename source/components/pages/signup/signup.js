@@ -1,3 +1,5 @@
+/** @module source/components/pages/signup */
+
 import {API} from '../../../modules/API.js';
 import {Login} from '../login/login.js';
 import {emailValidation, nicknameValidation, passwordValidation, repPasswordValidation}
@@ -8,6 +10,7 @@ import {Navbar} from '../../widget/navbar/navbar.js';
 import {Feed} from '../feed/feed.js';
 import {debounce} from '../../../modules/debounce.js';
 
+/** Errors fields selectors, info and messages */
 const errFields = {
     'nickname': {
         errContent: '#signup_nickname_error',
@@ -36,6 +39,11 @@ const errFields = {
         errText: 'Пароли не совпадают',
     },
 };
+
+/**
+ * Provides register view on site by rendering 'Handlebars.templates.signup'.
+ * @function Signup
+ */
 export const Signup = () => {
     const template = Handlebars.templates.signup;
     const root = document.getElementById('root');
@@ -165,7 +173,12 @@ export const Signup = () => {
     });
 };
 
-
+/**
+ * Set error content to block
+ * @function errContentChange
+ * @param {Object} block - Block object to change
+ * @param {string} content - Content to set
+ */
 const errContentChange = (block, content) => {
     const errBlock = document.querySelector(block.errContent);
     if (errBlock.innerHTML !== content) {
@@ -173,6 +186,12 @@ const errContentChange = (block, content) => {
     }
 };
 
+/**
+ * Sets error-style to block with specified color
+ * @function errCustomize
+ * @param {Object} block - Block object to change
+ * @param {string} color - Color to set
+ */
 const errCustomize = (block, color) => {
     const input = document.querySelector(block.inputField);
     const hint = document.querySelector(block.hint);
@@ -186,6 +205,12 @@ const errCustomize = (block, color) => {
     }
 };
 
+/**
+ * Idk
+ * @function inputValidate
+ * @param {Object} field - Field
+ * @param {*} args - Args
+ */
 const inputValidate = (field, ...args) => {
     const hint = document.querySelector(field.hint);
     if (!field.validationFunc(...args)) {

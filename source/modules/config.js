@@ -1,7 +1,10 @@
+/** @module source/modules/config */
 
+/** The link to backend server. */
 // export const backendAPI = 'http://89.111.174.111:8080/api/v1'; // PROD
 export const backendAPI = 'http://127.0.0.1:8080/api/v1'; // LOCAL
 
+/** Descriptions of error's code. */
 export const errors = {
     1: 'Пользователь уже авторизован',
     2: 'Пользователь не авторизован',
@@ -18,5 +21,7 @@ export const errors = {
     51: 'Получено несколько ошибок',
 };
 
+/** Errors color. */
 export const ERROR_COLOR = '#ff4545';
+/** Fetch request timeout. */
 export const timeout = 200;
