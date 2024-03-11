@@ -1,87 +1,230 @@
-import {API} from "../../../modules/API.js";
-import {Login} from "../login/login.js";
-import {emailValidation, nicknameValidation, passwordValidation} from "../../../modules/validation.js";
-import {errors} from "../../../modules/config.js";
-import {Error} from "../error/error.js";
-import {Navbar} from "../../widget/navbar/navbar.js";
-import {Feed} from "../feed/feed.js";
+/** @module source/components/pages/signup */
 
+import {API} from '../../../modules/API.js';
+import {Login} from '../login/login.js';
+import {emailValidation, nicknameValidation, passwordValidation, repPasswordValidation}
+    from '../../../modules/validation.js';
+import {ERROR_COLOR, errors, debounceTimeout} from '../../../modules/config.js';
+import {Error} from '../error/error.js';
+import {Navbar} from '../../widget/navbar/navbar.js';
+import {Feed} from '../feed/feed.js';
+import {debounce} from '../../../modules/debounce.js';
+
+/** Errors fields selectors, info and messages */
+const errFields = {
+    'nickname': {
+        errContent: '#signup_nickname_error',
+        inputField: '#register_nickname',
+        hint: '#nick_hint',
+        validationFunc: nicknameValidation,
+        errText: 'Имя пользователя неверно!',
+    },
+    'email': {
+        errContent: '#signup_email_error',
+        inputField: '#register_email',
+        validationFunc: emailValidation,
+        errText: 'Это не похоже на email!',
+    },
+    'password': {
+        errContent: '#signup_password_error',
+        inputField: '#register_password',
+        hint: '#pass_hint',
+        validationFunc: passwordValidation,
+        errText: 'В поле введен невалидный пароль!',
+    },
+    'repPassword': {
+        errContent: '#signup_repeat_password_error',
+        inputField: '#register_repeat_password',
+        validationFunc: repPasswordValidation,
+        errText: 'Пароли не совпадают',
+    },
+};
+
+/**
+ * Provides register view on site by rendering 'Handlebars.templates.signup'.
+ * @function Signup
+ */
 export const Signup = () => {
-  const template = Handlebars.templates.signup;
-  const root = document.getElementById('root');
-  root.innerHTML = template({});
+    const template = Handlebars.templates.signup;
+    const root = document.getElementById('root');
+    root.innerHTML = template({});
 
-  const api = new API();
-  const signupButton = root.querySelector("#signup_enter_button");
-  signupButton.addEventListener("click", async (event) => {
-    event.preventDefault();
-    const nickname = root.querySelector("#register_nickname").value;
-    const email = root.querySelector("#register_email").value;
-    const password = root.querySelector("#register_password").value;
-    const repeatPassword = root.querySelector("#register_repeat_password").value;
+    const nicknameInput = root.querySelector(errFields.nickname.inputField);
+    const passwordInput = root.querySelector(errFields.password.inputField);
+    const emailInput = root.querySelector(errFields.email.inputField);
+    const repeatPasswordInput = root.querySelector(errFields.repPassword.inputField);
+    const nickHint = root.querySelector(errFields.nickname.hint);
+    const passHint = root.querySelector(errFields.password.hint);
 
-    const emailErrBlock = root.querySelector("#signup_email_error");
+    nicknameInput.addEventListener('focus', (event) => {
+        event.preventDefault();
+        nickHint.style.visibility = 'visible';
+    });
 
-    let errorCheck;
-    if (!emailValidation(email)){
-      emailErrBlock.innerHTML = "В поле введен невалидный email!\nПример: example@email.com";
-      errorCheck = true;
-    } else {
-      emailErrBlock.innerHTML = "";
-    }
+    passwordInput.addEventListener('focus', (event) => {
+        event.preventDefault();
+        passHint.style.visibility = 'visible';
+    });
 
-    const passErrBlock = root.querySelector("#signup_password_error");
-    if (!passwordValidation(password)){
-      passErrBlock.innerHTML = "В поле введен невалидный пароль! Пароль должен содержать:\n" +
-          "–от 8 до 24 букв латинского алфавита\n–Хотя бы одну заглавную букву\n–Хотя бы одну цифру";
-      errorCheck = true;
-    } else if (password !== repeatPassword){
-      passErrBlock.innerHTML = "Пароли не совпадают";
-      errorCheck = true;
-    }
-    else {
-      passErrBlock.innerHTML = "";
-    }
+    nicknameInput.addEventListener('focusout', (event) => {
+        event.preventDefault();
+        if (nicknameValidation(nicknameInput.value)) {
+            nickHint.style.visibility = 'hidden';
+        }
+    });
 
-    const nickErrBlock = root.querySelector("#signup_nickname_error");
-    if (!nicknameValidation(nickname)){
-      nickErrBlock.innerHTML = "В поле введен невалидное имя пользователя!\nИмя пользователя должно содержать:\n" +
-          "–от 3 до 20 букв латинского алфавита, цифр и знак '_'";
-      errorCheck = true;
-    } else {
-      nickErrBlock.innerHTML = "";
-    }
+    passwordInput.addEventListener('focusout', (event) => {
+        event.preventDefault();
+        if (passwordValidation(passwordInput.value)) {
+            passHint.style.visibility = 'hidden';
+        }
+    });
 
-    if (errorCheck) {
-      return;
-    }
+    nicknameInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const nickname = nicknameInput.value;
+        const check = debounce(inputValidate, debounceTimeout);
+        check(errFields.nickname, nickname);
+    });
 
-    const post = {"email": email, "password": password, "nickname": nickname};
-    const response = await api.signup(post);
-    if (response.status >= 400) {
-      switch (response.body.code) {
-        case 9:
-          const emailErrBlock = root.querySelector("#signup_email_error");
-          emailErrBlock.innerHTML = errors[9];
-          break;
-        case 10:
-          const nickErrBlock = root.querySelector("#signup_nickname_error");
-          nickErrBlock.innerHTML = errors[10];
-          break;
+    emailInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const email = emailInput.value;
+        const check = debounce(inputValidate, debounceTimeout);
+        check(errFields.email, email);
+    });
+
+    passwordInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const password = passwordInput.value;
+        const check = debounce(inputValidate, debounceTimeout);
+        check(errFields.password, password);
+    });
+
+    repeatPasswordInput.addEventListener('input', (event) => {
+        event.preventDefault();
+        const password = passwordInput.value;
+        const repPassword = repeatPasswordInput.value;
+        const check = debounce(inputValidate, debounceTimeout);
+        check(errFields.repPassword, password, repPassword);
+    });
+
+    const api = new API();
+    const signupButton = root.querySelector('#signup_enter_button');
+    signupButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        let errorCheck;
+
+        for (const [key, value] of new Map(Object.entries(errFields))) {
+            const inputCont = [root.querySelector(value.inputField).value];
+            if (key === 'repPassword') {
+                inputCont.push(root.querySelector(errFields.password.inputField).value);
+            }
+            if (!value.validationFunc(...inputCont)) {
+                errContentChange(value, value.errText);
+                errCustomize(value, ERROR_COLOR);
+                errorCheck = true;
+            } else {
+                errContentChange(value, '');
+                errCustomize(value, '');
+            }
+        }
+
+        if (errorCheck) {
+            return;
+        }
+
+        const post = {
+            'email': emailInput.value,
+            'password': passwordInput.value,
+            'nickname': nicknameInput.value,
+        };
+        const response = await api.signup(post);
+        switch (response.code) {
+        case 0:
+            localStorage.setItem('user', JSON.stringify(response.body));
+            Navbar();
+            Feed();
+            break;
+        case 51:
+            for (const err of response.errors) {
+                switch (err.code) {
+                case 9:
+                    errContentChange(errFields.email, errors[9]);
+                    errCustomize(errFields.email, ERROR_COLOR);
+                    break;
+                case 10:
+                    errContentChange(errFields.nickname, errors[10]);
+                    errCustomize(errFields.nickname, ERROR_COLOR);
+                    break;
+                default:
+                    Error();
+                    break;
+                }
+            }
+            break;
         default:
-          Error(response);
-          break;
-      }
-    } else {
-      // Login();
-      localStorage.setItem("user", JSON.stringify(response.body));
-      Navbar();
-      Feed();
-    }
-  });
+            Error();
+            break;
+        }
+    });
 
-  const loginButton = root.querySelector("#signup_login_button");
-  loginButton.addEventListener("click", () => {
-      Login();
-  });
+    const loginButton = root.querySelector('#signup_login_button');
+    loginButton.addEventListener('click', () => {
+        Login();
+    });
+};
+
+/**
+ * Set error content to block
+ * @function errContentChange
+ * @param {Object} block - Block object to change
+ * @param {string} content - Content to set
+ */
+const errContentChange = (block, content) => {
+    const errBlock = document.querySelector(block.errContent);
+    if (errBlock.innerHTML !== content) {
+        errBlock.innerHTML = content;
+    }
+};
+
+/**
+ * Sets error-style to block with specified color
+ * @function errCustomize
+ * @param {Object} block - Block object to change
+ * @param {string} color - Color to set
+ */
+const errCustomize = (block, color) => {
+    const input = document.querySelector(block.inputField);
+    const hint = document.querySelector(block.hint);
+
+    input.style.borderColor = color;
+    input.style.outlineColor = color;
+
+    if (hint) {
+        hint.style.borderColor = color;
+        hint.style.color = color;
+    }
+};
+
+/**
+ * Function provides validation of input and changes style of blocks if error detected
+ * @function inputValidate
+ * @param {Object} field - Object with: IDs of blocks where to display error/hint,
+ * validation function and message content
+ * @param {*} args - Arguments that needed to be passed in validation function
+ */
+const inputValidate = (field, ...args) => {
+    const hint = document.querySelector(field.hint);
+    if (!field.validationFunc(...args)) {
+        errContentChange(field, field.errText);
+        errCustomize(field, ERROR_COLOR);
+        if (hint) {
+            hint.style.visibility = 'visible';
+        }
+    } else {
+        errContentChange(field, '');
+        errCustomize(field, '');
+    }
 };

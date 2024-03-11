@@ -1,11 +1,11 @@
-import {errors} from "../../../modules/config.js";
+/** @module source/components/pages/error */
 
-export const Error = (response) => {
+/**
+ * Provides error view on site by rendering 'Handlebars.templates.error'.
+ * @function Error
+ */
+export const Error = () => {
     const template = Handlebars.templates.error;
     const root = document.getElementById('root');
-    root.innerHTML = template({
-        "status": response.status,
-        "message": response.statusText,
-        "description": errors[response.body.code],
-    });
-}
+    root.innerHTML = template({});
+};
