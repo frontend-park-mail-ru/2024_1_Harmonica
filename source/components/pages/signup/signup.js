@@ -4,7 +4,7 @@ import {API} from '../../../modules/API.js';
 import {Login} from '../login/login.js';
 import {emailValidation, nicknameValidation, passwordValidation, repPasswordValidation}
     from '../../../modules/validation.js';
-import {ERROR_COLOR, errors, timeout} from '../../../modules/config.js';
+import {ERROR_COLOR, errors, debounceTimeout} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
 import {Feed} from '../feed/feed.js';
@@ -83,21 +83,21 @@ export const Signup = () => {
     nicknameInput.addEventListener('input', (event) => {
         event.preventDefault();
         const nickname = nicknameInput.value;
-        const check = debounce(inputValidate, timeout);
+        const check = debounce(inputValidate, debounceTimeout);
         check(errFields.nickname, nickname);
     });
 
     emailInput.addEventListener('input', (event) => {
         event.preventDefault();
         const email = emailInput.value;
-        const check = debounce(inputValidate, timeout);
+        const check = debounce(inputValidate, debounceTimeout);
         check(errFields.email, email);
     });
 
     passwordInput.addEventListener('input', (event) => {
         event.preventDefault();
         const password = passwordInput.value;
-        const check = debounce(inputValidate, timeout);
+        const check = debounce(inputValidate, debounceTimeout);
         check(errFields.password, password);
     });
 
@@ -105,7 +105,7 @@ export const Signup = () => {
         event.preventDefault();
         const password = passwordInput.value;
         const repPassword = repeatPasswordInput.value;
-        const check = debounce(inputValidate, timeout);
+        const check = debounce(inputValidate, debounceTimeout);
         check(errFields.repPassword, password, repPassword);
     });
 
@@ -158,11 +158,14 @@ export const Signup = () => {
                     errContentChange(errFields.nickname, errors[10]);
                     errCustomize(errFields.nickname, ERROR_COLOR);
                     break;
+                default:
+                    Error();
+                    break;
                 }
             }
             break;
         default:
-            Error(response);
+            Error();
             break;
         }
     });
@@ -206,10 +209,11 @@ const errCustomize = (block, color) => {
 };
 
 /**
- * Idk
+ * Function provides validation of input and changes style of blocks if error detected
  * @function inputValidate
- * @param {Object} field - Field
- * @param {*} args - Args
+ * @param {Object} field - Object with: IDs of blocks where to display error/hint,
+ * validation function and message content
+ * @param {*} args - Arguments that needed to be passed in validation function
  */
 const inputValidate = (field, ...args) => {
     const hint = document.querySelector(field.hint);

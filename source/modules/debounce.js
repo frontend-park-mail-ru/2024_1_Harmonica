@@ -1,7 +1,7 @@
 /** @module source/modules/debounce */
 
 /**
- * Start debounce by timeout and function.
+ * Start debounce by debounceTimeout and function.
  * @function debounce
  * @param {function} func - The function to debounce.
  * @param {int} timeout - Timeout object.

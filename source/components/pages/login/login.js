@@ -61,7 +61,7 @@ export const Login = () => {
             errorHandle(root, '#login_password', errors[8]);
             break;
         default:
-            Error(response);
+            Error();
             break;
         }
     });
@@ -107,7 +107,7 @@ export const Logout = async () => {
     const api = new API();
     const response = await api.logout();
     if (response.code !== 0) {
-        Error(response);
+        Error();
         return;
     }
     Navbar();

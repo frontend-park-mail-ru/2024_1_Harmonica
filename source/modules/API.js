@@ -31,6 +31,9 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
+        if (!response.ok) {
+            return errCheck(response);
+        }
         const body = await response.json();
         return {
             code: 0,
@@ -61,7 +64,7 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
-        if (response.status >= 400) {
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: 51,
@@ -83,8 +86,9 @@ export class API {
      */
     async logout() {
         const url = backendAPI + '/logout';
+        let response;
         try {
-            await fetch(url, {
+            response = await fetch(url, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -93,6 +97,9 @@ export class API {
             });
         } catch (error) {
             return errCheck(error);
+        }
+        if (!response.ok) {
+            return errCheck(response);
         }
         return {
             code: 0,
@@ -122,6 +129,9 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
+        if (!response.ok) {
+            return errCheck(response);
+        }
         const body = await response.json();
         return {
             code: 0,
@@ -150,6 +160,9 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
+        if (!response.ok) {
+            return errCheck(response);
+        }
         const body = await response.json();
         return {
             code: 0,
@@ -176,7 +189,9 @@ const errCheck = async (error) => {
     } else {
         response = error;
     }
+    const body = await response.json();
+    console.log(body, body.code);
     return {
-        code: response.body.code,
+        code: body.code,
     };
 };

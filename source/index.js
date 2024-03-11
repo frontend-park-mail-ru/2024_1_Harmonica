@@ -6,6 +6,8 @@ const api = new API();
 const response = await api.isAuth();
 if (response.code !== 0) {
     localStorage.removeItem('user');
+} else {
+    localStorage.setItem('user', JSON.stringify(response.body));
 }
 Navbar();
 Feed();

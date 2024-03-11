@@ -3,9 +3,8 @@
 /**
  * Provides error view on site by rendering 'Handlebars.templates.error'.
  * @function Error
- * @param {json} response 
  */
-export const Error = (response) => {
+export const Error = () => {
     const template = Handlebars.templates.error;
     const root = document.getElementById('root');
     root.innerHTML = template({});

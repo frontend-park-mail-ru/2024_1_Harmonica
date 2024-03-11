@@ -17,7 +17,7 @@ export const Feed = async () => {
     const api = new API();
     const response = await api.feed();
     if (response.code !== 0) {
-        Error(response);
+        Error();
         return;
     }
     Pins(response.pins);
