@@ -21,6 +21,7 @@ export class API {
         try {
             response = await fetch(url, {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -54,6 +55,7 @@ export class API {
         try {
             response = await fetch(url, {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -89,6 +91,8 @@ export class API {
         let response;
         try {
             response = await fetch(url, {
+                method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -120,6 +124,7 @@ export class API {
         try {
             response = await fetch(url, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
@@ -151,6 +156,7 @@ export class API {
         try {
             response = await fetch(url, {
                 method: 'GET',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': true,
