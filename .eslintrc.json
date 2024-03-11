@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "google",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "ignorePatterns": [ "**/*.precompiled.js" ],
+    "rules": {
+        "new-cap": [
+            "error", {
+                "capIsNewExceptions":  [
+                    "Navbar",
+                    "Feed",
+                    "Logout",
+                    "Login",
+                    "Signup",
+                    "Pins"
+                ]
+            }
+        ],
+        "max-len": [
+            "error", {
+            "code":  100
+            }
+        ],
+        "indent": [
+            "error", 4
+        ],
+        "linebreak-style": "off"
+    }
+}
