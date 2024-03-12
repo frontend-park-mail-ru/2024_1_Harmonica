@@ -2,6 +2,17 @@
 
 import {backendAPI} from './config.js';
 
+/** Request template object */
+const fetchRequest = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true,
+    },
+    credentials: 'include',
+};
+
 /**
  * API class provides API-functions.
  * @class
@@ -19,15 +30,13 @@ export class API {
         const url = backendAPI + '/login';
         let response;
         try {
-            response = await fetch(url, {
+            const addOptions = {
                 method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
-                credentials: 'include',
                 body: JSON.stringify(post),
+            };
+            response = await fetch(url, {
+                ...fetchRequest,
+                ...addOptions,
             });
         } catch (error) {
             return errCheck(error);
@@ -53,15 +62,13 @@ export class API {
         const url = backendAPI + '/register';
         let response;
         try {
-            response = await fetch(url, {
+            const addOptions = {
                 method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
-                credentials: 'include',
                 body: JSON.stringify(post),
+            };
+            response = await fetch(url, {
+                ...fetchRequest,
+                ...addOptions,
             });
         } catch (error) {
             return errCheck(error);
@@ -90,15 +97,7 @@ export class API {
         const url = backendAPI + '/logout';
         let response;
         try {
-            response = await fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
-                credentials: 'include',
-            });
+            response = await fetch(url, fetchRequest);
         } catch (error) {
             return errCheck(error);
         }
@@ -122,15 +121,7 @@ export class API {
         });
         let response;
         try {
-            response = await fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
-                credentials: 'include',
-            });
+            response = await fetch(url, fetchRequest);
         } catch (error) {
             return errCheck(error);
         }
@@ -154,15 +145,7 @@ export class API {
         const url = backendAPI + '/is_auth';
         let response;
         try {
-            response = await fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
-                credentials: 'include',
-            });
+            response = await fetch(url, fetchRequest);
         } catch (error) {
             return errCheck(error);
         }
