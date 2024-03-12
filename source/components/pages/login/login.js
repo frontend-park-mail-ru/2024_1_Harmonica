@@ -50,7 +50,11 @@ export const Login = () => {
         const response = await api.login(post);
         switch (response.code) {
         case 0:
-            localStorage.setItem('user', JSON.stringify(response.body));
+            try {
+                localStorage.setItem('user', JSON.stringify(response.body));
+            } catch (error) {
+                Error();
+            }
             Navbar();
             Feed();
             break;
@@ -103,7 +107,11 @@ const errorHandle = (root, blockID, error) =>{
 * @async
  */
 export const Logout = async () => {
-    localStorage.removeItem('user');
+    try {
+        localStorage.removeItem('user');
+    } catch (error) {
+        Error();
+    }
     const api = new API();
     const response = await api.logout();
     if (response.code !== 0) {

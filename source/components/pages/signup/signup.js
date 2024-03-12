@@ -143,7 +143,11 @@ export const Signup = () => {
         const response = await api.signup(post);
         switch (response.code) {
         case 0:
-            localStorage.setItem('user', JSON.stringify(response.body));
+            try {
+                localStorage.setItem('user', JSON.stringify(response.body));
+            } catch (error) {
+                Error();
+            }
             Navbar();
             Feed();
             break;

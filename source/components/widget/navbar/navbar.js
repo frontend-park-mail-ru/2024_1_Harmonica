@@ -3,6 +3,7 @@
 import {Feed} from '../../pages/feed/feed.js';
 import {Login, Logout} from '../../pages/login/login.js';
 import {Signup} from '../../pages/signup/signup.js';
+import {Error} from '../../pages/error/error.js';
 
 /**
  * Provides navbar view on site by rendering 'Handlebars.templates.navbar'
@@ -12,8 +13,13 @@ export const Navbar = () => {
     const template = Handlebars.templates.navbar;
     const root = document.getElementById('navbar');
 
-    const userInfo = {'user': JSON.parse(localStorage.getItem('user'))};
-    root.innerHTML = template(userInfo);
+    let user;
+    try {
+        user = localStorage.getItem('user');
+    } catch (error) {
+        Error();
+    }
+    root.innerHTML = template({'user': JSON.parse(user)});
 
     const logoButton = root.querySelector('#navbar_logo');
     logoButton.addEventListener('click', () => {
