@@ -176,11 +176,9 @@ const errCheck = async (error) => {
             },
         };
     } else {
-        response = error;
+        response = error.json();
     }
-    const body = await response.json();
-    console.log(body, body.code);
     return {
-        code: body.code,
+        code: response.code,
     };
 };
