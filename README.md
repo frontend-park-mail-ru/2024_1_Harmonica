@@ -9,7 +9,7 @@
 ### Внешние ссылки
  - [Figma](https://www.figma.com/file/zRx9iBFVMZe01acfiQyfzO/My-Pinterest?type=design&node-id=0%3A1&mode=design&t=vkSl2cqoTW0Vvj60-1)
  - [Backend](https://github.com/go-park-mail-ru/2024_1_Harmonica)
- - [Deploy](http://89.111.174.111:8000/)
+ - [Deploy](https://harmoniums.ru/)
 
 ### Запуск сервера
 
