@@ -19,7 +19,8 @@ export const Navbar = () => {
     } catch (error) {
         Error();
     }
-    root.innerHTML = template({'user': JSON.parse(user)});
+    const userInfo = {'user': JSON.parse(user)}
+    root.innerHTML = template(userInfo);
 
     const logoButton = root.querySelector('#navbar_logo');
     logoButton.addEventListener('click', () => {

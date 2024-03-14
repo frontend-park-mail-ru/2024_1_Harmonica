@@ -176,7 +176,7 @@ const errCheck = async (error) => {
             },
         };
     } else {
-        response = error.json();
+        response = await error.json();
     }
     return {
         code: response.code,
