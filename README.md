@@ -9,7 +9,7 @@
 ### Внешние ссылки
  - [Figma](https://www.figma.com/file/zRx9iBFVMZe01acfiQyfzO/My-Pinterest?type=design&node-id=0%3A1&mode=design&t=vkSl2cqoTW0Vvj60-1)
  - [Backend](https://github.com/go-park-mail-ru/2024_1_Harmonica)
- - [Deploy](http://89.111.174.111:8000/)
+ - [Deploy](https://harmoniums.ru/)
 
 ### Запуск сервера
 
@@ -54,8 +54,12 @@
    
    Из корня проекта запускаем команду в терминале: 
    ```
-   node server/server.js
+   make production
    ```
+   Данная команда соберет webpack и запустит сервер
+   
    Если необходимо посенять порт для web сервера заходим в файл `/server/server.js` и меняем переменную `PORT`
    
    По умолчанию сервер работает на порту 8000
+
+   
