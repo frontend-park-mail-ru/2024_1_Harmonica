@@ -4,11 +4,11 @@ import path from 'path';
 const app = express();
 const PORT = 8000;
 
-const dirname = path.resolve();
-app.use('/', express.static(path.resolve(dirname, './source')));
+const __dirname = path.resolve();
+app.use('/', express.static(path.resolve(__dirname, './dist')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(dirname, './source', 'index.html'));
+    res.sendFile(path.join(__dirname, './source', 'index.html'));
 });
 
 app.listen(PORT, () => console.log(`Server listening port ${PORT}`));

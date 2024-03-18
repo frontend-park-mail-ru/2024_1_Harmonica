@@ -4,13 +4,13 @@ import {Feed} from '../../pages/feed/feed.js';
 import {Login, Logout} from '../../pages/login/login.js';
 import {Signup} from '../../pages/signup/signup.js';
 import {Error} from '../../pages/error/error.js';
+import templateNavbar from './navbar.handlebars';
 
 /**
  * Provides navbar view on site by rendering 'Handlebars.templates.navbar'
  * @function Navbar
  */
 export const Navbar = () => {
-    const template = Handlebars.templates.navbar;
     const root = document.getElementById('navbar');
 
     let user;
@@ -19,8 +19,8 @@ export const Navbar = () => {
     } catch (error) {
         Error();
     }
-    const userInfo = {'user': JSON.parse(user)}
-    root.innerHTML = template(userInfo);
+    const userInfo = {'user': JSON.parse(user)};
+    root.innerHTML = templateNavbar(userInfo);
 
     const logoButton = root.querySelector('#navbar_logo');
     logoButton.addEventListener('click', () => {

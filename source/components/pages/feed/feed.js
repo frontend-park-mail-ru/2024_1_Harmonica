@@ -3,6 +3,7 @@
 import {Pins} from '../../widget/pins/pins.js';
 import {API} from '../../../modules/API.js';
 import {Error} from '../error/error.js';
+import templateFeed from './feed.handlebars';
 
 /**
  * Provides feed view on site by rendering 'Handlebars.templates.feed'.
@@ -10,9 +11,8 @@ import {Error} from '../error/error.js';
  * @async
  */
 export const Feed = async () => {
-    const template = Handlebars.templates.feed;
     const root = document.getElementById('root');
-    root.innerHTML = template({});
+    root.innerHTML = templateFeed({});
 
     const api = new API();
     const response = await api.feed();

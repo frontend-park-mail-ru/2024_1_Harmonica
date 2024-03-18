@@ -7,6 +7,7 @@ import {Navbar} from '../../widget/navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {ERROR_COLOR, errors} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
+import templateLogin from './login.handlebars';
 
 /** Errors fields selectors */
 const errFields = [
@@ -25,9 +26,8 @@ const errFields = [
  * @async
  */
 export const Login = () => {
-    const template = Handlebars.templates.login;
     const root = document.getElementById('root');
-    root.innerHTML = template({});
+    root.innerHTML = templateLogin({});
 
     const api = new API();
     const enterButton = root.querySelector('#login_enter_button');

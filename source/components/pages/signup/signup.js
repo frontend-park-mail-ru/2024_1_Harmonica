@@ -9,6 +9,7 @@ import {Error} from '../error/error.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
 import {Feed} from '../feed/feed.js';
 import {debounce} from '../../../modules/debounce.js';
+import templateSignup from './signup.handlebars';
 
 /** Errors fields selectors, info and messages */
 const errFields = {
@@ -45,9 +46,8 @@ const errFields = {
  * @function Signup
  */
 export const Signup = () => {
-    const template = Handlebars.templates.signup;
     const root = document.getElementById('root');
-    root.innerHTML = template({});
+    root.innerHTML = templateSignup({});
 
     const nicknameInput = root.querySelector(errFields.nickname.inputField);
     const passwordInput = root.querySelector(errFields.password.inputField);
