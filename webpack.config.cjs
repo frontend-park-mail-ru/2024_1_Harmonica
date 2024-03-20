@@ -5,6 +5,7 @@ const path = require('path');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
     entry: './source/index.js',
@@ -21,6 +22,10 @@ const config = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin({}),
+        new HtmlWebpackPlugin({
+            title:'Harmonium',
+            template: './source/index.html',
+        })
     ],
     module: {
         rules: [
