@@ -7,6 +7,7 @@ import {Navbar} from '../../widget/navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../modules/validation.js';
 import {ERROR_COLOR, errors} from '../../../modules/config.js';
 import {Error} from '../error/error.js';
+import templateLogin from './login.handlebars';
 
 /** Errors fields selectors */
 const errFields = [
@@ -25,9 +26,8 @@ const errFields = [
  * @async
  */
 export const Login = () => {
-    const template = Handlebars.templates.login;
     const root = document.getElementById('root');
-    root.innerHTML = template({});
+    root.innerHTML = templateLogin({});
 
     const api = new API();
     const enterButton = root.querySelector('#login_enter_button');
@@ -50,7 +50,11 @@ export const Login = () => {
         const response = await api.login(post);
         switch (response.code) {
         case 0:
-            localStorage.setItem('user', JSON.stringify(response.body));
+            try {
+                localStorage.setItem('user', JSON.stringify(response.body));
+            } catch (error) {
+                Error();
+            }
             Navbar();
             Feed();
             break;
@@ -103,7 +107,11 @@ const errorHandle = (root, blockID, error) =>{
 * @async
  */
 export const Logout = async () => {
-    localStorage.removeItem('user');
+    try {
+        localStorage.removeItem('user');
+    } catch (error) {
+        Error();
+    }
     const api = new API();
     const response = await api.logout();
     if (response.code !== 0) {

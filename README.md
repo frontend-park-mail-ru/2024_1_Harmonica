@@ -10,6 +10,7 @@
  - [Figma](https://www.figma.com/file/zRx9iBFVMZe01acfiQyfzO/My-Pinterest?type=design&node-id=0%3A1&mode=design&t=vkSl2cqoTW0Vvj60-1)
  - [Backend](https://github.com/go-park-mail-ru/2024_1_Harmonica)
  - [Deploy](https://harmoniums.ru/)
+ - [Jira](https://harmonica.atlassian.net/jira/software/projects/HAR/boards/1)
 
 ### Запуск сервера
 
@@ -54,8 +55,18 @@
    
    Из корня проекта запускаем команду в терминале: 
    ```
-   node server/server.js
+   make production
    ```
+   Данная команда соберет webpack и запустит сервер
+   
    Если необходимо посенять порт для web сервера заходим в файл `/server/server.js` и меняем переменную `PORT`
    
    По умолчанию сервер работает на порту 8000
+
+  ### Правила оформления Pull Requests
+  1. Ветка создается с названием `har-###-action-description`, где ### - номер задачи в jira, action - add/update/fix/delete и т.д., description - лаконичное описание.
+  2. Коммиты должены быть названы по шаблону `HAR-###: description`.
+  3. При создании Pull Request'а нужно указать в описании ссылку на задачу в jira. 
+  4. Для того, чтобы залить изменения в ветку develop нужен апрув от [Кости](https://t.me/PassPort_Guardian)
+
+   
