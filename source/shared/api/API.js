@@ -1,6 +1,6 @@
 /** @module source/modules/API */
 
-import {backendAPI} from './config.js';
+import {backendAPI} from '../config.js';
 
 /** Request template object */
 const fetchRequest = {

@@ -1,14 +1,14 @@
 /** @module source/components/pages/signup */
 
-import {API} from '../../../modules/API.js';
+import {API} from '../../../shared/api/API.js';
 import {Login} from '../login/login.js';
 import {emailValidation, nicknameValidation, passwordValidation, repPasswordValidation}
-    from '../../../modules/validation.js';
-import {ERROR_COLOR, errors, debounceTimeout} from '../../../modules/config.js';
+    from '../../../shared/utils/validation.js';
+import {ERROR_COLOR, errors, debounceTimeout} from '../../../shared/config.js';
 import {Error} from '../error/error.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
 import {Feed} from '../feed/feed.js';
-import {debounce} from '../../../modules/debounce.js';
+import {debounce} from '../../../shared/utils/debounce.js';
 import templateSignup from './signup.handlebars';
 
 /** Errors fields selectors, info and messages */

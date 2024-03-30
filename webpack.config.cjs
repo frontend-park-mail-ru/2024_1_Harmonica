@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
-    entry: './source/index.js',
+    entry: './source/App.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
@@ -22,7 +22,7 @@ const config = {
         new webpack.HotModuleReplacementPlugin({}),
         new HtmlWebpackPlugin({
             title:'Harmonium',
-            template: './source/index.html',
+            template: './public/index.html',
         })
     ],
     module: {

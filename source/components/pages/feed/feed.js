@@ -1,7 +1,7 @@
 /** @module source/components/pages/feed */
 
 import {Pins} from '../../widget/pins/pins.js';
-import {API} from '../../../modules/API.js';
+import {API} from '../../../shared/api/API.js';
 import {Error} from '../error/error.js';
 import templateFeed from './feed.handlebars';
 

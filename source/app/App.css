@@ -1,8 +1,8 @@
-@import "components/widget/navbar/navbar.css";
-@import "components/pages/feed/feed.css";
-@import "components/pages/error/error.css";
-@import "components/pages/login/login.css";
-@import "components/pages/signup/signup.css";
+@import "../components/widget/navbar/navbar.css";
+@import "../components/pages/feed/feed.css";
+@import "../components/pages/error/error.css";
+@import "../components/pages/login/login.css";
+@import "../components/pages/signup/signup.css";
 
 :root{
     --background-color: #F6F6F6;
