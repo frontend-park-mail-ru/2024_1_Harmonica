@@ -59,7 +59,7 @@ export class API {
      * @return {json} The data of user and code: status of error if there is or 0 otherwise.
      */
     async signup(post) {
-        const url = backendAPI + '/register';
+        const url = backendAPI + '/users';
         let response;
         try {
             const addOptions = {
@@ -116,7 +116,7 @@ export class API {
      * @return {json} The data of feed and code: status of error if there is or 0 otherwise.
      */
     async feed() {
-        const url = backendAPI + '/pins_list' + '?' + new URLSearchParams({
+        const url = backendAPI + '/pins' + '?' + new URLSearchParams({
             page: '0',
         });
         let response;

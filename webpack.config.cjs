@@ -6,13 +6,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
-    entry: './source/App.js',
+    entry: './source/app/App.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
         compress: true,
-        static: './dist',
+        static: ['./dist', './source/shared/'],
         open: false,
         host: 'localhost',
         port: 8001,

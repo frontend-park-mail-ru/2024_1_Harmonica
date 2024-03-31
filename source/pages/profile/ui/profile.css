@@ -1,0 +1,94 @@
+.profile-info {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    gap: 50px;
+}
+
+.avatar_border-radius{
+    border-radius: 50%;
+}
+
+.profile-text{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.profile-text__nickname{
+    font-size: 40px;
+}
+
+.profile-text__followers{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.button{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    border-radius: var(--element-border-radius);
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.edit-button{
+    background-color: var(--secondary-button-color);
+}
+
+.subscribe-button{
+    background-color: var(--primary-button-color);
+}
+
+.profile-text-button_margin-top{
+    margin-top: auto;
+}
+
+.page_margin-top{
+    margin-top: 10px;
+}
+
+.switch-bundle{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.profile__content-switch{
+    width: auto;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.switch-active{
+    background-color: var(--primary-button-color);
+    font-size: var(--focus-font-size);
+}
+
+.switch-passive{
+    background-color: var(--secondary-button-color);
+}
+
+.add-block{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    right: 20px;
+    align-items: end;
+}
+
+.button-add{
+    justify-self: end;
+    height: 40px;
+    width: 40px;
+}
+
+.button_secondary-color{
+    background-color: var(--secondary-button-color);
+}

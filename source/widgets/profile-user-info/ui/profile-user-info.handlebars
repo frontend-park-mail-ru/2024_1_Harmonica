@@ -1,0 +1,20 @@
+<div class="avatar">
+    <img src="{{user.avatar_url}}" alt="" class="avatar_border-radius">
+</div>
+<div class="profile-text">
+    <div class="profile-text__nickname">
+        {{user.nickname}}
+    </div>
+    <div class="profile-text__followers">
+        {{user.followers_number}} подписчиков
+    </div>
+    {{#if user.is_owner}}
+        <div class="button edit-button profile-text-button_margin-top">
+            Изменить профиль
+        </div>
+    {{else}}
+        <div class="button subscribe-button profile-text-button_margin-top">
+            Подписаться
+        </div>
+    {{/if}}
+</div>
