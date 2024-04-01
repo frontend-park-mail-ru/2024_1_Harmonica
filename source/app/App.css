@@ -25,6 +25,17 @@
     font-family: Roboto, serif;
 }
 
+.button{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    border-radius: var(--element-border-radius);
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
 html, body{
     background-color: var(--background-color);
     height: 100%;

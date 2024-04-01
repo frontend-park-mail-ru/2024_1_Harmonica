@@ -1,18 +1,24 @@
 import userInfoTemplate from './profile-user-info.handlebars';
+import './profile-user-info.css';
 
 /**
  * Handle profile info widget
  */
-class ProfileUserInfo {
+export class ProfileUserInfo {
+    /**
+     * Constructor to initialize variables in user profile page
+     *
+     * @function constructor
+     */
+    constructor() {
+        this.userInfo = document.getElementById('user-info');
+    }
     /**
      * Render profile info widget
      *
      * @param {json} user – user info to render
      */
     render(user) {
-        const userInfo = document.getElementById('user-info');
-        userInfo.innerHTML = userInfoTemplate({user});
+        this.userInfo.innerHTML = userInfoTemplate({user});
     };
 }
-
-export default new ProfileUserInfo();
