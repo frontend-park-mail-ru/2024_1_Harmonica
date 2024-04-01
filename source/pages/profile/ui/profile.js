@@ -1,7 +1,7 @@
 import templateProfile from './profile.handlebars';
 import './profile.css';
-import {ProfileUserInfo} from '../../../widgets/profile-user-info/ui/profile-user-info.js';
-import {ProfileFeed} from '../../../widgets/profile-feed/ui/profile-feed.js';
+import {ProfileUserInfo} from '../../../widgets/profileUserInfo/ui/profileUserInfo.js';
+import {ProfileFeed} from '../../../widgets/profileFeed/ui/profileFeed.js';
 
 /**
  * Handle profile page

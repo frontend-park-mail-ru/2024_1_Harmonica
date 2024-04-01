@@ -1,4 +1,4 @@
-import userInfoTemplate from './profile-user-info.handlebars';
+import userInfoTemplate from './profileUserInfo.handlebars';
 import './profile-user-info.css';
 
 /**

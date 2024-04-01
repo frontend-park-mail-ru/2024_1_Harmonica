@@ -1,4 +1,4 @@
-import profileFeedTemplate from './profile-feed.handlebars';
+import profileFeedTemplate from './profileFeed.handlebars';
 import './profile-feed.css';
 
 /**
