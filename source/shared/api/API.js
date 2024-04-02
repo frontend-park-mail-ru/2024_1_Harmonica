@@ -15,8 +15,6 @@ const fetchRequest = {
 
 /**
  * API class provides API-functions.
- * @class
- * @classdesc Used to make requests to backend server.
  */
 export class API {
     /**
@@ -52,7 +50,6 @@ export class API {
     }
     /**
      * Signup user by form data
-     *
      * @async
      * @function signup
      * @param {json} post - The info from register form (email, password and nickname).
@@ -88,7 +85,6 @@ export class API {
     }
     /**
      * Logout current user by cookie
-     *
      * @async
      * @function logout
      * @return {json} Code: status of error if there is or 0 otherwise.
@@ -110,7 +106,6 @@ export class API {
     }
     /**
      * Get pins list
-     *
      * @async
      * @function feed
      * @return {json} The data of feed and code: status of error if there is or 0 otherwise.
@@ -136,7 +131,6 @@ export class API {
     }
     /**
      * Checks if user is authorized
-     *
      * @async
      * @function isAuth
      * @return {json} The data of user and code: status of error if there is or 0 otherwise.

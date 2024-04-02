@@ -3,12 +3,9 @@ import {Navbar} from '../components/widget/navbar/navbar.js';
 import {API} from '../shared/api/API.js';
 import {Error} from '../components/pages/error/error.js';
 import './App.css';
-import {Profile} from '../pages/profile/ui/profile.js';
+// import {Profile} from '../pages/profile/ui/profile.js';
+import {ProfileEdit} from '../pages/profileEdit/ui/profileEdit.js';
 
-
-// class Mediator {
-//
-// }
 
 const api = new API();
 const response = await api.isAuth();
@@ -26,6 +23,8 @@ if (response.code !== 0) {
     }
 }
 Navbar();
-const profile = new Profile();
-profile.render();
+/* const profile = new Profile();
+profile.render(); */
+const profileEdit = new ProfileEdit();
+profileEdit.render();
 // Feed();

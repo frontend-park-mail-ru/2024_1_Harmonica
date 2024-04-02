@@ -79,7 +79,8 @@ main{
 .window{
     width: 300px;
     margin: 30px auto;
-    background-color: var(--window-color);
+    background-color: var(--background-color);
+    box-shadow: 0 0 15px var(--window-color);
     border-radius: var(--element-border-radius);
     padding: 10px 20px;
     display: flex;
