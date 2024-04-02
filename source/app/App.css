@@ -62,6 +62,22 @@
     width: auto;
 }
 
+.title{
+    font-size: 33px;
+}
+
+.description{
+    font-size: 22px;
+}
+
+.annotation{
+    font-size: 18px;
+}
+
+.justify_content_left{
+    align-content: start;
+}
+
 html, body{
     background-color: var(--background-color);
     height: 100%;
@@ -109,9 +125,6 @@ main{
     box-shadow: 0 0 15px var(--window-color);
     border-radius: var(--element-border-radius);
     padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .window_title{

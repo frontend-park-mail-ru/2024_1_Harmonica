@@ -1,0 +1,36 @@
+<div class="window pin-window" id="pin-page">
+    <div class="pin-photo">
+        <img src="{{pin.content_url}}" alt="" class="pin-photo__image">
+    </div>
+    <div class="pin-description">
+        <div class="pin__information-top">
+            <div class="title justify_content_left">
+                {{pin.title}}
+            </div>
+            <div class="description justify_content_left">
+                {{pin.description}}
+            </div>
+            <div class="pin__user-info">
+                <div class="avatar pin__user-avatar" id="avatar">
+
+                </div>
+                <div class="annotation">
+                    {{pin.author.nickname}}
+                </div>
+            </div>
+        </div>
+        <div class="pin__block-bottom">
+            {{#if pin.is_owner}}
+                <div class="button button-passive">
+                    Изменить
+                </div>
+            {{/if}}
+            <div class="pin-like-section">
+                <div class="pin-likes-count description">
+                    20
+                </div>
+                <img src="/static/like.svg" alt="" class="like-section">
+            </div>
+        </div>
+    </div>
+</div>
