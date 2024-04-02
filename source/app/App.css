@@ -36,6 +36,32 @@
     cursor: pointer;
 }
 
+.button_focus-font-size{
+    font-size: var(--focus-font-size);
+}
+
+.button-active{
+    background-color: var(--primary-button-color);
+}
+
+.button-passive{
+    background-color: var(--secondary-button-color);
+}
+
+.input-fields{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 20px;
+}
+
+.input-block{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: auto;
+}
+
 html, body{
     background-color: var(--background-color);
     height: 100%;
@@ -118,7 +144,7 @@ main{
 }
 
 
-.text-input{
+.input{
     width: auto;
     border-radius: var(--element-border-radius);
     padding: 0 15px;

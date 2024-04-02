@@ -11,6 +11,8 @@
     visibility: hidden;
 }
 
+
+/*Поменять этот блок на input-block*/
 .input-item{
     position: relative;
     width: auto;

@@ -12,15 +12,6 @@
     align-items: flex-end;
 }
 
-.switch-button__active{
-    background-color: var(--primary-button-color);
-    font-size: var(--focus-font-size);
-}
-
-.switch-button__passive{
-    background-color: var(--secondary-button-color);
-}
-
 .add-block{
     display: flex;
     flex-direction: column;

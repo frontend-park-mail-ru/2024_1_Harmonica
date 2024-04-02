@@ -1,6 +1,7 @@
 import {View} from '../../../app/View.js';
 import profileEditTemplate from './profileEdit.handlebars';
 import {ProfileEditWindow} from '../../../widgets/profileEditWindow/ui/profileEditWindow.js';
+import './profile-edit.css';
 
 /**
  * ProfileEdit class to render profile edit page and handle events in it

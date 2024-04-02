@@ -9,6 +9,7 @@ export class View {
     constructor() {
         this.user = {
             nickname: 'nickname',
+            email: 'email@mail.ru',
             is_owner: true,
             avatar_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:' +
                 'ANd9GcSkxPRMT2ZiDmW3aKQyLV_x-qYAwsNYY1XG2W0m5YE-2Q&s',

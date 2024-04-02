@@ -24,7 +24,7 @@ if (response.code !== 0) {
 }
 Navbar();
 /* const profile = new Profile();
-profile.render(); */
+profile.render(profile.user); */
 const profileEdit = new ProfileEdit();
-profileEdit.render();
+profileEdit.render(profileEdit.user);
 // Feed();

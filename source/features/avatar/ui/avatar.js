@@ -22,6 +22,6 @@ export class Avatar extends View {
      * @param {string} avatarUrl – URL for avatar image
      */
     render(avatarUrl) {
-        this.root.innerHTML = avatarTemplate({avatar_url: avatarUrl});
+        this.root.innerHTML = avatarTemplate({avatarUrl: avatarUrl});
     }
 }
