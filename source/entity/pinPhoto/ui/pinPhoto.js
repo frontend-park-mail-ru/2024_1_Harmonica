@@ -24,4 +24,8 @@ export class PinPhoto extends View {
     render(contentURL) {
         this.root.innerHTML = pinPhotoTemplate({contentURL});
     }
+
+    renderCreate(){
+        this.root.innerHTML = pinPhotoTemplate({});
+    }
 }

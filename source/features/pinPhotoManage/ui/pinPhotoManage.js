@@ -25,6 +25,12 @@ export class PinPhotoManage extends View {
     renderUpdate(pin) {
         const photo = new PinPhoto();
         photo.render(pin.content_url);
-        this.root.innerHTML += pinPhotoManageTemplate({});
+        this.root.innerHTML += pinPhotoManageTemplate({photoRendered: true});
+    }
+
+    renderCreate(){
+        const photo = new PinPhoto();
+        photo.renderCreate();
+        this.root.innerHTML += pinPhotoManageTemplate({photoRendered: false});
     }
 }

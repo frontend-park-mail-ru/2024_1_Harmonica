@@ -30,6 +30,7 @@ profile.render(profile.user); */
 profileEdit.render(profileEdit.user); */
 const pinWatch = new PinView();
 // pinWatch.renderPin(pinWatch.pin);
-pinWatch.renderPinUpdate(pinWatch.pin);
+// pinWatch.renderPinUpdate(pinWatch.pin);
+pinWatch.renderPinCreate();
 // Feed();
 

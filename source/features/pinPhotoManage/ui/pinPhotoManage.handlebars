@@ -1,7 +1,9 @@
-<div class="hover-photo-block">
-    <div class="hover-photo-block__background">
+<div class="hover-photo-block {{#if photoRendered}}hover-photo-block_opacity{{/if}}">
+    {{#if photoRendered}}
+        <div class="hover-photo-block__background">
 
-    </div>
+        </div>
+    {{/if}}
     <div class="button button-passive hover-photo-block__button button_small">
         Загрузить
     </div>

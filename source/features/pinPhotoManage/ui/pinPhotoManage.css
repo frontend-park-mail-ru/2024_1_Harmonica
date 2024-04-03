@@ -9,6 +9,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.hover-photo-block_opacity{
     opacity: 0;
     transition: opacity .5s;
 }

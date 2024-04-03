@@ -43,6 +43,14 @@ export class PinView extends View {
         const pinPhotoManage = new PinPhotoManage();
         pinPhotoManage.renderUpdate(pin);
         const pinDesc = new PinDescription();
-        pinDesc.renderUpdate(pin);
+        pinDesc.render(pin);
+    }
+
+    renderPinCreate(){
+        this.root.innerHTML = pinViewTemplate({});
+        const pinPhotoManage = new PinPhotoManage();
+        pinPhotoManage.renderCreate();
+        const pinDesc = new PinDescription()
+        pinDesc.render({});
     }
 }

@@ -37,10 +37,10 @@ export class PinDescription extends View {
 
     /**
      * Function to render update content window
-     * @function renderUpdate
+     * @function render
      * @param {json} pin - pin information
      */
-    renderUpdate(pin) {
+    render(pin) {
         this.root.innerHTML = pinDescTemplate({pin});
         const topBlock = new PinFormBlock();
         topBlock.render(pin);
