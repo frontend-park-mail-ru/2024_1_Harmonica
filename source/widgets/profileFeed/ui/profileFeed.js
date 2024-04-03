@@ -20,7 +20,7 @@ export class ProfileFeed extends View {
      * Render profile feed widget
      * @function render
      */
-    render() {
-        this.feed.innerHTML = profileFeedTemplate({empty: true});
+    render(pins) {
+        this.feed.innerHTML = profileFeedTemplate({pins});
     }
 }

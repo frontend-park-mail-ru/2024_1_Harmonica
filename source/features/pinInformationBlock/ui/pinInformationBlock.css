@@ -5,6 +5,6 @@
 }
 
 .pin__user-avatar{
-    width: fit-content;
-    height: fit-content;
+    width: 45px;
+    height: 45px;
 }

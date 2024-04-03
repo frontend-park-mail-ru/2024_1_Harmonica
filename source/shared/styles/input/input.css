@@ -31,3 +31,8 @@
         outline-color: var(--primary-button-color);
     }
 }
+
+.input-description{
+    height: 120px;
+    padding: 10px 15px;
+}
