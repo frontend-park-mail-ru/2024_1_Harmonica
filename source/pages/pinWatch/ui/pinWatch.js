@@ -1,10 +1,12 @@
 import pinWatchTemplate from './pinWatch.handlebars';
 import './pinWatch.css';
 import {View} from '../../../app/View.js';
-import {Avatar} from '../../../features/avatar/ui/avatar.js';
+import {PinPhotoWatch} from '../../../widgets/pinPhotoWatch/ui/pinPhotoWatch.js';
+import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 
 /**
  * Handle pin page
+ * @extends View
  */
 export class PinWatch extends View {
     /**
@@ -24,7 +26,9 @@ export class PinWatch extends View {
      */
     render(pin) {
         this.root.innerHTML = pinWatchTemplate({pin});
-        const avatar = new Avatar();
-        avatar.render(pin.author.avatar_url);
+        const pinPhoto = new PinPhotoWatch();
+        pinPhoto.render(pin.content_url);
+        const pinDesc = new PinDescription();
+        pinDesc.render(pin);
     }
 }

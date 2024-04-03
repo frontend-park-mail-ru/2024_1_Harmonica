@@ -1,0 +1,10 @@
+.pin-like-section{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    align-items: center;
+}
+
+.like-section{
+    width: 45px;
+}

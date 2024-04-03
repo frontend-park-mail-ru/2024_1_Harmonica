@@ -4,15 +4,6 @@
     width: fit-content;
 }
 
-.pin-photo{
-    width: fit-content;
-    height: fit-content;
-}
-
-.pin-photo__image{
-    width: 400px;
-}
-
 .pin-description{
     padding: 25px;
     width: 450px;
@@ -20,37 +11,3 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
-.pin__information-top{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.pin__user-info{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.pin__user-avatar{
-    width: 45px;
-}
-
-.pin__block-bottom{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.pin-like-section{
-    display: flex;
-    gap: 10px;
-    justify-content: end;
-    align-items: center;
-}
-
-.like-section{
-    width: 45px;
-}
-

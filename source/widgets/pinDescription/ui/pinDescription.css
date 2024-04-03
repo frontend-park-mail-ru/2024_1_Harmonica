@@ -1,0 +1,11 @@
+.pin__block-top{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pin__block-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
