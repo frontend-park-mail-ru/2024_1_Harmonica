@@ -1,0 +1,7 @@
+.window{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 40px;
+}

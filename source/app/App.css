@@ -1,8 +1,12 @@
-@import "components/widget/navbar/navbar.css";
-@import "components/pages/feed/feed.css";
-@import "components/pages/error/error.css";
-@import "components/pages/login/login.css";
-@import "components/pages/signup/signup.css";
+@import "../components/widget/navbar/navbar.css";
+@import "../components/pages/feed/feed.css";
+@import "../components/pages/error/error.css";
+@import "../components/pages/login/login.css";
+@import "../components/pages/signup/signup.css";
+
+@import "../shared/styles/button/button.css";
+@import "../shared/styles/input/input.css";
+@import "../shared/styles/window/window.css";
 
 :root{
     --background-color: #F6F6F6;
@@ -66,11 +70,6 @@ main{
 }
 
 .window{
-    width: 300px;
-    margin: 30px auto;
-    background-color: var(--window-color);
-    border-radius: var(--element-border-radius);
-    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -106,7 +105,7 @@ main{
 }
 
 
-.text-input{
+.input{
     width: auto;
     border-radius: var(--element-border-radius);
     padding: 0 15px;

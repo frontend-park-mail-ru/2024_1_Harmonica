@@ -1,11 +1,11 @@
 /** @module source/components/pages/login */
 
-import {API} from '../../../modules/API.js';
+import {API} from '../../../shared/api/API.js';
 import {Feed} from '../feed/feed.js';
 import {Signup} from '../signup/signup.js';
 import {Navbar} from '../../widget/navbar/navbar.js';
-import {emailValidation, passwordValidation} from '../../../modules/validation.js';
-import {ERROR_COLOR, errors} from '../../../modules/config.js';
+import {emailValidation, passwordValidation} from '../../../shared/utils/validation.js';
+import {ERROR_COLOR, errors} from '../../../shared/config.js';
 import {Error} from '../error/error.js';
 import templateLogin from './login.handlebars';
 

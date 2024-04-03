@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    gap: 30px;
+}
+
+.avatar-change{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.profile-edit-window__button-field{
+    display: flex;
+    justify-content: space-between;
+}
