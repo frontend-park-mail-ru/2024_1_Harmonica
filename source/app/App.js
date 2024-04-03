@@ -36,7 +36,9 @@ profileEdit.render(profileEdit.user); */
 // pinWatch.renderPinCreate();
 /* const boardView = new BoardView();
 boardView.render(boardView.board); */
-const boardEdit = new BoardEdit();
-boardEdit.render(boardEdit.board);
+/* const boardEdit = new BoardEdit();
+boardEdit.renderUpdateBoard(boardEdit.board); */
+const boardCreate = new BoardEdit()
+boardCreate.renderCreateBoard();
 // Feed();
 

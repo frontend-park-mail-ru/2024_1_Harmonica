@@ -8,7 +8,11 @@ export class BoardEdit extends View{
         this.root = document.getElementById('root');
     }
 
-    render(board){
+    renderUpdateBoard(board){
         this.root.innerHTML = boardEditTemplate({board});
+    }
+
+    renderCreateBoard(){
+        this.root.innerHTML = boardEditTemplate({});
     }
 }
