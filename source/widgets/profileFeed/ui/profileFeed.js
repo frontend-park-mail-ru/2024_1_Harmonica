@@ -19,6 +19,7 @@ export class ProfileFeed extends View {
     /**
      * Render profile feed widget
      * @function render
+     * @param {Array} pins – array of pins with info in each
      */
     render(pins) {
         this.feed.innerHTML = profileFeedTemplate({pins});

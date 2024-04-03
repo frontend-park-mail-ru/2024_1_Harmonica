@@ -29,11 +29,11 @@ export class View {
         };
         this.board = {
             board_id: 1,
-            title: "This is my board",
-            created_at: "01.04.2024",
-            description: "My first experience of making a board on this service",
-            cover_url: "",
-            visibility_type: "public",
-        }
+            title: 'This is my board',
+            created_at: '01.04.2024',
+            description: 'My first experience of making a board on this service',
+            cover_url: '',
+            visibility_type: 'public',
+        };
     }
 }
