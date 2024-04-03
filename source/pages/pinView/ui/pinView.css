@@ -4,6 +4,12 @@
     width: fit-content;
 }
 
+.pin-photo{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+
 .pin-description{
     padding: 25px;
     width: 450px;

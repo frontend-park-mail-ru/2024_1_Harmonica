@@ -1,11 +1,11 @@
-import pinPhotoTemplate from './pinPhotoWatch.handlebars';
-import './pinPhotoWatch.css';
+import pinPhotoTemplate from './pinPhoto.handlebars';
+import './pinPhoto.css';
 import {View} from '../../../app/View.js';
 
 /**
  * Handle pins photo
  */
-export class PinPhotoWatch extends View {
+export class PinPhoto extends View {
     /**
      * Initialize values
      * @constructor

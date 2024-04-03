@@ -1,5 +1,6 @@
 .window{
     width: 300px;
+    height: fit-content;
     margin: 30px auto;
     background-color: var(--background-color);
     box-shadow: 0 0 15px var(--window-color);
