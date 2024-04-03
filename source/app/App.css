@@ -4,6 +4,10 @@
 @import "../components/pages/login/login.css";
 @import "../components/pages/signup/signup.css";
 
+@import "../shared/styles/button/button.css";
+@import "../shared/styles/input/input.css";
+@import "../shared/styles/window/window.css";
+
 :root{
     --background-color: #F6F6F6;
     --primary-button-color: #FF8E6E;
@@ -23,43 +27,6 @@
 * {
     margin: 0;
     font-family: Roboto, serif;
-}
-
-.button{
-    width: fit-content;
-    height: fit-content;
-    padding: 10px 20px;
-    border-radius: var(--element-border-radius);
-}
-
-.button:hover{
-    cursor: pointer;
-}
-
-.button_focus-font-size{
-    font-size: var(--focus-font-size);
-}
-
-.button-active{
-    background-color: var(--primary-button-color);
-}
-
-.button-passive{
-    background-color: var(--secondary-button-color);
-}
-
-.input-fields{
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    gap: 20px;
-}
-
-.input-block{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: auto;
 }
 
 html, body{
@@ -103,12 +70,6 @@ main{
 }
 
 .window{
-    width: 300px;
-    margin: 30px auto;
-    background-color: var(--background-color);
-    box-shadow: 0 0 15px var(--window-color);
-    border-radius: var(--element-border-radius);
-    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
