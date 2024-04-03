@@ -46,11 +46,15 @@ export class PinView extends View {
         pinDesc.render(pin);
     }
 
-    renderPinCreate(){
+    /**
+     * Render pin creation window
+     * @function renderPinCreate
+     */
+    renderPinCreate() {
         this.root.innerHTML = pinViewTemplate({});
         const pinPhotoManage = new PinPhotoManage();
         pinPhotoManage.renderCreate();
-        const pinDesc = new PinDescription()
+        const pinDesc = new PinDescription();
         pinDesc.render({});
     }
 }
