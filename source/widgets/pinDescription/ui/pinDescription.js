@@ -1,7 +1,7 @@
 import pinDescTemplate from './pinDescription.handlebars';
 import './pinDescription.css';
 import {View} from '../../../app/View.js';
-import {PinInformationBlock} from '../../../features/pinInformationBlock/ai/pinInformationBlock.js';
+import {PinInformationBlock} from '../../../features/pinInformationBlock/ui/pinInformationBlock.js';
 import {PinControllerBlock} from '../../../features/pinControllerBlock/ai/pinControllerBlock.js';
 
 /**
