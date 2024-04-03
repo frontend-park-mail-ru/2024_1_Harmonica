@@ -1,0 +1,13 @@
+.input-fields{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 20px;
+}
+
+.input-block{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: auto;
+}
