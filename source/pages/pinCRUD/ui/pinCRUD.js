@@ -1,5 +1,5 @@
-import pinWatchTemplate from './pinWatch.handlebars';
-import './pinWatch.css';
+import pinWatchTemplate from './pinCRUD.handlebars';
+import './pinCRUD.css';
 import {View} from '../../../app/View.js';
 import {PinPhotoWatch} from '../../../widgets/pinPhotoWatch/ui/pinPhotoWatch.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
@@ -8,7 +8,7 @@ import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.
  * Handle pin page
  * @extends View
  */
-export class PinWatch extends View {
+export class PinCRUD extends View {
     /**
      * Initialize values
      * @param {Array} args – arguments to pass in parent class
@@ -20,11 +20,11 @@ export class PinWatch extends View {
     }
 
     /**
-     * Function to render pin
-     * @function render
+     * Function to render pin watch page
+     * @function renderPinWatch
      * @param {json} pin – info about pin
      */
-    render(pin) {
+    renderPinWatch(pin) {
         this.root.innerHTML = pinWatchTemplate({pin});
         const pinPhoto = new PinPhotoWatch();
         pinPhoto.render(pin.content_url);

@@ -5,7 +5,7 @@ import {Error} from '../components/pages/error/error.js';
 import './App.css';
 // import {Profile} from '../pages/profile/ui/profile.js';
 // import {ProfileEdit} from '../pages/profileEdit/ui/profileEdit.js';
-import {PinWatch} from '../pages/pinWatch/ui/pinWatch.js';
+import {PinCRUD} from '../pages/pinCRUD/ui/pinCRUD.js';
 
 
 const api = new API();
@@ -28,6 +28,6 @@ Navbar();
 profile.render(profile.user); */
 /* const profileEdit = new ProfileEdit();
 profileEdit.render(profileEdit.user); */
-const pinWatch = new PinWatch();
-pinWatch.render(pinWatch.pin);
+const pinWatch = new PinCRUD();
+pinWatch.renderPinWatch(pinWatch.pin);
 // Feed();
