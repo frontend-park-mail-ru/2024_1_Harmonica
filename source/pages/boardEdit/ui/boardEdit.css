@@ -1,9 +1,10 @@
 .board-window{
-    width: fit-content;
+    width: 700px;
     height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 50px;
+    padding: 30px;
 }
 
 .board-button__element{

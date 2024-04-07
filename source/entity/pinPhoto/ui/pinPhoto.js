@@ -13,7 +13,7 @@ export class PinPhoto extends View {
      */
     constructor(...args) {
         super(...args);
-        this.root = document.getElementById('pin-photo');
+        this.root = document.getElementById('photo-manage__image-block');
     }
 
     /**
@@ -23,13 +23,5 @@ export class PinPhoto extends View {
      */
     render(contentURL) {
         this.root.innerHTML = pinPhotoTemplate({contentURL});
-    }
-
-    /**
-     * Render photo template
-     * @function renderCreate
-     */
-    renderCreate() {
-        this.root.innerHTML = pinPhotoTemplate({});
     }
 }

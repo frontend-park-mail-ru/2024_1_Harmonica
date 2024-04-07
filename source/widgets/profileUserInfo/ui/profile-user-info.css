@@ -36,3 +36,8 @@
 .page_margin-top{
     margin-top: 10px;
 }
+
+.profile-user-info__avatar{
+    width: 150px;
+    height: 150px;
+}

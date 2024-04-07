@@ -3,7 +3,7 @@
 import {backendAPI} from '../config.js';
 
 /** Request template object */
-const fetchRequest = {
+export const fetchRequest = {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -160,7 +160,7 @@ export class API {
  * @param {*} error - Error to check
  * @return {json} The data of fetch and code: status of error if there is.
  */
-const errCheck = async (error) => {
+export const errCheck = async (error) => {
     let response;
     if (error.message && error.message === 'Failed to fetch') {
         response = {

@@ -1,13 +1,13 @@
-@import "../components/widget/navbar/navbar.css";
-@import "../components/pages/feed/feed.css";
-@import "../components/pages/error/error.css";
-@import "../components/pages/login/login.css";
-@import "../components/pages/signup/signup.css";
+@import "../../components/widget/navbar/navbar.css";
+@import "../../components/pages/feed/feed.css";
+@import "../../components/pages/error/error.css";
+@import "../../components/pages/login/login.css";
+@import "../../components/pages/signup/signup.css";
 
-@import "../shared/styles/button/button.css";
-@import "../shared/styles/input/input.css";
-@import "../shared/styles/window/window.css";
-@import "../shared/styles/text/text.css";
+@import "button/button.css";
+@import "input/input.css";
+@import "window/window.css";
+@import "text/text.css";
 
 :root{
     --background-color: #F6F6F6;

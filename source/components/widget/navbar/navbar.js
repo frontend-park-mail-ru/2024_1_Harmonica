@@ -5,6 +5,7 @@ import {Login, Logout} from '../../pages/login/login.js';
 import {Signup} from '../../pages/signup/signup.js';
 import {Error} from '../../pages/error/error.js';
 import templateNavbar from './navbar.handlebars';
+import {Profile} from '../../../pages/profile/ui/profile.js';
 
 /**
  * Provides navbar view on site by rendering 'Handlebars.templates.navbar'
@@ -28,6 +29,12 @@ export const Navbar = () => {
     });
 
     if (userInfo.user) {
+        const profileButton = root.querySelector('#navbar-user-name');
+        profileButton.addEventListener('click', async () => {
+            const profile = new Profile();
+            const user = JSON.parse(localStorage.getItem('user'));
+            await profile.render(user.nickname);
+        })
         const logoutButton = root.querySelector('#navbar_logout_button');
         logoutButton.addEventListener('click', () => {
             Logout();

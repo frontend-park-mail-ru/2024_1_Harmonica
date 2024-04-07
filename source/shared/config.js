@@ -1,8 +1,8 @@
 /** @module source/modules/config */
 
 /** The link to backend server. */
-// export const backendAPI = 'http://85.192.35.36/:8080/api/v1'; // PROD
-export const backendAPI = 'http://localhost/api/v1'; // LOCAL
+export const backendAPI = 'https://harmoniums.ru:8080/api/v1'; // PROD
+// export const backendAPI = 'http://localhost/api/v1'; // LOCAL
 
 /** Descriptions of error's code. */
 export const errors = {

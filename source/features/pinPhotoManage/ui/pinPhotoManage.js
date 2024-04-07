@@ -23,9 +23,9 @@ export class PinPhotoManage extends View {
      * @param {json} pin – pin information
      */
     renderUpdate(pin) {
+        this.root.innerHTML = pinPhotoManageTemplate({photoRendered: true});
         const photo = new PinPhoto();
         photo.render(pin.content_url);
-        this.root.innerHTML += pinPhotoManageTemplate({photoRendered: true});
     }
 
     /**
@@ -33,8 +33,23 @@ export class PinPhotoManage extends View {
      * @function renderCreate
      */
     renderCreate() {
+        this.root.innerHTML = pinPhotoManageTemplate({photoRendered: false});
+        const uploadInput = document.querySelector('#pin-photo-input');
+        const photoImageBlock = document.querySelector('#photo-manage__image-block');
+        const photoHoverBlock = document.querySelector('#photo-hover-block');
         const photo = new PinPhoto();
-        photo.renderCreate();
-        this.root.innerHTML += pinPhotoManageTemplate({photoRendered: false});
+        uploadInput.addEventListener('change', (event) => {
+            event.preventDefault();
+            const image = uploadInput.files[0];
+            if (image) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    photoImageBlock.classList.remove('photo_size');
+                    photoHoverBlock.classList.add('hover-photo-block_opacity');
+                    photo.render(event.target.result);
+                }
+                reader.readAsDataURL(image);
+            }
+        });
     }
 }

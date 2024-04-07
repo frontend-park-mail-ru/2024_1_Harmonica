@@ -1,10 +1,12 @@
-<div class="hover-photo-block {{#if photoRendered}}hover-photo-block_opacity{{/if}}">
-    {{#if photoRendered}}
-        <div class="hover-photo-block__background">
+<div class="photo_size" id="photo-manage__image-block">
 
-        </div>
-    {{/if}}
-    <div class="button button-passive hover-photo-block__button button_small">
-        Загрузить
+</div>
+<div class="hover-photo-block {{#if photoRendered}}hover-photo-block_opacity{{/if}}" id="photo-hover-block">
+    <div class="hover-photo-block__background">
+
     </div>
+    <label class="button button-passive hover-photo-block__button button_small">
+        Загрузить
+        <input type="file" class="input_display_none" id="pin-photo-input">
+    </label>
 </div>

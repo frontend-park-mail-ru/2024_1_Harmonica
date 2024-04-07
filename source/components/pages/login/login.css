@@ -3,3 +3,9 @@
         height: 30px;
     }
 }
+
+.user-form-window{
+    width: 300px;
+    height: fit-content;
+    padding: 30px;
+}

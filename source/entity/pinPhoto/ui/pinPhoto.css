@@ -3,12 +3,3 @@
     border-radius: var(--pin-photo-border-radius);
     display: block;
 }
-
-.photo-hover{
-    width: 400px;
-    height: 800px;
-    border-radius: var(--pin-photo-border-radius);
-    background-color: var(--window-color);
-    opacity: .3;
-
-}

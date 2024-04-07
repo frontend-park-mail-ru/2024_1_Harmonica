@@ -41,6 +41,22 @@ const config = {
             },
         ],
     },
+    /* resolve: {
+        fallback: {
+            "querystring": require.resolve("querystring-es3"),
+            "fs": false,
+            "tls": false,
+            "net": false,
+            "path": false,
+            "zlib": false,
+            "http": false,
+            "https": false,
+            "stream": false,
+            "crypto": false,
+            "crypto-browserify": require.resolve('crypto-browserify'),
+            "async_hooks": false,
+        }
+    }, */
 };
 
 module.exports = () => {

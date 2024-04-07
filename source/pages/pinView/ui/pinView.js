@@ -4,6 +4,8 @@ import {View} from '../../../app/View.js';
 import {PinPhoto} from '../../../entity/pinPhoto/ui/pinPhoto.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';
+import {PinAPI} from '../api/api.js';
+import {Profile} from '../../profile/ui/profile.js';
 
 /**
  * Handle pin page
@@ -23,9 +25,13 @@ export class PinView extends View {
     /**
      * Function to render pin watch page
      * @function renderPin
-     * @param {json} pin – info about pin
+     * @param {json} pinID – pin's ID
      */
-    renderPin(pin) {
+    async renderPin(pinID) {
+        const pinAPI = new PinAPI(pinID);
+        const response = await pinAPI.api()
+        const pin = response.body;
+        console.log(pin);
         this.root.innerHTML = pinViewTemplate({pin});
         const pinPhoto = new PinPhoto();
         pinPhoto.render(pin.content_url);
@@ -56,5 +62,12 @@ export class PinView extends View {
         pinPhotoManage.renderCreate();
         const pinDesc = new PinDescription();
         pinDesc.render({});
+
+        const profileButton = this.root.querySelector('#form-control-back');
+        profileButton.addEventListener('click', async () => {
+            const profile = new Profile();
+            const user = JSON.parse(localStorage.getItem('user'));
+            await profile.render(user.nickname);
+        });
     }
 }

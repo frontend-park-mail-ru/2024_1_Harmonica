@@ -1,7 +1,7 @@
 .input-fields{
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 100%;
     gap: 20px;
 }
 
@@ -35,4 +35,8 @@
 .input-description{
     height: 120px;
     padding: 10px 15px;
+}
+
+.input_display_none{
+    display: none;
 }
