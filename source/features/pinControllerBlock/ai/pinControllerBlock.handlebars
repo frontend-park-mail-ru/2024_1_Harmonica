@@ -1,7 +1,10 @@
-<div>
+<div class="pin-control__owner-actions">
 {{#if pin.is_owner}}
-    <div class="button button-passive">
+    <div class="button button-passive" id="pin-update">
         Изменить
+    </div>
+    <div class="button button-passive" id="pin-delete">
+        Удалить
     </div>
 {{/if}}
 </div>
@@ -9,5 +12,7 @@
     <div class="pin-likes-count description">
         {{pin.likes_count}}
     </div>
-    <img src="/static/like.svg" alt="" class="like-section">
+    <div class="like-button" id="pin-like">
+        <img src="/static/like.svg" alt="" class="like-section">
+    </div>
 </div>

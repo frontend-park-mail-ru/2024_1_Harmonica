@@ -6,6 +6,7 @@ import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';
 import {PinAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
+import {Feed} from '../../../components/pages/feed/feed.js';
 
 /**
  * Handle pin page
@@ -38,6 +39,7 @@ export class PinView extends View {
 
         const pinDesc = new PinDescription();
         pinDesc.renderView(pin);
+
     }
 
     /**
@@ -51,6 +53,20 @@ export class PinView extends View {
         pinPhotoManage.renderUpdate(pin);
         const pinDesc = new PinDescription();
         pinDesc.render(pin);
+
+        const createSubmit = this.root.querySelector('#pin-form-save');
+        createSubmit.addEventListener('click', async (event) =>{
+            event.preventDefault();
+            const title = this.root.querySelector('#title-input').value;
+            const description = this.root.querySelector('#description-input').value;
+            const pinObj = {title, description};
+
+            const api = new PinAPI(pin.pin_id);
+            await api.apiPOST(JSON.stringify(pinObj));
+
+            const pinView = new PinView();
+            await pinView.renderPin(pin.pin_id);
+        });
     }
 
     /**
@@ -65,10 +81,28 @@ export class PinView extends View {
         pinDesc.render({});
 
         const profileButton = this.root.querySelector('#form-control-back');
-        profileButton.addEventListener('click', async () => {
+        profileButton.addEventListener('click', async (event) => {
+            event.preventDefault();
             const profile = new Profile();
             const user = JSON.parse(localStorage.getItem('user'));
             await profile.render(user.nickname);
         });
+
+        const createSubmit = this.root.querySelector('#pin-form-save');
+        createSubmit.addEventListener('click', async (event) =>{
+            event.preventDefault();
+            const title = this.root.querySelector('#title-input').value;
+            const description = this.root.querySelector('#description-input').value;
+            const pin = {title, description};
+
+            const uploadInput = document.querySelector('#pin-photo-input');
+            const image = uploadInput.files[0];
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('pin', JSON.stringify(pin));
+
+            const api = new PinAPI(null);
+            await api.apiPOST(formData);
+        })
     }
 }

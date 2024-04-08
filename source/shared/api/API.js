@@ -3,11 +3,10 @@
 import {backendAPI} from '../config.js';
 
 /** Request template object */
-export const fetchRequest = {
+export let fetchRequest = {
     method: 'GET',
     mode: 'cors',
     headers: {
-        'Content-Type': 'application/json',
         'Access-Control-Allow-Credentials': true,
     },
     credentials: 'include',
@@ -143,6 +142,7 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
+        fetchRequest.headers['X-CSRF-Token'] = response.headers.get("x-csrf-token");
         if (!response.ok) {
             return errCheck(response);
         }

@@ -8,3 +8,8 @@
 .like-section{
     width: 45px;
 }
+
+.pin-control__owner-actions{
+    display: flex;
+    gap: 10px;
+}

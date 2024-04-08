@@ -1,4 +1,5 @@
 .form {
+    width: 650px;
     display: flex;
     gap: 30px;
 }
@@ -13,4 +14,9 @@
 .profile-edit-window__button-field{
     display: flex;
     justify-content: space-between;
+}
+
+.profile-edit__avatar{
+    width: 150px;
+    height: 150px;
 }

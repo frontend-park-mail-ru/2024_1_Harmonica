@@ -49,5 +49,12 @@ export class Profile extends View {
             const boardCreate = new BoardEdit();
             boardCreate.renderCreateBoard();
         })
+
+        const profileEditElem = document.querySelector('#profile-edit');
+        profileEditElem.addEventListener('click', (event) => {
+            event.preventDefault();
+            const profileEdit = new ProfileEdit();
+            profileEdit.render(user);
+        });
     };
 }

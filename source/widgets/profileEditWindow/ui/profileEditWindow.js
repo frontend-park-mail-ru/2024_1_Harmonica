@@ -2,6 +2,7 @@ import profileEditWindowTemplate from './profileEditWindow.handlebars';
 import './profile-edit-window.css';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
+import {Profile} from '../../../pages/profile/ui/profile.js';
 
 /**
  * Class to handle profile edit window
@@ -26,5 +27,11 @@ export class ProfileEditWindow extends View {
         this.root.innerHTML = profileEditWindowTemplate({user});
         const avatar = new Avatar();
         avatar.render(user.avatar_url);
+        const buttonBack = document.querySelector('#profile-edit-back');
+        buttonBack.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const profile = new Profile();
+            await profile.render(user.user.nickname);
+        })
     }
 }
