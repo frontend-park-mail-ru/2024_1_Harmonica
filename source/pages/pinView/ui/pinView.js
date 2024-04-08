@@ -31,10 +31,11 @@ export class PinView extends View {
         const pinAPI = new PinAPI(pinID);
         const response = await pinAPI.api()
         const pin = response.body;
-        console.log(pin);
+
         this.root.innerHTML = pinViewTemplate({pin});
-        const pinPhoto = new PinPhoto();
-        pinPhoto.render(pin.content_url);
+        const pinPhotoManager = new PinPhotoManage();
+        pinPhotoManager.render(pin);
+
         const pinDesc = new PinDescription();
         pinDesc.renderView(pin);
     }

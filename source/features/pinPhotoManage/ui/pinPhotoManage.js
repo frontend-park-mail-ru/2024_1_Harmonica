@@ -17,13 +17,18 @@ export class PinPhotoManage extends View {
         this.root = document.querySelector('#pin-photo');
     }
 
+    render(pin){
+        this.root.innerHTML = pinPhotoManageTemplate({pinView: true});
+        const photo = new PinPhoto();
+        photo.render(pin.content_url);
+    }
     /**
      * Render photo in page
      * @function renderUpdate
      * @param {json} pin – pin information
      */
     renderUpdate(pin) {
-        this.root.innerHTML = pinPhotoManageTemplate({photoRendered: true});
+        this.root.innerHTML = pinPhotoManageTemplate({pinView: false, photoRendered: true});
         const photo = new PinPhoto();
         photo.render(pin.content_url);
     }
@@ -33,11 +38,12 @@ export class PinPhotoManage extends View {
      * @function renderCreate
      */
     renderCreate() {
-        this.root.innerHTML = pinPhotoManageTemplate({photoRendered: false});
+        this.root.innerHTML = pinPhotoManageTemplate({pinView: false, photoRendered: false});
         const uploadInput = document.querySelector('#pin-photo-input');
         const photoImageBlock = document.querySelector('#photo-manage__image-block');
         const photoHoverBlock = document.querySelector('#photo-hover-block');
         const photo = new PinPhoto();
+        photo.render("");
         uploadInput.addEventListener('change', (event) => {
             event.preventDefault();
             const image = uploadInput.files[0];

@@ -42,3 +42,8 @@
     background-color: var(--window-color);
     border-radius: var(--element-border-radius);
 }
+
+.photo-block_fit-content{
+    width: fit-content;
+    height: fit-content;
+}
