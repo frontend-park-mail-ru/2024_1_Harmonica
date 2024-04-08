@@ -4,6 +4,8 @@ import {View} from '../../../app/View.js';
 import {PinView} from '../../../pages/pinView/ui/pinView.js';
 import {PinAPI} from '../../../pages/pinView/api/api.js';
 import {Feed} from '../../../components/pages/feed/feed.js';
+import {Like} from '../../../entity/like/ui/like.js';
+import {LikeAPI} from '../../../entity/like/api/api.js';
 
 /**
  * Class to render and handle edit and like buttons on pin
@@ -44,5 +46,24 @@ export class PinControllerBlock extends View {
                 Feed();
             });
         }
+        const likeView = new Like();
+        likeView.render(pin.is_liked);
+
+        const likeButton = document.querySelector('#pin-like');
+        const likeCount = document.querySelector('#pin-like-count');
+        const likeAPI = new LikeAPI(pin.pin_id);
+        let checked = pin.is_liked;
+        likeButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            if (checked){
+                await likeAPI.apiDELETE();
+                likeCount.innerHTML = +likeCount.innerHTML - 1;
+            } else {
+                await likeAPI.apiPOST();
+                likeCount.innerHTML = +likeCount.innerHTML + 1;
+            }
+            checked = !checked;
+            likeView.render(checked);
+        });
     }
 }
