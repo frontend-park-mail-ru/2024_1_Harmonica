@@ -54,6 +54,13 @@ export class PinView extends View {
         const pinDesc = new PinDescription();
         pinDesc.render(pin);
 
+        const backButton = this.root.querySelector('#form-control-back');
+        backButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const pinView = new PinView();
+            await pinView.renderPin(pin.pin_id);
+        });
+
         const createSubmit = this.root.querySelector('#pin-form-save');
         createSubmit.addEventListener('click', async (event) =>{
             event.preventDefault();
@@ -102,7 +109,10 @@ export class PinView extends View {
             formData.append('pin', JSON.stringify(pin));
 
             const api = new PinAPI(null);
-            await api.apiPOST(formData);
+            const response = await api.apiPOST(formData);
+
+            const pinView = new PinView();
+            await pinView.renderPin(response.body.pin_id);
         })
     }
 }
