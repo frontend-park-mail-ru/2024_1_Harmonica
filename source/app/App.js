@@ -3,9 +3,11 @@ import {Navbar} from '../components/widget/navbar/navbar.js';
 import {API} from '../shared/api/API.js';
 import {Error} from '../components/pages/error/error.js';
 import './App.css';
+// import {BoardView} from '../pages/boardView/ui/boardView.js';
+import {BoardEdit} from '../pages/boardEdit/ui/boardEdit.js';
 // import {Profile} from '../pages/profile/ui/profile.js';
 // import {ProfileEdit} from '../pages/profileEdit/ui/profileEdit.js';
-import {PinView} from '../pages/pinView/ui/pinView.js';
+// import {PinView} from '../pages/pinView/ui/pinView.js';
 
 
 const api = new API();
@@ -28,9 +30,15 @@ Navbar();
 profile.render(profile.user); */
 /* const profileEdit = new ProfileEdit();
 profileEdit.render(profileEdit.user); */
-const pinWatch = new PinView();
+// const pinWatch = new PinView();
 // pinWatch.renderPin(pinWatch.pin);
 // pinWatch.renderPinUpdate(pinWatch.pin);
-pinWatch.renderPinCreate();
+// pinWatch.renderPinCreate();
+/* const boardView = new BoardView();
+boardView.render(boardView.board); */
+/* const boardEdit = new BoardEdit();
+boardEdit.renderUpdateBoard(boardEdit.board); */
+const boardCreate = new BoardEdit();
+boardCreate.renderCreateBoard();
 // Feed();
 

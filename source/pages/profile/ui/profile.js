@@ -27,6 +27,6 @@ export class Profile extends View {
         this.profileUserInfo = new ProfileUserInfo();
         this.profileFeed = new ProfileFeed();
         this.profileUserInfo.render(user);
-        this.profileFeed.render();
+        this.profileFeed.render([]);
     };
 }

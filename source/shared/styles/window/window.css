@@ -5,5 +5,5 @@
     background-color: var(--background-color);
     box-shadow: 0 0 15px var(--window-color);
     border-radius: var(--element-border-radius);
-    padding: 10px 20px;
+    padding: 30px;
 }
