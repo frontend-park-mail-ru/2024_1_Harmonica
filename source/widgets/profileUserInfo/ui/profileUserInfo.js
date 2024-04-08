@@ -1,6 +1,6 @@
 import userInfoTemplate from './profileUserInfo.handlebars';
 import './profile-user-info.css';
-import {Avatar} from '../../../features/avatar/ui/avatar.js';
+import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {View} from '../../../app/View.js';
 
 /**

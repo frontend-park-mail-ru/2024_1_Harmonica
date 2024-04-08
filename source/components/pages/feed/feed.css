@@ -17,7 +17,7 @@
     background-color: var(--window-color);
 }
 
-img{
+.pin{
     margin: auto;
     border-radius: var(--element-border-radius);
     width: 100%;

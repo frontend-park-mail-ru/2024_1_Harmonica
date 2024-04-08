@@ -11,3 +11,23 @@
     gap: 5px;
     width: auto;
 }
+
+.input{
+    width: auto;
+    border-radius: var(--element-border-radius);
+    padding: 0 15px;
+    height: 45px;
+    font-size: var(--focus-font-size);
+    border: 2px solid;
+    background-color: var(--background-color);
+
+    &::placeholder{
+        color: var(--search-color);
+        font-size: var(--focus-font-size);
+    }
+
+    &:focus{
+        background-color: #ffffff;
+        outline-color: var(--primary-button-color);
+    }
+}

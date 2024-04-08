@@ -1,7 +1,7 @@
 import profileEditWindowTemplate from './profileEditWindow.handlebars';
 import './profile-edit-window.css';
 import {View} from '../../../app/View.js';
-import {Avatar} from '../../../features/avatar/ui/avatar.js';
+import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 
 /**
  * Class to handle profile edit window

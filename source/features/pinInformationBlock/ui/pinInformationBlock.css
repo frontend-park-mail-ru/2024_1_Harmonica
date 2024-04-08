@@ -1,0 +1,10 @@
+.pin__user-info{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pin__user-avatar{
+    width: fit-content;
+    height: fit-content;
+}

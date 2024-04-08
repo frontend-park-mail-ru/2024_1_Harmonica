@@ -7,6 +7,7 @@
 @import "../shared/styles/button/button.css";
 @import "../shared/styles/input/input.css";
 @import "../shared/styles/window/window.css";
+@import "../shared/styles/text/text.css";
 
 :root{
     --background-color: #F6F6F6;
@@ -22,6 +23,7 @@
     --title-font-size: 25px;
     --focus-font-size: 18px;
     --simple-font-size: 15px;
+    --pin-photo-border-radius: 15px 0 0 15px;
 }
 
 * {
@@ -69,12 +71,6 @@ main{
     font-size: var(--focus-font-size);
 }
 
-.window{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .window_title{
     text-align: center;
     font-size: var(--title-font-size);
@@ -101,27 +97,6 @@ main{
 
     .btn{
         margin-top: 15px;
-    }
-}
-
-
-.input{
-    width: auto;
-    border-radius: var(--element-border-radius);
-    padding: 0 15px;
-    height: 45px;
-    font-size: var(--focus-font-size);
-    border: 2px solid;
-    background-color: var(--background-color);
-
-    &::placeholder{
-        color: var(--search-color);
-        font-size: var(--focus-font-size);
-    }
-
-    &:focus{
-        background-color: #ffffff;
-        outline-color: var(--primary-button-color);
     }
 }
 

@@ -1,0 +1,12 @@
+.avatar_border-radius{
+    border-radius: 50%;
+}
+
+.avatar{
+    display: block;
+}
+
+.avatar_size{
+    width: 45px;
+    height: 45px;
+}
