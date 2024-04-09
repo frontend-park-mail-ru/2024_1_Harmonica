@@ -13,10 +13,10 @@ export class ProfileFeedBoardsView extends View{
         this.root.innerHTML = profileFeedBoardsTemplate({boards});
         for (let board of boards){
             const boardElem = document.getElementById('board-' + board.board_id.toString());
-            boardElem.addEventListener('click', (event) =>{
+            boardElem.addEventListener('click', async (event) =>{
                 event.preventDefault();
                 const boardView = new BoardView();
-                boardView.render(board.board_id);
+                await boardView.render(board.board_id);
             });
         }
     }
