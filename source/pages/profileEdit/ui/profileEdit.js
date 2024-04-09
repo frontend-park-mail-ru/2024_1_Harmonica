@@ -25,6 +25,6 @@ export class ProfileEdit extends View {
     render(user) {
         this.root.innerHTML = profileEditTemplate({});
         const profileEditWindow = new ProfileEditWindow();
-        profileEditWindow.render(user);
+        profileEditWindow.render(user.user);
     }
 }

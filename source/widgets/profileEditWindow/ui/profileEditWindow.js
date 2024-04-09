@@ -3,6 +3,7 @@ import './profile-edit-window.css';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {Profile} from '../../../pages/profile/ui/profile.js';
+import {ProfileEditAPI} from '../api/api.js';
 
 /**
  * Class to handle profile edit window
@@ -31,7 +32,42 @@ export class ProfileEditWindow extends View {
         buttonBack.addEventListener('click', async (event) => {
             event.preventDefault();
             const profile = new Profile();
-            await profile.render(user.user.nickname);
+            await profile.render(user.nickname);
         })
+
+        const uploadInput = document.querySelector('#profile-photo-input');
+        uploadInput.addEventListener('change', (event) => {
+            event.preventDefault();
+            const image = uploadInput.files[0];
+            if (image) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    avatar.render(event.target.result);
+                }
+                reader.readAsDataURL(image);
+            }
+        });
+
+        const saveButton = document.querySelector('#profile-edit-save');
+        saveButton.addEventListener('click', async (event) =>{
+            event.preventDefault();
+            const email = this.root.querySelector('#input-email').value;
+            const nickname = this.root.querySelector('#input-nickname').value;
+            const password = this.root.querySelector('#input-password').value;
+            const repeatPassword = this.root.querySelector('#input-repeat-password').value;
+            const userInfo = {email, nickname, password};
+
+            const uploadInput = document.querySelector('#profile-photo-input');
+            const image = uploadInput.files[0];
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('user', JSON.stringify(userInfo));
+
+            const profileEditAPI = new ProfileEditAPI(user.user_id);
+            const response = await profileEditAPI.api(formData);
+
+            const profile = new Profile();
+            await profile.render(response.body.nickname);
+        });
     }
 }
