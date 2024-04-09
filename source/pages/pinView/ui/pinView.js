@@ -41,7 +41,6 @@ export class PinView extends View {
 
         const pinDesc = new PinDescription();
         pinDesc.renderView(pin);
-
     }
 
     /**

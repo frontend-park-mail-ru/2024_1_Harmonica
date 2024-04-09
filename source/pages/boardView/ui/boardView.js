@@ -4,6 +4,7 @@ import {View} from '../../../app/View.js';
 import {BoardAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
+import {BoardFeedView} from '../../../widgets/boardFeed/ui/boardFeed.js';
 
 /**
  * Handle board page
@@ -30,6 +31,10 @@ export class BoardView extends View {
         const board = response.body.board;
         console.log(board);
         this.root.innerHTML = boardViewTemplate({board});
+
+        const boardFeed = new BoardFeedView();
+        boardFeed.render(response.body.pins);
+
         if (board.is_owner) {
             const deleteButton = document.querySelector('#board-delete-button');
             deleteButton.addEventListener('click', (event) => {

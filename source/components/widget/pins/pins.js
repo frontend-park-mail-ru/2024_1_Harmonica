@@ -16,10 +16,10 @@ export const Pins = (pins, element = 'feed') => {
     root.appendChild(elem);
     for (let pin of pins) {
         const pinElem = document.getElementById('pin-' + pin.pin_id.toString());
-        pinElem.addEventListener('click', (event) => {
+        pinElem.addEventListener('click', async (event) => {
             event.preventDefault();
             const pinView = new PinView();
-            pinView.renderPin(pin.pin_id);
+            await pinView.renderPin(pin.pin_id);
         })
     }
 };
