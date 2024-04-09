@@ -2,16 +2,22 @@
 
 import templatePins from './pins.handlebars';
 import {PinView} from '../../../pages/pinView/ui/pinView.js';
+import './pins.css';
 
 /**
  * Provides pins view on site by rendering 'Handlebars.templates.pin'
  * @function Pins
  * @param {json} pins - Pins to render
  * @param {string} element - id of root
+ * @param {boolean} pinControl – render pin control buttons
  */
-export const Pins = (pins, element = 'feed') => {
+export const Pins = (pins, element = 'feed', pinControl = false) => {
     const elem = document.createElement('div');
-    elem.innerHTML = templatePins({pins: pins});
+    elem.classList.add('pin-list');
+    elem.innerHTML = templatePins({
+        pins: pins,
+        pinControl: pinControl,
+    });
     const root = document.getElementById(element);
     root.appendChild(elem);
     for (let pin of pins) {

@@ -33,7 +33,7 @@ export class BoardView extends View {
         this.root.innerHTML = boardViewTemplate({board});
 
         const boardFeed = new BoardFeedView();
-        boardFeed.render(response.body.pins);
+        boardFeed.render(response.body.board, response.body.pins);
 
         if (board.is_owner) {
             const deleteButton = document.querySelector('#board-delete-button');

@@ -38,10 +38,10 @@ export class PinInformationBlock extends View {
         );
 
         const boardAdd = document.querySelector('#pin-board-add');
-        boardAdd.addEventListener('click', (event) => {
+        boardAdd.addEventListener('click', async (event) => {
             event.preventDefault();
             const addPin = new PinAddToBoardView();
-            addPin.render(pin);
+            await addPin.render(pin);
         });
     }
 }
