@@ -1,6 +1,9 @@
 import boardViewTemplate from './boardView.handlebars';
 import './boardView.css';
 import {View} from '../../../app/View.js';
+import {BoardAPI} from '../api/api.js';
+import {Profile} from '../../profile/ui/profile.js';
+import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 
 /**
  * Handle board page
@@ -19,9 +22,31 @@ export class BoardView extends View {
     /**
      * Render board page
      * @function render
-     * @param {json} board – board info
+     * @param {json} boardID – board's ID
      */
-    render(board) {
+    async render(boardID) {
+        const boardAPI = new BoardAPI(boardID);
+        const response = await boardAPI.api();
+        const board = response.body.board;
+        console.log(board);
         this.root.innerHTML = boardViewTemplate({board});
+
+        const deleteButton = document.querySelector('#board-delete-button');
+        deleteButton.addEventListener('click', (event) =>{
+            event.preventDefault();
+            boardAPI.apiDELETE();
+
+            const profile = new Profile();
+            const user = JSON.parse(localStorage.getItem('user'));
+            profile.render(user.nickname);
+        });
+
+        const editButton = document.querySelector('#board-edit-button');
+        editButton.addEventListener('click', (event) =>{
+            event.preventDefault();
+
+            const editPage = new BoardEdit();
+            editPage.renderUpdateBoard(board);
+        });
     }
 }

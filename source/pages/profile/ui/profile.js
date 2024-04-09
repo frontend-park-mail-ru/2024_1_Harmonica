@@ -32,29 +32,43 @@ export class Profile extends View {
         const user = response.body;
         this.root.innerHTML = templateProfile();
         this.profileUserInfo = new ProfileUserInfo();
-        this.profileFeed = new ProfileFeed();
+        const profileFeed = new ProfileFeed();
         this.profileUserInfo.render(user);
-        this.profileFeed.render([]);
+        await profileFeed.renderFeed(user.user);
 
-        const pinAdd = document.querySelector('#profile-pin-add');
-        pinAdd.addEventListener('click', (event) => {
-            event.preventDefault();
-            const pinCreate = new PinView();
-            pinCreate.renderPinCreate();
-        })
+        if (user.is_owner) {
+            const pinAdd = document.querySelector('#profile-pin-add');
+            pinAdd.addEventListener('click', (event) => {
+                event.preventDefault();
+                const pinCreate = new PinView();
+                pinCreate.renderPinCreate();
+            })
 
-        const boardAdd = document.querySelector('#profile-board-add');
-        boardAdd.addEventListener('click', (event) => {
-            event.preventDefault();
-            const boardCreate = new BoardEdit();
-            boardCreate.renderCreateBoard();
-        })
+            const boardAdd = document.querySelector('#profile-board-add');
+            boardAdd.addEventListener('click', (event) => {
+                event.preventDefault();
+                const boardCreate = new BoardEdit();
+                boardCreate.renderCreateBoard();
+            })
 
-        const profileEditElem = document.querySelector('#profile-edit');
-        profileEditElem.addEventListener('click', (event) => {
+            const profileEditElem = document.querySelector('#profile-edit');
+            profileEditElem.addEventListener('click', (event) => {
+                event.preventDefault();
+                const profileEdit = new ProfileEdit();
+                profileEdit.render(user);
+            });
+        }
+
+        const boardButton = document.querySelector('#profile-content-boards');
+        boardButton.addEventListener('click', (event) =>{
             event.preventDefault();
-            const profileEdit = new ProfileEdit();
-            profileEdit.render(user);
+            profileFeed.renderBoards(user.user)
+        });
+
+        const feedButton = document.querySelector('#profile-content-pins');
+        feedButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            profileFeed.renderFeed(user.user);
         });
     };
 }

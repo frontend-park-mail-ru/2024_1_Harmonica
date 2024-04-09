@@ -7,11 +7,11 @@
             {{board.description}}
         </div>
         <div class="board-control-block">
-            {{#if is_owner}}
-                <div class="button button-small button-passive">
+            {{#if board.is_owner}}
+                <div class="button button-small button-passive" id="board-edit-button">
                     Изменить
                 </div>
-                <div class="button button-small button-passive">
+                <div class="button button-small button-passive" id="board-delete-button">
                     Удалить
                 </div>
             {{else}}

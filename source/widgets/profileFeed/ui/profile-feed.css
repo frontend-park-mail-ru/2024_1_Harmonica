@@ -1,7 +1,7 @@
 .profile-feed{
     width: auto;
-    height: 300px;
-    align-content: center;
+    min-height: 300px;
+    height: fit-content;
 }
 
 .message{
@@ -10,5 +10,5 @@
 }
 
 .message__margin-center{
-    margin: auto;
+    margin: 50px auto;
 }
