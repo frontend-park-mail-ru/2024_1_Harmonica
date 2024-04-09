@@ -30,23 +30,24 @@ export class BoardView extends View {
         const board = response.body.board;
         console.log(board);
         this.root.innerHTML = boardViewTemplate({board});
+        if (board.is_owner) {
+            const deleteButton = document.querySelector('#board-delete-button');
+            deleteButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                boardAPI.apiDELETE();
 
-        const deleteButton = document.querySelector('#board-delete-button');
-        deleteButton.addEventListener('click', (event) =>{
-            event.preventDefault();
-            boardAPI.apiDELETE();
+                const profile = new Profile();
+                const user = JSON.parse(localStorage.getItem('user'));
+                profile.render(user.nickname);
+            });
 
-            const profile = new Profile();
-            const user = JSON.parse(localStorage.getItem('user'));
-            profile.render(user.nickname);
-        });
+            const editButton = document.querySelector('#board-edit-button');
+            editButton.addEventListener('click', (event) => {
+                event.preventDefault();
 
-        const editButton = document.querySelector('#board-edit-button');
-        editButton.addEventListener('click', (event) =>{
-            event.preventDefault();
-
-            const editPage = new BoardEdit();
-            editPage.renderUpdateBoard(board);
-        });
+                const editPage = new BoardEdit();
+                editPage.renderUpdateBoard(board);
+            });
+        }
     }
 }
