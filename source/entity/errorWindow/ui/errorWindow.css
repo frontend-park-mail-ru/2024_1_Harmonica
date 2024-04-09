@@ -1,0 +1,25 @@
+.error-window {
+    width: 400px;
+    height: 100px;
+    border: var(--error-color) 3px solid;
+    border-radius: var(--element-border-radius);
+    background-color: var(--background-color);
+    position: fixed;
+    inset: auto 20px 20px auto;
+    padding: 20px;
+}
+
+.error-window__cancel{
+    position: absolute;
+    inset: 5px 5px auto auto;
+}
+
+.cancel-icon{
+    transform: rotate(45deg);
+    width: 30px;
+    height: 30px;
+}
+
+.cancel-icon:hover{
+    cursor: pointer;
+}

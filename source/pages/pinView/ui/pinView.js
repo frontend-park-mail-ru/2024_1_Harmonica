@@ -7,6 +7,8 @@ import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage
 import {PinAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {Feed} from '../../../components/pages/feed/feed.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {errors} from '../../../shared/config.js';
 
 /**
  * Handle pin page
@@ -69,7 +71,13 @@ export class PinView extends View {
             const pinObj = {title, description};
 
             const api = new PinAPI(pin.pin_id);
-            await api.apiPOST(JSON.stringify(pinObj));
+            const response = await api.apiPOST(JSON.stringify(pinObj));
+
+            if(response.code){
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
+            }
 
             const pinView = new PinView();
             await pinView.renderPin(pin.pin_id);
@@ -110,6 +118,12 @@ export class PinView extends View {
 
             const api = new PinAPI(null);
             const response = await api.apiPOST(formData);
+
+            if(response.code){
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
+            }
 
             const pinView = new PinView();
             await pinView.renderPin(response.body.pin_id);

@@ -4,6 +4,8 @@ import {View} from '../../../app/View.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';
 import {BoardView} from '../../boardView/ui/boardView.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {errors} from '../../../shared/config.js';
 
 /**
  * Handle board create and update page
@@ -49,6 +51,13 @@ export class BoardEdit extends View {
             formData.append('board', JSON.stringify(boardInfo));
 
             const response = await boardAPI.api(formData);
+
+            if(response.code){
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
+            }
+
             const newBoard = response.body.board;
 
             await boardCreated.render(newBoard.board_id);
@@ -77,6 +86,13 @@ export class BoardEdit extends View {
             const description = document.querySelector('#board-description').value;
             const boardInfo = {title, description};
             const response = await boardAPI.api(JSON.stringify(boardInfo));
+
+            if(response.code){
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
+            }
+
             const board = response.body;
 
             await boardCreated.render(board.board.board_id);

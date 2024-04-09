@@ -37,4 +37,5 @@ export class View {
             visibility_type: 'public',
         };
     }
+
 }

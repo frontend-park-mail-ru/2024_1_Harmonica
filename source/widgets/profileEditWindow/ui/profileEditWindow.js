@@ -4,6 +4,8 @@ import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {Profile} from '../../../pages/profile/ui/profile.js';
 import {ProfileEditAPI} from '../api/api.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {errors} from '../../../shared/config.js';
 
 /**
  * Class to handle profile edit window
@@ -65,6 +67,12 @@ export class ProfileEditWindow extends View {
 
             const profileEditAPI = new ProfileEditAPI(user.user_id);
             const response = await profileEditAPI.api(formData);
+
+            if(response.code){
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
+            }
 
             const profile = new Profile();
             await profile.render(response.body.nickname);

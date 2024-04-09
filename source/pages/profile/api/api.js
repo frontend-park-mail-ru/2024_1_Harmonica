@@ -16,7 +16,10 @@ export class ProfileAPI {
             return errCheck(error);
         }
         if (!response.ok){
-            return errCheck(response);
+            const body = await response.json();
+            return {
+                code: body.code,
+            };
         }
         const body = await response.json();
         return {

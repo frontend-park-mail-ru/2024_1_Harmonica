@@ -46,8 +46,7 @@ export class PinAPI{
         if (!response.ok){
             const body = await response.json();
             return {
-                code: 51,
-                errors: body.errors,
+                code: body.code,
             };
         }
         const body = await response.json();
@@ -73,8 +72,7 @@ export class PinAPI{
         if (!response.ok){
             const body = await response.json();
             return {
-                code: 51,
-                errors: body.errors,
+                code: body.code,
             };
         }
         const body = await response.json();
