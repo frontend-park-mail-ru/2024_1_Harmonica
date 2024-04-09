@@ -2,6 +2,10 @@
     border-radius: 50%;
 }
 
+.avatar_object_fit{
+    object-fit: cover;
+}
+
 .avatar{
     display: block;
 }
