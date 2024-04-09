@@ -24,6 +24,8 @@ export class BoardListView extends View{
                     const pinAdd = new BoardListAPI(board.board_id, pin.pin_id);
                     const response = await pinAdd.api();
 
+                    console.log(response);
+
                     if(response.code){
                         const errorWindow = new ErrorWindowView();
                         errorWindow.render(errors[response.code]);
