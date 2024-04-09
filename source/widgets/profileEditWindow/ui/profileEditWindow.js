@@ -6,6 +6,7 @@ import {Profile} from '../../../pages/profile/ui/profile.js';
 import {ProfileEditAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
+import {Navbar} from '../../../components/widget/navbar/navbar.js';
 
 /**
  * Class to handle profile edit window
@@ -73,6 +74,10 @@ export class ProfileEditWindow extends View {
                 errorWindow.render(errors[response.code]);
                 return;
             }
+
+            console.log(response);
+            localStorage.setItem('user', JSON.stringify(response.body));
+            Navbar();
 
             const profile = new Profile();
             await profile.render(response.body.nickname);
