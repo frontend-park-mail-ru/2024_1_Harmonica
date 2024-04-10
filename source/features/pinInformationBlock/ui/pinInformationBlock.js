@@ -25,7 +25,8 @@ export class PinInformationBlock extends View {
      * @param {json} pin – pin info
      */
     render(pin) {
-        this.root.innerHTML = pinInfoBlockTemplate({pin});
+        const user = JSON.parse(localStorage.getItem('user'));
+        this.root.innerHTML = pinInfoBlockTemplate({pin, user});
         const avatar = new Avatar();
         avatar.render(pin.author.avatar_url);
 
@@ -37,11 +38,13 @@ export class PinInformationBlock extends View {
             }
         );
 
-        const boardAdd = document.querySelector('#pin-board-add');
-        boardAdd.addEventListener('click', async (event) => {
-            event.preventDefault();
-            const addPin = new PinAddToBoardView();
-            await addPin.render(pin);
-        });
+        if (user) {
+            const boardAdd = document.querySelector('#pin-board-add');
+            boardAdd.addEventListener('click', async (event) => {
+                event.preventDefault();
+                const addPin = new PinAddToBoardView();
+                await addPin.render(pin);
+            });
+        }
     }
 }
