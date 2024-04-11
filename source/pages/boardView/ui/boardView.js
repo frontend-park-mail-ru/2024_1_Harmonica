@@ -29,7 +29,6 @@ export class BoardView extends View {
         const boardAPI = new BoardAPI(boardID);
         const response = await boardAPI.api();
         const board = response.body.board;
-        console.log(board);
         this.root.innerHTML = boardViewTemplate({board});
 
         const boardFeed = new BoardFeedView();

@@ -14,20 +14,20 @@ export class BoardFeedView extends View {
     render(board, pins){
         this.root.innerHTML = boardFeedTemplate({pins});
 
-        if(pins){
+        if(pins) {
             Pins(pins, 'board_feed', true);
-        }
 
-        for (let pin of pins){
-            const pinDel = document.getElementById('board-pin-del-' + pin.pin_id.toString());
-            pinDel.addEventListener('click', async (event) => {
-                event.preventDefault();
-                const deleteAPI = new BoardFeedAPI(board.board_id, pin.pin_id);
-                await deleteAPI.api();
+            for (let pin of pins) {
+                const pinDel = document.getElementById('board-pin-del-' + pin.pin_id.toString());
+                pinDel.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    const deleteAPI = new BoardFeedAPI(board.board_id, pin.pin_id);
+                    await deleteAPI.api();
 
-                const boardView = new BoardView();
-                await boardView.render(board.board_id);
-            });
+                    const boardView = new BoardView();
+                    await boardView.render(board.board_id);
+                });
+            }
         }
     }
 }

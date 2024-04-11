@@ -13,7 +13,6 @@ export class BoardListView extends View{
     }
 
     render(boards, pin){
-        console.log(boards);
         if (boards) {
             this.root.innerHTML = boardListTemplate({boards});
             for (let board of boards) {
@@ -23,8 +22,6 @@ export class BoardListView extends View{
 
                     const pinAdd = new BoardListAPI(board.board_id, pin.pin_id);
                     const response = await pinAdd.api();
-
-                    console.log(response);
 
                     if(response.code){
                         const errorWindow = new ErrorWindowView();
