@@ -2,7 +2,6 @@ import profileFeedTemplate from './profileFeed.handlebars';
 import './profile-feed.css';
 import {View} from '../../../app/View.js';
 import {profileFeedAPI} from '../api/api.js';
-import {Feed} from '../../../components/pages/feed/feed.js';
 import {Pins} from '../../../components/widget/pins/pins.js';
 import {ProfileFeedBoardsView} from '../../profileFeedBoards/ui/profileFeedBoards.js';
 

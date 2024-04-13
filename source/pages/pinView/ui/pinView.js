@@ -1,12 +1,10 @@
 import pinViewTemplate from './pinView.handlebars';
 import './pinView.css';
 import {View} from '../../../app/View.js';
-import {PinPhoto} from '../../../entity/pinPhoto/ui/pinPhoto.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';
 import {PinAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
-import {Feed} from '../../../components/pages/feed/feed.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 
@@ -27,10 +25,10 @@ export class PinView extends View {
 
     /**
      * Function to render pin watch page
-     * @function renderPin
+     * @function render
      * @param {json} pinID – pin's ID
      */
-    async renderPin(pinID) {
+    async render(pinID) {
         const pinAPI = new PinAPI(pinID);
         const response = await pinAPI.api()
         const pin = response.body;
@@ -59,7 +57,7 @@ export class PinView extends View {
         backButton.addEventListener('click', async (event) => {
             event.preventDefault();
             const pinView = new PinView();
-            await pinView.renderPin(pin.pin_id);
+            await pinView.render(pin.pin_id);
         });
 
         const createSubmit = this.root.querySelector('#pin-form-save');
@@ -79,7 +77,7 @@ export class PinView extends View {
             }
 
             const pinView = new PinView();
-            await pinView.renderPin(pin.pin_id);
+            await pinView.render(pin.pin_id);
         });
     }
 
@@ -125,7 +123,7 @@ export class PinView extends View {
             }
 
             const pinView = new PinView();
-            await pinView.renderPin(response.body.pin_id);
+            await pinView.render(response.body.pin_id);
         })
     }
 }

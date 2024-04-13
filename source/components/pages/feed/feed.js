@@ -10,6 +10,7 @@ import templateFeed from './feed.handlebars';
  * @function Feed
  * @async
  */
+
 export const Feed = async () => {
     const root = document.getElementById('root');
     root.innerHTML = templateFeed({});

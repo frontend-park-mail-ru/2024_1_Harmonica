@@ -16,6 +16,81 @@ export let fetchRequest = {
  * API class provides API-functions.
  */
 export class API {
+    constructor(url) {
+        this.url = backendAPI + url;
+    }
+
+    async GET(){
+        let response;
+        try {
+            response = await fetch(this.url, {
+                ...fetchRequest,
+            });
+        } catch (error) {
+            return errCheck(error);
+        }
+        if (!response.ok){
+            return errCheck(response);
+        }
+        const body = await response.json();
+        return {
+            code: 0,
+            body: body,
+        }
+    }
+
+    async POST(post){
+        let response;
+        try {
+            const addOptions = {
+                method: 'POST',
+                body: post,
+            };
+            response = await fetch(this.url, {
+                ...fetchRequest,
+                ...addOptions,
+            });
+        } catch (error){
+            return errCheck(error);
+        }
+        if (!response.ok){
+            const body = await response.json();
+            return {
+                code: body.code,
+            };
+        }
+        const body = await response.json();
+        return {
+            code: 0,
+            body: body,
+        }
+    }
+
+    async DELETE(){
+        let response;
+        try {
+            const addOptions = {
+                method: 'DELETE',
+            };
+            response = await fetch(this.url, {
+                ...fetchRequest,
+                ...addOptions,
+            });
+        } catch (error){
+            return errCheck(error);
+        }
+        if (!response.ok){
+            const body = await response.json();
+            return {
+                code: body.code,
+            };
+        }
+        const body = await response.json();
+        return {
+            code: 0,
+            body: body,
+        }
+    }
     /**
      * Login user by from data
      * @async

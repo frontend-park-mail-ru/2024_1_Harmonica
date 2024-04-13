@@ -1,7 +1,9 @@
 {{#if pinControl}}
 {{#each pins}}
     <div class="feed_item">
-        <img src="{{ this.content_url }}" alt="" class="pin" id="pin-{{this.pin_id}}">
+        <div>
+            <img src="{{ this.content_url }}" alt="" class="pin" id="pin-{{this.pin_id}}">
+        </div>
         <div class="pin-hover">
             <div class="pin-hover_background"></div>
             <button class="button button-secondary" id="board-pin-del-{{this.pin_id}}">Удалить</button>

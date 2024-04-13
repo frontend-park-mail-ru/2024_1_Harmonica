@@ -2,13 +2,11 @@
     height: auto;
     width: auto;
     margin: 30px 50px;
-    gap: 0;
-    column-count: 5;
+    columns: 250px 5;
 }
 
 .feed_item{
-    display: inline-block;
-    margin: 10px 10px;
+    margin-bottom: 20px;
     border-radius: var(--element-border-radius);
     width: 250px;
 }

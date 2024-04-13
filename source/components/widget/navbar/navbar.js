@@ -23,11 +23,6 @@ export const Navbar = () => {
     const userInfo = {'user': JSON.parse(user)};
     root.innerHTML = templateNavbar(userInfo);
 
-    const logoButton = root.querySelector('#navbar_logo');
-    logoButton.addEventListener('click', () => {
-        Feed();
-    });
-
     if (userInfo.user) {
         const profileButton = root.querySelector('#navbar-user-name');
         profileButton.addEventListener('click', async () => {

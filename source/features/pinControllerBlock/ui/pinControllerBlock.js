@@ -3,7 +3,6 @@ import './pinControllerBlock.css';
 import {View} from '../../../app/View.js';
 import {PinView} from '../../../pages/pinView/ui/pinView.js';
 import {PinAPI} from '../../../pages/pinView/api/api.js';
-import {Feed} from '../../../components/pages/feed/feed.js';
 import {Like} from '../../../entity/like/ui/like.js';
 import {LikeAPI} from '../../../entity/like/api/api.js';
 
@@ -43,7 +42,7 @@ export class PinControllerBlock extends View {
                 const api = new PinAPI(pin.pin_id);
                 await api.apiDELETE();
 
-                Feed();
+                window.location.pathname = '/';
             });
         }
         const likeView = new Like();

@@ -24,7 +24,7 @@ export class PinAddToBoardView extends View{
         backButton.addEventListener('click', async (event) => {
             event.preventDefault();
             const pinView = new PinView();
-            await pinView.renderPin(pin.pin_id);
+            await pinView.render(pin.pin_id);
         });
     }
 }

@@ -3,14 +3,28 @@ import {Feed} from '../components/pages/feed/feed.js';
 import {API} from '../shared/api/API.js';
 import {Error} from '../components/pages/error/error.js';
 import './styles/App.css';
+import {Router} from './Router.js';
 // import {BoardView} from '../pages/boardView/ui/boardView.js';
 // import {BoardEdit} from '../pages/boardEdit/ui/boardEdit.js';
-// import {Profile} from '../pages/profile/ui/profile.js';
+import {Profile} from '../pages/profile/ui/profile.js';
+import {PinView} from '../pages/pinView/ui/pinView.js';
+import {BoardView} from '../pages/boardView/ui/boardView.js';
+import {FeedView} from '../pages/FeedView/ui/FeedView.js';
 // import {ProfileEdit} from '../pages/profileEdit/ui/profileEdit.js';
 // import {PinView} from '../pages/pinView/ui/pinView.js';
 
 
-const api = new API();
+const router = new Router();
+router.register('/', new FeedView());
+router.register('/profile/{nickname}', new Profile());
+// router.register('/login', );
+// router.register('/signup', );
+router.register('/pin/{pin_id}', new PinView());
+router.register('/board/{board_id}', new BoardView());
+// router.register('/pin/create', );
+// router.register('/board/create', );
+
+const api = new API('');
 const response = await api.isAuth();
 if (response.code !== 0) {
     try {
@@ -31,7 +45,7 @@ profile.render(profile.user); */
 /* const profileEdit = new ProfileEdit();
 profileEdit.render(profileEdit.user); */
 // const pinWatch = new PinView();
-// pinWatch.renderPin(pinWatch.pin);
+// pinWatch.render(pinWatch.pin);
 // pinWatch.renderPinUpdate(pinWatch.pin);
 // pinWatch.renderPinCreate();
 /* const boardView = new BoardView();
@@ -40,5 +54,5 @@ boardView.render(boardView.board); */
 boardEdit.renderUpdateBoard(boardEdit.board); */
 // const boardCreate = new BoardEdit();
 // boardCreate.renderCreateBoard();
-Feed();
-
+// Feed();
+router.start();
