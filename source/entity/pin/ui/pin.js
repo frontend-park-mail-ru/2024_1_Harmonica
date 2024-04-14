@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import PinFeedTemplate from './pin.handlebars';
-import {PinView} from '../../../pages/pin/ui/pinView.js';
+import './pin.scss';
 
 export class PinFeedView extends View{
     constructor(root, ...args) {
@@ -14,5 +14,10 @@ export class PinFeedView extends View{
 
     render(pin) {
         this.root.innerHTML =  PinFeedTemplate({pin});
+        const eventRoot = document.querySelector('#pin-' + pin.pin_id);
+        eventRoot.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.onClick(pin.pin_id);
+        });
     }
 }

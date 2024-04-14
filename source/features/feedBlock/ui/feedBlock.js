@@ -1,7 +1,6 @@
 import {View} from '../../../app/View.js';
 import FeedBlockTemplate from './feedBlock.handlebars';
 import './feedBlock.css';
-import {Pins} from '../../../components/widget/pins/pins.js';
 
 export class FeedBlockView extends View{
     constructor(root, ...args) {
@@ -10,20 +9,14 @@ export class FeedBlockView extends View{
         this.eventListeners = [];
     }
 
-    async render(objects, renderEntity, IDName = 'pin_id'){
+    async render(objects, renderEntity, IDName = 'pin_id', ...args){
         console.log(objects);
         this.root.innerHTML = FeedBlockTemplate({objects});
         const prefix = '#feed-item-';
         for (let i = 0; i < objects.length; ++i){
             const root = document.querySelector(prefix + i);
             const entity = new renderEntity(root);
-            console.log(entity);
-            entity.render(objects[i]);
-            root.addEventListener('click', async (event) => {
-                event.preventDefault();
-                await entity.onClick(objects[i][IDName]);
-            });
-            this.eventListeners.push({root, entity});
+            entity.render(objects[i], ...args);
         }
     }
 }

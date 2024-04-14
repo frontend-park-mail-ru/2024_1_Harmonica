@@ -2,8 +2,6 @@ import {API} from '../shared/api/API.js';
 import {Error} from '../components/pages/error/error.js';
 import './styles/App.css';
 import {Router} from './Router.js';
-// import {BoardView} from '../pages/board/ui/board.js';
-// import {BoardEdit} from '../pages/boardEdit/ui/boardEdit.js';
 import {Profile} from '../pages/profile/ui/profile.js';
 import {PinView} from '../pages/pin/ui/pinView.js';
 import {BoardView} from '../pages/board/ui/boardView.js';
@@ -11,35 +9,39 @@ import {FeedView} from '../pages/feed/ui/FeedView.js';
 import {NavbarView} from '../widgets/navbar/ui/navbar.js';
 import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
-// import {ProfileEdit} from '../pages/profileEdit/ui/profileEdit.js';
-// import {PinView} from '../pages/pin/ui/pin.js';
 
 
-const router = new Router();
-router.register('/', new FeedView());
-router.register('/profile/{nickname}', new Profile());
-router.register('/login', new LoginView());
-router.register('/signup', new SignupView());
-router.register('/pin/{pin_id}', new PinView());
-router.register('/board/{board_id}', new BoardView());
-// router.register('/pin/create', );
-// router.register('/board/create', );
 
-const api = new API('');
-const response = await api.isAuth();
-if (response.code !== 0) {
-    try {
-        localStorage.removeItem('user');
-    } catch (error) {
-        Error();
-    }
-} else {
-    try {
-        localStorage.setItem('user', JSON.stringify(response.body));
-    } catch (error) {
-        Error();
+export class App {
+    async start(){
+        const router = new Router();
+        router.register('/', new FeedView());
+        router.register('/profile/{nickname}', new Profile());
+        router.register('/login', new LoginView());
+        router.register('/signup', new SignupView());
+        router.register('/pin/{pin_id}', new PinView());
+        router.register('/board/{board_id}', new BoardView());
+        // router.register('/pin/create', );
+        // router.register('/board/create', );
+
+        const api = new API('');
+        const response = await api.isAuth();
+        if (response.code !== 0) {
+            try {
+                localStorage.removeItem('user');
+            } catch (error) {
+                Error();
+            }
+        } else {
+            try {
+                localStorage.setItem('user', JSON.stringify(response.body));
+            } catch (error) {
+                Error();
+            }
+        }
+        const navbar = new NavbarView();
+        navbar.render();
+        router.start();
     }
 }
-const navbar = new NavbarView();
-navbar.render();
-router.start();
+

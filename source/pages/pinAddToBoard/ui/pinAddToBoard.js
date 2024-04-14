@@ -1,7 +1,7 @@
 import {View} from '../../../app/View.js';
 import errorWindowTemplate from './pinAddToBoard.handlebars';
 import './pinAddToBoard.css'
-import {BoardListView} from '../../../features/boardList/ui/boardList.js';
+import {BoardListView} from '../../../features/boardList/index.js';
 import {PinAddToBoardAPI} from '../api/api.js';
 import {PinView} from '../../pin/ui/pinView.js';
 

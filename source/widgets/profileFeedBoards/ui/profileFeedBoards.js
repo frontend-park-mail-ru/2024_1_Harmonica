@@ -1,7 +1,6 @@
 import {View} from '../../../app/View.js';
 import profileFeedBoardsTemplate from './profileFeedBoards.handlebars';
 import './profileFeedBoards.css';
-import {BoardView} from '../../../pages/board/ui/boardView.js';
 
 export class ProfileFeedBoardsView extends View{
     constructor(root, ...args) {
@@ -15,5 +14,10 @@ export class ProfileFeedBoardsView extends View{
 
     render(board){
         this.root.innerHTML = profileFeedBoardsTemplate({board});
+        const eventRoot = document.querySelector('#board-' + board.board_id);
+        eventRoot.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.onClick(board.board_id);
+        });
     }
 }

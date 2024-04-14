@@ -3,14 +3,11 @@ export class Router {
         this.routes = [];
         this.root = "/";
         this.currentURI = '';
+        this.currentPage = null;
     }
 
     slashDel(path){
         return path.toString().replace(/^\//, '').replace(/\/$/,'');
-    }
-
-    pathSimplify(path){
-        return path.replace(/\/\{.+?}/g, '');
     }
 
     register(path, view){
@@ -68,6 +65,7 @@ export class Router {
         });
         this.currentURI = encodeURI(url);
         if (reqRoute){
+            this.currentPage = reqRoute.view;
             await reqRoute.view.render(...args);
         } else {
             //
