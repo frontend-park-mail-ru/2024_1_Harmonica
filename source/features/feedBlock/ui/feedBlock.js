@@ -7,7 +7,7 @@ export class FeedBlockView extends View{
     constructor(root, ...args) {
         super(...args);
         this.root = document.getElementById(root);
-        this.eventListers = [];
+        this.eventListeners = [];
     }
 
     async render(objects, renderEntity){
@@ -23,13 +23,7 @@ export class FeedBlockView extends View{
                 event.preventDefault();
                 await entity.onClick(objects[i].pin_id);
             });
-            this.eventListers.push({root, entity});
-        }
-    }
-
-    destructor(){
-        for (const object of this.eventListers){
-            object.root.removeEventListener('click', object.entity.onClick);
+            this.eventListeners.push({root, entity});
         }
     }
 }

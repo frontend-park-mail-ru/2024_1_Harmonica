@@ -14,4 +14,10 @@ export class View {
     render(){
 
     }
+
+    destructor(){
+        for (const object of super.eventListeners){
+            object.root.removeEventListener('click', object.entity.onClick);
+        }
+    }
 }

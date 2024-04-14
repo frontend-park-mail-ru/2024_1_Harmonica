@@ -1,9 +1,7 @@
 /** @module source/components/pages/login */
 
 import {API} from '../../../shared/api/API.js';
-import {Feed} from '../feed/feed.js';
 import {Signup} from '../signup/signup.js';
-import {Navbar} from '../../widget/navbar/navbar.js';
 import {emailValidation, passwordValidation} from '../../../shared/utils/validation.js';
 import {ERROR_COLOR, errors} from '../../../shared/config.js';
 import {Error} from '../error/error.js';
@@ -37,12 +35,12 @@ export const Login = () => {
         const password = root.querySelector('#login_password').value;
 
         if (!emailValidation(email)) {
-            errorHandle(root, '#login_email', 'Это не похоже на email!');
+            errorHandle('#login_email', 'Это не похоже на email!');
             return;
         }
 
         if (!passwordValidation(password)) {
-            errorHandle(root, '#login_password', 'В поле введен невалидный пароль!');
+            errorHandle('#login_password', 'В поле введен невалидный пароль!');
             return;
         }
 
@@ -55,14 +53,13 @@ export const Login = () => {
             } catch (error) {
                 Error();
             }
-            Navbar();
-            Feed();
+            window.location.pathname = '/';
             break;
         case 7:
-            errorHandle(root, '#login_email', errors[7]);
+            errorHandle('#login_email', errors[7]);
             break;
         case 8:
-            errorHandle(root, '#login_password', errors[8]);
+            errorHandle('#login_password', errors[8]);
             break;
         default:
             Error();
@@ -118,6 +115,5 @@ export const Logout = async () => {
         Error();
         return;
     }
-    Navbar();
-    Feed();
+    window.location.pathname = '/';
 };

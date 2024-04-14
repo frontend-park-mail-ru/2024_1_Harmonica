@@ -1,15 +1,13 @@
 /** @module source/components/pages/signup */
 
 import {API} from '../../../shared/api/API.js';
-import {Login} from '../login/login.js';
 import {emailValidation, nicknameValidation, passwordValidation, repPasswordValidation}
     from '../../../shared/utils/validation.js';
 import {ERROR_COLOR, errors, debounceTimeout} from '../../../shared/config.js';
 import {Error} from '../error/error.js';
-import {Navbar} from '../../widget/navbar/navbar.js';
-import {Feed} from '../feed/feed.js';
 import {debounce} from '../../../shared/utils/debounce.js';
 import templateSignup from './signup.handlebars';
+import {LoginView} from '../../../pages/loginView/ui/loginView.js';
 
 /** Errors fields selectors, info and messages */
 const errFields = {
@@ -148,8 +146,7 @@ export const Signup = () => {
             } catch (error) {
                 Error();
             }
-            Navbar();
-            Feed();
+            window.location.pathname = '/';
             break;
         case 51:
             for (const err of response.errors) {
@@ -176,7 +173,8 @@ export const Signup = () => {
 
     const loginButton = root.querySelector('#signup_login_button');
     loginButton.addEventListener('click', () => {
-        Login();
+        const login = new LoginView();
+        login.render();
     });
 };
 

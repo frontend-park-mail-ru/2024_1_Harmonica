@@ -33,7 +33,11 @@ const config = {
             },
             {
                 test: /\.css$/i,
-                use: [ 'style-loader', 'css-loader' ],
+                use: [ 'style-loader', 'css-loader'],
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [ 'style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.handlebars$/,
@@ -41,22 +45,6 @@ const config = {
             },
         ],
     },
-    /* resolve: {
-        fallback: {
-            "querystring": require.resolve("querystring-es3"),
-            "fs": false,
-            "tls": false,
-            "net": false,
-            "path": false,
-            "zlib": false,
-            "http": false,
-            "https": false,
-            "stream": false,
-            "crypto": false,
-            "crypto-browserify": require.resolve('crypto-browserify'),
-            "async_hooks": false,
-        }
-    }, */
 };
 
 module.exports = () => {
