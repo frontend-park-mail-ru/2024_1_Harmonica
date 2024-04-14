@@ -4,6 +4,8 @@ import {View} from '../../../app/View.js';
 import {profileFeedAPI} from '../api/api.js';
 import {Pins} from '../../../components/widget/pins/pins.js';
 import {ProfileFeedBoardsView} from '../../profileFeedBoards/ui/profileFeedBoards.js';
+import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
+import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 
 /**
  * Class for handle profile feed
@@ -31,9 +33,8 @@ export class ProfileFeed extends View {
 
         this.feed.innerHTML = profileFeedTemplate({pins});
 
-        if (pins) {
-            Pins(pins, 'profile_feed');
-        }
+        const feed = new FeedBlockView('profile_feed');
+        feed.render(pins, PinFeedView);
     }
 
     async renderBoards(user){
@@ -43,9 +44,7 @@ export class ProfileFeed extends View {
 
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
 
-        if (boards) {
-            const profileFeedBoards = new ProfileFeedBoardsView();
-            profileFeedBoards.render(boards);
-        }
+        const feed = new FeedBlockView('profile_feed');
+        feed.render(boards, ProfileFeedBoardsView, 'board_id');
     }
 }

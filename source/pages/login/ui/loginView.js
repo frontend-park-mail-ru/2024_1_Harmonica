@@ -4,8 +4,8 @@ import {View} from '../../../app/View.js';
 import {emailValidation, passwordValidation} from '../../../shared/utils/validation.js';
 import {Error} from '../../../components/pages/error/error.js';
 import {ERROR_COLOR, errors} from '../../../shared/config.js';
-import {Signup} from '../../../components/pages/signup/signup.js';
 import {LoginAPI} from '../api/api.js';
+import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 
 export class LoginView extends View{
     constructor(...args) {
@@ -52,6 +52,8 @@ export class LoginView extends View{
                 } catch (error) {
                     Error();
                 }
+                const navbar = new NavbarView();
+                navbar.render();
                 window.location.pathname = '/';
                 break;
             case 7:
@@ -68,7 +70,7 @@ export class LoginView extends View{
 
         const signupButton = this.root.querySelector('#login_signup_button');
         signupButton.addEventListener('click', () => {
-            Signup();
+            window.location.pathname = '/signup'
         });
     }
 

@@ -1,8 +1,8 @@
 import pinControlBlockTemplate from './pinControllerBlock.handlebars';
 import './pinControllerBlock.css';
 import {View} from '../../../app/View.js';
-import {PinView} from '../../../pages/pinView/ui/pinView.js';
-import {PinAPI} from '../../../pages/pinView/api/api.js';
+import {PinView} from '../../../pages/pin/ui/pinView.js';
+import {PinAPI} from '../../../pages/pin/api/api.js';
 import {Like} from '../../../entity/like/ui/like.js';
 import {LikeAPI} from '../../../entity/like/api/api.js';
 

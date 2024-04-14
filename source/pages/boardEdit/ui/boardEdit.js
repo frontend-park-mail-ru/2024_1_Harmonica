@@ -3,7 +3,7 @@ import './boardEdit.css';
 import {View} from '../../../app/View.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';
-import {BoardView} from '../../boardView/ui/boardView.js';
+import {BoardView} from '../../board/ui/boardView.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 

@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import PinFeedTemplate from './pin.handlebars';
-import {PinView} from '../../../pages/pinView/ui/pinView.js';
+import {PinView} from '../../../pages/pin/ui/pinView.js';
 
 export class PinFeedView extends View{
     constructor(root, ...args) {

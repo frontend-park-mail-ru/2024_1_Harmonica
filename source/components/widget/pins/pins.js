@@ -1,7 +1,7 @@
 /** @module source/components/widget/pins */
 
 import templatePins from './pins.handlebars';
-import {PinView} from '../../../pages/pinView/ui/pinView.js';
+import {PinView} from '../../../pages/pin/ui/pinView.js';
 import './pins.css';
 
 /**

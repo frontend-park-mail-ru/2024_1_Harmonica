@@ -38,7 +38,7 @@ export class Router {
                 return null;
             }
             await this.go(window.location.pathname);
-        }, 300);
+        }, 100);
     }
 
     async go(path){

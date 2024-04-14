@@ -32,10 +32,21 @@ export class API {
         if (!response.ok){
             return errCheck(response);
         }
-        const body = await response.json();
-        return {
-            code: 0,
-            body: body,
+        if (response.code === 204){
+            return {
+                code: 0
+            };
+        }
+        try {
+            const body = await response.json();
+            return {
+                code: 0,
+                body: body,
+            }
+        } catch (error){
+            return {
+                code: 0
+            };
         }
     }
 
@@ -91,37 +102,7 @@ export class API {
             body: body,
         }
     }
-    /**
-     * Login user by from data
-     * @async
-     * @function login
-     * @param {json} post - The info of user to login (email and password).
-     * @return {json} The data of user and code: status of error if there is or 0 otherwise.
-     */
-    async login(post) {
-        const url = backendAPI + '/login';
-        let response;
-        try {
-            const addOptions = {
-                method: 'POST',
-                body: JSON.stringify(post),
-            };
-            response = await fetch(url, {
-                ...fetchRequest,
-                ...addOptions,
-            });
-        } catch (error) {
-            return errCheck(error);
-        }
-        if (!response.ok) {
-            return errCheck(response);
-        }
-        const body = await response.json();
-        return {
-            code: 0,
-            body: body,
-        };
-    }
+
     /**
      * Signup user by form data
      * @async

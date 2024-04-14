@@ -4,7 +4,6 @@ import './FeedView.css';
 import {API} from '../../../shared/api/API.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
-import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 
 export class FeedView extends View{
     constructor(...args) {
@@ -13,8 +12,6 @@ export class FeedView extends View{
     }
 
     async render(){
-        const navbar = new NavbarView();
-        navbar.render();
         this.root.innerHTML = FeedViewTemplate({});
         const api = new API('/pins');
         const response = await api.GET();

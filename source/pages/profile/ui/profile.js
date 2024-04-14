@@ -5,7 +5,7 @@ import {ProfileFeed} from '../../../widgets/profileFeed/ui/profileFeed.js';
 import {View} from '../../../app/View.js';
 import {ProfileAPI} from '../api/api.js';
 import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
-import {PinView} from '../../pinView/ui/pinView.js';
+import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 
 /**

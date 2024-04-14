@@ -10,7 +10,7 @@ export class FeedBlockView extends View{
         this.eventListeners = [];
     }
 
-    async render(objects, renderEntity){
+    async render(objects, renderEntity, IDName = 'pin_id'){
         console.log(objects);
         this.root.innerHTML = FeedBlockTemplate({objects});
         const prefix = '#feed-item-';
@@ -21,7 +21,7 @@ export class FeedBlockView extends View{
             entity.render(objects[i]);
             root.addEventListener('click', async (event) => {
                 event.preventDefault();
-                await entity.onClick(objects[i].pin_id);
+                await entity.onClick(objects[i][IDName]);
             });
             this.eventListeners.push({root, entity});
         }

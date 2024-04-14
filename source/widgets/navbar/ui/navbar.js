@@ -2,9 +2,9 @@ import {View} from '../../../app/View.js';
 import templateNavbar from './navbar.handlebars';
 import './navbar.css';
 import {Profile} from '../../../pages/profile/ui/profile.js';
-import {Logout} from '../../../components/pages/login/login.js';
-import {Signup} from '../../../components/pages/signup/signup.js';
-import {LoginView} from '../../../pages/loginView/ui/loginView.js';
+import {LoginView} from '../../../pages/login/ui/loginView.js';
+import {Logout} from '../../../features/logout/model/logout.js';
+import {SignupView} from '../../../pages/signup/ui/signupView.js';
 
 export class NavbarView extends View{
     constructor(...args) {
@@ -21,29 +21,26 @@ export class NavbarView extends View{
             Error();
         }
         const userInfo = {'user': JSON.parse(user)};
-        console.log(userInfo);
         this.root.innerHTML = templateNavbar({user: userInfo.user});
 
         if (userInfo.user) {
             const profileButton = this.root.querySelector('#navbar-user-name');
             profileButton.addEventListener('click', async () => {
-                const profile = new Profile();
                 const user = JSON.parse(localStorage.getItem('user'));
-                await profile.render(user.nickname);
+                window.location.pathname = '/profile/' + user.nickname;
             })
             const logoutButton = this.root.querySelector('#navbar_logout_button');
-            logoutButton.addEventListener('click', () => {
-                Logout();
+            logoutButton.addEventListener('click', async () => {
+                await Logout('/');
             });
         } else {
             const loginButton = this.root.querySelector('#navbar_login_button');
             const signupButton = this.root.querySelector('#navbar_signup_button');
             loginButton.addEventListener('click', () => {
-                const login = new LoginView();
-                login.render();
+                window.location.pathname = '/login';
             });
             signupButton.addEventListener('click', () => {
-                Signup();
+                window.location.pathname = '/signup';
             });
         }
     }
