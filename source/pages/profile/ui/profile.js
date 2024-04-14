@@ -7,6 +7,7 @@ import {ProfileAPI} from '../api/api.js';
 import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
 import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
+import {Error} from '../../error/error.js';
 
 /**
  * Handle profile page
@@ -29,6 +30,11 @@ export class Profile extends View {
     async render(nickname) {
         const profileAPI = new ProfileAPI(nickname);
         const response = await profileAPI.api();
+        if (response.code !== 0){
+            const errorView = new Error();
+            errorView.render();
+            return;
+        }
         const user = response.body;
         this.root.innerHTML = templateProfile();
         this.profileUserInfo = new ProfileUserInfo();

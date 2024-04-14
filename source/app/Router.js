@@ -1,3 +1,5 @@
+import {Error} from '../pages/error/error.js';
+
 export class Router {
     constructor() {
         this.routes = [];
@@ -68,7 +70,9 @@ export class Router {
             this.currentPage = reqRoute.view;
             await reqRoute.view.render(...args);
         } else {
-            //
+            const errorView = new Error();
+            this.currentPage = errorView;
+            errorView.render();
         }
     }
 

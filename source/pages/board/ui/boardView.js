@@ -5,6 +5,7 @@ import {BoardAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {BoardFeedView} from '../../../widgets/boardFeed/ui/boardFeed.js';
+import {Error} from '../../error/error.js';
 
 /**
  * Handle board page
@@ -28,6 +29,11 @@ export class BoardView extends View {
     async render(boardID) {
         const boardAPI = new BoardAPI(boardID);
         const response = await boardAPI.api();
+        if (response.code !== 0){
+            const errorView = new Error();
+            errorView.render();
+            return;
+        }
         const board = response.body.board;
         this.root.innerHTML = boardViewTemplate({board});
 

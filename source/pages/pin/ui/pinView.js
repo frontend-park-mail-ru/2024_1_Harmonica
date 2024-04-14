@@ -7,6 +7,7 @@ import {PinAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
+import {Error} from '../../error/error.js';
 
 /**
  * Handle pin page
@@ -31,6 +32,11 @@ export class PinView extends View {
     async render(pinID) {
         const pinAPI = new PinAPI(pinID);
         const response = await pinAPI.api()
+        if (response.code !== 0){
+            const errorView = new Error();
+            errorView.render();
+            return;
+        }
         const pin = response.body;
 
         this.root.innerHTML = pinViewTemplate({pin});

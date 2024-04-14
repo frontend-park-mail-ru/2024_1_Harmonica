@@ -2,7 +2,7 @@ import loginTemplate from './loginView.handlebars'
 import './loginView.scss';
 import {View} from '../../../app/View.js';
 import {emailValidation, passwordValidation} from '../../../shared/utils/validation.js';
-import {Error} from '../../../components/pages/error/error.js';
+import {Error} from '../../error/error.js';
 import {ERROR_COLOR, errors} from '../../../shared/config.js';
 import {LoginAPI} from '../api/api.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';

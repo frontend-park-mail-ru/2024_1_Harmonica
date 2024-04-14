@@ -8,7 +8,7 @@ import signupTemplate from './signupView.handlebars';
 import './signupView.scss';
 import {debounce} from '../../../shared/utils/debounce.js';
 import {debounceTimeout, ERROR_COLOR, errors} from '../../../shared/config.js';
-import {Error} from '../../../components/pages/error/error.js';
+import {Error} from '../../error/error.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {SignupAPI} from '../api/api.js';
 
