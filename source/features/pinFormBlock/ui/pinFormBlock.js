@@ -1,5 +1,5 @@
 import pinFormBlockTemplate from './pinFormBlock.handlebars';
-import './pinFormBlock.css';
+import './pinFormBlock.scss';
 import {View} from '../../../app/View.js';
 
 /**

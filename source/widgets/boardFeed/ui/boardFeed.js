@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import boardFeedTemplate from './boardFeed.handlebars';
-import './boardFeed.css';
+import './boardFeed.scss';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {BoardPinFeedView} from '../../../entity/boardPin/ui/boardPin.js';
 import {API} from '../../../shared/api/API.js';

@@ -1,5 +1,5 @@
 import pinInfoBlockTemplate from './pinInformationBlock.handlebars';
-import './pinInformationBlock.css';
+import './pinInformationBlock.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {Profile} from '../../../pages/profile/ui/profile.js';

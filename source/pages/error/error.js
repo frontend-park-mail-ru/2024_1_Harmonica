@@ -2,6 +2,7 @@
 
 import templateError from './error.handlebars';
 import {View} from '../../app/View.js';
+import './error.scss'
 
 /**
  * Provides error view on site by rendering 'Handlebars.templates.error'.
@@ -13,7 +14,7 @@ export class Error extends View{
         super(...args);
         this.root = document.getElementById('root');
     }
-    render() {
-        this.root.innerHTML = templateError({});
+    render(message = 'Страница не найдена') {
+        this.root.innerHTML = templateError({message});
     }
 };

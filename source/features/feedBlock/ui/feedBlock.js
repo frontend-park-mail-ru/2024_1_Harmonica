@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import FeedBlockTemplate from './feedBlock.handlebars';
-import './feedBlock.css';
+import './feedBlock.scss';
 
 export class FeedBlockView extends View{
     constructor(root, ...args) {

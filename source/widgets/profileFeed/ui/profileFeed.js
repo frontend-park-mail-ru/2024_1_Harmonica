@@ -1,5 +1,5 @@
 import profileFeedTemplate from './profileFeed.handlebars';
-import './profile-feed.css';
+import './profile-feed.scss';
 import {View} from '../../../app/View.js';
 import {profileFeedAPI} from '../api/api.js';
 import {ProfileFeedBoardsView} from '../../profileFeedBoards/ui/profileFeedBoards.js';

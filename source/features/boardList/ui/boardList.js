@@ -1,5 +1,5 @@
 import boardListTemplate from './boardList.handlebars';
-import './boardList.css';
+import './boardList.scss';
 import {View} from '../../../app/View.js';
 import {BoardView} from '../../../pages/board/ui/boardView.js';
 import {BoardListAPI} from '../api/api.js';

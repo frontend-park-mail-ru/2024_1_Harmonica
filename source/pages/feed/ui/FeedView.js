@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import FeedViewTemplate from './FeedView.handlebars';
-import './FeedView.css';
+import './FeedView.scss';
 import {API} from '../../../shared/api/API.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';

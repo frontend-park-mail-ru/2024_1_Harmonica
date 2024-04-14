@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import profileFeedBoardsTemplate from './profileFeedBoards.handlebars';
-import './profileFeedBoards.css';
+import './profileFeedBoards.scss';
 
 export class ProfileFeedBoardsView extends View{
     constructor(root, ...args) {

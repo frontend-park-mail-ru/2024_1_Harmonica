@@ -1,5 +1,5 @@
 import boardViewTemplate from './boardView.handlebars';
-import './boardView.css';
+import './boardView.scss';
 import {View} from '../../../app/View.js';
 import {BoardAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';

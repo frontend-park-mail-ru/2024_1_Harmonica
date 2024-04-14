@@ -1,5 +1,5 @@
 import boardEditTemplate from './boardEdit.handlebars';
-import './boardEdit.css';
+import './boardEdit.scss';
 import {View} from '../../../app/View.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';

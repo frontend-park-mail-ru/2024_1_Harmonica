@@ -1,5 +1,5 @@
 import pinViewTemplate from './pinView.handlebars';
-import './pinView.css';
+import './pinView.scss';
 import {View} from '../../../app/View.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';

@@ -1,6 +1,6 @@
 import {View} from '../../../app/View.js';
 import errorViewTemplate from './errorWindow.handlebars';
-import './errorWindow.css';
+import './errorWindow.scss';
 
 export class ErrorWindowView extends View{
     constructor(...args) {

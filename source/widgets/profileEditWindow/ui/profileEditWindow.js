@@ -1,5 +1,5 @@
 import profileEditWindowTemplate from './profileEditWindow.handlebars';
-import './profile-edit-window.css';
+import './profile-edit-window.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {Profile} from '../../../pages/profile/ui/profile.js';

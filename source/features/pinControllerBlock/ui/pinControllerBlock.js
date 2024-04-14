@@ -1,5 +1,5 @@
 import pinControlBlockTemplate from './pinControllerBlock.handlebars';
-import './pinControllerBlock.css';
+import './pinControllerBlock.scss';
 import {View} from '../../../app/View.js';
 import {PinView} from '../../../pages/pin/ui/pinView.js';
 import {PinAPI} from '../../../pages/pin/api/api.js';

@@ -1,6 +1,6 @@
 import {API} from '../shared/api/API.js';
 import {Error} from '../pages/error/error.js';
-import './styles/App.css';
+import './styles/App.scss';
 import {Router} from './Router.js';
 import {Profile} from '../pages/profile/ui/profile.js';
 import {PinView} from '../pages/pin/ui/pinView.js';

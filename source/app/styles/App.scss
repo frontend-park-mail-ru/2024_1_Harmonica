@@ -1,9 +1,7 @@
-@import "../../pages/error/error.css";
-
-@import "button/button.css";
-@import "input/input.css";
-@import "window/window.css";
-@import "text/text.css";
+@import "button/button.scss";
+@import "input/input.scss";
+@import "window/window.scss";
+@import "text/text.scss";
 
 :root{
     --background-color: #F6F6F6;

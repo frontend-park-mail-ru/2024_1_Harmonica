@@ -1,5 +1,5 @@
 import templateProfile from './profile.handlebars';
-import './profile.css';
+import './profile.scss';
 import {ProfileUserInfo} from '../../../widgets/profileUserInfo/ui/profileUserInfo.js';
 import {ProfileFeed} from '../../../widgets/profileFeed/ui/profileFeed.js';
 import {View} from '../../../app/View.js';

@@ -1,5 +1,5 @@
 import avatarTemplate from './avatar.handlebars';
-import './avatar.css';
+import './avatar.scss';
 import {View} from '../../../app/View.js';
 
 /**

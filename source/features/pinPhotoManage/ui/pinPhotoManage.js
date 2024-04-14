@@ -1,5 +1,5 @@
 import pinPhotoManageTemplate from './pinPhotoManage.handlebars';
-import './pinPhotoManage.css';
+import './pinPhotoManage.scss';
 import {View} from '../../../app/View.js';
 import {PinPhoto} from '../../../entity/pinPhoto/ui/pinPhoto.js';
 
