@@ -2,10 +2,10 @@ import loginTemplate from './loginView.handlebars'
 import './loginView.scss';
 import {View} from '../../../app/View.js';
 import {emailValidation, passwordValidation} from '../../../shared/utils/validation.js';
-import {Error} from '../../error/error.js';
 import {ERROR_COLOR, errors} from '../../../shared/config.js';
 import {LoginAPI} from '../api/api.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 
 export class LoginView extends View{
     constructor(...args) {
@@ -50,7 +50,9 @@ export class LoginView extends View{
                 try {
                     localStorage.setItem('user', JSON.stringify(response.body));
                 } catch (error) {
-                    Error();
+                    const errorWindow = new ErrorWindowView();
+                    errorWindow.render(errors[60]);
+                    return;
                 }
                 const navbar = new NavbarView();
                 navbar.render();
@@ -63,7 +65,8 @@ export class LoginView extends View{
                 this.errorHandle('#login_password', errors[8]);
                 break;
             default:
-                Error();
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
                 break;
             }
         });

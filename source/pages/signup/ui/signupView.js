@@ -8,9 +8,9 @@ import signupTemplate from './signupView.handlebars';
 import './signupView.scss';
 import {debounce} from '../../../shared/utils/debounce.js';
 import {debounceTimeout, ERROR_COLOR, errors} from '../../../shared/config.js';
-import {Error} from '../../error/error.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {SignupAPI} from '../api/api.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 
 export class SignupView extends View{
     constructor(...args) {
@@ -147,7 +147,9 @@ export class SignupView extends View{
                 try {
                     localStorage.setItem('user', JSON.stringify(response.body));
                 } catch (error) {
-                    Error();
+                    const errorWindow = new ErrorWindowView();
+                    errorWindow.render(errors[60]);
+                    return;
                 }
                 const navbar = new NavbarView();
                 navbar.render();
@@ -165,13 +167,15 @@ export class SignupView extends View{
                         this.errCustomize(this.errFields.nickname, ERROR_COLOR);
                         break;
                     default:
-                        Error();
+                        const errorWindow = new ErrorWindowView();
+                        errorWindow.render(errors[response.code]);
                         break;
                     }
                 }
                 break;
             default:
-                Error();
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
                 break;
             }
         });
