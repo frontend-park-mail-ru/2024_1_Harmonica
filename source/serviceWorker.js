@@ -1,4 +1,4 @@
-const CACHE = 'v4';
+const CACHE = 'v5';
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
@@ -11,25 +11,25 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-    const cacheKeeplist = ['static-v1', 'static-v2', 'v1', 'v2', 'v3', CACHE];
+    const cacheKeeplist = ['static-v1', 'static-v2', 'v1', 'v2', 'v3', 'v4'];
 
-    event.waitUntil(
-        caches.keys().then((keyList) => {
-            return Promise.all(
-                keyList.map((key) => {
-                    if (cacheKeeplist.indexOf(key) === -1) {
-                        return caches.delete(key);
-                    }
-                }),
-            );
-        }),
-    );
+    for (let i = 0; i < cacheKeeplist.length; ++i) {
+        event.waitUntil(
+            caches.open(cacheKeeplist[i]).then((cache) => {
+                cache.keys().then((keys) => {
+                    keys.forEach((request, index, array) => {
+                        cache.delete(request);
+                    });
+                });
+            })
+        );
+    }
 });
 
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
 
-    if (url.pathname.match(/\.(js)|(html)$/) || (url.pathname === '/') || (url.hostname === 'fonts.googleapis.com')){
+    if (url.pathname.match(/\.(js)|(html)|(svg)|(png)|(jpeg)|(jpg)$/) || (url.pathname === '/') || (url.hostname === 'fonts.googleapis.com')){
         event.respondWith(caches.match(event.request)
             .then((matching => {
                 return (matching || fetch(event.request)
@@ -47,7 +47,7 @@ self.addEventListener('fetch', (event) => {
                     cache.put(event.request, response.clone());
                     return response;
                 }))
-            .catch(() => {
+            .catch((e) => {
                 caches.open(CACHE)
                     .then(cache => {
                         cache.match(event.request)
