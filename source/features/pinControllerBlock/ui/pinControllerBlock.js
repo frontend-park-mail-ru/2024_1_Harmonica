@@ -54,7 +54,7 @@ export class PinControllerBlock extends View {
         let checked = pin.is_liked;
         likeButton.addEventListener('click', async (event) => {
             event.preventDefault();
-            if (checked){
+            if (checked) {
                 await likeAPI.apiDELETE();
                 likeCount.innerHTML = +likeCount.innerHTML - 1;
             } else {

@@ -1,12 +1,12 @@
 import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
-export class PinAPI{
+export class PinAPI {
     constructor(pinID) {
-        if (pinID === null){
-            this.url = backendAPI + "/pins";
+        if (pinID === null) {
+            this.url = backendAPI + '/pins';
         } else {
-            this.url = backendAPI + "/pins/" + pinID.toString();
+            this.url = backendAPI + '/pins/' + pinID.toString();
         }
     }
 
@@ -19,14 +19,14 @@ export class PinAPI{
         } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             return errCheck(response);
         }
         const body = await response.json();
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 
     async apiPOST(post) {
@@ -40,10 +40,10 @@ export class PinAPI{
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -53,10 +53,10 @@ export class PinAPI{
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 
-    async apiDELETE(){
+    async apiDELETE() {
         let response;
         try {
             const addOptions = {
@@ -66,10 +66,10 @@ export class PinAPI{
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -79,6 +79,6 @@ export class PinAPI{
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

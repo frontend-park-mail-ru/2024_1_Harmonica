@@ -11,9 +11,15 @@ import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
 
 
-
+/**
+ * Class provides class App, the initial class
+ */
 export class App {
-    async start(){
+    /**
+     * Function that started the app
+     * @return {Promise<void>}
+     */
+    async start() {
         const router = new Router();
         router.register('/', new FeedView());
         router.register('/profile/{nickname}', new Profile());
@@ -21,8 +27,6 @@ export class App {
         router.register('/signup', new SignupView());
         router.register('/pin/{pin_id}', new PinView());
         router.register('/board/{board_id}', new BoardView());
-        // router.register('/pin/create', );
-        // router.register('/board/create', );
 
         const api = new API('');
         const response = await api.isAuth();

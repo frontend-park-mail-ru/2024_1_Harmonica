@@ -7,15 +7,15 @@ export class View {
      * @constructor
      */
     constructor() {
-        this.eventListeners = []
+        this.eventListeners = [];
     }
 
-    render(){
+    render() {
 
     }
 
-    destructor(){
-        for (const object of this.eventListeners){
+    destructor() {
+        for (const object of this.eventListeners) {
             object.root.removeEventListener(object.event, object.listenFunc);
         }
     }

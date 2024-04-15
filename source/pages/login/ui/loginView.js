@@ -1,4 +1,4 @@
-import loginTemplate from './loginView.handlebars'
+import loginTemplate from './loginView.handlebars';
 import './loginView.scss';
 import {View} from '../../../app/View.js';
 import {emailValidation, passwordValidation} from '../../../shared/utils/validation.js';
@@ -7,7 +7,7 @@ import {LoginAPI} from '../api/api.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 
-export class LoginView extends View{
+export class LoginView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');
@@ -19,7 +19,7 @@ export class LoginView extends View{
             {
                 errContent: '#login_password_error',
                 inputField: '#login_password',
-            }
+            },
         ];
     }
 
@@ -42,8 +42,8 @@ export class LoginView extends View{
                 return;
             }
 
-            const post = {'email': email, 'password': password}
-            const api = new LoginAPI()
+            const post = {'email': email, 'password': password};
+            const api = new LoginAPI();
             const response = await api.loginRequest(post);
             switch (response.code) {
             case 0:
@@ -73,11 +73,11 @@ export class LoginView extends View{
 
         const signupButton = this.root.querySelector('#login_signup_button');
         signupButton.addEventListener('click', () => {
-            window.location.pathname = '/signup'
+            window.location.pathname = '/signup';
         });
     }
 
-    errorHandle (blockID, error) {
+    errorHandle(blockID, error) {
         for (const block of this.errFields) {
             const input = this.root.querySelector(block.inputField);
             const errorField = this.root.querySelector(block.errContent);

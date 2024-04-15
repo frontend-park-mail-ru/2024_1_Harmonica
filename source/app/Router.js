@@ -3,34 +3,34 @@ import {Error} from '../pages/error/error.js';
 export class Router {
     constructor() {
         this.routes = [];
-        this.root = "/";
+        this.root = '/';
         this.currentURI = '';
         this.currentPage = null;
     }
 
-    slashDel(path){
-        return path.toString().replace(/^\//, '').replace(/\/$/,'');
+    slashDel(path) {
+        return path.toString().replace(/^\//, '').replace(/\/$/, '');
     }
 
-    register(path, view){
+    register(path, view) {
         path = this.root + this.slashDel(path);
         const index = this.routes.findIndex((element) => {
             return element.path === path;
-        })
+        });
         if (index >= 0) {
             this.routes[index] = {
                 path,
-                view
+                view,
             };
-            return
+            return;
         }
         this.routes.push({
             path,
-            view
+            view,
         });
     }
 
-    start(){
+    start() {
         clearInterval(this.interval);
         this.interval = setInterval(async () => {
             if (this.currentURI === window.location.pathname) {
@@ -40,11 +40,11 @@ export class Router {
         }, 100);
     }
 
-    async go(path){
-        path = this.slashDel(path)
+    async go(path) {
+        path = this.slashDel(path);
         const url = decodeURI(this.root + path);
         window.history.pushState(null, null, url);
-        let args = [];
+        const args = [];
         const reqRoute = this.routes.find((route) => {
             route = route.path;
             const routeURL = route.split('/');
@@ -52,21 +52,21 @@ export class Router {
             if (routeURL.length !== originalURL.length) {
                 return false;
             }
-            for (let i = 0; i < routeURL.length; ++i){
+            for (let i = 0; i < routeURL.length; ++i) {
                 routeURL[i] = '/' + routeURL[i];
                 originalURL[i] = '/' + originalURL[i];
-                if (routeURL[i].match(/\{.*?}/)){
+                if (routeURL[i].match(/\{.*?}/)) {
                     args.push(originalURL[i]);
                     continue;
                 }
-                if (routeURL[i] !== originalURL[i]){
+                if (routeURL[i] !== originalURL[i]) {
                     return false;
                 }
             }
             return true;
         });
         this.currentURI = encodeURI(url);
-        if (reqRoute){
+        if (reqRoute) {
             this.currentPage = reqRoute.view;
             await reqRoute.view.render(...args);
         } else {
@@ -76,11 +76,11 @@ export class Router {
         }
     }
 
-    back(){
+    back() {
         window.history.back();
     }
 
-    forward(){
+    forward() {
         window.history.forward();
     }
 }

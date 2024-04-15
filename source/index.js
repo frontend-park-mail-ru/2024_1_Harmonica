@@ -1,6 +1,6 @@
 import {App} from './app/App.js';
 
-if (navigator.serviceWorker){
+if (navigator.serviceWorker) {
     await navigator.serviceWorker.register('/serviceWorker.js', {scope: '/'});
 }
 

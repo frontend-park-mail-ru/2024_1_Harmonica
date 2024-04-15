@@ -2,25 +2,24 @@ import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
 export class LikeAPI {
-
     constructor(pinID) {
-        this.url = backendAPI + "/pins/" + pinID + "/like";
+        this.url = backendAPI + '/pins/' + pinID + '/like';
     }
 
-    async apiDELETE(){
+    async apiDELETE() {
         let response;
-        try{
+        try {
             const addOptions = {
                 method: 'DELETE',
-            }
+            };
             response = await fetch(this.url, {
                 ...fetchRequest,
                 ...addOptions,
-            })
-        } catch (error){
+            });
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: 51,
@@ -31,23 +30,23 @@ export class LikeAPI {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 
-    async apiPOST(){
+    async apiPOST() {
         let response;
-        try{
+        try {
             const addOptions = {
                 method: 'POST',
-            }
+            };
             response = await fetch(this.url, {
                 ...fetchRequest,
                 ...addOptions,
-            })
-        } catch (error){
+            });
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: 51,
@@ -58,6 +57,6 @@ export class LikeAPI {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

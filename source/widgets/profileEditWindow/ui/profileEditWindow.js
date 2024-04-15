@@ -36,7 +36,7 @@ export class ProfileEditWindow extends View {
             event.preventDefault();
             const profile = new Profile();
             await profile.render(user.nickname);
-        })
+        });
 
         const uploadInput = document.querySelector('#profile-photo-input');
         uploadInput.addEventListener('change', (event) => {
@@ -46,7 +46,7 @@ export class ProfileEditWindow extends View {
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     avatar.render(event.target.result);
-                }
+                };
                 reader.readAsDataURL(image);
             }
         });
@@ -69,7 +69,7 @@ export class ProfileEditWindow extends View {
             const profileEditAPI = new ProfileEditAPI(user.user_id);
             const response = await profileEditAPI.api(formData);
 
-            if(response.code){
+            if (response.code) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[response.code]);
                 return;

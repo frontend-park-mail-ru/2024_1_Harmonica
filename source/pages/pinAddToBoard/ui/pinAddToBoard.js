@@ -1,17 +1,17 @@
 import {View} from '../../../app/View.js';
 import errorWindowTemplate from './pinAddToBoard.handlebars';
-import './pinAddToBoard.scss'
+import './pinAddToBoard.scss';
 import {BoardListView} from '../../../features/boardList/index.js';
 import {PinAddToBoardAPI} from '../api/api.js';
 import {PinView} from '../../pin/ui/pinView.js';
 
-export class PinAddToBoardView extends View{
+export class PinAddToBoardView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');
     }
 
-    async render(pin){
+    async render(pin) {
         this.root.innerHTML = errorWindowTemplate({pin});
         const user = JSON.parse(localStorage.getItem('user'));
         const pinToBoardAPI = new PinAddToBoardAPI(user.nickname);

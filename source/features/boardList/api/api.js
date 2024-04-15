@@ -16,10 +16,10 @@ export class BoardListAPI {
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -29,7 +29,7 @@ export class BoardListAPI {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }
 

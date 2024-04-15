@@ -47,12 +47,12 @@ export class BoardEdit extends View {
 
             const formData = new FormData();
             const boardInfo = {title, description};
-            boardInfo.visibility_type = "public";
+            boardInfo.visibility_type = 'public';
             formData.append('board', JSON.stringify(boardInfo));
 
             const response = await boardAPI.api(formData);
 
-            if(response.code){
+            if (response.code) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[response.code]);
                 return;
@@ -87,7 +87,7 @@ export class BoardEdit extends View {
             const boardInfo = {title, description};
             const response = await boardAPI.api(JSON.stringify(boardInfo));
 
-            if(response.code){
+            if (response.code) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[response.code]);
                 return;

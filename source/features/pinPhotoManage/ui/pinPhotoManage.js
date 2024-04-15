@@ -17,7 +17,7 @@ export class PinPhotoManage extends View {
         this.root = document.querySelector('#pin-photo');
     }
 
-    render(pin){
+    render(pin) {
         this.root.innerHTML = pinPhotoManageTemplate({pinView: true});
         const photo = new PinPhoto();
         photo.render(pin.content_url);
@@ -45,7 +45,7 @@ export class PinPhotoManage extends View {
         const photoHoverBlock = document.querySelector('#photo-hover-block');
 
         const photo = new PinPhoto();
-        photo.render("");
+        photo.render('');
 
         uploadInput.addEventListener('change', (event) => {
             event.preventDefault();
@@ -56,7 +56,7 @@ export class PinPhotoManage extends View {
                     photoImageBlock.classList.remove('photo_size');
                     photoHoverBlock.classList.add('hover-photo-block_opacity');
                     photo.render(event.target.result);
-                }
+                };
                 reader.readAsDataURL(image);
             }
         });

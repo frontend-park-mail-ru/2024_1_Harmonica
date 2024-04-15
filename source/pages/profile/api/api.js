@@ -6,16 +6,16 @@ export class ProfileAPI {
         this.url = backendAPI + '/users/' + nickname;
     }
 
-    async api(){
+    async api() {
         let response;
         try {
             response = await fetch(this.url, {
                 ...fetchRequest,
-            })
-        } catch (error){
+            });
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -25,6 +25,6 @@ export class ProfileAPI {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

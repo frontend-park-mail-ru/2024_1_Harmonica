@@ -30,7 +30,7 @@ export class Profile extends View {
     async render(nickname) {
         const profileAPI = new ProfileAPI(nickname);
         const response = await profileAPI.api();
-        if (response.code !== 0){
+        if (response.code !== 0) {
             const errorView = new Error();
             errorView.render();
             return;
@@ -48,14 +48,14 @@ export class Profile extends View {
                 event.preventDefault();
                 const pinCreate = new PinView();
                 pinCreate.renderPinCreate();
-            })
+            });
 
             const boardAdd = document.querySelector('#profile-board-add');
             boardAdd.addEventListener('click', (event) => {
                 event.preventDefault();
                 const boardCreate = new BoardEdit();
                 boardCreate.renderCreateBoard();
-            })
+            });
 
             const profileEditElem = document.querySelector('#profile-edit');
             profileEditElem.addEventListener('click', (event) => {
@@ -68,7 +68,7 @@ export class Profile extends View {
         const boardButton = document.querySelector('#profile-content-boards');
         boardButton.addEventListener('click', (event) =>{
             event.preventDefault();
-            profileFeed.renderBoards(user.user)
+            profileFeed.renderBoards(user.user);
         });
 
         const feedButton = document.querySelector('#profile-content-pins');

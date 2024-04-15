@@ -22,7 +22,7 @@ export class Avatar extends View {
      * @param {string} avatarUrl – URL for avatar image
      */
     render(avatarUrl) {
-        if (!avatarUrl){
+        if (!avatarUrl) {
             avatarUrl = '/static/avatar.svg';
         }
         this.root.innerHTML = avatarTemplate({avatarUrl: avatarUrl});

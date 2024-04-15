@@ -1,12 +1,12 @@
 import {API} from '../../../shared/api/API.js';
 
-export class LogoutAPI extends API{
+export class LogoutAPI extends API {
     constructor(...args) {
-        const url = '/logout'
+        const url = '/logout';
         super(url, ...args);
     }
 
-    async logoutRequest(){
+    async logoutRequest() {
         return await super.GET();
     }
 }

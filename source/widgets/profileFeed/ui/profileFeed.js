@@ -1,10 +1,10 @@
 import profileFeedTemplate from './profileFeed.handlebars';
 import './profile-feed.scss';
 import {View} from '../../../app/View.js';
-import {profileFeedAPI} from '../api/api.js';
 import {ProfileFeedBoardsView} from '../../profileFeedBoards/ui/profileFeedBoards.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
+import {API} from '../../../shared/api/API.js';
 
 /**
  * Class for handle profile feed
@@ -26,9 +26,9 @@ export class ProfileFeed extends View {
      * @param {Array} user – user info
      */
     async renderFeed(user) {
-        const feedAPI = new profileFeedAPI(user.nickname, 'pins');
-        const response = await feedAPI.api();
-        let pins = response.body.pins;
+        const feedAPI = new API('/pins/created/' + user.nickname);
+        const response = await feedAPI.GET();
+        const pins = response.body.pins;
 
         this.feed.innerHTML = profileFeedTemplate({pins});
 
@@ -36,10 +36,15 @@ export class ProfileFeed extends View {
         feed.render(pins, PinFeedView);
     }
 
-    async renderBoards(user){
-        const feedAPI = new profileFeedAPI(user.nickname, 'boards');
-        const response = await feedAPI.api();
-        let boards = response.body.boards;
+    /**
+     * Function to render boards feed
+     * @param {json} user – info about user
+     * @return {Promise<void>}
+     */
+    async renderBoards(user) {
+        const feedAPI = new API('/boards/created/' + user.nickname);
+        const response = await feedAPI.GET();
+        const boards = response.body.boards;
 
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
 

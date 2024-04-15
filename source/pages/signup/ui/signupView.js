@@ -12,7 +12,7 @@ import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {SignupAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 
-export class SignupView extends View{
+export class SignupView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.getElementById('root');
@@ -182,7 +182,7 @@ export class SignupView extends View{
 
         const loginButton = this.root.querySelector('#signup_login_button');
         loginButton.addEventListener('click', () => {
-            window.location.pathname = '/login'
+            window.location.pathname = '/login';
         });
     }
 
@@ -225,7 +225,7 @@ export class SignupView extends View{
      * validation function and message content
      * @param {*} args - Arguments that needed to be passed in validation function
      */
-    inputValidate(field, ...args){
+    inputValidate(field, ...args) {
         const hint = document.querySelector(field.hint);
         if (!field.validationFunc(...args)) {
             this.errContentChange(field, field.errText);

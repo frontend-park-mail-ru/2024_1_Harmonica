@@ -11,10 +11,10 @@ export class BoardFeedView extends View {
         this.root = document.querySelector('#board-pins-feed');
     }
 
-    render(board, pins){
+    render(board, pins) {
         this.root.innerHTML = boardFeedTemplate({pins});
 
-        if(pins) {
+        if (pins) {
             const feed = new FeedBlockView('board_feed');
             feed.render(pins, BoardPinFeedView, 'pin_id', board);
         }

@@ -6,7 +6,7 @@ export class PinAddToBoardAPI {
         this.url = backendAPI + '/boards/created/' + nickname;
     }
 
-    async api(){
+    async api() {
         let response;
         try {
             response = await fetch(this.url, {
@@ -15,13 +15,13 @@ export class PinAddToBoardAPI {
         } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             return errCheck(response);
         }
         const body = await response.json();
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

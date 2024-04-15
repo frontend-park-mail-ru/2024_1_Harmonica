@@ -1,12 +1,12 @@
 import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
-export class ProfileEditAPI{
+export class ProfileEditAPI {
     constructor(user_id) {
         this.url = backendAPI + '/users/' + user_id;
     }
 
-    async api(post){
+    async api(post) {
         let response;
         try {
             const addOptions = {
@@ -17,10 +17,10 @@ export class ProfileEditAPI{
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -30,6 +30,6 @@ export class ProfileEditAPI{
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

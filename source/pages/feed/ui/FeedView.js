@@ -5,13 +5,13 @@ import {API} from '../../../shared/api/API.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 
-export class FeedView extends View{
+export class FeedView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');
     }
 
-    async render(){
+    async render() {
         this.root.innerHTML = FeedViewTemplate({});
         const api = new API('/pins');
         const response = await api.GET();

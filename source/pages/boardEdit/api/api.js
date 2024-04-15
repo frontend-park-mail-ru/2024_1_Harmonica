@@ -1,7 +1,7 @@
 import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
-export class BoardEditAPI{
+export class BoardEditAPI {
     constructor(boardID = null) {
         this.url = backendAPI + '/boards';
         if (boardID) {
@@ -9,9 +9,9 @@ export class BoardEditAPI{
         }
     }
 
-    async api(board){
+    async api(board) {
         let response;
-        try{
+        try {
             const addOptions = {
                 method: 'POST',
                 body: board,
@@ -20,10 +20,10 @@ export class BoardEditAPI{
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -33,6 +33,6 @@ export class BoardEditAPI{
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

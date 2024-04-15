@@ -6,7 +6,7 @@ import {LoginView} from '../../../pages/login/ui/loginView.js';
 import {Logout} from '../../../features/logout/model/logout.js';
 import {SignupView} from '../../../pages/signup/ui/signupView.js';
 
-export class NavbarView extends View{
+export class NavbarView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#navbar');
@@ -28,7 +28,7 @@ export class NavbarView extends View{
             profileButton.addEventListener('click', async () => {
                 const user = JSON.parse(localStorage.getItem('user'));
                 window.location.pathname = '/profile/' + user.nickname;
-            })
+            });
             const logoutButton = this.root.querySelector('#navbar_logout_button');
             logoutButton.addEventListener('click', async () => {
                 await Logout('/');

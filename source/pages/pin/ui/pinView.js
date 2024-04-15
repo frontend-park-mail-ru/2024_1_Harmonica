@@ -31,8 +31,8 @@ export class PinView extends View {
      */
     async render(pinID) {
         const pinAPI = new PinAPI(pinID);
-        const response = await pinAPI.api()
-        if (response.code !== 0){
+        const response = await pinAPI.api();
+        if (response.code !== 0) {
             const errorView = new Error();
             errorView.render();
             return;
@@ -76,7 +76,7 @@ export class PinView extends View {
             const api = new PinAPI(pin.pin_id);
             const response = await api.apiPOST(JSON.stringify(pinObj));
 
-            if(response.code){
+            if (response.code) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[response.code]);
                 return;
@@ -122,7 +122,7 @@ export class PinView extends View {
             const api = new PinAPI(null);
             const response = await api.apiPOST(formData);
 
-            if(response.code){
+            if (response.code) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[response.code]);
                 return;
@@ -130,6 +130,6 @@ export class PinView extends View {
 
             const pinView = new PinView();
             await pinView.render(response.body.pin_id);
-        })
+        });
     }
 }

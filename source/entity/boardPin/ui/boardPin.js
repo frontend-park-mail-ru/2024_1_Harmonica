@@ -3,7 +3,7 @@ import BoardPinFeedTemplate from './boardPin.handlebars';
 import './boardPin.scss';
 import {API} from '../../../shared/api/API.js';
 
-export class BoardPinFeedView extends View{
+export class BoardPinFeedView extends View {
     constructor(root, ...args) {
         super(...args);
         this.root = root;
@@ -15,7 +15,7 @@ export class BoardPinFeedView extends View{
 
     render(pin, board) {
         console.log(pin, board);
-        this.root.innerHTML =  BoardPinFeedTemplate({pin, owner: board.is_owner});
+        this.root.innerHTML = BoardPinFeedTemplate({pin, owner: board.is_owner});
 
         const eventRoot = document.querySelector('#pin-' + pin.pin_id);
         eventRoot.addEventListener('click', (event) => {
@@ -29,6 +29,6 @@ export class BoardPinFeedView extends View{
             const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
             await api.DELETE();
             window.location.pathname = '/board/' + board.board_id;
-        })
+        });
     }
 }

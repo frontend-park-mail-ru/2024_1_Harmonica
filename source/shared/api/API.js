@@ -3,7 +3,7 @@
 import {backendAPI} from '../config.js';
 
 /** Request template object */
-export let fetchRequest = {
+export const fetchRequest = {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -20,7 +20,7 @@ export class API {
         this.url = backendAPI + url;
     }
 
-    async GET(){
+    async GET() {
         let response;
         try {
             response = await fetch(this.url, {
@@ -29,12 +29,12 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             return errCheck(response);
         }
-        if (response.code === 204){
+        if (response.code === 204) {
             return {
-                code: 0
+                code: 0,
             };
         }
         try {
@@ -42,15 +42,15 @@ export class API {
             return {
                 code: 0,
                 body: body,
-            }
-        } catch (error){
+            };
+        } catch (error) {
             return {
-                code: 0
+                code: 0,
             };
         }
     }
 
-    async POST(post){
+    async POST(post) {
         let response;
         try {
             const addOptions = {
@@ -61,10 +61,10 @@ export class API {
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -74,10 +74,10 @@ export class API {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 
-    async DELETE(){
+    async DELETE() {
         let response;
         try {
             const addOptions = {
@@ -87,10 +87,10 @@ export class API {
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: body.code,
@@ -100,7 +100,7 @@ export class API {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 
     /**
@@ -198,7 +198,7 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
-        fetchRequest.headers['X-CSRF-Token'] = response.headers.get("x-csrf-token");
+        fetchRequest.headers['X-CSRF-Token'] = response.headers.get('x-csrf-token');
         if (!response.ok) {
             return errCheck(response);
         }

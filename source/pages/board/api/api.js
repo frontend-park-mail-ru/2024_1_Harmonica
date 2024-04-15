@@ -6,7 +6,7 @@ export class BoardAPI {
         this.url = backendAPI + '/boards/' + boardID;
     }
 
-    async api(){
+    async api() {
         let response;
         try {
             response = await fetch(this.url, {
@@ -15,17 +15,17 @@ export class BoardAPI {
         } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             return errCheck(response);
         }
         const body = await response.json();
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 
-    async apiDELETE(){
+    async apiDELETE() {
         let response;
         try {
             const addOptions = {
@@ -35,10 +35,10 @@ export class BoardAPI {
                 ...fetchRequest,
                 ...addOptions,
             });
-        } catch (error){
+        } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             const body = await response.json();
             return {
                 code: 51,
@@ -49,6 +49,6 @@ export class BoardAPI {
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

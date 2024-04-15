@@ -1,12 +1,15 @@
 import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
-export class profileFeedAPI{
+/**
+ *
+ */
+export class ProfileFeedAPI {
     constructor(nickname, entity) {
-        this.url = backendAPI + '/' + entity + "/created/" + nickname;
+        this.url = backendAPI + '/' + entity + '/created/' + nickname;
     }
 
-    async api(){
+    async api() {
         let response;
         try {
             response = await fetch(this.url, {
@@ -15,13 +18,13 @@ export class profileFeedAPI{
         } catch (error) {
             return errCheck(error);
         }
-        if (!response.ok){
+        if (!response.ok) {
             return errCheck(response);
         }
         const body = await response.json();
         return {
             code: 0,
             body: body,
-        }
+        };
     }
 }

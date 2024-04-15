@@ -29,7 +29,7 @@ export class BoardView extends View {
     async render(boardID) {
         const boardAPI = new BoardAPI(boardID);
         const response = await boardAPI.api();
-        if (response.code !== 0){
+        if (response.code !== 0) {
             const errorView = new Error();
             errorView.render();
             return;
