@@ -1,5 +1,8 @@
 /** @module source/modules/validation */
 
+import {ERROR_COLOR, NORMAL_COLOR} from '../config.js';
+import {ErrorWindowView} from '../../entity/errorWindow/ui/errorWindow.js';
+
 /**
  * Check if email is valid
  * @function emailValidation
@@ -39,3 +42,35 @@ export const nicknameValidation = (nick) => {
  * @return {boolean} True if passwords are the same and false otherwise.
  */
 export const repPasswordValidation = (pass, repPass) => pass === repPass;
+
+export const boardValidation = (title, description) => {
+    const errorView = new ErrorWindowView();
+
+    if (title.value.length > 60){
+        errorView.render('Количество символов в поле заголовок не должно превышать 60');
+        title.style['border-color'] = ERROR_COLOR;
+    } else if (description.value.length > 500) {
+        title.style['border-color'] = NORMAL_COLOR;
+        errorView.render('Количество символов в описание доски не должно превышать 500');
+        description.style['border-color'] = ERROR_COLOR;
+    } else {
+        return true;
+    }
+    return false;
+}
+
+export const pinValidation = (title, description) => {
+    const errorView = new ErrorWindowView();
+
+    if (title.value.length > 60){
+        errorView.render('Количество в заголовоке пина не должно превышать 60');
+        title.style['border-color'] = ERROR_COLOR;
+    } else if (description.value.length > 300) {
+        title.style['border-color'] = NORMAL_COLOR;
+        errorView.render('Количество символов в описание пина не должно превышать 300');
+        description.style['border-color'] = ERROR_COLOR;
+    } else {
+        return true;
+    }
+    return false;
+}

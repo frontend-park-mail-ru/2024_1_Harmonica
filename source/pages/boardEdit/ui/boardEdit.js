@@ -5,7 +5,8 @@ import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';
 import {BoardView} from '../../board/ui/boardView.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
-import {errors} from '../../../shared/config.js';
+import {ERROR_COLOR, errors, NORMAL_COLOR} from '../../../shared/config.js';
+import {boardValidation} from '../../../shared/utils/validation.js';
 
 /**
  * Handle board create and update page
@@ -40,28 +41,35 @@ export class BoardEdit extends View {
 
         const boardAPI = new BoardEditAPI(board.board_id);
         const continueButton = document.querySelector('#board-save-button');
-        const boardCreated = new BoardView();
+
         continueButton.addEventListener('click', async (event) => {
             event.preventDefault();
-            const title = document.querySelector('#board-title').value;
-            const description = document.querySelector('#board-description').value;
+            const title = document.querySelector('#board-title');
+            const description = document.querySelector('#board-description');
 
-            const formData = new FormData();
-            const boardInfo = {title, description};
-            boardInfo.visibility_type = 'public';
-            formData.append('board', JSON.stringify(boardInfo));
 
-            const response = await boardAPI.api(formData);
+            if (boardValidation(title, description)) {
+                description.style['border-color'] = NORMAL_COLOR;
+                const formData = new FormData();
+                const boardInfo = {
+                    title: title.value,
+                    description: description.value
+                };
+                boardInfo.visibility_type = 'public';
+                formData.append('board', JSON.stringify(boardInfo));
 
-            if (response.code) {
-                const errorWindow = new ErrorWindowView();
-                errorWindow.render(errors[response.code]);
-                return;
+                const response = await boardAPI.api(formData);
+
+                if (response.code) {
+                    const errorWindow = new ErrorWindowView();
+                    errorWindow.render(errors[response.code]);
+                    return;
+                }
+
+                const newBoard = response.body.board;
+
+                window.location.pathname = '/board/' + newBoard.board_id;
             }
-
-            const newBoard = response.body.board;
-
-            window.location.pathname = '/board/' + newBoard.board_id;
         });
     }
 
@@ -80,22 +88,27 @@ export class BoardEdit extends View {
 
         const boardAPI = new BoardEditAPI(null);
         const continueButton = document.querySelector('#board-save-button');
-        const boardCreated = new BoardView();
         continueButton.addEventListener('click', async (event) => {
-            const title = document.querySelector('#board-title').value;
-            const description = document.querySelector('#board-description').value;
-            const boardInfo = {title, description};
-            const response = await boardAPI.api(JSON.stringify(boardInfo));
+            const title = document.querySelector('#board-title');
+            const description = document.querySelector('#board-description');
 
-            if (response.code) {
-                const errorWindow = new ErrorWindowView();
-                errorWindow.render(errors[response.code]);
-                return;
+            if (boardValidation(title, description)) {
+                const boardInfo = {
+                    title: title.value,
+                    description: description.value
+                };
+                const response = await boardAPI.api(JSON.stringify(boardInfo));
+
+                if (response.code) {
+                    const errorWindow = new ErrorWindowView();
+                    errorWindow.render(errors[response.code]);
+                    return;
+                }
+
+                const board = response.body;
+
+                window.location.pathname = '/board/' + board.board.board_id;
             }
-
-            const board = response.body;
-
-            window.location.pathname = '/board/' + board.board.board_id;
         });
     }
 }

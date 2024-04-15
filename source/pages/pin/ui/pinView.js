@@ -8,6 +8,7 @@ import {Profile} from '../../profile/ui/profile.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 import {Error} from '../../error/error.js';
+import {boardValidation, pinValidation} from '../../../shared/utils/validation.js';
 
 /**
  * Handle pin page
@@ -69,20 +70,26 @@ export class PinView extends View {
         const createSubmit = this.root.querySelector('#pin-form-save');
         createSubmit.addEventListener('click', async (event) =>{
             event.preventDefault();
-            const title = this.root.querySelector('#title-input').value;
-            const description = this.root.querySelector('#description-input').value;
-            const pinObj = {title, description};
+            const title = this.root.querySelector('#title-input');
+            const description = this.root.querySelector('#description-input');
 
-            const api = new PinAPI(pin.pin_id);
-            const response = await api.apiPOST(JSON.stringify(pinObj));
+            if (pinValidation(title, description)) {
+                const pinObj = {
+                    title: title.value,
+                    description: description.value
+                };
 
-            if (response.code) {
-                const errorWindow = new ErrorWindowView();
-                errorWindow.render(errors[response.code]);
-                return;
+                const api = new PinAPI(pin.pin_id);
+                const response = await api.apiPOST(JSON.stringify(pinObj));
+
+                if (response.code) {
+                    const errorWindow = new ErrorWindowView();
+                    errorWindow.render(errors[response.code]);
+                    return;
+                }
+
+                window.location.pathname = '/pin/' + pin.pin_id;
             }
-
-            window.location.pathname = '/pins/' + pin.pin_id;
         });
     }
 
@@ -107,31 +114,35 @@ export class PinView extends View {
         const createSubmit = this.root.querySelector('#pin-form-save');
         createSubmit.addEventListener('click', async (event) =>{
             event.preventDefault();
-            const title = this.root.querySelector('#title-input').value;
-            const description = this.root.querySelector('#description-input').value;
-            const pin = {title, description};
+            const title = this.root.querySelector('#title-input');
+            const description = this.root.querySelector('#description-input');
 
-            const uploadInput = document.querySelector('#pin-photo-input');
-            const image = uploadInput.files[0];
-            if (!image){
-                const errorWindow = new ErrorWindowView();
-                errorWindow.render(errors[19]);
-            } else {
-                const formData = new FormData();
-                formData.append('image', image);
-                formData.append('pin', JSON.stringify(pin));
+            if (pinValidation(title, description)) {
+                const pin = {
+                    title: title.value,
+                    description: description.value
+                };
 
-                const api = new PinAPI(null);
-                const response = await api.apiPOST(formData);
-
-                if (response.code) {
+                const uploadInput = document.querySelector('#pin-photo-input');
+                const image = uploadInput.files[0];
+                if (!image) {
                     const errorWindow = new ErrorWindowView();
-                    errorWindow.render(errors[response.code]);
-                    return;
-                }
+                    errorWindow.render(errors[19]);
+                } else {
+                    const formData = new FormData();
+                    formData.append('image', image);
+                    formData.append('pin', JSON.stringify(pin));
 
-                console.log(response.body);
-                window.location.pathname = '/pins/' + response.body.pin.pin_id;
+                    const api = new PinAPI(null);
+                    const response = await api.apiPOST(formData);
+
+                    if (response.code) {
+                        const errorWindow = new ErrorWindowView();
+                        errorWindow.render(errors[response.code]);
+                        return;
+                    }
+                    window.location.pathname = '/pin/' + response.body.pin_id;
+                }
             }
         });
     }

@@ -8,3 +8,11 @@
     width: 45px;
     height: 45px;
 }
+
+.pin_text{
+    overflow: hidden;
+    line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
