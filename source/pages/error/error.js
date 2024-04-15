@@ -15,6 +15,6 @@ export class Error extends View{
         this.root = document.getElementById('root');
     }
     render(message = 'Страница не найдена') {
-        this.root.innerHTML = templateError({message});
+        this.root.innerHTML = templateError({message: message});
     }
 };
