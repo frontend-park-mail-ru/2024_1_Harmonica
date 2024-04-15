@@ -4,8 +4,25 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE)
             .then((cache) => cache.addAll([
-                '/',
+                './source',
+                '../dist'
             ])),
+    );
+});
+
+self.addEventListener("activate", (event) => {
+    const cacheKeeplist = [CACHE];
+
+    event.waitUntil(
+        caches.keys().then((keyList) => {
+            return Promise.all(
+                keyList.map((key) => {
+                    if (cacheKeeplist.indexOf(key) === -1) {
+                        return caches.delete(key);
+                    }
+                }),
+            );
+        }),
     );
 });
 
@@ -16,25 +33,14 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(fetch(event.request).then(response => response));
         return;
     }
-    event.respondWith(takeFromCache(event.request));
-    event.waitUntil(cacheUpdate(event.request));
+    event.respondWith(caches.match(event.request)
+        .then((matching => {
+            return (matching || fetch(event.request)
+                .then(response => {
+                    return caches.open(CACHE).then(cache => {
+                        cache.put(event.request, response.clone());
+                        return response;
+                    })
+                }))
+        })))
 });
-
-
-function cacheUpdate(request) {
-    return caches.open(CACHE)
-        .then((cache) => fetch(request)
-            .then(response => cache.put(request, response.clone())
-                .then(() => response)
-            )
-        );
-}
-
-function takeFromCache(request){
-    return caches.open(CACHE)
-        .then((cache) => cache.match(request)
-            .then((matching) => matching ||
-                Promise.reject('there is no match'),
-            ),
-        )
-}

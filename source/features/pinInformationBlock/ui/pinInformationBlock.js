@@ -33,8 +33,7 @@ export class PinInformationBlock extends View {
         const avatarObj = document.querySelector('#avatar');
         avatarObj.addEventListener('click', async (event) => {
             event.preventDefault();
-            const profile = new Profile();
-            await profile.render(pin.author.nickname);
+            window.location.pathname = '/profile/' + pin.author.nickname;
         },
         );
 

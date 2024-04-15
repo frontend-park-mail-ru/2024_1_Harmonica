@@ -48,21 +48,24 @@ export class PinControllerBlock extends View {
         const likeView = new Like();
         likeView.render(pin.is_liked);
 
-        const likeButton = document.querySelector('#pin-like');
-        const likeCount = document.querySelector('#pin-like-count');
-        const likeAPI = new LikeAPI(pin.pin_id);
-        let checked = pin.is_liked;
-        likeButton.addEventListener('click', async (event) => {
-            event.preventDefault();
-            if (checked) {
-                await likeAPI.apiDELETE();
-                likeCount.innerHTML = +likeCount.innerHTML - 1;
-            } else {
-                await likeAPI.apiPOST();
-                likeCount.innerHTML = +likeCount.innerHTML + 1;
-            }
-            checked = !checked;
-            likeView.render(checked);
-        });
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            const likeButton = document.querySelector('#pin-like');
+            const likeCount = document.querySelector('#pin-like-count');
+            const likeAPI = new LikeAPI(pin.pin_id);
+            let checked = pin.is_liked;
+            likeButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                if (checked) {
+                    await likeAPI.apiDELETE();
+                    likeCount.innerHTML = +likeCount.innerHTML - 1;
+                } else {
+                    await likeAPI.apiPOST();
+                    likeCount.innerHTML = +likeCount.innerHTML + 1;
+                }
+                checked = !checked;
+                likeView.render(checked);
+            });
+        }
     }
 }

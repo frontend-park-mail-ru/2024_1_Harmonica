@@ -228,7 +228,12 @@ export const errCheck = async (error) => {
     } else {
         response = await error.json();
     }
+    if (response.code) {
+        return {
+            code: response.code,
+        };
+    }
     return {
-        code: response.code,
-    };
+        code: 50,
+    }
 };

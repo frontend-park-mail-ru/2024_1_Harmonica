@@ -62,8 +62,8 @@ export class PinView extends View {
         const backButton = this.root.querySelector('#form-control-back');
         backButton.addEventListener('click', async (event) => {
             event.preventDefault();
-            const pinView = new PinView();
-            await pinView.render(pin.pin_id);
+            const user = JSON.parse(localStorage.getItem('user'));
+            window.location.pathname = '/profile/' + user.nickname;
         });
 
         const createSubmit = this.root.querySelector('#pin-form-save');
@@ -82,8 +82,7 @@ export class PinView extends View {
                 return;
             }
 
-            const pinView = new PinView();
-            await pinView.render(pin.pin_id);
+            window.location.pathname = '/pins/' + pin.pin_id;
         });
     }
 
@@ -101,9 +100,8 @@ export class PinView extends View {
         const profileButton = this.root.querySelector('#form-control-back');
         profileButton.addEventListener('click', async (event) => {
             event.preventDefault();
-            const profile = new Profile();
             const user = JSON.parse(localStorage.getItem('user'));
-            await profile.render(user.nickname);
+            window.location.pathname = '/profile/' + user.nickname;
         });
 
         const createSubmit = this.root.querySelector('#pin-form-save');
@@ -115,21 +113,26 @@ export class PinView extends View {
 
             const uploadInput = document.querySelector('#pin-photo-input');
             const image = uploadInput.files[0];
-            const formData = new FormData();
-            formData.append('image', image);
-            formData.append('pin', JSON.stringify(pin));
-
-            const api = new PinAPI(null);
-            const response = await api.apiPOST(formData);
-
-            if (response.code) {
+            if (!image){
                 const errorWindow = new ErrorWindowView();
-                errorWindow.render(errors[response.code]);
-                return;
-            }
+                errorWindow.render(errors[19]);
+            } else {
+                const formData = new FormData();
+                formData.append('image', image);
+                formData.append('pin', JSON.stringify(pin));
 
-            const pinView = new PinView();
-            await pinView.render(response.body.pin_id);
+                const api = new PinAPI(null);
+                const response = await api.apiPOST(formData);
+
+                if (response.code) {
+                    const errorWindow = new ErrorWindowView();
+                    errorWindow.render(errors[response.code]);
+                    return;
+                }
+
+                console.log(response.body);
+                window.location.pathname = '/pins/' + response.body.pin.pin_id;
+            }
         });
     }
 }

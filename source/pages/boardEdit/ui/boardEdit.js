@@ -33,8 +33,9 @@ export class BoardEdit extends View {
 
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
-            const boardView = new BoardView();
-            boardView.render(board.board_id);
+
+            const user = JSON.parse(localStorage.getItem('user'));
+            window.location.pathname = '/boards/' + board.board_id;
         });
 
         const boardAPI = new BoardEditAPI(board.board_id);
@@ -60,7 +61,7 @@ export class BoardEdit extends View {
 
             const newBoard = response.body.board;
 
-            await boardCreated.render(newBoard.board_id);
+            window.location.pathname = '/boards/' + newBoard.board_id;
         });
     }
 
@@ -73,9 +74,8 @@ export class BoardEdit extends View {
 
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
-            const profile = new Profile();
             const user = JSON.parse(localStorage.getItem('user'));
-            profile.render(user.nickname);
+            window.location.pathname = '/profile/' + user.nickname;
         });
 
         const boardAPI = new BoardEditAPI(null);
@@ -95,7 +95,7 @@ export class BoardEdit extends View {
 
             const board = response.body;
 
-            await boardCreated.render(board.board.board_id);
+            window.location.pathname = '/boards/' + board.board.board_id;
         });
     }
 }
