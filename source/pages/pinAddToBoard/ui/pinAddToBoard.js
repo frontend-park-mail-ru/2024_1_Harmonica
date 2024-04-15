@@ -23,8 +23,7 @@ export class PinAddToBoardView extends View {
         const backButton = document.querySelector('#pin-to-board-back');
         backButton.addEventListener('click', async (event) => {
             event.preventDefault();
-            const pinView = new PinView();
-            await pinView.render(pin.pin_id);
+            window.location.pathname = '/pin/' + pin.pin_id;
         });
     }
 }
