@@ -3,11 +3,10 @@
 import {backendAPI} from '../config.js';
 
 /** Request template object */
-const fetchRequest = {
+export const fetchRequest = {
     method: 'GET',
     mode: 'cors',
     headers: {
-        'Content-Type': 'application/json',
         'Access-Control-Allow-Credentials': true,
     },
     credentials: 'include',
@@ -17,24 +16,15 @@ const fetchRequest = {
  * API class provides API-functions.
  */
 export class API {
-    /**
-     * Login user by from data
-     * @async
-     * @function login
-     * @param {json} post - The info of user to login (email and password).
-     * @return {json} The data of user and code: status of error if there is or 0 otherwise.
-     */
-    async login(post) {
-        const url = backendAPI + '/login';
+    constructor(url) {
+        this.url = backendAPI + url;
+    }
+
+    async GET() {
         let response;
         try {
-            const addOptions = {
-                method: 'POST',
-                body: JSON.stringify(post),
-            };
-            response = await fetch(url, {
+            response = await fetch(this.url, {
                 ...fetchRequest,
-                ...addOptions,
             });
         } catch (error) {
             return errCheck(error);
@@ -42,12 +32,77 @@ export class API {
         if (!response.ok) {
             return errCheck(response);
         }
+        if (response.code === 204) {
+            return {
+                code: 0,
+            };
+        }
+        try {
+            const body = await response.json();
+            return {
+                code: 0,
+                body: body,
+            };
+        } catch (error) {
+            return {
+                code: 0,
+            };
+        }
+    }
+
+    async POST(post) {
+        let response;
+        try {
+            const addOptions = {
+                method: 'POST',
+                body: post,
+            };
+            response = await fetch(this.url, {
+                ...fetchRequest,
+                ...addOptions,
+            });
+        } catch (error) {
+            return errCheck(error);
+        }
+        if (!response.ok) {
+            const body = await response.json();
+            return {
+                code: body.code,
+            };
+        }
         const body = await response.json();
         return {
             code: 0,
             body: body,
         };
     }
+
+    async DELETE() {
+        let response;
+        try {
+            const addOptions = {
+                method: 'DELETE',
+            };
+            response = await fetch(this.url, {
+                ...fetchRequest,
+                ...addOptions,
+            });
+        } catch (error) {
+            return errCheck(error);
+        }
+        if (!response.ok) {
+            const body = await response.json();
+            return {
+                code: body.code,
+            };
+        }
+        const body = await response.json();
+        return {
+            code: 0,
+            body: body,
+        };
+    }
+
     /**
      * Signup user by form data
      * @async
@@ -143,6 +198,7 @@ export class API {
         } catch (error) {
             return errCheck(error);
         }
+        fetchRequest.headers['X-CSRF-Token'] = response.headers.get('x-csrf-token');
         if (!response.ok) {
             return errCheck(response);
         }
@@ -160,7 +216,7 @@ export class API {
  * @param {*} error - Error to check
  * @return {json} The data of fetch and code: status of error if there is.
  */
-const errCheck = async (error) => {
+export const errCheck = async (error) => {
     let response;
     if (error.message && error.message === 'Failed to fetch') {
         response = {
@@ -172,7 +228,12 @@ const errCheck = async (error) => {
     } else {
         response = await error.json();
     }
+    if (response.code) {
+        return {
+            code: response.code,
+        };
+    }
     return {
-        code: response.code,
-    };
+        code: 50,
+    }
 };

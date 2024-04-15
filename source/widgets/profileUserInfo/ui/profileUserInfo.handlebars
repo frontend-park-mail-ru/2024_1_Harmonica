@@ -3,13 +3,13 @@
 </div>
 <div class="profile-text">
     <div class="profile-text__nickname">
-        {{user.nickname}}
+        {{userInfo.user.nickname}}
     </div>
     <div class="profile-text__followers">
-        {{user.followers_number}} подписчиков
+        {{userInfo.followers_count}} подписчиков
     </div>
-    {{#if user.is_owner}}
-        <div class="button edit-button profile-text-button_margin-top">
+    {{#if userInfo.is_owner}}
+        <div class="button edit-button profile-text-button_margin-top" id="profile-edit">
             Изменить профиль
         </div>
     {{else}}

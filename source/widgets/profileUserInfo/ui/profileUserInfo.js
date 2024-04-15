@@ -1,5 +1,5 @@
 import userInfoTemplate from './profileUserInfo.handlebars';
-import './profile-user-info.css';
+import './profile-user-info.scss';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {View} from '../../../app/View.js';
 
@@ -18,11 +18,11 @@ export class ProfileUserInfo extends View {
     /**
      * Render profile info widget
      * @function render
-     * @param {json} user – user info to render
+     * @param {json} userInfo – user info to render
      */
-    render(user) {
-        this.userInfo.innerHTML = userInfoTemplate({user});
+    render(userInfo) {
+        this.userInfo.innerHTML = userInfoTemplate({userInfo});
         const avatar = new Avatar();
-        avatar.render(user.avatar_url);
+        avatar.render(userInfo.user.avatar_url);
     };
 }

@@ -1,5 +1,5 @@
 import avatarTemplate from './avatar.handlebars';
-import './avatar.css';
+import './avatar.scss';
 import {View} from '../../../app/View.js';
 
 /**
@@ -22,6 +22,9 @@ export class Avatar extends View {
      * @param {string} avatarUrl – URL for avatar image
      */
     render(avatarUrl) {
+        if (!avatarUrl) {
+            avatarUrl = '/static/avatar.svg';
+        }
         this.root.innerHTML = avatarTemplate({avatarUrl: avatarUrl});
     }
 }

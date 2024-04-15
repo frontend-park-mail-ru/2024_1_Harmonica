@@ -1,0 +1,38 @@
+.board{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.board-desc{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.board-control-block{
+    display: flex;
+    gap: 10px;
+}
+
+.board-text__title{
+    text-align: center;
+    width: 400px;
+    overflow: hidden;
+    line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.board-text__description{
+    text-align: center;
+    width: 400px;
+    overflow: hidden;
+    line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}

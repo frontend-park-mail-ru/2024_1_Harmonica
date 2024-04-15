@@ -1,0 +1,22 @@
+.feed{
+    height: auto;
+    width: auto;
+    margin: 30px 50px;
+    columns: 250px 5;
+}
+
+.feed_item{
+    margin-bottom: 20px;
+    border-radius: var(--element-border-radius);
+    width: 250px;
+}
+
+.feed_item_error{
+    background-color: var(--window-color);
+}
+
+.pin{
+    margin: auto;
+    border-radius: var(--element-border-radius);
+    width: 100%;
+}

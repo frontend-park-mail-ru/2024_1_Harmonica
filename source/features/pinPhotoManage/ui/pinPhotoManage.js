@@ -1,7 +1,9 @@
 import pinPhotoManageTemplate from './pinPhotoManage.handlebars';
-import './pinPhotoManage.css';
+import './pinPhotoManage.scss';
 import {View} from '../../../app/View.js';
 import {PinPhoto} from '../../../entity/pinPhoto/ui/pinPhoto.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {errors} from '../../../shared/config.js';
 
 /**
  * Handle and render photo in create/delete page
@@ -17,15 +19,21 @@ export class PinPhotoManage extends View {
         this.root = document.querySelector('#pin-photo');
     }
 
+    render(pin) {
+        this.root.innerHTML = pinPhotoManageTemplate({pinView: true});
+        const photo = new PinPhoto();
+        photo.render(pin.content_url);
+    }
     /**
      * Render photo in page
      * @function renderUpdate
      * @param {json} pin – pin information
      */
     renderUpdate(pin) {
+        this.root.innerHTML = pinPhotoManageTemplate({pinView: true, photoRendered: true});
+
         const photo = new PinPhoto();
         photo.render(pin.content_url);
-        this.root.innerHTML += pinPhotoManageTemplate({photoRendered: true});
     }
 
     /**
@@ -33,8 +41,32 @@ export class PinPhotoManage extends View {
      * @function renderCreate
      */
     renderCreate() {
+        this.root.innerHTML = pinPhotoManageTemplate({pinView: false, photoRendered: false});
+        const uploadInput = document.querySelector('#pin-photo-input');
+        const photoImageBlock = document.querySelector('#photo-manage__image-block');
+        const photoHoverBlock = document.querySelector('#photo-hover-block');
+
         const photo = new PinPhoto();
-        photo.renderCreate();
-        this.root.innerHTML += pinPhotoManageTemplate({photoRendered: false});
+        photo.render('');
+
+        uploadInput.addEventListener('change', (event) => {
+            event.preventDefault();
+            const image = uploadInput.files[0];
+            const fileExtention = (/[.]/.exec(image.name)) ?
+                /[^.]+$/.exec(image.name) : null;
+
+            if (fileExtention && !fileExtention[0].match(/^(png)|(jpg)|(jpeg)/)){
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[18]);
+            } else if (image) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    photoImageBlock.classList.remove('photo_size');
+                    photoHoverBlock.classList.add('hover-photo-block_opacity');
+                    photo.render(event.target.result);
+                };
+                reader.readAsDataURL(image);
+            }
+        });
     }
 }

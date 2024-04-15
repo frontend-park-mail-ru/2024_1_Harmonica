@@ -1,44 +1,51 @@
-import {Navbar} from '../components/widget/navbar/navbar.js';
-// import {Feed} from '../components/pages/feed/feed.js';
 import {API} from '../shared/api/API.js';
-import {Error} from '../components/pages/error/error.js';
-import './App.css';
-// import {BoardView} from '../pages/boardView/ui/boardView.js';
-import {BoardEdit} from '../pages/boardEdit/ui/boardEdit.js';
-// import {Profile} from '../pages/profile/ui/profile.js';
-// import {ProfileEdit} from '../pages/profileEdit/ui/profileEdit.js';
-// import {PinView} from '../pages/pinView/ui/pinView.js';
+import {Error} from '../pages/error/error.js';
+import './styles/App.scss';
+import {Router} from './Router.js';
+import {Profile} from '../pages/profile/ui/profile.js';
+import {PinView} from '../pages/pin/ui/pinView.js';
+import {BoardView} from '../pages/board/ui/boardView.js';
+import {FeedView} from '../pages/feed/ui/FeedView.js';
+import {NavbarView} from '../widgets/navbar/ui/navbar.js';
+import {LoginView} from '../pages/login/ui/loginView.js';
+import {SignupView} from '../pages/signup/ui/signupView.js';
 
 
-const api = new API();
-const response = await api.isAuth();
-if (response.code !== 0) {
-    try {
-        localStorage.removeItem('user');
-    } catch (error) {
-        Error();
-    }
-} else {
-    try {
-        localStorage.setItem('user', JSON.stringify(response.body));
-    } catch (error) {
-        Error();
+/**
+ * Class provides class App, the initial class
+ */
+export class App {
+    /**
+     * Function that started the app
+     * @return {Promise<void>}
+     */
+    async start() {
+        const router = new Router();
+        router.register('/', new FeedView());
+        router.register('/profile/{nickname}', new Profile());
+        router.register('/login', new LoginView());
+        router.register('/signup', new SignupView());
+        router.register('/pin/{pin_id}', new PinView());
+        router.register('/board/{board_id}', new BoardView());
+
+        const api = new API('');
+        const response = await api.isAuth();
+        if (response.code !== 0) {
+            try {
+                localStorage.removeItem('user');
+            } catch (error) {
+                Error();
+            }
+        } else {
+            try {
+                localStorage.setItem('user', JSON.stringify(response.body));
+            } catch (error) {
+                Error();
+            }
+        }
+        const navbar = new NavbarView();
+        navbar.render();
+        router.start();
     }
 }
-Navbar();
-/* const profile = new Profile();
-profile.render(profile.user); */
-/* const profileEdit = new ProfileEdit();
-profileEdit.render(profileEdit.user); */
-// const pinWatch = new PinView();
-// pinWatch.renderPin(pinWatch.pin);
-// pinWatch.renderPinUpdate(pinWatch.pin);
-// pinWatch.renderPinCreate();
-/* const boardView = new BoardView();
-boardView.render(boardView.board); */
-/* const boardEdit = new BoardEdit();
-boardEdit.renderUpdateBoard(boardEdit.board); */
-const boardCreate = new BoardEdit();
-boardCreate.renderCreateBoard();
-// Feed();
 

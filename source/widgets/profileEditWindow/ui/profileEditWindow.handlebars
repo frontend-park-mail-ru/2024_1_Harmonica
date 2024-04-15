@@ -3,22 +3,23 @@
         <div class="profile-edit__avatar" id="avatar">
 
         </div>
-        <div class="button button-passive">
+        <label class="button button-passive">
             Загрузить
-        </div>
+            <input type="file" class="input_display_none" id="profile-photo-input">
+        </label>
     </div>
     <div class="input-fields">
         <div class="input-block">
             <label for="input-email">Email</label>
-            <input id="input-email" type="email" class="input" placeholder="{{user.email}}">
+            <input id="input-email" type="email" class="input input-readonly" value="{{user.email}}" readonly="readonly">
         </div>
         <div class="input-block">
             <label for="input-nickname">Никнейм</label>
-            <input type="text" class="input" id="input-nickname" placeholder="{{user.nickname}}">
+            <input type="text" class="input" id="input-nickname" value="{{user.nickname}}">
         </div>
         <div class="input-block">
             <label for="input-password">Пароль</label>
-            <input type="password" class="input" id="input-password" placeholder="">
+            <input type="password" class="input" id="input-password">
         </div>
         <div class="input-block">
             <label for="input-repeat-password">Повторите пароль</label>
@@ -27,10 +28,10 @@
     </div>
 </div>
 <div class="profile-edit-window__button-field">
-    <div class="button button-passive">
+    <div class="button button-passive" id="profile-edit-back">
         Отмена
     </div>
-    <div class="button button-active button_focus-font-size">
+    <div class="button button-active button_focus-font-size" id="profile-edit-save">
         Сохранить
     </div>
 </div>

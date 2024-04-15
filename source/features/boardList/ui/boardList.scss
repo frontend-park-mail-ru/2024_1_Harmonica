@@ -1,0 +1,9 @@
+.board-item{
+    border: var(--window-color) 1px solid;
+    border-radius: var(--element-border-radius);
+    padding: 10px;
+}
+
+.board-item:hover{
+    cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import {View} from '../../../app/View.js';
 import profileEditTemplate from './profileEdit.handlebars';
 import {ProfileEditWindow} from '../../../widgets/profileEditWindow/ui/profileEditWindow.js';
-import './profile-edit.css';
+import './profile-edit.scss';
 
 /**
  * ProfileEdit class to render profile edit page and handle events in it
@@ -25,6 +25,6 @@ export class ProfileEdit extends View {
     render(user) {
         this.root.innerHTML = profileEditTemplate({});
         const profileEditWindow = new ProfileEditWindow();
-        profileEditWindow.render(user);
+        profileEditWindow.render(user.user);
     }
 }

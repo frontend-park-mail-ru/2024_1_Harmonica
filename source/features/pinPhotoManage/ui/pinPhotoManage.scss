@@ -1,0 +1,49 @@
+.hover-photo-block{
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: var(--pin-photo-border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hover-photo-block_opacity{
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.hover-photo-block_opacity:hover{
+    opacity: 1;
+}
+
+.hover-photo-block__background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: var(--pin-photo-border-radius);
+    background-color: var(--window-color);
+    opacity: .2;
+}
+
+.hover-photo-block__button{
+    position: absolute;
+    opacity: 1;
+}
+
+.photo_size{
+    width: 400px;
+    height: 800px;
+    background-color: var(--window-color);
+    border-radius: var(--element-border-radius);
+}
+
+.photo-block_fit-content{
+    width: fit-content;
+    height: fit-content;
+}

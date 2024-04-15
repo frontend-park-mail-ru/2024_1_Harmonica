@@ -1,0 +1,27 @@
+<div class="board">
+    <div class="board-desc">
+        <div class="title board-text__title">
+            {{board.title}}
+        </div>
+        <div class="description board-text__description">
+            {{board.description}}
+        </div>
+        <div class="board-control-block">
+            {{#if board.is_owner}}
+                <div class="button button-small button-passive" id="board-edit-button">
+                    Изменить
+                </div>
+                <div class="button button-small button-passive" id="board-delete-button">
+                    Удалить
+                </div>
+            {{else}}
+                <div class="button button-small button-active">
+                    Подписаться
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <div class="board-pins" id="board-pins-feed">
+
+    </div>
+</div>

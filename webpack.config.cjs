@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
-    entry: './source/app/App.js',
+    entry: './source/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
@@ -32,8 +32,8 @@ const config = {
                 loader: 'babel-loader',
             },
             {
-                test: /\.css$/i,
-                use: [ 'style-loader', 'css-loader' ],
+                test: /\.s[ac]ss$/i,
+                use: [ 'style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.handlebars$/,
