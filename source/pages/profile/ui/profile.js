@@ -36,7 +36,7 @@ export class Profile extends View {
             return;
         }
         const user = response.body;
-        this.root.innerHTML = templateProfile();
+        this.root.innerHTML = templateProfile({user});
         this.profileUserInfo = new ProfileUserInfo();
         const profileFeed = new ProfileFeed();
         this.profileUserInfo.render(user);

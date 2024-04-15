@@ -40,3 +40,12 @@
 .input_display_none{
     display: none;
 }
+
+.input-readonly{
+    background-color: var(--window-color);
+    opacity: 0.5;
+    &:focus{
+        background-color: var(--window-color);
+        outline-color: inherit;
+    }
+}

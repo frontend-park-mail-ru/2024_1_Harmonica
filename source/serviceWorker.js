@@ -1,4 +1,4 @@
-const CACHE = 'static-v1';
+const CACHE = 'v2';
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
@@ -11,7 +11,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-    const cacheKeeplist = [CACHE];
+    const cacheKeeplist = ['static-v1', 'static-v2', CACHE];
 
     event.waitUntil(
         caches.keys().then((keyList) => {

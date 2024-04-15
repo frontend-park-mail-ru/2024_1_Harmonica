@@ -52,10 +52,9 @@ export class PinPhotoManage extends View {
         uploadInput.addEventListener('change', (event) => {
             event.preventDefault();
             const image = uploadInput.files[0];
-            console.log(image);
             const fileExtention = (/[.]/.exec(image.name)) ?
                 /[^.]+$/.exec(image.name) : null;
-            console.log(fileExtention[0], fileExtention[0].match(/^(png)|(jpg)|(jpeg)/));
+
             if (fileExtention && !fileExtention[0].match(/^(png)|(jpg)|(jpeg)/)){
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[18]);

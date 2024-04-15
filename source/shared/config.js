@@ -35,5 +35,6 @@ export const errors = {
 
 /** Errors color. */
 export const ERROR_COLOR = '#ff4545';
+export const NORMAL_COLOR = '#111111';
 /** Fetch request debounceTimeout. */
 export const debounceTimeout = 200;

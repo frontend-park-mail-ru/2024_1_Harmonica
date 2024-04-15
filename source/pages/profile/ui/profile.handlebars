@@ -11,17 +11,19 @@
                 Доски
             </div>
         </div>
-        <div class="add-block">
-            <div class="button button_secondary-color" id="profile-pin-add">
-                Добавить пин
+        {{#if user.is_owner}}
+            <div class="add-block">
+                <div class="button button_secondary-color" id="profile-pin-add">
+                    Добавить пин
+                </div>
+                <div class="button button_secondary-color" id="profile-board-add">
+                    Добавить доску
+                </div>
+                <div class="button-add">
+                    <img src="/static/plus.svg" alt="">
+                </div>
             </div>
-            <div class="button button_secondary-color" id="profile-board-add">
-                Добавить доску
-            </div>
-            <div class="button-add">
-                <img src="/static/plus.svg" alt="">
-            </div>
-        </div>
+        {{/if}}
     </div>
     <div class="profile__content" id="content">
 

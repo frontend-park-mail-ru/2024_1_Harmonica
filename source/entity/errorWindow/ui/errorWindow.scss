@@ -1,6 +1,8 @@
 .error-window {
-    width: 400px;
-    height: 100px;
+    min-width: 400px;
+    min-height: 100px;
+    width: fit-content;
+    height: fit-content;
     border: var(--error-color) 3px solid;
     border-radius: var(--element-border-radius);
     background-color: var(--background-color);
@@ -22,4 +24,8 @@
 
 .cancel-icon:hover{
     cursor: pointer;
+}
+
+.error-window__text{
+    white-space: pre-line;
 }
