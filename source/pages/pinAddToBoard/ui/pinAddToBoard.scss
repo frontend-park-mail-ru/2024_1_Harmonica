@@ -1,0 +1,13 @@
+.add-to-board__window{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+}
+
+.boards-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

@@ -1,0 +1,19 @@
+.pin-like-section{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    align-items: center;
+}
+
+.like-section{
+    width: 45px;
+}
+
+.pin-control__owner-actions{
+    display: flex;
+    gap: 10px;
+}
+
+.like-button{
+    border-radius: 15px;
+}

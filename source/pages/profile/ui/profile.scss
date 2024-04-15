@@ -1,0 +1,32 @@
+.switch-bundle{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.profile-switcher{
+    width: auto;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.add-block{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    right: 20px;
+    align-items: end;
+}
+
+.button-add{
+    justify-self: end;
+    height: 40px;
+    width: 40px;
+}
+
+.button_secondary-color{
+    background-color: var(--secondary-button-color);
+}

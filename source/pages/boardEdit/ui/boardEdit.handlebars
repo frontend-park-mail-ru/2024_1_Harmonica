@@ -1,0 +1,28 @@
+<div class="window board-window">
+    <div class="title">
+        {{#if board}}
+            Изменить доску
+        {{else}}
+            Создать
+        {{/if}}
+    </div>
+    <form action="" class="board-form input-fields">
+        <div class="input-block">
+            <label for="board-title">Заголовок</label>
+            <input type="text" class="input" id="board-title" value="{{board.title}}">
+        </div>
+        <div class="input-block">
+            <label for="board-description">Описание</label>
+            <textarea class="input input-description" id="board-description">{{board.description}}</textarea>
+        </div>
+    </form>
+
+    <div class="board-button__element">
+        <div class="button button-passive button_medium" id="board-back-button">
+            Отмена
+        </div>
+        <div class="button button-active button_medium" id="board-save-button">
+            Сохранить
+        </div>
+    </div>
+</div>

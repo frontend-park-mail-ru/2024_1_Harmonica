@@ -1,0 +1,19 @@
+<div class="title justify_content_left pin_text">
+    {{pin.title}}
+</div>
+<div class="description justify_content_left pin_text">
+    {{pin.description}}
+</div>
+<div class="pin__user-info">
+    <div class="avatar pin__user-avatar" id="avatar">
+
+    </div>
+    <div class="annotation" id="">
+        {{pin.author.nickname}}
+    </div>
+</div>
+{{#if user}}
+<div class="justify_content_left">
+    <button class="btn button-secondary" id="pin-board-add"> Добавить на доску</button>
+</div>
+{{/if}}

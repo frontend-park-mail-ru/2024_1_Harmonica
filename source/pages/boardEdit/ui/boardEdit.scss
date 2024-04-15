@@ -1,0 +1,18 @@
+.board-window{
+    width: 700px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 30px;
+}
+
+.board-button__element{
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-form{
+    width: 700px;
+}
+

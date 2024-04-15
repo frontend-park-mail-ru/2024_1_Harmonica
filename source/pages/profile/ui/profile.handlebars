@@ -1,0 +1,31 @@
+<div class="profile page_margin-top">
+    <div class="profile-info" id="user-info">
+
+    </div>
+    <div class="profile-switcher" id="content-switch">
+        <div class="switch-bundle">
+            <div class="button-active button_focus-font-size button" id="profile-content-pins">
+                Созданные
+            </div>
+            <div class="button-passive button" id="profile-content-boards">
+                Доски
+            </div>
+        </div>
+        {{#if user.is_owner}}
+            <div class="add-block">
+                <div class="button button_secondary-color" id="profile-pin-add">
+                    Добавить пин
+                </div>
+                <div class="button button_secondary-color" id="profile-board-add">
+                    Добавить доску
+                </div>
+                <div class="button-add">
+                    <img src="/static/plus.svg" alt="">
+                </div>
+            </div>
+        {{/if}}
+    </div>
+    <div class="profile__content" id="content">
+
+    </div>
+</div>

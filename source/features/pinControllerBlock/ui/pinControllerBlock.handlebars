@@ -1,0 +1,18 @@
+<div class="pin-control__owner-actions">
+{{#if pin.is_owner}}
+    <div class="button button-passive" id="pin-update">
+        Изменить
+    </div>
+    <div class="button button-passive" id="pin-delete">
+        Удалить
+    </div>
+{{/if}}
+</div>
+<div class="pin-like-section">
+    <div class="pin-likes-count description" id="pin-like-count">
+        {{pin.likes_count}}
+    </div>
+    <div class="like-button" id="pin-like">
+
+    </div>
+</div>
