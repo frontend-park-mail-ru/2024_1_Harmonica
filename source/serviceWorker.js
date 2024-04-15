@@ -10,6 +10,12 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    const url = new URL(event.request.url);
+
+    if (event.request.method === 'POST' || url.pathname === '/api/v1/is_auth'){
+        event.respondWith(fetch(event.request).then(response => response));
+        return;
+    }
     event.respondWith(takeFromCache(event.request));
     event.waitUntil(cacheUpdate(event.request));
 });
