@@ -1,5 +1,3 @@
-/** @module source/modules/validation */
-
 /**
  * Check if email is valid
  * @function emailValidation

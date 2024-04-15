@@ -5,12 +5,12 @@ self.addEventListener('install', (event) => {
         caches.open(CACHE)
             .then((cache) => cache.addAll([
                 './source',
-                '../dist'
+                '../dist',
             ])),
     );
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener('activate', (event) => {
     const cacheKeeplist = ['static-v1', 'static-v2', CACHE];
 
     event.waitUntil(
@@ -29,18 +29,18 @@ self.addEventListener("activate", (event) => {
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
 
-    if (event.request.method === 'POST' || url.pathname === '/api/v1/is_auth'){
-        event.respondWith(fetch(event.request).then(response => response));
+    if (event.request.method === 'POST' || url.pathname === '/api/v1/is_auth') {
+        event.respondWith(fetch(event.request).then((response) => response));
         return;
     }
     event.respondWith(caches.match(event.request)
-        .then((matching => {
+        .then(((matching) => {
             return (matching || fetch(event.request)
-                .then(response => {
-                    return caches.open(CACHE).then(cache => {
+                .then((response) => {
+                    return caches.open(CACHE).then((cache) => {
                         cache.put(event.request, response.clone());
                         return response;
-                    })
-                }))
-        })))
+                    });
+                }));
+        })));
 });

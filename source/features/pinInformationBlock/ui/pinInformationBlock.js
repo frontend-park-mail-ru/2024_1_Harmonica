@@ -2,7 +2,6 @@ import pinInfoBlockTemplate from './pinInformationBlock.handlebars';
 import './pinInformationBlock.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
-import {Profile} from '../../../pages/profile/ui/profile.js';
 import {PinAddToBoardView} from '../../../pages/pinAddToBoard/ui/pinAddToBoard.js';
 
 /**

@@ -120,7 +120,8 @@ export class SignupView extends View {
             for (const [key, value] of new Map(Object.entries(this.errFields))) {
                 const inputCont = [this.root.querySelector(value.inputField).value];
                 if (key === 'repPassword') {
-                    inputCont.push(this.root.querySelector(this.errFields.password.inputField).value);
+                    inputCont.push(this.root.querySelector(
+                        this.errFields.password.inputField).value);
                 }
                 if (!value.validationFunc(...inputCont)) {
                     this.errContentChange(value, value.errText);

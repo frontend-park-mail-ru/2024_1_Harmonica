@@ -48,7 +48,7 @@ export class LoginView extends View {
             console.log(response, response.code);
             try {
                 response = await api.loginRequest(post);
-            } catch (error){
+            } catch (error) {
                 console.log(error);
             }
             console.log(response, response.code);

@@ -4,7 +4,6 @@ import {View} from '../../../app/View.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';
 import {PinAPI} from '../api/api.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 import {Error} from '../../error/error.js';
@@ -113,7 +112,7 @@ export class PinView extends View {
 
             const uploadInput = document.querySelector('#pin-photo-input');
             const image = uploadInput.files[0];
-            if (!image){
+            if (!image) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[19]);
             } else {

@@ -1,9 +1,7 @@
 import boardEditTemplate from './boardEdit.handlebars';
 import './boardEdit.scss';
 import {View} from '../../../app/View.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';
-import {BoardView} from '../../board/ui/boardView.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 
@@ -33,14 +31,11 @@ export class BoardEdit extends View {
 
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
-
-            const user = JSON.parse(localStorage.getItem('user'));
             window.location.pathname = '/board/' + board.board_id;
         });
 
         const boardAPI = new BoardEditAPI(board.board_id);
         const continueButton = document.querySelector('#board-save-button');
-        const boardCreated = new BoardView();
         continueButton.addEventListener('click', async (event) => {
             event.preventDefault();
             const title = document.querySelector('#board-title').value;
@@ -80,7 +75,6 @@ export class BoardEdit extends View {
 
         const boardAPI = new BoardEditAPI(null);
         const continueButton = document.querySelector('#board-save-button');
-        const boardCreated = new BoardView();
         continueButton.addEventListener('click', async (event) => {
             const title = document.querySelector('#board-title').value;
             const description = document.querySelector('#board-description').value;
