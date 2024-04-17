@@ -7,7 +7,7 @@ import {ProfileAPI} from '../api/api.js';
 import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
 import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
-import {Error} from '../../error/error.js';
+import {Error} from '../../error/ui/error.js';
 
 /**
  * Handle profile page

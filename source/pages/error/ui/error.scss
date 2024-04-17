@@ -1,8 +1,10 @@
+@use "../../../shared/styles/variables";
+
 .error{
     margin: 30px auto;
     width: fit-content;
-    background-color: var(--background-color);
-    border-radius: var(--element-border-radius);
+    background-color: variables.$background-color;
+    border-radius: variables.$element-border-radius;
 }
 
 .error_status{

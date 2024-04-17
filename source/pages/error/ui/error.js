@@ -1,7 +1,7 @@
 /** @module source/components/pages/error */
 
 import templateError from './error.handlebars';
-import {View} from '../../app/View.js';
+import {View} from '../../../app/View.js';
 import './error.scss';
 
 /**

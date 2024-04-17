@@ -1,0 +1,42 @@
+@use "../variables";
+
+.button{
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    //border: 2px solid $primary-button-color;
+    border-radius: variables.$element-border-radius;
+    border: none;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.primary-button{
+    background-color: variables.$primary-button-color;
+}
+
+.primary-button:hover{
+    background-color: color-mix(in srgb, variables.$primary-button-color, variables.$select-color);
+}
+
+.secondary-button{
+    background-color: variables.$secondary-button-color;
+}
+
+.secondary-button:hover{
+    background-color: color-mix(in srgb, variables.$secondary-button-color, variables.$select-color);
+}
+
+.button_small{
+    font-size: variables.$small-button-size;
+}
+
+.button_medium{
+    font-size: variables.$medium-button-size;
+}
+
+.button_big{
+    font-size: variables.$large-button-size;
+}

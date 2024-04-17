@@ -1,4 +1,4 @@
-import {Error} from '../pages/error/error.js';
+import {Error} from '../pages/error/ui/error.js';
 
 export class Router {
     constructor() {

@@ -1,3 +1,5 @@
+@use "../../../shared/styles/variables";
+
 .feed{
     height: auto;
     width: auto;
@@ -7,16 +9,16 @@
 
 .feed_item{
     margin-bottom: 20px;
-    border-radius: var(--element-border-radius);
+    border-radius: variables.$element-border-radius;
     width: 250px;
 }
 
 .feed_item_error{
-    background-color: var(--window-color);
+    background-color: variables.$window-color;
 }
 
 .pin{
     margin: auto;
-    border-radius: var(--element-border-radius);
+    border-radius: variables.$element-border-radius;
     width: 100%;
 }

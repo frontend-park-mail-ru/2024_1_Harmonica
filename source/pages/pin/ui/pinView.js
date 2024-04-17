@@ -7,7 +7,7 @@ import {PinAPI} from '../api/api.js';
 import {Profile} from '../../profile/ui/profile.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
-import {Error} from '../../error/error.js';
+import {Error} from '../../error/ui/error.js';
 import {boardValidation, pinValidation} from '../../../shared/utils/validation.js';
 
 /**

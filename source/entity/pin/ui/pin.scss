@@ -1,0 +1,8 @@
+.pin:hover{
+  cursor: pointer;
+  filter: brightness(75%);
+}
+
+.pin{
+ transition: all .25s;
+}
