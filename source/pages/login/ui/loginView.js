@@ -45,13 +45,13 @@ export class LoginView extends View {
             const post = {'email': email, 'password': password};
             const api = new LoginAPI();
             let response = {code: 50};
-            console.log(response, response.code);
             try {
                 response = await api.loginRequest(post);
             } catch (error){
-                console.log(error);
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
             }
-            console.log(response, response.code);
             switch (response.code) {
             case 0:
                 try {

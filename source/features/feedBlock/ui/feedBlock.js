@@ -10,7 +10,6 @@ export class FeedBlockView extends View {
     }
 
     async render(objects, renderEntity, IDName = 'pin_id', ...args) {
-        console.log(objects);
         this.root.innerHTML = FeedBlockTemplate({objects});
         const prefix = '#feed-item-';
         for (let i = 0; i < objects.length; ++i) {

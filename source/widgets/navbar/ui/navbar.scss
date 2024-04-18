@@ -53,7 +53,7 @@
     background-color: variables.$window-color;
 
     &::placeholder{
-        color: variables.$window-color;
+        color: variables.$search-color;
     }
 
     &:focus{

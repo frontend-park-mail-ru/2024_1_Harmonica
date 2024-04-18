@@ -30,8 +30,6 @@ export class BoardEdit extends View {
     renderUpdateBoard(board) {
         this.root.innerHTML = boardEditTemplate({board});
 
-        console.log(board);
-
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
 

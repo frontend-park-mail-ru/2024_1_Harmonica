@@ -19,7 +19,6 @@ export class FeedView extends View {
         const api = new API('/pins');
         const response = await api.GET();
         const pins = response.body.pins;
-        console.log(response.body.pins);
         const feedBlock = new FeedBlockView('feed');
         feedBlock.render(pins, PinFeedView);
     }

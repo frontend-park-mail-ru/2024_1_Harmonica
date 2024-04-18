@@ -46,9 +46,8 @@ export class BoardView extends View {
                 event.preventDefault();
                 boardAPI.apiDELETE();
 
-                const profile = new Profile();
                 const user = JSON.parse(localStorage.getItem('user'));
-                profile.render(user.nickname);
+                window.location.pathname = `/profile/${user.nickname}`;
             });
 
             const editButton = document.querySelector('#board-edit-button');
