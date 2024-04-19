@@ -42,9 +42,9 @@ export class BoardView extends View {
 
         if (board.is_owner) {
             const deleteButton = document.querySelector('#board-delete-button');
-            deleteButton.addEventListener('click', (event) => {
+            deleteButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-                boardAPI.apiDELETE();
+                await boardAPI.apiDELETE();
 
                 const user = JSON.parse(localStorage.getItem('user'));
                 window.location.pathname = `/profile/${user.nickname}`;

@@ -32,8 +32,8 @@ export class BoardAPI {
                 method: 'DELETE',
             };
             response = await fetch(this.url, {
-                ...addOptions,
                 ...fetchRequest,
+                ...addOptions,
             });
         } catch (error) {
             return errCheck(error);
