@@ -44,3 +44,8 @@
 .button_full-width{
     width: 100%;
 }
+
+.button-icon:hover{
+    cursor: pointer;
+    background-color: variables.$secondary-button-color;
+}
