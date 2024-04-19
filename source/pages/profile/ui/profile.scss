@@ -29,6 +29,12 @@
     justify-self: end;
     height: 35px;
     width: 35px;
+    border-radius: 50%;
+}
+
+.button-add:hover{
+    cursor: pointer;
+    background-color: variables.$secondary-button-color;
 }
 
 .button_secondary-color{
