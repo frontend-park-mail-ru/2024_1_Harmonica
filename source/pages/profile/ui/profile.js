@@ -7,7 +7,7 @@ import {ProfileAPI} from '../api/api.js';
 import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
 import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
-import {Error} from '../../error/error.js';
+import {Error} from '../../error/ui/error.js';
 
 /**
  * Handle profile page
@@ -20,6 +20,7 @@ export class Profile extends View {
     constructor(...args) {
         super(...args);
         this.root = document.getElementById('root');
+        this.popMenuOpen = false;
     }
 
     /**
@@ -76,5 +77,19 @@ export class Profile extends View {
             event.preventDefault();
             profileFeed.renderFeed(user.user);
         });
+
+        const popMenu = document.querySelector('#profile-pop-menu');
+        const popMenuButton = document.querySelector('#profile-pop-menu__button');
+        popMenuButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.popMenuOpen = !this.popMenuOpen;
+            if (this.popMenuOpen){
+                popMenu.classList.remove('profile-pop-menu__closed');
+                popMenuButton.classList.remove('button-add__closed');
+            } else {
+                popMenu.classList.add('profile-pop-menu__closed');
+                popMenuButton.classList.add('button-add__closed');
+            }
+        })
     };
 }

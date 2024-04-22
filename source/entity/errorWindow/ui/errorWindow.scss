@@ -1,9 +1,11 @@
+@use "../../../shared/styles/variables";
+
 .error-window {
     min-width: 400px;
     min-height: 100px;
-    border: var(--error-color) 3px solid;
-    border-radius: var(--element-border-radius);
-    background-color: var(--background-color);
+    border: variables.$error-color 3px solid;
+    border-radius: variables.$element-border-radius;
+    background-color: variables.$background-color;
     position: fixed;
     inset: auto 20px 20px auto;
     padding: 20px 35px 20px 20px;

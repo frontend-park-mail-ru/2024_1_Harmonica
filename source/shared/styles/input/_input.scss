@@ -1,3 +1,5 @@
+@use "../variables";
+
 .input-fields{
     display: flex;
     flex-direction: column;
@@ -14,21 +16,21 @@
 
 .input{
     width: auto;
-    border-radius: var(--element-border-radius);
+    border-radius: variables.$input-border-radius;
     padding: 0 15px;
     height: 45px;
-    font-size: var(--focus-font-size);
+    font-size: variables.$focus-font-size;
     border: 2px solid;
-    background-color: var(--background-color);
+    background-color: variables.$background-color;
 
     &::placeholder{
-        color: var(--search-color);
-        font-size: var(--focus-font-size);
+        color: variables.$search-color;
+        font-size: variables.$focus-font-size;
     }
 
     &:focus{
         background-color: #ffffff;
-        outline-color: var(--primary-button-color);
+        outline-color: variables.$font-color;
     }
 }
 
@@ -42,10 +44,10 @@
 }
 
 .input-readonly{
-    background-color: var(--window-color);
+    background-color: variables.$window-color;
     opacity: 0.5;
     &:focus{
-        background-color: var(--window-color);
+        background-color: variables.$window-color;
         outline-color: inherit;
     }
 }

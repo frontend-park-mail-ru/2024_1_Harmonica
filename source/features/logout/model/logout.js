@@ -14,7 +14,6 @@ export const Logout = async (reqURL) => {
     }
     const api = new LogoutAPI();
     const response = await api.logoutRequest();
-    console.log(response);
     if (response.code !== 0) {
         Error();
         return;
