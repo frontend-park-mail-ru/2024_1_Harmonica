@@ -5,7 +5,7 @@ import {errors} from '../../../shared/config.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {SignupAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
-import {UserFields} from '../../../features/userFields/ui/userFields.js';
+import {UserFields} from '../../../features/userFields/index.js';
 
 export class SignupView extends View {
     constructor(...args) {

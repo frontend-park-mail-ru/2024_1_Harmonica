@@ -21,6 +21,15 @@ export const emailValidation = (email) => {
  * @return {boolean} True if password is valid and false otherwise.
  */
 export const passwordValidation = (password) => {
+    // let checks = {
+    //     length: false,
+    //     digit: false,
+    //     upperCase: false,
+    // };
+    // if (/^[a-zA-Z0-9\-_]{8, 24}$/.test(password)){
+    //     checks.length = true;
+    // }
+    // if (/^$/)
     return /[A-Z]+/.test(password) && /[0-9]+/.test(password) &&
       /^[a-zA-Z0-9]{8,24}$/.test(password);
 };
@@ -82,7 +91,7 @@ export const pinValidation = (title, description) => {
  * @param {string} content - Content to set
  */
 export const errContentChange = (block, content) => {
-    const errBlock = document.querySelector(block.errContent);
+    const errBlock = document.querySelector('#' + block.errContent);
     if (errBlock.innerHTML !== content) {
         errBlock.innerHTML = content;
     }
@@ -95,8 +104,8 @@ export const errContentChange = (block, content) => {
  * @param {string} color - Color to set
  */
 export const errCustomize = (block, color) => {
-    const input = document.querySelector(block.inputField);
-    const hint = document.querySelector(block.hint);
+    const input = document.querySelector('#' + block.inputField);
+    const hint = document.querySelector('#' + block.hint);
 
     input.style.borderColor = color;
     input.style.outlineColor = color;

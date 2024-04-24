@@ -17,8 +17,22 @@
 /*TODO: Поменять этот блок на input-block*/
 .input-item{
   position: relative;
-  width: auto;
-  flex-direction: column;
-  display: flex;
+  width: 100%;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input_error{
+  color: variables.$error-color;
+  height: 20px;
+}
+
+.window_input-fields{
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

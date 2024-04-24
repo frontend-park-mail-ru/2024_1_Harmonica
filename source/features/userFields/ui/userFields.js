@@ -15,28 +15,39 @@ export class UserFields extends View {
         this.root = document.querySelector(`#${elementID}`);
         this.errFields = {
             'nickname': {
-                errContent: '#signup_nickname_error',
-                inputField: '#register_nickname',
-                hint: '#nick_hint',
+                errContent: 'signup_nickname_error',
+                inputField: 'register_nickname',
+                hint: 'nick_hint',
+                hintFields: [
+                    {
+                        id: 'length',
+                        content: '– От 3 до 20 символов',
+                    },
+                    {
+                        id: 'latin',
+                        content: '– Только латинские буквы и цифры',
+                    }
+                ],
                 validationFunc: nicknameValidation,
                 errText: 'Имя пользователя неверно!',
             },
             'email': {
-                errContent: '#signup_email_error',
-                inputField: '#register_email',
+                errContent: 'signup_email_error',
+                inputField: 'register_email',
                 validationFunc: emailValidation,
                 errText: 'Это не похоже на email!',
             },
             'password': {
-                errContent: '#signup_password_error',
-                inputField: '#register_password',
-                hint: '#pass_hint',
+                errContent: 'signup_password_error',
+                inputField: 'register_password',
+                hint: 'pass_hint',
+                hintFields: ['length', 'digit', 'upperCase'],
                 validationFunc: passwordValidation,
                 errText: 'В поле введен невалидный пароль!',
             },
             'repPassword': {
-                errContent: '#signup_repeat_password_error',
-                inputField: '#register_repeat_password',
+                errContent: 'signup_repeat_password_error',
+                inputField: 'register_repeat_password',
                 validationFunc: repPasswordValidation,
                 errText: 'Пароли не совпадают',
             },
@@ -46,12 +57,12 @@ export class UserFields extends View {
     render() {
         this.root.innerHTML = userFieldsTemplate({});
 
-        const nicknameInput = this.root.querySelector(this.errFields.nickname.inputField);
-        const passwordInput = this.root.querySelector(this.errFields.password.inputField);
-        const emailInput = this.root.querySelector(this.errFields.email.inputField);
-        const repeatPasswordInput = this.root.querySelector(this.errFields.repPassword.inputField);
-        const nickHint = this.root.querySelector(this.errFields.nickname.hint);
-        const passHint = this.root.querySelector(this.errFields.password.hint);
+        const nicknameInput = this.root.querySelector('#' + this.errFields.nickname.inputField);
+        const passwordInput = this.root.querySelector('#' + this.errFields.password.inputField);
+        const emailInput = this.root.querySelector('#' + this.errFields.email.inputField);
+        const repeatPasswordInput = this.root.querySelector('#' + this.errFields.repPassword.inputField);
+        const nickHint = this.root.querySelector('#' + this.errFields.nickname.hint);
+        const passHint = this.root.querySelector('#' + this.errFields.password.hint);
 
         nicknameInput.addEventListener('focus', (event) => {
             event.preventDefault();
@@ -109,17 +120,17 @@ export class UserFields extends View {
 
     takePostValues(){
         return {
-            'email': this.root.querySelector(this.errFields.email.inputField).value,
-            'password': this.root.querySelector(this.errFields.password.inputField).value,
-            'nickname': this.root.querySelector(this.errFields.nickname.inputField).value,
+            'email': this.root.querySelector('#' + this.errFields.email.inputField).value,
+            'password': this.root.querySelector('#' + this.errFields.password.inputField).value,
+            'nickname': this.root.querySelector('#' + this.errFields.nickname.inputField).value,
         }
     }
 
     errorCheck(){
         for (const [key, value] of new Map(Object.entries(this.errFields))) {
-            const inputCont = [this.root.querySelector(value.inputField).value];
+            const inputCont = [this.root.querySelector('#' + value.inputField).value];
             if (key === 'repPassword') {
-                inputCont.push(this.root.querySelector(this.errFields.password.inputField).value);
+                inputCont.push(this.root.querySelector('#' + this.errFields.password.inputField).value);
             }
             if (!value.validationFunc(...inputCont)) {
                 errContentChange(value, value.errText);

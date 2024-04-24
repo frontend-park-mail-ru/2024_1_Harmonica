@@ -26,20 +26,12 @@ main{
 .window_title{
     text-align: center;
     font-size: variables.$title-font-size;
-    margin: 20px 0;
 }
 
 .window_login-fields{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-}
-
-.window_input-fields{
-    width: 100%;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
 }
 
 .button-field{
@@ -49,9 +41,12 @@ main{
     gap: 10px;
 }
 
-.input_error{
-    margin: 5px 10px;
-    color: variables.$error-color;
-    height: 20px;
+.user-form-window{
+    width: 300px;
+    height: fit-content;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
