@@ -74,3 +74,56 @@ export const pinValidation = (title, description) => {
     }
     return false;
 }
+
+/**
+ * Set error content to block
+ * @function errContentChange
+ * @param {Object} block - Block object to change
+ * @param {string} content - Content to set
+ */
+export const errContentChange = (block, content) => {
+    const errBlock = document.querySelector(block.errContent);
+    if (errBlock.innerHTML !== content) {
+        errBlock.innerHTML = content;
+    }
+};
+
+/**
+ * Sets error-style to block with specified color
+ * @function errCustomize
+ * @param {Object} block - Block object to change
+ * @param {string} color - Color to set
+ */
+export const errCustomize = (block, color) => {
+    const input = document.querySelector(block.inputField);
+    const hint = document.querySelector(block.hint);
+
+    input.style.borderColor = color;
+    input.style.outlineColor = color;
+
+    if (hint) {
+        hint.style.borderColor = color;
+        hint.style.color = color;
+    }
+};
+
+/**
+ * Function provides validation of input and changes style of blocks if error detected
+ * @function inputValidate
+ * @param {Object} field - Object with: IDs of blocks where to display error/hint,
+ * validation function and message content
+ * @param {*} args - Arguments that needed to be passed in validation function
+ */
+export const inputValidate = (field, ...args) => {
+    const hint = document.querySelector(field.hint);
+    if (!field.validationFunc(...args)) {
+        errContentChange(field, field.errText);
+        errCustomize(field, ERROR_COLOR);
+        if (hint) {
+            hint.style.visibility = 'visible';
+        }
+    } else {
+        errContentChange(field, '');
+        errCustomize(field, '');
+    }
+};
