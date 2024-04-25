@@ -5,7 +5,7 @@
   border: 2px solid;
   background-color: variables.$background-color;
   border-radius: variables.$element-border-radius;
-  left: 320px;
+  inset: 10% auto auto calc(100% + 35px);
   padding: 10px;
   width: 250px;
   font-size: variables.$simple-font-size;

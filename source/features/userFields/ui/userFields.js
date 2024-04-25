@@ -87,77 +87,17 @@ export class UserFields extends View {
     render() {
         this.root.innerHTML = userFieldsTemplate({});
 
-        const nickname = new InputField('signup-nickname');
-        nickname.render(this.errFields['nickname']);
+        const nickname = new InputField(this.errFields['nickname'], 'signup-nickname');
+        nickname.render();
 
-        const email = new InputField('signup-email');
-        email.render(this.errFields['email']);
+        const email = new InputField(this.errFields['email'], 'signup-email');
+        email.render();
 
-        const password = new InputField('signup-password');
-        password.render(this.errFields['password']);
+        const password = new InputField(this.errFields['password'], 'signup-password');
+        password.render();
 
-        const repPassword = new InputField('signup-rep-password');
-        repPassword.render(this.errFields['repPassword']);
-
-        const nicknameInput = this.root.querySelector('#' + this.errFields.nickname.inputField);
-        const passwordInput = this.root.querySelector('#' + this.errFields.password.inputField);
-        const emailInput = this.root.querySelector('#' + this.errFields.email.inputField);
-        const repeatPasswordInput = this.root.querySelector('#' + this.errFields.repPassword.inputField);
-        const nickHint = this.root.querySelector('#' + this.errFields.nickname.hint);
-        const passHint = this.root.querySelector('#' + this.errFields.password.hint);
-
-        nicknameInput.addEventListener('focus', (event) => {
-            event.preventDefault();
-            nickHint.style.visibility = 'visible';
-        });
-
-        passwordInput.addEventListener('focus', (event) => {
-            event.preventDefault();
-            passHint.style.visibility = 'visible';
-        });
-
-        nicknameInput.addEventListener('focusout', (event) => {
-            event.preventDefault();
-            if (nicknameValidation(nicknameInput.value)) {
-                nickHint.style.visibility = 'hidden';
-            }
-        });
-
-        passwordInput.addEventListener('focusout', (event) => {
-            event.preventDefault();
-            if (passwordValidation(passwordInput.value)) {
-                passHint.style.visibility = 'hidden';
-            }
-        });
-
-        nicknameInput.addEventListener('input', (event) => {
-            event.preventDefault();
-            const nickname = nicknameInput.value;
-            const check = debounce(inputValidate, debounceTimeout);
-            check(this.errFields.nickname, nickname);
-        });
-
-        emailInput.addEventListener('input', (event) => {
-            event.preventDefault();
-            const email = emailInput.value;
-            const check = debounce(inputValidate, debounceTimeout);
-            check(this.errFields.email, email);
-        });
-
-        passwordInput.addEventListener('input', (event) => {
-            event.preventDefault();
-            const password = passwordInput.value;
-            const check = debounce(inputValidate, debounceTimeout);
-            check(this.errFields.password, password);
-        });
-
-        repeatPasswordInput.addEventListener('input', (event) => {
-            event.preventDefault();
-            const password = passwordInput.value;
-            const repPassword = repeatPasswordInput.value;
-            const check = debounce(inputValidate, debounceTimeout);
-            check(this.errFields.repPassword, password, repPassword);
-        });
+        const repPassword = new InputField(this.errFields['repPassword'], 'signup-rep-password');
+        repPassword.render();
     }
 
     takePostValues(){

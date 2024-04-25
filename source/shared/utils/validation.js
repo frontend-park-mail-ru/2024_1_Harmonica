@@ -1,6 +1,6 @@
 /** @module source/modules/validation */
 
-import {ERROR_COLOR, NORMAL_COLOR} from '../config.js';
+import {ERROR_COLOR, NORMAL_COLOR, SUCCESS_COLOR} from '../config.js';
 import {ErrorWindowView} from '../../entity/errorWindow/ui/errorWindow.js';
 
 /**
@@ -18,30 +18,43 @@ export const emailValidation = (email) => {
  * Check if password is valid
  * @function passwordValidation
  * @param {string} password - Password to check.
- * @return {boolean} True if password is valid and false otherwise.
+ * @return {{upperCase: boolean, length: boolean, digit: boolean}} True if password is valid and false otherwise.
  */
 export const passwordValidation = (password) => {
-    // let checks = {
-    //     length: false,
-    //     digit: false,
-    //     upperCase: false,
-    // };
-    // if (/^[a-zA-Z0-9\-_]{8, 24}$/.test(password)){
-    //     checks.length = true;
-    // }
-    // if (/^$/)
-    return /[A-Z]+/.test(password) && /[0-9]+/.test(password) &&
-      /^[a-zA-Z0-9]{8,24}$/.test(password);
+    let checks = {
+        length: false,
+        digit: false,
+        upperCase: false,
+    };
+    if (/^[a-zA-Z0-9\-_]{8,24}$/.test(password)){
+        checks.length = true;
+    }
+    if (/[0-9]+/.test(password)){
+        checks.digit = true;
+    }
+    if (/[A-Z]+/.test(password)){
+        checks.upperCase = true;
+    }
+    return checks;
 };
 /**
  * Checks if nickname is valid
  * @function nicknameValidation
  * @param {string} nick - Nickname to check.
- * @return {boolean} True if nickname is valid and false otherwise.
+ * @return {{length: boolean, latin: boolean}} True if nickname is valid and false otherwise.
  */
 export const nicknameValidation = (nick) => {
-    const regular = new RegExp('^[0-9a-zA-Z_]{3,20}$');
-    return regular.test(nick);
+    let checks = {
+        length: false,
+        latin: false,
+    };
+    if (/^[0-9a-zA-Z_]{3,20}$/.test(nick)){
+        checks.length = true;
+    }
+    if (/[0-9a-zA-Z_]+/.test(nick)){
+        checks.latin = true;
+    }
+    return checks;
 };
 /**
  * Check if passwords are the same
@@ -105,16 +118,33 @@ export const errContentChange = (block, content) => {
  */
 export const errCustomize = (block, color) => {
     const input = document.querySelector('#' + block.inputField);
-    const hint = document.querySelector('#' + block.hint);
 
     input.style.borderColor = color;
     input.style.outlineColor = color;
-
-    if (hint) {
-        hint.style.borderColor = color;
-        hint.style.color = color;
-    }
 };
+
+const hintCustomize = (block, check, errColor, successColor) => {
+    let errorContains = false;
+    const hint = document.querySelector('#' + block.hint);
+    console.log(check);
+    for(let key in check){
+        const item = hint.querySelector('#' + key);
+        if (!check[key]){
+            item.style.color = errColor;
+            errorContains = true;
+            continue;
+        }
+        item.style.color = successColor;
+    }
+    if (errorContains) {
+        hint.style.borderColor = errColor;
+        hint.style.color = errColor;
+    } else {
+        hint.style.borderColor = successColor;
+        hint.style.color = successColor;
+    }
+    return errorContains;
+}
 
 /**
  * Function provides validation of input and changes style of blocks if error detected
@@ -124,15 +154,16 @@ export const errCustomize = (block, color) => {
  * @param {*} args - Arguments that needed to be passed in validation function
  */
 export const inputValidate = (field, ...args) => {
-    const hint = document.querySelector(field.hint);
-    if (!field.validationFunc(...args)) {
+    const check = field.validationFunc(...args);
+    let errorContains = check;
+    if (check instanceof Object){
+        errorContains = hintCustomize(field, check, ERROR_COLOR, SUCCESS_COLOR);
+    }
+    if (errorContains) {
         errContentChange(field, field.errText);
         errCustomize(field, ERROR_COLOR);
-        if (hint) {
-            hint.style.visibility = 'visible';
-        }
-    } else {
-        errContentChange(field, '');
-        errCustomize(field, '');
+        return;
     }
+    errContentChange(field, '');
+    errCustomize(field, '');
 };
