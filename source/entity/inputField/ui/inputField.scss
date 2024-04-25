@@ -1,22 +1,22 @@
 @use "../../../shared/styles/variables";
 
-//.hint{
-//  position: absolute;
-//  white-space: pre-line;
-//  border: 2px solid;
-//  background-color: variables.$background-color;
-//  border-radius: variables.$element-border-radius;
-//  left: 320px;
-//  padding: 10px;
-//  width: 250px;
-//  font-size: variables.$simple-font-size;
-//  visibility: hidden;
-//}
-//
-//
-///*TODO: Поменять этот блок на input-block*/
-//.input-item{
-//  position: relative;
-//  width: 100%;
-//  margin-top: 10px;
-//}
+.hint{
+  position: absolute;
+  border: 2px solid;
+  background-color: variables.$background-color;
+  border-radius: variables.$element-border-radius;
+  left: 320px;
+  padding: 10px;
+  width: 250px;
+  font-size: variables.$simple-font-size;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hint-item{
+  width: 100%;
+  height: fit-content;
+  text-align: left;
+  vertical-align: middle;
+}

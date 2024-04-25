@@ -1,29 +1,12 @@
-<div class="input-item">
-    <label class="title__small" for="register_nickname">Имя пользователя</label>
-    <input type="text" class="input" id="register_nickname" placeholder="Nickname" {{#if user}}value="{{user.nickname}}"{{/if}}>
-    <div class="input_error" id="signup_nickname_error"></div>
-    <div class="hint" id="nick_hint">– От 3 до 20 символов
-        – Только латинские буквы и цифры
-        – Разрешен символ '_'
-    </div>
+<div class="input-item" id="signup-nickname">
+
 </div>
-<div class="input-item">
-    <label class="title__small" for="register_email">Email</label>
-    <input type="text" class="input" id="register_email" placeholder="email@example.com" {{#if user}}value="{{user.email}}"{{/if}}>
-    <div class="input_error" id="signup_email_error"></div>
+<div class="input-item" id="signup-email">
+
 </div>
-<div class="input-item">
-    <label class="title__small" for="register_password">Пароль</label>
-    <input type="password" class="input" id="register_password" placeholder="Придумайте пароль">
-    <div class="input_error" id="signup_password_error"></div>
-    <div class="hint" id="pass_hint">– Длина от 8 до 24 символов
-        – Только латинские буквы
-        – Хотя бы одну заглавную букву
-        – Хотя бы одну цифру
-    </div>
+<div class="input-item" id="signup-password">
+
 </div>
-<div class="input-item">
-    <label class="title__small" for="register_repeat_password">Повторите пароль</label>
-    <input type="password" class="input" id="register_repeat_password" placeholder="Повторите пароль">
-    <div class="input_error" id="signup_repeat_password_error"></div>
+<div class="input-item" id="signup-rep-password">
+
 </div>

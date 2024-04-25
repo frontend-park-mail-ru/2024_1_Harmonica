@@ -33,7 +33,7 @@ export class SignupView extends View {
 
             const post = signupFields.takePostValues();
             const response = await api.registerRequest(post);
-            console.log(response.code);
+            console.log(response, response.code);
             switch (response.code) {
             case 0:
                 try {

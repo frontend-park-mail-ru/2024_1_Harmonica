@@ -1,11 +1,12 @@
-<div class="input-item">
-    <label for="{{field.inputField}}">{{label}}</label>
-    <input type="{{type}}" class="input" id="{{field.inputField}}" placeholder="{{placeholder}}" value="{{value}}">
-    <div class="input_error" id="{{field.errContent}}"></div>
-    <div class="hint" id="{{field.hint}}">{{#each field.hintFields}}
-        <div id="{{this.id}}">
+<label for="{{field.inputField}}">{{field.label}}</label>
+<input type="{{field.type}}" class="input" id="{{field.inputField}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
+<div class="input_error" id="{{field.errContent}}"></div>
+{{#if field.hint}}
+    <div class="hint" id="{{field.hint}}">
+    {{#each field.hintFields}}
+        <div class="hint-item" id="{{this.id}}">
             {{this.content}}
         </div>
     {{/each}}
     </div>
-</div>
+{{/if}}

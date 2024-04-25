@@ -8,6 +8,7 @@ import {
 } from '../../../shared/utils/validation.js';
 import {debounce} from '../../../shared/utils/debounce.js';
 import {debounceTimeout, ERROR_COLOR} from '../../../shared/config.js';
+import {InputField} from '../../../entity/inputField/ui/inputField.js';
 
 export class UserFields extends View {
     constructor(elementID, ...args) {
@@ -15,6 +16,10 @@ export class UserFields extends View {
         this.root = document.querySelector(`#${elementID}`);
         this.errFields = {
             'nickname': {
+                label: 'Имя пользователя',
+                type: 'text',
+                placeholder: 'Nickname',
+                value: '',
                 errContent: 'signup_nickname_error',
                 inputField: 'register_nickname',
                 hint: 'nick_hint',
@@ -32,20 +37,45 @@ export class UserFields extends View {
                 errText: 'Имя пользователя неверно!',
             },
             'email': {
+                label: 'Email',
+                type: 'email',
+                placeholder: 'example@mail.com',
+                value: '',
                 errContent: 'signup_email_error',
                 inputField: 'register_email',
                 validationFunc: emailValidation,
                 errText: 'Это не похоже на email!',
             },
             'password': {
+                label: 'Пароль',
+                type: 'password',
+                placeholder: 'Введите пароль',
+                value: '',
                 errContent: 'signup_password_error',
                 inputField: 'register_password',
                 hint: 'pass_hint',
-                hintFields: ['length', 'digit', 'upperCase'],
+                hintFields: [
+                    {
+                        id: 'length',
+                        content: '– Длина от 8 до 24 символов',
+                    },
+                    {
+                        id: 'digit',
+                        content: '– Хотя бы одну цифру',
+                    },
+                    {
+                        id: 'upperCase',
+                        content: '– Хотя бы одну заглавную букву'
+                    }
+                ],
                 validationFunc: passwordValidation,
                 errText: 'В поле введен невалидный пароль!',
             },
             'repPassword': {
+                label: 'Повторите пароль',
+                type: 'password',
+                placeholder: 'Введите пароль повторно',
+                value: '',
                 errContent: 'signup_repeat_password_error',
                 inputField: 'register_repeat_password',
                 validationFunc: repPasswordValidation,
@@ -56,6 +86,18 @@ export class UserFields extends View {
 
     render() {
         this.root.innerHTML = userFieldsTemplate({});
+
+        const nickname = new InputField('signup-nickname');
+        nickname.render(this.errFields['nickname']);
+
+        const email = new InputField('signup-email');
+        email.render(this.errFields['email']);
+
+        const password = new InputField('signup-password');
+        password.render(this.errFields['password']);
+
+        const repPassword = new InputField('signup-rep-password');
+        repPassword.render(this.errFields['repPassword']);
 
         const nicknameInput = this.root.querySelector('#' + this.errFields.nickname.inputField);
         const passwordInput = this.root.querySelector('#' + this.errFields.password.inputField);
