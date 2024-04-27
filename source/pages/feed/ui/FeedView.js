@@ -5,6 +5,7 @@ import {API} from '../../../shared/api/API.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
+import {CsatWindow} from '../../../widgets/csatWindow/index.js';
 
 export class FeedView extends View {
     constructor(...args) {
@@ -21,5 +22,8 @@ export class FeedView extends View {
         const pins = response.body.pins;
         const feedBlock = new FeedBlockView('feed');
         feedBlock.render(pins, PinFeedView);
+
+        const csat = new CsatWindow();
+        csat.render();
     }
 }
