@@ -23,7 +23,10 @@ export class FeedView extends View {
         const feedBlock = new FeedBlockView('feed');
         feedBlock.render(pins, PinFeedView);
 
-        const csat = new CsatWindow();
-        csat.render();
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user) {
+            const csat = new CsatWindow();
+            csat.render();
+        }
     }
 }

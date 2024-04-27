@@ -9,18 +9,10 @@ export class Statistic extends View {
         this.root = document.querySelector('#root');
     }
 
-    render() {
+    async render() {
         const api = new StatAPI();
-        // const stat = api.statRequest();
-        const stat = [{
-            question: 'Нравится ли вам Harmonium?',
-            user: 'username',
-            rating: 3,
-        }, {
-            question: 'Нравится ли вам Harmonium?',
-            user: 'username2',
-            rating: 5,
-        }]
-        this.root.innerHTML = statTemplate({stat});
+        const stat = await api.statRequest();
+        const body = stat.body
+        this.root.innerHTML = statTemplate({stat: body.Ratings});
     }
 }
