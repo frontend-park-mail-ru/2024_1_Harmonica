@@ -29,6 +29,7 @@ submitButton.addEventListener('click', async () => {
                 rating: counter,
             },
         };
+        console.log(addOptions);
         response = await fetch('https://harmoniums.ru/api/v1/CSAT', {
             ...addOptions,
         });

@@ -9,6 +9,7 @@ import {FeedView} from '../pages/feed/ui/FeedView.js';
 import {NavbarView} from '../widgets/navbar/ui/navbar.js';
 import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
+import {Statistic} from '../pages/statistic/index.js';
 
 
 /**
@@ -27,6 +28,7 @@ export class App {
         router.register('/signup', new SignupView());
         router.register('/pin/{pin_id}', new PinView());
         router.register('/board/{board_id}', new BoardView());
+        router.register('/CSAT', new Statistic());
 
         const api = new API('');
         const response = await api.isAuth();

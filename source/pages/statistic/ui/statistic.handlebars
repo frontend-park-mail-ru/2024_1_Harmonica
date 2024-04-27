@@ -1,0 +1,17 @@
+<div class="window stat-window">
+    {{#each stat}}
+        <div class="stat-item">
+            <div class="stat-title">
+                {{this.question}}
+            </div>
+            <div class="subinfo">
+                <div class="stat-user stat-text__medium">
+                    {{this.user}}
+                </div>
+                <div class="stat-rating stat-text__medium">
+                    {{this.rating}}
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

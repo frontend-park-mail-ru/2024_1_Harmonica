@@ -1,0 +1,29 @@
+@use "../../../shared/styles/variables";
+
+.stat-window{
+  padding: 10px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stat-item{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-title{
+  font-size: 22px;
+}
+
+.stat-text__medium {
+  font-size: 16px;
+}
+
+.subinfo{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
