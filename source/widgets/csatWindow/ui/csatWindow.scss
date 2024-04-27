@@ -1,12 +1,20 @@
 @use "../../../shared/styles/variables";
 
 .modal-window {
-  min-width: 400px;
+  min-width: 300px;
   min-height: 100px;
+  width: fit-content;
+  height: fit-content;
   border: variables.$font-color 3px solid;
   border-radius: variables.$element-border-radius;
   background-color: variables.$background-color;
   position: fixed;
   inset: auto 20px 20px auto;
   padding: 20px 35px 20px 20px;
+}
+
+.iframe-window{
+  width: fit-content;
+  height: fit-content;
+  border: none;
 }
