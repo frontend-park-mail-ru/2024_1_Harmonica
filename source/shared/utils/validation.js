@@ -124,26 +124,26 @@ export const errCustomize = (block, color) => {
 };
 
 const hintCustomize = (block, check, errColor, successColor) => {
-    let errorContains = false;
+    let noError = true;
     const hint = document.querySelector('#' + block.hint);
     console.log(check);
     for(let key in check){
         const item = hint.querySelector('#' + key);
         if (!check[key]){
             item.style.color = errColor;
-            errorContains = true;
+            noError = false;
             continue;
         }
         item.style.color = successColor;
     }
-    if (errorContains) {
-        hint.style.borderColor = errColor;
-        hint.style.color = errColor;
-    } else {
+    if (noError) {
         hint.style.borderColor = successColor;
         hint.style.color = successColor;
+    } else {
+        hint.style.borderColor = errColor;
+        hint.style.color = errColor;
     }
-    return errorContains;
+    return noError;
 }
 
 /**
@@ -159,7 +159,7 @@ export const inputValidate = (field, ...args) => {
     if (check instanceof Object){
         errorContains = hintCustomize(field, check, ERROR_COLOR, SUCCESS_COLOR);
     }
-    if (errorContains) {
+    if (!errorContains) {
         errContentChange(field, field.errText);
         errCustomize(field, ERROR_COLOR);
         return;
