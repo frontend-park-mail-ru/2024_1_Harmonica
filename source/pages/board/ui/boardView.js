@@ -2,7 +2,6 @@ import boardViewTemplate from './boardView.handlebars';
 import './boardView.scss';
 import {View} from '../../../app/View.js';
 import {BoardAPI} from '../api/api.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {BoardFeedView} from '../../../widgets/boardFeed/ui/boardFeed.js';
 import {Error} from '../../error/ui/error.js';

@@ -3,7 +3,6 @@ import errorWindowTemplate from './pinAddToBoard.handlebars';
 import './pinAddToBoard.scss';
 import {BoardListView} from '../../../features/boardList/index.js';
 import {PinAddToBoardAPI} from '../api/api.js';
-import {PinView} from '../../pin/ui/pinView.js';
 
 export class PinAddToBoardView extends View {
     constructor(...args) {

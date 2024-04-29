@@ -1,5 +1,5 @@
 import {View} from '../../../app/View.js';
-import FeedBlockTemplate from './feedBlock.handlebars';
+import feedBlockTemplate from './feedBlock.handlebars';
 import './feedBlock.scss';
 
 /** Feed bloack window view */
@@ -20,16 +20,16 @@ export class FeedBlockView extends View {
     * Renders view by pin and boards.
     * @async
     * @param {object} objects - Feed items.
-    * @param {object} renderEntity - Entity to render.
+    * @param {object} RenderEntity - Entity to render.
     * @param {string} IDName - Name for id, by default 'pin_id'.
     * @param {...any} args - args for constructor of view.
     */
-    async render(objects, renderEntity, IDName = 'pin_id', ...args) {
-        this.root.innerHTML = FeedBlockTemplate({objects});
+    async render(objects, RenderEntity, IDName = 'pin_id', ...args) {
+        this.root.innerHTML = feedBlockTemplate({objects});
         const prefix = '#feed-item-';
         for (let i = 0; i < objects.length; ++i) {
             const root = document.querySelector(prefix + i);
-            const entity = new renderEntity(root);
+            const entity = new RenderEntity(root);
             entity.render(objects[i], ...args);
         }
     }

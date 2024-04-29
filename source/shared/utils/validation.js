@@ -46,7 +46,7 @@ export const repPasswordValidation = (pass, repPass) => pass === repPass;
 export const boardValidation = (title, description) => {
     const errorView = new ErrorWindowView();
 
-    if (title.value.length > 60){
+    if (title.value.length > 60) {
         errorView.render('Количество символов в поле заголовок не должно превышать 60');
         title.style['border-color'] = ERROR_COLOR;
     } else if (description.value.length > 500) {
@@ -57,12 +57,12 @@ export const boardValidation = (title, description) => {
         return true;
     }
     return false;
-}
+};
 
 export const pinValidation = (title, description) => {
     const errorView = new ErrorWindowView();
 
-    if (title.value.length > 60){
+    if (title.value.length > 60) {
         errorView.render('Количество в заголовоке пина не должно превышать 60');
         title.style['border-color'] = ERROR_COLOR;
     } else if (description.value.length > 300) {
@@ -73,4 +73,4 @@ export const pinValidation = (title, description) => {
         return true;
     }
     return false;
-}
+};

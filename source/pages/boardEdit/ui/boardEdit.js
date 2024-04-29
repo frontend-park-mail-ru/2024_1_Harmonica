@@ -1,11 +1,9 @@
 import boardEditTemplate from './boardEdit.handlebars';
 import './boardEdit.scss';
 import {View} from '../../../app/View.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';
-import {BoardView} from '../../board/ui/boardView.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
-import {ERROR_COLOR, errors, NORMAL_COLOR} from '../../../shared/config.js';
+import {errors, NORMAL_COLOR} from '../../../shared/config.js';
 import {boardValidation} from '../../../shared/utils/validation.js';
 
 /**
@@ -32,8 +30,6 @@ export class BoardEdit extends View {
 
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
-
-            const user = JSON.parse(localStorage.getItem('user'));
             window.location.pathname = '/board/' + board.board_id;
         });
 
@@ -51,7 +47,7 @@ export class BoardEdit extends View {
                 const formData = new FormData();
                 const boardInfo = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
                 boardInfo.visibility_type = 'public';
                 formData.append('board', JSON.stringify(boardInfo));
@@ -93,7 +89,7 @@ export class BoardEdit extends View {
             if (boardValidation(title, description)) {
                 const boardInfo = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
                 const response = await boardAPI.api(JSON.stringify(boardInfo));
 

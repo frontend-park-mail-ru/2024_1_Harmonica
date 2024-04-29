@@ -27,7 +27,7 @@ export class ProfileFeed extends View {
      */
     async renderFeed(user) {
         const feedAPI = new API('/pins/created/' + user.nickname);
-        const response = await feedAPI.GET();
+        const response = await feedAPI.get();
         const pins = response.body.pins;
 
         this.feed.innerHTML = profileFeedTemplate({pins});
@@ -43,7 +43,7 @@ export class ProfileFeed extends View {
      */
     async renderBoards(user) {
         const feedAPI = new API('/boards/created/' + user.nickname);
-        const response = await feedAPI.GET();
+        const response = await feedAPI.get();
         const boards = response.body.boards;
 
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
