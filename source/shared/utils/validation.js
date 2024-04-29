@@ -126,7 +126,6 @@ export const errCustomize = (block, color) => {
 const hintCustomize = (block, check, errColor, successColor) => {
     let noError = true;
     const hint = document.querySelector('#' + block.hint);
-    console.log(check);
     for(let key in check){
         const item = hint.querySelector('#' + key);
         if (!check[key]){

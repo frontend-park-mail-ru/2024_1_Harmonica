@@ -34,10 +34,11 @@ export class InputField extends View {
             const check = debounce(inputValidate, debounceTimeout);
             check(this.field, value);
         });
-        if (this.field.type)
-        const eyeButton = this.root.querySelector('#eye');
-        eyeButton.addEventListener('click', () => {
-           eyeButton.classList.toggle('slash');
-        });
+        if (this.field.type === 'password') {
+            const eyeButton = this.root.querySelector('#eye');
+            eyeButton.addEventListener('click', () => {
+                eyeButton.classList.toggle('slash');
+            });
+        }
     }
 }

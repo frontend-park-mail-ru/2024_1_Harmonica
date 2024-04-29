@@ -62,11 +62,9 @@ export class API {
                 ...addOptions,
             });
         } catch (error) {
-            console.log(error);
             return errCheck(error);
         }
         if (!response.ok) {
-            console.log(response);
             return errCheck(response);
         }
         const body = await response.json();
