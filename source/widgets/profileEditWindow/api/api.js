@@ -2,8 +2,8 @@ import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
 export class ProfileEditAPI {
-    constructor(user_id) {
-        this.url = backendAPI + '/users/' + user_id;
+    constructor(userId) {
+        this.url = backendAPI + '/users/' + userId;
     }
 
     async api(post) {

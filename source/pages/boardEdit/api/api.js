@@ -1,7 +1,13 @@
 import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
+/** Board edit API class */
 export class BoardEditAPI {
+    /**
+     * Inits api class.
+     * @constructor
+     * @param {int} boardID - board id.
+     */
     constructor(boardID = null) {
         this.url = backendAPI + '/boards';
         if (boardID) {
@@ -9,6 +15,12 @@ export class BoardEditAPI {
         }
     }
 
+    /**
+     * Makes edit board request.
+     * @async
+     * @param {object} board - Edited board.
+     * @return {object} - Request result.
+     */
     async api(board) {
         let response;
         try {

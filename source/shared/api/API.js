@@ -235,5 +235,5 @@ export const errCheck = async (error) => {
     }
     return {
         code: 50,
-    }
+    };
 };

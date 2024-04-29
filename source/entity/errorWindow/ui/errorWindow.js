@@ -2,12 +2,23 @@ import {View} from '../../../app/View.js';
 import errorViewTemplate from './errorWindow.handlebars';
 import './errorWindow.scss';
 
+/** Error window view */
 export class ErrorWindowView extends View {
+    /**
+    * Default view constructor.
+    * @constructor
+    * @param {Element} root - Element in which to paste.
+    * @param {...any} args - args for constructor of view.
+    */
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#error-block');
     }
 
+    /**
+    * Renders view by error message.
+    * @param {message} message - Error message entity.
+    */
     render(message) {
         this.root.innerHTML = errorViewTemplate({message});
 

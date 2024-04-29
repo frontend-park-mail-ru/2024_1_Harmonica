@@ -6,12 +6,23 @@ import {BoardListAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 
+/** Board list window view */
 export class BoardListView extends View {
+    /**
+    * Default view constructor.
+    * @constructor
+    * @param {...any} args - args for constructor of view.
+    */
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#boards-list');
     }
 
+    /**
+    * Renders view by pin and boards.
+    * @param {object} boards - Boards entity.
+    * @param {object} pin - Pin entity.
+    */
     render(boards, pin) {
         if (boards) {
             this.root.innerHTML = boardListTemplate({boards});

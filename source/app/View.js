@@ -10,10 +10,15 @@ export class View {
         this.eventListeners = [];
     }
 
+    /**
+     * Render view function to implement.
+     */
     render() {
 
     }
-
+    /**
+     * Delete listeners from object when it destructs.
+     */
     destructor() {
         for (const object of this.eventListeners) {
             object.root.removeEventListener(object.event, object.listenFunc);
