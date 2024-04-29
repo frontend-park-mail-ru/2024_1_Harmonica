@@ -9,11 +9,12 @@ export class Avatar extends View {
     /**
      * Constructor function to initialize start values
      * @constructor
+     * @param {string} avatarID – ID of avatar
      * @param {Array} args – arguments to pass forward to View constructor
      */
-    constructor(...args) {
+    constructor(avatarID = 'avatar', ...args) {
         super(...args);
-        this.root = document.getElementById('avatar');
+        this.root = document.querySelector(`#${avatarID}`);
     }
 
     /**
