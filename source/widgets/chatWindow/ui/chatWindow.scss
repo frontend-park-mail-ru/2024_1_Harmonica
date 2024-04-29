@@ -1,4 +1,21 @@
+@use "../../../shared/styles/variables";
+
 .chat-info{
-  width: 100%;
-  height: 70px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  padding: 10px 20px;
+  align-content: center;
+  gap: 10px;
+  border-bottom: variables.$border-color 1px solid;
+}
+
+.chat__selected-avatar{
+  display: block;
+  height: 60px;
+  width: 60px;
+}
+
+.chat-content{
+  font-size: 24px;
+  align-content: center;
 }
