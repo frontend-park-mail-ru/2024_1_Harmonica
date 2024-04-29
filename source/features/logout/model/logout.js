@@ -5,6 +5,7 @@ import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
  * Logout button handler: logouts user and refresh navbar
  * @function Logout
  * @async
+ * @param {string} reqURL - request URL
  */
 export const Logout = async (reqURL) => {
     try {

@@ -18,7 +18,10 @@ export class PinPhotoManage extends View {
         super(...args);
         this.root = document.querySelector('#pin-photo');
     }
-
+    /**
+     * Renders pin photo view.
+     * @param {object} pin - Pin entity.
+     */
     render(pin) {
         this.root.innerHTML = pinPhotoManageTemplate({pinView: true});
         const photo = new PinPhoto();
@@ -55,7 +58,7 @@ export class PinPhotoManage extends View {
             const fileExtention = (/[.]/.exec(image.name)) ?
                 /[^.]+$/.exec(image.name) : null;
 
-            if (fileExtention && !fileExtention[0].match(/^(png)|(jpg)|(jpeg)/)){
+            if (fileExtention && !fileExtention[0].match(/^(png)|(jpg)|(jpeg)/)) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[18]);
             } else if (image) {

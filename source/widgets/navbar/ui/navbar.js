@@ -1,10 +1,7 @@
 import {View} from '../../../app/View.js';
 import templateNavbar from './navbar.handlebars';
 import './navbar.scss';
-import {Profile} from '../../../pages/profile/ui/profile.js';
-import {LoginView} from '../../../pages/login/ui/loginView.js';
 import {Logout} from '../../../features/logout/model/logout.js';
-import {SignupView} from '../../../pages/signup/ui/signupView.js';
 
 export class NavbarView extends View {
     constructor(...args) {
