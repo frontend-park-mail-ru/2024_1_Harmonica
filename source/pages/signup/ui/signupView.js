@@ -11,7 +11,6 @@ export class SignupView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.getElementById('root');
-
     }
 
 
@@ -74,5 +73,4 @@ export class SignupView extends View {
             window.location.pathname = '/login';
         });
     }
-
 }

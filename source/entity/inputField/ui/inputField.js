@@ -13,7 +13,11 @@ export class InputField extends View {
     }
 
     render(blockID) {
-        this.root.innerHTML = inputFieldTemplate({field: this.field, isPassword: this.field.type === 'password'});
+        this.root.innerHTML = inputFieldTemplate(
+            {
+                field: this.field,
+                isPassword: this.field.type === 'password',
+            });
         const input = this.root.querySelector('#' + this.field.inputField);
         if (this.field.hint) {
             const hint = this.root.querySelector('#' + this.field.hint);

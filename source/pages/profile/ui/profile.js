@@ -83,13 +83,13 @@ export class Profile extends View {
         popMenuButton.addEventListener('click', (event) => {
             event.preventDefault();
             this.popMenuOpen = !this.popMenuOpen;
-            if (this.popMenuOpen){
+            if (this.popMenuOpen) {
                 popMenu.classList.remove('profile-pop-menu__closed');
                 popMenuButton.classList.remove('button-add__closed');
             } else {
                 popMenu.classList.add('profile-pop-menu__closed');
                 popMenuButton.classList.add('button-add__closed');
             }
-        })
+        });
     };
 }

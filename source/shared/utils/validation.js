@@ -18,21 +18,22 @@ export const emailValidation = (email) => {
  * Check if password is valid
  * @function passwordValidation
  * @param {string} password - Password to check.
- * @return {{upperCase: boolean, length: boolean, digit: boolean}} True if password is valid and false otherwise.
+ * @return {{upperCase: boolean, length: boolean, digit: boolean}} True if password is valid
+ * and false otherwise.
  */
 export const passwordValidation = (password) => {
-    let checks = {
+    const checks = {
         length: false,
         digit: false,
         upperCase: false,
     };
-    if (/^[a-zA-Z0-9\-_]{8,24}$/.test(password)){
+    if (/^[a-zA-Z0-9\-_]{8,24}$/.test(password)) {
         checks.length = true;
     }
-    if (/[0-9]+/.test(password)){
+    if (/[0-9]+/.test(password)) {
         checks.digit = true;
     }
-    if (/[A-Z]+/.test(password)){
+    if (/[A-Z]+/.test(password)) {
         checks.upperCase = true;
     }
     return checks;
@@ -44,14 +45,14 @@ export const passwordValidation = (password) => {
  * @return {{length: boolean, latin: boolean}} True if nickname is valid and false otherwise.
  */
 export const nicknameValidation = (nick) => {
-    let checks = {
+    const checks = {
         length: false,
         latin: false,
     };
-    if (/^[0-9a-zA-Z_]{3,20}$/.test(nick)){
+    if (/^[0-9a-zA-Z_]{3,20}$/.test(nick)) {
         checks.length = true;
     }
-    if (/[0-9a-zA-Z_]+/.test(nick)){
+    if (/[0-9a-zA-Z_]+/.test(nick)) {
         checks.latin = true;
     }
     return checks;
@@ -68,7 +69,7 @@ export const repPasswordValidation = (pass, repPass) => pass === repPass;
 export const boardValidation = (title, description) => {
     const errorView = new ErrorWindowView();
 
-    if (title.value.length > 60){
+    if (title.value.length > 60) {
         errorView.render('Количество символов в поле заголовок не должно превышать 60');
         title.style['border-color'] = ERROR_COLOR;
     } else if (description.value.length > 500) {
@@ -79,12 +80,12 @@ export const boardValidation = (title, description) => {
         return true;
     }
     return false;
-}
+};
 
 export const pinValidation = (title, description) => {
     const errorView = new ErrorWindowView();
 
-    if (title.value.length > 60){
+    if (title.value.length > 60) {
         errorView.render('Количество в заголовоке пина не должно превышать 60');
         title.style['border-color'] = ERROR_COLOR;
     } else if (description.value.length > 300) {
@@ -95,7 +96,7 @@ export const pinValidation = (title, description) => {
         return true;
     }
     return false;
-}
+};
 
 /**
  * Set error content to block
@@ -126,9 +127,9 @@ export const errCustomize = (block, color) => {
 const hintCustomize = (block, check, errColor, successColor) => {
     let noError = true;
     const hint = document.querySelector('#' + block.hint);
-    for(let key in check){
+    for (const key in check) {
         const item = hint.querySelector('#' + key);
-        if (!check[key]){
+        if (!check[key]) {
             item.style.color = errColor;
             noError = false;
             continue;
@@ -143,7 +144,7 @@ const hintCustomize = (block, check, errColor, successColor) => {
         hint.style.color = errColor;
     }
     return noError;
-}
+};
 
 /**
  * Function provides validation of input and changes style of blocks if error detected
@@ -155,7 +156,7 @@ const hintCustomize = (block, check, errColor, successColor) => {
 export const inputValidate = (field, ...args) => {
     const check = field.validationFunc(...args);
     let errorContains = check;
-    if (check instanceof Object){
+    if (check instanceof Object) {
         errorContains = hintCustomize(field, check, ERROR_COLOR, SUCCESS_COLOR);
     }
     if (!errorContains) {

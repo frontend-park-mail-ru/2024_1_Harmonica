@@ -7,6 +7,6 @@ export class SignupAPI extends API {
     }
 
     async registerRequest(post) {
-        return await super.POST(JSON.stringify(post));
+        return await super.post(JSON.stringify(post));
     }
 }

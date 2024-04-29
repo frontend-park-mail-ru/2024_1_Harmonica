@@ -2,12 +2,11 @@ import {View} from '../../../app/View.js';
 import userFieldsTemplate from './userFields.handlebars';
 import './userFields.scss';
 import {
-    emailValidation, errContentChange, errCustomize, inputValidate,
+    emailValidation, errContentChange, errCustomize,
     nicknameValidation,
     passwordValidation, repPasswordValidation,
 } from '../../../shared/utils/validation.js';
-import {debounce} from '../../../shared/utils/debounce.js';
-import {debounceTimeout, ERROR_COLOR} from '../../../shared/config.js';
+import {ERROR_COLOR} from '../../../shared/config.js';
 import {InputField} from '../../../entity/inputField/ui/inputField.js';
 
 export class UserFields extends View {
@@ -31,7 +30,7 @@ export class UserFields extends View {
                     {
                         id: 'latin',
                         content: '– Только латинские буквы и цифры',
-                    }
+                    },
                 ],
                 validationFunc: nicknameValidation,
                 errText: 'Имя пользователя неверно!',
@@ -65,8 +64,8 @@ export class UserFields extends View {
                     },
                     {
                         id: 'upperCase',
-                        content: '– Хотя бы одну заглавную букву'
-                    }
+                        content: '– Хотя бы одну заглавную букву',
+                    },
                 ],
                 validationFunc: passwordValidation,
                 errText: 'В поле введен невалидный пароль!',
@@ -100,19 +99,20 @@ export class UserFields extends View {
         repPassword.render();
     }
 
-    takePostValues(){
+    takePostValues() {
         return {
             'email': this.root.querySelector('#' + this.errFields.email.inputField).value,
             'password': this.root.querySelector('#' + this.errFields.password.inputField).value,
             'nickname': this.root.querySelector('#' + this.errFields.nickname.inputField).value,
-        }
+        };
     }
 
-    errorCheck(){
+    errorCheck() {
         for (const [key, value] of new Map(Object.entries(this.errFields))) {
             const inputCont = [this.root.querySelector('#' + value.inputField).value];
             if (key === 'repPassword') {
-                inputCont.push(this.root.querySelector('#' + this.errFields.password.inputField).value);
+                inputCont.push(this.root.querySelector('#' +
+                    this.errFields.password.inputField).value);
             }
             if (!value.validationFunc(...inputCont)) {
                 errContentChange(value, value.errText);
@@ -126,9 +126,8 @@ export class UserFields extends View {
         return false;
     }
 
-    addError(entity, errorContent){
+    addError(entity, errorContent) {
         errContentChange(this.errFields[entity], errorContent);
         errCustomize(this.errFields[entity], ERROR_COLOR);
     }
-
 }

@@ -6,6 +6,6 @@ export class LoginAPI extends API {
         super(url, ...args);
     }
     async loginRequest(post) {
-        return await super.POST(JSON.stringify(post));
+        return await super.post(JSON.stringify(post));
     }
 }

@@ -4,11 +4,10 @@ import {View} from '../../../app/View.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';
 import {PinAPI} from '../api/api.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 import {Error} from '../../error/ui/error.js';
-import {boardValidation, pinValidation} from '../../../shared/utils/validation.js';
+import {pinValidation} from '../../../shared/utils/validation.js';
 
 /**
  * Handle pin page
@@ -76,7 +75,7 @@ export class PinView extends View {
             if (pinValidation(title, description)) {
                 const pinObj = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
 
                 const api = new PinAPI(pin.pin_id);
@@ -120,7 +119,7 @@ export class PinView extends View {
             if (pinValidation(title, description)) {
                 const pin = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
 
                 const uploadInput = document.querySelector('#pin-photo-input');
