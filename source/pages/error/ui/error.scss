@@ -1,0 +1,19 @@
+@use "../../../shared/styles/variables";
+
+.error{
+    margin: 30px auto;
+    width: fit-content;
+    background-color: variables.$background-color;
+    border-radius: variables.$element-border-radius;
+}
+
+.error_status{
+    font-size: 40px;
+    width: fit-content;
+}
+
+.error_description{
+    margin-top: 20px;
+    width: fit-content;
+    font-size: 20px;
+}

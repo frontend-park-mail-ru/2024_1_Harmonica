@@ -1,14 +1,29 @@
 .board__item{
     padding: 20px;
-    /*display: flex;
-    flex-direction: column;
-    gap: 10px;*/
-    align-items: center;
+    align-items: start;
     justify-content: center;
     width: 210px;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .board__item:hover{
     cursor: pointer;
+}
+
+.board__title{
+    overflow: hidden;
+    line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.board__description{
+    overflow: hidden;
+    line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
 }

@@ -1,4 +1,4 @@
-import {Error} from '../pages/error/error.js';
+import {Error} from '../pages/error/ui/error.js';
 
 /**
  * Class representing router.
@@ -81,7 +81,7 @@ export class Router {
                 routeURL[i] = '/' + routeURL[i];
                 originalURL[i] = '/' + originalURL[i];
                 if (routeURL[i].match(/\{.*?}/)) {
-                    args.push(originalURL[i]);
+                    args.push(originalURL[i].slice(1, originalURL[i].length));
                     continue;
                 }
                 if (routeURL[i] !== originalURL[i]) {

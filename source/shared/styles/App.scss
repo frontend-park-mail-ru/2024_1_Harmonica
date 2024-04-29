@@ -1,0 +1,57 @@
+@use "variables";
+
+@import "button/button";
+@import "input/input";
+@import "window/window";
+@import "text/text";
+
+* {
+    margin: 0;
+    font-family: Roboto, serif;
+    color: variables.$font-color;
+}
+
+html, body{
+    background-color: variables.$background-color;
+    height: 100%;
+}
+
+main{
+    margin: 0;
+    width: 100%;
+    height: auto;
+    padding: 0 0 30px 0;
+}
+
+.window_title{
+    text-align: center;
+    font-size: variables.$title-font-size;
+    margin: 20px 0;
+}
+
+.window_login-fields{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.window_input-fields{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-field{
+    display: flex;
+    flex-direction: column;
+    vertical-align: bottom;
+    gap: 10px;
+}
+
+.input_error{
+    margin: 5px 10px;
+    color: variables.$error-color;
+    height: 20px;
+}
+

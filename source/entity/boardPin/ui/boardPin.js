@@ -32,7 +32,6 @@ export class BoardPinFeedView extends View {
     * @param {object} board - Board entity.
     */
     render(pin, board) {
-        console.log(pin, board);
         this.root.innerHTML = BoardPinFeedTemplate({pin, owner: board.is_owner});
 
         const eventRoot = document.querySelector('#pin-' + pin.pin_id);
