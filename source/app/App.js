@@ -9,6 +9,7 @@ import {FeedView} from '../pages/feed/ui/FeedView.js';
 import {NavbarView} from '../widgets/navbar/ui/navbar.js';
 import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
+import {ChatView} from '../pages/chat/index.js';
 
 
 /**
@@ -45,7 +46,9 @@ export class App {
         }
         const navbar = new NavbarView();
         navbar.render();
-        router.start();
+        // router.start();
+        const chat = new ChatView();
+        chat.render();
     }
 }
 
