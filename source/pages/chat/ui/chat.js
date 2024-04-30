@@ -4,7 +4,7 @@ import './chat.scss';
 import {ChatList} from '../../../widgets/chatList/index.js';
 import {ChatWindow} from '../../../widgets/chatWindow/index.js';
 
-export class ChatView extends View{
+export class ChatView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');

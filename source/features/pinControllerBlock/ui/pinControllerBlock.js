@@ -42,7 +42,7 @@ export class PinControllerBlock extends View {
                 const api = new PinAPI(pin.pin_id);
                 await api.apiDELETE();
 
-                window.location.pathname = '/';
+                history.pushState(null, null, '/');
             });
         }
         const likeView = new Like();

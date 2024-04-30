@@ -154,7 +154,7 @@ export class SignupView extends View {
                 }
                 const navbar = new NavbarView();
                 navbar.render();
-                window.location.pathname = '/';
+                history.pushState(null, null, '/');
                 break;
             case 51:
                 for (const err of response.errors) {
@@ -183,7 +183,7 @@ export class SignupView extends View {
 
         const loginButton = this.root.querySelector('#signup_login_button');
         loginButton.addEventListener('click', () => {
-            window.location.pathname = '/login';
+            history.pushState(null, null, '/login');
         });
     }
 

@@ -1,10 +1,10 @@
 const config = {
     WSBackendAPI: 'wss://harmoniums.ru/',
-}
+};
 
 export class WebSocketService {
     constructor(url) {
-        if (url[0] === '/'){
+        if (url[0] === '/') {
             url.slice(1, url.length);
         }
 
@@ -28,24 +28,24 @@ export class WebSocketService {
         });
     }
 
-    messageReceive(event){
+    messageReceive(event) {
         const data = event.data;
         const message = JSON.parse(data);
 
-        if (!this.actions[message.action]){
+        if (!this.actions[message.action]) {
             return null;
         }
         this.actions[message.action]();
     }
 
-    register(action, func){
+    register(action, func) {
         this.actions[action] = func;
     }
 
-    send(action, payload){
+    send(action, payload) {
         this.ws.send(JSON.stringify({
             action: action,
             payload: payload,
-        }))
+        }));
     }
 }

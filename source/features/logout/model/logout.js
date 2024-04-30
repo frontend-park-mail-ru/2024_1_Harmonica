@@ -21,5 +21,5 @@ export const Logout = async (reqURL) => {
     }
     const navbar = new NavbarView();
     navbar.render();
-    window.location.pathname = reqURL;
+    history.pushState(null, null, reqURL);
 };

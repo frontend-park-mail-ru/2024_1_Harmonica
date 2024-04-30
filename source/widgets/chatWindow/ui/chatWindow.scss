@@ -3,8 +3,8 @@
 .chat-info{
   display: grid;
   grid-template-columns: 60px 1fr;
-  padding: 10px 20px;
-  align-content: center;
+  padding: 5px 20px;
+  align-items: center;
   gap: 10px;
   border-bottom: variables.$border-color 1px solid;
 }
@@ -52,4 +52,9 @@
 
 .chat__enter-image{
 
+}
+
+.chat-content{
+  display: flex;
+  flex-direction: column-reverse;
 }

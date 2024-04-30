@@ -2,7 +2,7 @@
 export const localStorageSetValue = (key, value) => {
     try {
         localStorage.setItem(key, JSON.stringify(value));
-    } catch (error){
+    } catch (error) {
         return null;
     }
 };
@@ -10,8 +10,8 @@ export const localStorageSetValue = (key, value) => {
 
 export const localStorageGetValue = (key) => {
     const value = localStorage.getItem(key);
-    if (!value){
+    if (!value) {
         return null;
     }
     return JSON.parse(value);
-}
+};

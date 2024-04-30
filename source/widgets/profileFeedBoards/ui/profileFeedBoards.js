@@ -21,7 +21,7 @@ export class ProfileFeedBoardsView extends View {
      * @param {int} boardID – id of a board
      */
     onClick(boardID) {
-        window.location.pathname = '/board/' + boardID;
+        history.pushState(null, null, '/board/' + boardID);
     }
 
     /**

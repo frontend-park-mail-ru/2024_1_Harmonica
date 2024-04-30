@@ -46,7 +46,7 @@ export class BoardView extends View {
                 await boardAPI.apiDELETE();
 
                 const user = JSON.parse(localStorage.getItem('user'));
-                window.location.pathname = `/profile/${user.nickname}`;
+                history.pushState(null, null, `/profile/${user.nickname}`);
             });
 
             const editButton = document.querySelector('#board-edit-button');

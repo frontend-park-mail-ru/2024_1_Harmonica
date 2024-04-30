@@ -20,11 +20,17 @@ export class NavbarView extends View {
         const userInfo = {'user': JSON.parse(user)};
         this.root.innerHTML = templateNavbar({user: userInfo.user});
 
+        const logo = this.root.querySelector('#navbar_logo');
+        logo.addEventListener('click', (event) => {
+            event.preventDefault();
+            history.pushState(null, null, '/');
+        });
+
         if (userInfo.user) {
             const profileButton = this.root.querySelector('#navbar-user-name');
             profileButton.addEventListener('click', async () => {
                 const user = JSON.parse(localStorage.getItem('user'));
-                window.location.pathname = '/profile/' + user.nickname;
+                history.pushState(null, null, '/profile/' + user.nickname);
             });
             const logoutButton = this.root.querySelector('#navbar_logout_button');
             logoutButton.addEventListener('click', async () => {
@@ -34,10 +40,10 @@ export class NavbarView extends View {
             const loginButton = this.root.querySelector('#navbar_login_button');
             const signupButton = this.root.querySelector('#navbar_signup_button');
             loginButton.addEventListener('click', () => {
-                window.location.pathname = '/login';
+                history.pushState(null, null, '/login');
             });
             signupButton.addEventListener('click', () => {
-                window.location.pathname = '/signup';
+                history.pushState(null, null, '/signup');
             });
         }
     }

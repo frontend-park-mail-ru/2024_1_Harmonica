@@ -23,7 +23,7 @@ export class BoardPinFeedView extends View {
     * @param {int} pinID - Id of pin to go.
     */
     onClick(pinID) {
-        window.location.pathname = '/pin/' + pinID;
+        history.pushState(null, null, '/pin/' + pinID);
     }
 
     /**
@@ -45,7 +45,7 @@ export class BoardPinFeedView extends View {
             event.preventDefault();
             const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
             await api.delete();
-            window.location.pathname = '/board/' + board.board_id;
+            history.pushState(null, null, '/board/' + board.board_id);
         });
     }
 }
