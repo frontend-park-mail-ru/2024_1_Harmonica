@@ -11,6 +11,7 @@ import {debounceTimeout, ERROR_COLOR, errors} from '../../../shared/config.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {SignupAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import WebSocketService from '../../../shared/api/WebSocket.js';
 
 export class SignupView extends View {
     constructor(...args) {
@@ -147,6 +148,7 @@ export class SignupView extends View {
             case 0:
                 try {
                     localStorage.setItem('user', JSON.stringify(response.body));
+                    WebSocketService.initialize();
                 } catch (error) {
                     const errorWindow = new ErrorWindowView();
                     errorWindow.render(errors[60]);
