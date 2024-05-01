@@ -1,7 +1,7 @@
 import profileFeedTemplate from './profileFeed.handlebars';
 import './profile-feed.scss';
 import {View} from '../../../app/View.js';
-import {ProfileFeedBoardsView} from '../../profileFeedBoards/ui/profileFeedBoards.js';
+import {FeedBoardsView} from '../../../entity/profileFeedBoards/ui/profileFeedBoards.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 import {API} from '../../../shared/api/API.js';
@@ -49,6 +49,6 @@ export class ProfileFeed extends View {
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
 
         const feed = new FeedBlockView('profile_feed');
-        feed.render(boards, ProfileFeedBoardsView, 'board_id');
+        feed.render(boards, FeedBoardsView, 'board_id');
     }
 }
