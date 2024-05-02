@@ -26,6 +26,14 @@ export class NavbarView extends View {
             history.pushState(null, null, '/');
         });
 
+        const search = this.root.querySelector('#search-input');
+        search.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                history.pushState(null, null, `/search/${search.value}`);
+            }
+        });
+
         if (userInfo.user) {
             const profileButton = this.root.querySelector('#navbar-user-name');
             profileButton.addEventListener('click', async () => {

@@ -11,13 +11,8 @@ export class SearchView extends View {
     }
 
     async render(searchQuery) {
-        const api = new API('/search');
-        const response = await api.post({
-            users: true,
-            pins: true,
-            boards: true,
-            search_query: searchQuery,
-        });
+        const api = new API(`/search/${searchQuery}`);
+        const response = await api.get();
         const body = response.body;
 
         this.root.innerHTML = searchTemplate({});

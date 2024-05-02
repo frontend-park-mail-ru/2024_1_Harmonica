@@ -1,5 +1,5 @@
 const config = {
-    WSBackendAPI: 'wss://harmoniums.ru/',
+    WSBackendAPI: 'wss://localhost/',
 };
 
 class WebSocketService {
