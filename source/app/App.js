@@ -10,8 +10,6 @@ import {NavbarView} from '../widgets/navbar/ui/navbar.js';
 import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
 import WebSocketService from '../shared/api/WebSocket.js';
-import {ChatView} from '../pages/chat/index.js';
-import {SearchFeedView} from '../pages/searchFeed/index.js';
 
 
 /**
@@ -50,10 +48,6 @@ export class App {
         }
         const navbar = new NavbarView();
         navbar.render();
-        // router.start();
-        // const chat = new ChatView();
-        // chat.render();
-        const search = new SearchFeedView();
-        search.render();
+        router.start();
     }
 }

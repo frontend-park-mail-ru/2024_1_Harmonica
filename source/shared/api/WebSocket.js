@@ -1,5 +1,5 @@
 const config = {
-    WSBackendAPI: 'wss://harmoniums.ru:8080/',
+    WSBackendAPI: 'wss://harmoniums.ru/',
 };
 
 class WebSocketService {
@@ -11,8 +11,8 @@ class WebSocketService {
         this.url = config.WSBackendAPI + url;
     }
 
-    initialize(){
-        if (this.ws && this.isOpen()){
+    initialize() {
+        if (this.ws && this.isOpen()) {
             this.closeConn();
         }
         this.ws = new WebSocket(this.url);
@@ -30,8 +30,8 @@ class WebSocketService {
             (event) => this.messageReceive(event));
 
         this.ws.addEventListener('error', (event) => {
-            console.log(`Ошибка WS: ${event.message}`);
-            this.ws = new WebSocket(this.url);
+            console.log('Ошибка WS:', event.message);
+            // this.ws = new WebSocket(this.url);
         });
 
         this.ws.addEventListener('close', (event) => {
@@ -40,13 +40,13 @@ class WebSocketService {
         });
     }
 
-    isOpen(){
+    isOpen() {
         return this.ws.readyState === 1;
     }
 
-    closeConn(){
+    closeConn() {
         if (this.ws) {
-            this.ws.close(1000, "Работа закончена!");
+            this.ws.close(1000, 'Работа закончена!');
         }
     }
 
