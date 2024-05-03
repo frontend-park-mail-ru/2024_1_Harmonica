@@ -17,27 +17,29 @@ export class SearchView extends View {
 
         this.root.innerHTML = searchTemplate({});
         const feed = new SearchFeedView('search-feed');
+        await feed.renderPins(body.pins);
+
         const buttons = [
             {
                 root: this.root.querySelector('#search-pin-button'),
-                render: feed.renderPins,
+                render: 'renderPins',
                 content: body.pins,
             },
             {
                 root: this.root.querySelector('#search-board-button'),
-                render: feed.renderBoards,
+                render: 'renderBoards',
                 content: body.boards,
             },
             {
                 root: this.root.querySelector('#search-users-button'),
-                render: feed.renderUsers,
+                render: 'renderUsers',
                 content: body.users,
             },
         ];
 
         for (const object of buttons) {
             const button = object.root;
-            button.addEventListener('click', (event) => {
+            button.addEventListener('click', async (event) => {
                 event.preventDefault();
                 button.classList.replace('secondary-button', 'primary-button');
                 for (const secObject of buttons) {
@@ -46,7 +48,7 @@ export class SearchView extends View {
                         secButton.classList.replace('primary-button', 'secondary-button');
                     }
                 }
-                button.render(button.content);
+                await feed[object.render](object.content);
             });
         }
     }

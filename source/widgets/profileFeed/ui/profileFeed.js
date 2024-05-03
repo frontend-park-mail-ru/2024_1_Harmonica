@@ -49,6 +49,6 @@ export class ProfileFeed extends View {
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
 
         const feed = new FeedBlockView('profile_feed');
-        feed.render(boards, FeedBoardsView, 'board_id');
+        feed.render(boards, FeedBoardsView);
     }
 }

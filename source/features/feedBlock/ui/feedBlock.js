@@ -21,10 +21,10 @@ export class FeedBlockView extends View {
     * @async
     * @param {object} objects - Feed items.
     * @param {object} RenderEntity - Entity to render.
-    * @param {string} IDName - Name for id, by default 'pin_id'.
     * @param {...any} args - args for constructor of view.
     */
-    async render(objects, RenderEntity, IDName = 'pin_id', ...args) {
+    async render(objects, RenderEntity, ...args) {
+        console.log(objects);
         this.root.innerHTML = feedBlockTemplate({objects});
         const prefix = '#feed-item-';
         for (let i = 0; i < objects.length; ++i) {

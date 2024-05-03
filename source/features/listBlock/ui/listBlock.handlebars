@@ -1,11 +1,5 @@
-<div class="avatar" id="list-item-avatar">
+{{#each objects}}
+    <div class="list-item" id="list-item-{{@index}}">
 
-</div>
-<div class="list-item-info-block">
-    <div class="list-item-nickname">
-        {{user.nickname}}
     </div>
-    <div class="list-item-followers-count">
-        {{user.followers_count}} подписчиков
-    </div>
-</div>
+{{/each}}
