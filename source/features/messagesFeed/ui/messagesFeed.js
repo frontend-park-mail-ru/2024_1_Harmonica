@@ -10,15 +10,8 @@ export class MessagesFeedView extends View {
         this.root = document.querySelector(`#${elemID}`);
     }
 
-    async renderMessage(message) {
-        message.isOwner = false;
-        this.root.insertAdjacentHTML('afterbegin', messagesFeedTemplate({messages: [message]}));
-    }
-
-    async addMessage(message, receiverID) {
-        const api = new API(`/messages/${receiverID}`);
-        const response = await api.post(JSON.stringify(message));
-        message.isOwner = true;
+    addMessage(message, otherUserID) {
+        message.isOwner = message.receiver_id !== otherUserID;
         this.root.insertAdjacentHTML('afterbegin', messagesFeedTemplate({messages: [message]}));
     }
 

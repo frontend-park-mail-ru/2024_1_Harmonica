@@ -31,16 +31,22 @@ export class ChatWindow extends View {
 
             const messageInput = document.querySelector('#chat-input');
 
-            const messageSend = () => {
+            const messageSend = async () => {
                 if (messageInput.value.replace(/(\s|\t)*/, '')) {
                     const message = {
                         text: messageInput.value,
                     };
-                    messageView.addMessage(message, user.user_id);
+
+                    const api = new API(`/messages/${user.user_id}`);
+                    await api.post(JSON.stringify(message));
+
+                    //TODO Обработка ошибки
+
                     const payload = {
                         ...message,
                         receiver_id: user.user_id,
                     };
+
                     WebSocketService.send('CHAT_MESSAGE', payload);
                     messageInput.value = '';
                 }
@@ -61,10 +67,8 @@ export class ChatWindow extends View {
         }
 
         WebSocketService.register('CHAT_MESSAGE', (payload) => {
-            if (user.user_id === payload.sender_id) {
-                const messageView = new MessagesFeedView('chat-messages');
-                messageView.renderMessage(payload);
-            }
+            const messageView = new MessagesFeedView('chat-messages');
+            messageView.addMessage(payload, user.user_id);
         });
     }
 }
