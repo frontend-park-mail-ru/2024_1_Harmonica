@@ -45,6 +45,11 @@ export class NavbarView extends View {
         });
 
         if (userInfo.user) {
+            const chatButton = this.root.querySelector('#navbar__chat-button');
+            chatButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                history.pushState(null, null, '/chat');
+            })
             const profileButton = this.root.querySelector('#navbar-user-name');
             profileButton.addEventListener('click', async () => {
                 const user = JSON.parse(localStorage.getItem('user'));
