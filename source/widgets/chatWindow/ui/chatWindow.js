@@ -9,24 +9,12 @@ export class ChatWindow extends View {
         this.root = document.querySelector(`#${rootID}`);
     }
 
-    render() {
-        const user = {
-            user_id: 1,
-            user_nickname: 'New user',
-        };
+    render(user = {}) {
         this.root.innerHTML = chatWindowTemplate({user});
 
-        const avatar = new Avatar('chat__selected-avatar');
-        avatar.render();
-
-        const messages = [
-            {
-                text: 'Все ок!',
-
-            },
-            {
-                text: 'Как дела?',
-            },
-        ];
+        if (user()) {
+            const avatar = new Avatar('chat__selected-avatar');
+            avatar.render(user.avatar_url);
+        }
     }
 }

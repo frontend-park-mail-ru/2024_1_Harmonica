@@ -42,6 +42,10 @@
   background-color: variables.$background-color;
 }
 
+.chat__input-field:disabled{
+  background-color: color-mix(in srgb, variables.$background-color, variables.$select-secondary-color);
+}
+
 .chat__enter-image{
   width: 100%;
   height: 100%;

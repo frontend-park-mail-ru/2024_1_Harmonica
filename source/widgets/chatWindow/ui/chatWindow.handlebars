@@ -3,14 +3,14 @@
 
     </div>
     <div class="chat-content">
-        {{user.user_nickname}}
+        {{user.nickname}}
     </div>
 </div>
 <div class="chat-content">
 
 </div>
-<div class="chat-input">
-    <textarea autocapitalize="on" spellcheck="true" autocomplete="on" class="chat__input-field" placeholder="Написать сообщение"></textarea>
+<div class="chat-input" >
+    <textarea autocapitalize="on" spellcheck="true" autocomplete="on" class="chat__input-field" placeholder="Написать сообщение" {{#unless user.nickname}}disabled{{/unless}}></textarea>
     <div class="chat__enter-button">
         <img src="/static/send.svg" alt="" class="chat__enter-image">
     </div>

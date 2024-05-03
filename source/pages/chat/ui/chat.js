@@ -13,8 +13,18 @@ export class ChatView extends View {
 
     async render() {
         this.root.innerHTML = chatTemplate({});
+
+        const api = new API('/chats');
+        const response = await api.get();
+        const body = response.body;
+
+        const follow = body.subscriptions_users ? body.subscriptions_users: [];
+        const other = body.other_users;
+
+        const chats = follow.concat(other);
+
         const list = new ChatList('chat-list');
-        list.render();
+        list.render(chats);
         const window = new ChatWindow('chat-window');
         window.render();
     }
