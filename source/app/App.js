@@ -11,6 +11,7 @@ import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
 import WebSocketService from '../shared/api/WebSocket.js';
 import {SearchView} from '../pages/search/index.js';
+import {ChatView} from '../pages/chat/index.js';
 
 
 /**
@@ -30,6 +31,7 @@ export class App {
         router.register('/pin/{pin_id}', new PinView());
         router.register('/board/{board_id}', new BoardView());
         router.register('/search/{search_query}', new SearchView());
+        router.register('/chat', new ChatView());
 
         const api = new API('');
         const response = await api.isAuth();

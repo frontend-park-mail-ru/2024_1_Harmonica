@@ -3,6 +3,7 @@ import chatTemplate from './chat.handlebars';
 import './chat.scss';
 import {ChatList} from '../../../widgets/chatList/index.js';
 import {ChatWindow} from '../../../widgets/chatWindow/index.js';
+import {API} from '../../../shared/api/API.js';
 
 export class ChatView extends View {
     constructor(...args) {
@@ -10,7 +11,7 @@ export class ChatView extends View {
         this.root = document.querySelector('#root');
     }
 
-    render() {
+    async render() {
         this.root.innerHTML = chatTemplate({});
         const list = new ChatList('chat-list');
         list.render();

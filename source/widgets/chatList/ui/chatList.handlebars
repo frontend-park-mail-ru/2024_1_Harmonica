@@ -1,10 +1,10 @@
 {{#each chats}}
-    <div class="chat__item" id="chat-{{this.chat_id}}">
-        <div class="chat__item-avatar" id="chat__avatar-{{this.chat_id}}">
+    <div class="chat__item" id="chat-{{this.user_id}}">
+        <div class="chat__item-avatar" id="chat__avatar-{{this.user_id}}">
 
         </div>
         <div class="chat__select-content description">
-            {{this.chat_nickname}}
+            {{this.nickname}}
         </div>
     </div>
 {{/each}}
