@@ -18,7 +18,7 @@ class WebSocketService {
         this.ws = new WebSocket(this.url);
 
         this.ws.addEventListener('open', () => {
-
+            console.log('open');
         });
 
         this.ws.addEventListener('message',
