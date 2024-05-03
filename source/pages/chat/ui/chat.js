@@ -29,7 +29,7 @@ export class ChatView extends View {
         const window = new ChatWindow('chat-window');
         window.render();
 
-        for (let chat of chats){
+        for (const chat of chats) {
             const chatElem = document.querySelector(`#chat-${chat.user_id}`);
             chatElem.addEventListener('click', (event) => {
                 event.preventDefault();

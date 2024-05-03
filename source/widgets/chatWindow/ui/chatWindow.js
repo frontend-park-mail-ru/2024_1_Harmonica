@@ -4,6 +4,7 @@ import './chatWindow.scss';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {API} from '../../../shared/api/API.js';
 import {MessagesFeedView} from '../../../features/messagesFeed/ui/messagesFeed.js';
+import WebSocketService from '../../../shared/api/WebSocket.js';
 
 export class ChatWindow extends View {
     constructor(rootID, ...args) {
@@ -20,11 +21,12 @@ export class ChatWindow extends View {
         }
         this.root.innerHTML = chatWindowTemplate({user});
 
+        const messageView = new MessagesFeedView('chat-messages');
+
         if (user && user.user_id) {
             const avatar = new Avatar('chat__selected-avatar');
             avatar.render(user.avatar_url);
 
-            const messageView = new MessagesFeedView('chat-messages');
             messageView.render(messages);
 
             const messageInput = document.querySelector('#chat-input');
@@ -44,5 +46,9 @@ export class ChatWindow extends View {
                 }
             });
         }
+
+        WebSocketService.register("CHAT_MESSAGE", (payload) => {
+            messageView.addMessage(payload, payload.sender_id);
+        });
     }
 }

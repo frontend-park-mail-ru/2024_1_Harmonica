@@ -17,11 +17,6 @@ class WebSocketService {
         }
         this.ws = new WebSocket(this.url);
 
-        // this.register("CHAT_MESSAGE", (payload) => {
-        //     const text = payload.text;
-        //     const
-        // });
-
         this.ws.addEventListener('open', () => {
 
         });
