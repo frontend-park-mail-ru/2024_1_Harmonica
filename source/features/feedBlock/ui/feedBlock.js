@@ -24,7 +24,6 @@ export class FeedBlockView extends View {
     * @param {...any} args - args for constructor of view.
     */
     async render(objects, RenderEntity, ...args) {
-        console.log(objects);
         this.root.innerHTML = feedBlockTemplate({objects});
         const prefix = '#feed-item-';
         for (let i = 0; i < objects.length; ++i) {

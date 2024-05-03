@@ -26,6 +26,23 @@ export class ChatWindow extends View {
 
             const messageView = new MessagesFeedView('chat-messages');
             messageView.render(messages);
+
+            const messageInput = document.querySelector('#chat-input');
+            messageInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (messageInput.value.replace(/(\s|\t)*/, '')) {
+                        const message = {
+                            text: messageInput.value,
+                        };
+                        messageView.addMessage(message, user.user_id);
+                        messageInput.value = '';
+                    }
+                }
+                if (event.key === 'Enter' && event.shiftKey) {
+                    event.preventDefault();
+                }
+            });
         }
     }
 }
