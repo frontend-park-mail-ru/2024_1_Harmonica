@@ -1,9 +1,7 @@
 {{#each messages}}
     <div class="message-area {{#if this.isOwner}}message-area_justify-right{{else}}message-area_justify-left{{/if}}">
         <div class="message-widget">
-            <div class="message-text description">
-                {{this.text}}
-            </div>
+            <div class="message-text description">{{this.text}}</div>
         </div>
     </div>
 {{/each}}

@@ -30,21 +30,29 @@ export class ChatWindow extends View {
             messageView.render(messages);
 
             const messageInput = document.querySelector('#chat-input');
-            messageInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    if (messageInput.value.replace(/(\s|\t)*/, '')) {
-                        const message = {
-                            text: messageInput.value,
-                        };
-                        messageView.addMessage(message, user.user_id);
-                        messageInput.value = '';
-                    }
+
+            const messageSend = () => {
+                if (messageInput.value.replace(/(\s|\t)*/, '')) {
+                    const message = {
+                        text: messageInput.value,
+                    };
+                    messageView.addMessage(message, user.user_id);
+                    messageInput.value = '';
                 }
-                if (event.key === 'Enter' && event.shiftKey) {
+            }
+
+            messageInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) {
                     event.preventDefault();
+                    messageSend();
                 }
             });
+
+            const enterButton = document.querySelector('#chat__enter-button');
+            enterButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                messageSend();
+            })
         }
 
         WebSocketService.register("CHAT_MESSAGE", (payload) => {

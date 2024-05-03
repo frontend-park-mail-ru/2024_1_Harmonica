@@ -22,3 +22,7 @@
   border: variables.$border-color .3px solid;
   border-radius: variables.$input-border-radius;
 }
+
+.message-text{
+  white-space: pre-line;
+}
