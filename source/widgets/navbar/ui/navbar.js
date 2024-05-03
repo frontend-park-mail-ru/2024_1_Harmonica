@@ -30,7 +30,7 @@ export class NavbarView extends View {
         searchInput.addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
-                if (searchInput.value) {
+                if (searchInput.value.replace(/(\s|\t)*/, '')) {
                     history.pushState(null, null, `/search/${searchInput.value}`);
                 }
             }
@@ -39,7 +39,7 @@ export class NavbarView extends View {
         const searchButton = this.root.querySelector('#search__button');
         searchButton.addEventListener('click', (event) => {
             event.preventDefault();
-            if (searchInput.value) {
+            if (searchInput.value.replace(/(\s|\t)*/, '')) {
                 history.pushState(null, null, `/search/${searchInput.value}`);
             }
         });
