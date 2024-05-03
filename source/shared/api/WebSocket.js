@@ -52,7 +52,7 @@ class WebSocketService {
         if (!this.actions[message.action]) {
             return null;
         }
-        this.actions[message.action]();
+        this.actions[message.action](message.payload);
     }
 
     register(action, func) {
