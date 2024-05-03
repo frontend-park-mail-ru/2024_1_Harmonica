@@ -40,11 +40,11 @@ export class ChatWindow extends View {
                     const payload = {
                         ...message,
                         receiver_id: user.user_id,
-                    }
-                    WebSocketService.send("CHAT_MESSAGE", payload);
+                    };
+                    WebSocketService.send('CHAT_MESSAGE', payload);
                     messageInput.value = '';
                 }
-            }
+            };
 
             messageInput.addEventListener('keypress', (event) => {
                 if (event.key === 'Enter' && !event.shiftKey) {
@@ -57,13 +57,13 @@ export class ChatWindow extends View {
             enterButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 messageSend();
-            })
+            });
         }
 
-        WebSocketService.register("CHAT_MESSAGE", (payload) => {
+        WebSocketService.register('CHAT_MESSAGE', (payload) => {
             if (user.user_id === payload.sender_id) {
                 const messageView = new MessagesFeedView('chat-messages');
-                messageView.addMessage(payload, payload.receiver_id);
+                messageView.renderMessage(payload);
             }
         });
     }
