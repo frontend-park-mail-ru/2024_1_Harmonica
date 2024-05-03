@@ -1,0 +1,24 @@
+@use "../../../shared/styles/variables";
+
+.message-area{
+  display: flex;
+  flex-direction: row;
+}
+
+.message-area_justify-right{
+  justify-content: right;
+}
+
+.message-area_justify-left{
+  justify-content: left;
+}
+
+.message-widget{
+  width: fit-content;
+  height: fit-content;
+  max-width: 500px;
+  overflow-wrap: normal;
+  padding: 8px 10px;
+  border: variables.$border-color .3px solid;
+  border-radius: variables.$input-border-radius;
+}

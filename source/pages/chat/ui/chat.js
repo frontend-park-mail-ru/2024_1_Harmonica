@@ -9,6 +9,7 @@ export class ChatView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');
+        this.currentChat = null;
     }
 
     async render() {
@@ -27,5 +28,16 @@ export class ChatView extends View {
         list.render(chats);
         const window = new ChatWindow('chat-window');
         window.render();
+
+        for (let chat of chats){
+            const chatElem = document.querySelector(`#chat-${chat.user_id}`);
+            chatElem.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (!this.currentChat || this.currentChat.user_id !== chat.user_id) {
+                    window.render(chat);
+                    this.currentChat = chat;
+                }
+            });
+        }
     }
 }

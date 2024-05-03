@@ -60,6 +60,9 @@
 }
 
 .chat-content{
+  overflow-y: scroll;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column-reverse;
+  gap: 20px;
 }
