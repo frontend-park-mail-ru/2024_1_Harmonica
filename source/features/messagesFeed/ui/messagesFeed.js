@@ -11,7 +11,7 @@ export class MessagesFeedView extends View {
     }
 
     addMessage(message, otherUserID) {
-        message.isOwner = message.receiver_id !== otherUserID;
+        message.isOwner = message.receiver_id === otherUserID;
         this.root.insertAdjacentHTML('afterbegin', messagesFeedTemplate({messages: [message]}));
     }
 
