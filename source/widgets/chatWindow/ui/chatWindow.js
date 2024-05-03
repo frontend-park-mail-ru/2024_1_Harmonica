@@ -37,7 +37,11 @@ export class ChatWindow extends View {
                         text: messageInput.value,
                     };
                     messageView.addMessage(message, user.user_id);
-                    WebSocketService.send("CHAT_MESSAGE", message);
+                    const payload = {
+                        ...message,
+                        receiver_id: user.user_id,
+                    }
+                    WebSocketService.send("CHAT_MESSAGE", payload);
                     messageInput.value = '';
                 }
             }
