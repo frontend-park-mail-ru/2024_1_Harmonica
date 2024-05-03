@@ -26,12 +26,18 @@ export class NavbarView extends View {
             history.pushState(null, null, '/');
         });
 
-        const search = this.root.querySelector('#search-input');
-        search.addEventListener('keypress', (event) => {
+        const searchInput = this.root.querySelector('#search-input');
+        searchInput.addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
-                history.pushState(null, null, `/search/${search.value}`);
+                history.pushState(null, null, `/search/${searchInput.value}`);
             }
+        });
+
+        const searchButton = this.root.querySelector('#search__button');
+        searchButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            history.pushState(null, null, `/search/${searchInput.value}`);
         });
 
         if (userInfo.user) {

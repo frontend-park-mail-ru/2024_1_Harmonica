@@ -4,7 +4,10 @@
             <div class="logo" id="navbar_logo">
                 Harmonium
             </div>
-            <input type="text" placeholder="Поиск" class="search" id="search-input">
+            <div class="search-input-field">
+                <input type="text" placeholder="Поиск" class="search" id="search-input">
+                <img src="/static/loupe.svg" alt="" class="search__button" id="search__button">
+            </div>
         </div>
         <div class="navbar_right-block" id="navbar_login_menu">
             {{#if user}}

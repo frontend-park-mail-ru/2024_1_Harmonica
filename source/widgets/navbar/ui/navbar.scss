@@ -49,7 +49,7 @@
     border-width: 0;
     border-radius: variables.$input-border-radius;
     height: 44px;
-    padding: 0 10px;
+    padding: 0 35px 0 10px;
     font-size: variables.$focus-font-size;
     background-color: variables.$window-color;
 
@@ -67,4 +67,19 @@
 .navbar_user_name{
     margin: auto;
     font-size: variables.$focus-font-size;
+}
+
+.search-input-field{
+    position: relative;
+}
+
+.search__button{
+    position: absolute;
+    inset: 7px 3px auto auto;
+    width: auto;
+    height: 30px;
+}
+
+.search__button:hover{
+    cursor: pointer;
 }
