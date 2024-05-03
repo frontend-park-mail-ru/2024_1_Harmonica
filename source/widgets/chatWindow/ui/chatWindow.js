@@ -67,8 +67,10 @@ export class ChatWindow extends View {
         }
 
         WebSocketService.register('CHAT_MESSAGE', (payload) => {
-            const messageView = new MessagesFeedView('chat-messages');
-            messageView.addMessage(payload, user.user_id);
+            if (user.user_id === payload.receiver_id || user.user_id === payload.sender_id) {
+                const messageView = new MessagesFeedView('chat-messages');
+                messageView.addMessage(payload, user.user_id);
+            }
         });
     }
 }
