@@ -18,7 +18,7 @@ export class ListBlockView extends View {
             const entity = new RenderEntity(root);
             entity.render(objects[i], ...args);
 
-            const avatar = new Avatar('list-item-avatar');
+            const avatar = new Avatar('list-item-avatar', root);
             avatar.render(objects[i].avatar_url);
         }
     }
