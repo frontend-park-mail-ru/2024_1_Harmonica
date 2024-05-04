@@ -24,5 +24,10 @@ export class ProfileUserInfo extends View {
         this.userInfo.innerHTML = userInfoTemplate({userInfo});
         const avatar = new Avatar();
         avatar.render(userInfo.user.avatar_url);
+
+        const subscribeButton = document.querySelector('#profile-subscribe');
+        subscribeButton.addEventListener('click', () => {
+
+        })
     };
 }

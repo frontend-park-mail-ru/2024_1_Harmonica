@@ -8,6 +8,9 @@ import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
 import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {Error} from '../../error/ui/error.js';
+import {ModalListWindowView} from '../../../widgets/modalListWindow/ui/modalListWindow.js';
+import {API} from '../../../shared/api/API.js';
+import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
 
 /**
  * Handle profile page
@@ -43,6 +46,33 @@ export class Profile extends View {
         this.profileUserInfo.render(user);
         await profileFeed.renderFeed(user.user);
 
+        const modal = new ModalListWindowView();
+
+        const followers = document.querySelector('#profile-followers');
+        followers.addEventListener('click', () => {
+            // const api = new API(`/subscribers/${user.user.user_id}`);
+            // const subscribers = api.get().body.subscribers;
+            const subscribers =[
+                {
+                    "user_id": 11,
+                    "email": "make3@mail.com",
+                    "nickname": "make3",
+                    "avatar_url": "",
+                    "avatar_width": 0,
+                    "avatar_height": 0
+                },
+                {
+                    "user_id": 10,
+                    "email": "make2@mail.com",
+                    "nickname": "make2",
+                    "avatar_url": "",
+                    "avatar_width": 0,
+                    "avatar_height": 0
+                }
+            ]
+            modal.render(subscribers, UserListItemView);
+        })
+
         if (user.is_owner) {
             const pinAdd = document.querySelector('#profile-pin-add');
             pinAdd.addEventListener('click', (event) => {
@@ -64,6 +94,8 @@ export class Profile extends View {
                 const profileEdit = new ProfileEdit();
                 profileEdit.render(user);
             });
+        } else {
+
         }
 
         const boardButton = document.querySelector('#profile-content-boards');

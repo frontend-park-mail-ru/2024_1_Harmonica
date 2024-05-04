@@ -5,16 +5,22 @@
     <div class="profile-text__nickname">
         {{userInfo.user.nickname}}
     </div>
-    <div class="profile-text__followers">
-        {{userInfo.followers_count}} подписчиков
+    <div class="profile-text__followers" id="profile-followers">
+        <span class="profile-followers-count">{{userInfo.followers_count}}</span> подписчиков
     </div>
     {{#if userInfo.is_owner}}
         <div class="secondary-button button profile-text-button_margin-top" id="profile-edit">
             Изменить профиль
         </div>
     {{else}}
-        <div class="primary-button button profile-text-button_margin-top">
+        {{#if userInfo.is_subscribed}}
+        <div class="secondary-button button profile-text-button_margin-top" id="profile-unsubscribe">
+            Отписаться
+        </div>
+        {{else}}
+        <div class="primary-button button profile-text-button_margin-top" id="profile-subscribe">
             Подписаться
         </div>
+        {{/if}}
     {{/if}}
 </div>

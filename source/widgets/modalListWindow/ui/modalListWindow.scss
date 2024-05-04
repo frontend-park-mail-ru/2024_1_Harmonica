@@ -1,0 +1,26 @@
+@use "../../../shared/styles/variables";
+
+.modal-window{
+  padding: 25px 10px 0 10px;
+  width: fit-content;
+  height: fit-content;
+  min-height: 500px;
+}
+
+.modal-close{
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  inset: 5px 5px auto auto;
+}
+
+.modal-close-image{
+  width: 100%;
+  height: 100%;
+  rotate: 45deg;
+}
+
+.modal-close:hover{
+  cursor: pointer;
+}
