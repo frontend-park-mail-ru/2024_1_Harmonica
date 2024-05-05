@@ -34,14 +34,14 @@ export class ChatView extends View {
 
         for (const chat of chats) {
             const chatElem = document.querySelector(`#chat-${chat.user_id}`);
-            chatElem.addEventListener('click', (event) => {
+            chatElem.addEventListener('click', async (event) => {
                 event.preventDefault();
-                listView.classList.replace('window-on-top', 'window-on-bottom');
-                chatWindowView.classList.replace('window-on-bottom', 'window-on-top');
                 if (!this.currentChat || this.currentChat.user_id !== chat.user_id) {
-                    window.render(chat);
+                    await window.render(chat);
                     this.currentChat = chat;
                 }
+                listView.classList.replace('window-on-top', 'window-on-bottom');
+                chatWindowView.classList.replace('window-on-bottom', 'window-on-top');
             });
         }
     }
