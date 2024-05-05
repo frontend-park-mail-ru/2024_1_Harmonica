@@ -16,11 +16,6 @@
     font-size: 40px;
 }
 
-.profile-text__followers{
-    font-weight: bold;
-    font-size: 15px;
-}
-
 .profile-text-button_margin-top{
     margin-top: auto;
 }
@@ -35,5 +30,17 @@
 }
 
 .profile-text__followers:hover {
+    cursor: pointer;
+}
+
+.profile-counts{
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.profile-text__subscriptions:hover{
     cursor: pointer;
 }

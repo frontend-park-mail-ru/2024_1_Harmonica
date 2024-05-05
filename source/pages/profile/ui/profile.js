@@ -49,29 +49,20 @@ export class Profile extends View {
         const modal = new ModalListWindowView();
 
         const followers = document.querySelector('#profile-followers');
-        followers.addEventListener('click', () => {
-            // const api = new API(`/subscribers/${user.user.user_id}`);
-            // const subscribers = api.get().body.subscribers;
-            const subscribers =[
-                {
-                    "user_id": 11,
-                    "email": "make3@mail.com",
-                    "nickname": "make3",
-                    "avatar_url": "",
-                    "avatar_width": 0,
-                    "avatar_height": 0
-                },
-                {
-                    "user_id": 10,
-                    "email": "make2@mail.com",
-                    "nickname": "make2",
-                    "avatar_url": "",
-                    "avatar_width": 0,
-                    "avatar_height": 0
-                }
-            ]
+        followers.addEventListener('click', async () => {
+            const api = new API(`/users/subscribers/${user.user.user_id}`);
+            const response = await api.get();
+            const subscribers = response.body.subscribers;
             modal.render(subscribers, UserListItemView);
-        })
+        });
+
+        const subs = document.querySelector('#profile-subscriptions');
+        subs.addEventListener('click', async () => {
+            const api = new API(`/users/subscriptions/${user.user.user_id}`);
+            const response = await api.get();
+            const subscriptions = response.body.subscriptions;
+            modal.render(subscriptions, UserListItemView);
+        });
 
         if (user.is_owner) {
             const pinAdd = document.querySelector('#profile-pin-add');
@@ -94,6 +85,20 @@ export class Profile extends View {
                 const profileEdit = new ProfileEdit();
                 profileEdit.render(user);
             });
+
+            const popMenu = document.querySelector('#profile-pop-menu');
+            const popMenuButton = document.querySelector('#profile-pop-menu__button');
+            popMenuButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.popMenuOpen = !this.popMenuOpen;
+                if (this.popMenuOpen) {
+                    popMenu.classList.remove('profile-pop-menu__closed');
+                    popMenuButton.classList.remove('button-add__closed');
+                } else {
+                    popMenu.classList.add('profile-pop-menu__closed');
+                    popMenuButton.classList.add('button-add__closed');
+                }
+            });
         } else {
 
         }
@@ -108,20 +113,6 @@ export class Profile extends View {
         feedButton.addEventListener('click', (event) => {
             event.preventDefault();
             profileFeed.renderFeed(user.user);
-        });
-
-        const popMenu = document.querySelector('#profile-pop-menu');
-        const popMenuButton = document.querySelector('#profile-pop-menu__button');
-        popMenuButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            this.popMenuOpen = !this.popMenuOpen;
-            if (this.popMenuOpen) {
-                popMenu.classList.remove('profile-pop-menu__closed');
-                popMenuButton.classList.remove('button-add__closed');
-            } else {
-                popMenu.classList.add('profile-pop-menu__closed');
-                popMenuButton.classList.add('button-add__closed');
-            }
         });
     };
 }

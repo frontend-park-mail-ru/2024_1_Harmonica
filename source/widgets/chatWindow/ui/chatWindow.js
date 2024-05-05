@@ -40,7 +40,7 @@ export class ChatWindow extends View {
                     const api = new API(`/messages/${user.user_id}`);
                     await api.post(JSON.stringify(message));
 
-                    //TODO Обработка ошибки
+                    // TODO Обработка ошибки
 
                     const payload = {
                         ...message,

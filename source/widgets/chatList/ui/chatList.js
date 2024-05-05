@@ -2,7 +2,6 @@ import {View} from '../../../app/View.js';
 import chatListTemplate from './chatList.handlebars';
 import './chatList.scss';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
-import {API} from '../../../shared/api/API.js';
 
 export class ChatList extends View {
     constructor(rootID, ...args) {

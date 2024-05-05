@@ -3,10 +3,10 @@ import modalListWindowTemplate from './modalListWindow.handlebars';
 import './modalListWindow.scss';
 import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
 
-export class ModalListWindowView extends View{
+export class ModalListWindowView extends View {
     constructor(...args) {
         super(...args);
-        this.root = document.querySelector('#dialog-window')
+        this.root = document.querySelector('#dialog-window');
     }
 
     render(objects, RenderEntity) {
@@ -19,6 +19,10 @@ export class ModalListWindowView extends View{
         const close = document.querySelector('#modal-close');
         close.addEventListener('click', () => {
             this.root.close();
-        })
+        });
+
+        window.navigation.addEventListener('navigate', () => {
+            this.root.close();
+        });
     }
 }

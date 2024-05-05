@@ -32,8 +32,10 @@ export class ProfileFeed extends View {
 
         this.feed.innerHTML = profileFeedTemplate({pins});
 
-        const feed = new FeedBlockView('profile_feed');
-        feed.render(pins, PinFeedView);
+        if (pins) {
+            const feed = new FeedBlockView('profile_feed');
+            feed.render(pins, PinFeedView);
+        }
     }
 
     /**

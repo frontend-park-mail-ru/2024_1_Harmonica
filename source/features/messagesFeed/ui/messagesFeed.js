@@ -2,7 +2,6 @@ import {View} from '../../../app/View.js';
 import messagesFeedTemplate from './messagesFeed.handlebars';
 import './messagesFeed.scss';
 import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
-import {API} from '../../../shared/api/API.js';
 
 export class MessagesFeedView extends View {
     constructor(elemID, ...args) {
