@@ -24,7 +24,7 @@ export class FeedBlockView extends View {
     * @param {...any} args - args for constructor of view.
     */
     async render(objects, RenderEntity, ...args) {
-        if(!objects){
+        if (!objects) {
             return;
         }
         this.root.innerHTML = feedBlockTemplate({objects});

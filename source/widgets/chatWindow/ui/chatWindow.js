@@ -23,6 +23,16 @@ export class ChatWindow extends View {
 
         const messageView = new MessagesFeedView('chat-messages');
 
+        const backButton = document.querySelector('#chat-back-button');
+        backButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const listView = document.querySelector('#chat-list');
+            const chatWindowView = document.querySelector('#chat-window');
+
+            chatWindowView.classList.replace('window-on-top', 'window-on-bottom');
+            listView.classList.replace('window-on-bottom', 'window-on-top');
+        });
+
         if (user && user.user_id) {
             const avatar = new Avatar('chat__selected-avatar');
             avatar.render(user.avatar_url);

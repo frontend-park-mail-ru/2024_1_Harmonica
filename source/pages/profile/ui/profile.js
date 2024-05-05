@@ -52,11 +52,11 @@ export class Profile extends View {
         followers.addEventListener('click', async () => {
             const api = new API(`/users/subscribers/${user.user.user_id}`);
             const response = await api.get();
-            if (response.code){
+            if (response.code) {
                 return;
             }
             const subscribers = response.body.subscribers;
-            if (!subscribers){
+            if (!subscribers) {
                 return;
             }
             modal.render(subscribers, UserListItemView);
@@ -66,11 +66,11 @@ export class Profile extends View {
         subs.addEventListener('click', async () => {
             const api = new API(`/users/subscriptions/${user.user.user_id}`);
             const response = await api.get();
-            if (response.code){
+            if (response.code) {
                 return;
             }
             const subscriptions = response.body.subscriptions;
-            if (!subscriptions){
+            if (!subscriptions) {
                 return;
             }
             modal.render(subscriptions, UserListItemView);

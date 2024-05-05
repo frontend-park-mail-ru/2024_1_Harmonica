@@ -25,3 +25,32 @@
   grid-template-rows: 70px 1fr 90px;
 }
 
+@media screen and (max-width: 430px) {
+  .chat-window {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+  }
+
+  .chat-list{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .chat-window__input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .window-on-top{
+    z-index: 1;
+    visibility: visible;
+  }
+
+  .window-on-bottom{
+    z-index: 0;
+    visibility: hidden;
+  }
+}

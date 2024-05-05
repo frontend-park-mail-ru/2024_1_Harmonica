@@ -37,7 +37,7 @@ export class FeedView extends View {
         const user = localStorageGetValue('user');
         this.root.innerHTML = feedViewTemplate({user});
 
-        await this.renderHomeFeed()
+        await this.renderHomeFeed();
 
         if (user) {
             const homeButton = document.querySelector('#feed-home-button');

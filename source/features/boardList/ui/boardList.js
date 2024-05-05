@@ -3,7 +3,6 @@ import './boardList.scss';
 import {View} from '../../../app/View.js';
 import {BoardView} from '../../../pages/board/ui/boardView.js';
 import {BoardListAPI} from '../api/api.js';
-import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 
 /** Board list window view */
