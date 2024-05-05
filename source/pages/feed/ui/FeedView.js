@@ -2,10 +2,9 @@ import {View} from '../../../app/View.js';
 import feedViewTemplate from './FeedView.handlebars';
 import './FeedView.scss';
 import {API} from '../../../shared/api/API.js';
-import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
-import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
+import {FeedWindowView} from '../../../widgets/feedWindow/ui/feedWindow.js';
 
 export class FeedView extends View {
     constructor(...args) {
@@ -18,8 +17,8 @@ export class FeedView extends View {
         const response = await api.get();
 
         const pins = response.body.pins;
-        const feedBlock = new FeedBlockView('feed');
-        feedBlock.render(pins, PinFeedView);
+        const feed = new FeedWindowView('feed-block');
+        feed.render(pins);
     }
 
     async renderSubsFeed() {
@@ -27,8 +26,8 @@ export class FeedView extends View {
         const response = await api.get();
 
         const pins = response.body.pins;
-        const feedBlock = new FeedBlockView('feed');
-        feedBlock.render(pins, PinFeedView);
+        const feed = new FeedWindowView('feed-block');
+        feed.render(pins);
     }
 
     async render() {
@@ -40,21 +39,23 @@ export class FeedView extends View {
 
         await this.renderHomeFeed()
 
-        const homeButton = document.querySelector('#feed-home-button');
-        const subsButton = document.querySelector('#feed-subs-button');
+        if (user) {
+            const homeButton = document.querySelector('#feed-home-button');
+            const subsButton = document.querySelector('#feed-subs-button');
 
-        homeButton.addEventListener('click', async (event) => {
-            event.preventDefault();
-            await this.renderHomeFeed();
-            homeButton.classList.replace('secondary-button', 'primary-button');
-            subsButton.classList.replace('primary-button', 'secondary-button');
-        });
+            homeButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                await this.renderHomeFeed();
+                homeButton.classList.replace('secondary-button', 'primary-button');
+                subsButton.classList.replace('primary-button', 'secondary-button');
+            });
 
-        subsButton.addEventListener('click', async (event) => {
-            event.preventDefault();
-            await this.renderSubsFeed();
-            subsButton.classList.replace('secondary-button', 'primary-button');
-            homeButton.classList.replace('primary-button', 'secondary-button');
-        });
+            subsButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                await this.renderSubsFeed();
+                subsButton.classList.replace('secondary-button', 'primary-button');
+                homeButton.classList.replace('primary-button', 'secondary-button');
+            });
+        }
     }
 }

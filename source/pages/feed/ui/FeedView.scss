@@ -1,12 +1,5 @@
 @use "../../../shared/styles/variables";
 
-.feed{
-    height: auto;
-    width: auto;
-    margin: 30px 50px;
-    columns: 250px 5;
-}
-
 .feed_item{
     margin-bottom: 20px;
     border-radius: variables.$element-border-radius;
