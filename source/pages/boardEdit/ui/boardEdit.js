@@ -5,6 +5,8 @@ import {BoardEditAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors, NORMAL_COLOR} from '../../../shared/config.js';
 import {boardValidation} from '../../../shared/utils/validation.js';
+import {Profile} from '../../profile/ui/profile.js';
+import {BoardView} from '../../board/ui/boardView.js';
 
 /**
  * Handle board create and update page
@@ -30,7 +32,8 @@ export class BoardEdit extends View {
 
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
-            history.pushState(null, null, '/board/' + board.board_id);
+            const board = new BoardView();
+            board.render(board.board_id);
         });
 
         const boardAPI = new BoardEditAPI(board.board_id);
@@ -77,7 +80,8 @@ export class BoardEdit extends View {
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
             const user = JSON.parse(localStorage.getItem('user'));
-            history.pushState(null, null, '/profile/' + user.nickname);
+            const profile = new Profile();
+            profile.render(user.nickname);
         });
 
         const boardAPI = new BoardEditAPI(null);

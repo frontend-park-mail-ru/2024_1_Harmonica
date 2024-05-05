@@ -16,3 +16,14 @@
     width: 700px;
 }
 
+@media screen and (max-width: 430px) {
+    $width: 75vw;
+
+    .board-window{
+        width: $width;
+    }
+
+    .board-form{
+        width: $width;
+    }
+}

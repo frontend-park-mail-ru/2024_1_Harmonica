@@ -70,16 +70,16 @@ export class SignupView extends View {
 
         nicknameInput.addEventListener('focusout', (event) => {
             event.preventDefault();
-            if (nicknameValidation(nicknameInput.value)) {
+            // if (nicknameValidation(nicknameInput.value)) {
                 nickHint.style.visibility = 'hidden';
-            }
+            // }
         });
 
         passwordInput.addEventListener('focusout', (event) => {
             event.preventDefault();
-            if (passwordValidation(passwordInput.value)) {
+            // if (passwordValidation(passwordInput.value)) {
                 passHint.style.visibility = 'hidden';
-            }
+            // }
         });
 
         nicknameInput.addEventListener('input', (event) => {

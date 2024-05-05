@@ -82,7 +82,7 @@ export class LoginView extends View {
 
         const signupButton = this.root.querySelector('#login_signup_button');
         signupButton.addEventListener('click', () => {
-            whistory.pushState(null, null, '/signup');
+            history.pushState(null, null, '/signup');
         });
     }
 

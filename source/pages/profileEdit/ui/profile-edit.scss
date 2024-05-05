@@ -5,3 +5,9 @@
     gap: 50px;
     padding: 40px;
 }
+
+@media screen and (max-width: 430px) {
+    .profile-edit__window{
+        width: 75vw;
+    }
+}

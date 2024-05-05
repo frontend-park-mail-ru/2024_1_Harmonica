@@ -8,6 +8,7 @@ import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 import {Error} from '../../error/ui/error.js';
 import {pinValidation} from '../../../shared/utils/validation.js';
+import {Profile} from '../../profile/ui/profile.js';
 
 /**
  * Handle pin page
@@ -107,7 +108,8 @@ export class PinView extends View {
         profileButton.addEventListener('click', async (event) => {
             event.preventDefault();
             const user = JSON.parse(localStorage.getItem('user'));
-            history.pushState(null, null, '/profile/' + user.nickname);
+            const profile = new Profile();
+            profile.render(user.nickname);
         });
 
         const createSubmit = this.root.querySelector('#pin-form-save');
