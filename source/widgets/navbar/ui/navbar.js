@@ -2,6 +2,7 @@ import {View} from '../../../app/View.js';
 import templateNavbar from './navbar.handlebars';
 import './navbar.scss';
 import {Logout} from '../../../features/logout/model/logout.js';
+import {FeedView} from '../../../pages/feed/ui/FeedView.js';
 
 export class NavbarView extends View {
     constructor(...args) {
@@ -58,6 +59,8 @@ export class NavbarView extends View {
             const logoutButton = this.root.querySelector('#navbar_logout_button');
             logoutButton.addEventListener('click', async () => {
                 await Logout('/');
+                const feed = new FeedView();
+                feed.render();
             });
         } else {
             const loginButton = this.root.querySelector('#navbar_login_button');

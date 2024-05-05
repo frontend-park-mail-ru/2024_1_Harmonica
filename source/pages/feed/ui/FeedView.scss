@@ -22,3 +22,16 @@
     border-radius: variables.$element-border-radius;
     width: 100%;
 }
+
+.feed-control-buttons{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.feed-button-field{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
