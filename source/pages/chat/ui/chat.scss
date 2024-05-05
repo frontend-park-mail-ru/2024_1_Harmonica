@@ -1,10 +1,11 @@
 @use "../../../shared/styles/variables";
 
 .chat-window{
-  height: 83vh;
+  height: 100%;
   width: 75vw;
   display: flex;
   flex-direction: row;
+  border-radius: 0;
 }
 
 .chat-list{
@@ -27,14 +28,14 @@
 
 @media screen and (max-width: 430px) {
   .chat-window {
-    width: 100vw;
-    height: 80vh;
+    width: 100%;
+    height: calc(100vh - 130px);
     position: relative;
   }
 
   .chat-list{
     position: absolute;
-    height: 100%;
+    height: calc(100vh - 130px);
     width: 100%;
   }
 
@@ -52,6 +53,14 @@
   .window-on-bottom{
     z-index: -1;
     visibility: hidden;
+  }
+
+  .window{
+    margin: 0;
+  }
+
+  .root{
+    padding: 0;
   }
 }
 
