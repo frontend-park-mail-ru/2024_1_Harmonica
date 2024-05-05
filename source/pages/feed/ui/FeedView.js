@@ -23,7 +23,7 @@ export class FeedView extends View {
     }
 
     async renderSubsFeed() {
-        const api = new API('/pins?subscriptions=true');
+        const api = new API('/pins?type=subscriptions');
         const response = await api.get();
 
         const pins = response.body.pins;
