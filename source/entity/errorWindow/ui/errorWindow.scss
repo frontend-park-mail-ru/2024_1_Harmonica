@@ -29,3 +29,15 @@
 .error-window__text{
     white-space: pre-line;
 }
+
+@media screen and (max-width: 430px) {
+    .error-window{
+        min-width: 100px;
+        width: 50vw;
+    }
+
+    .cancel-icon{
+        width: 40px;
+        height: 40px;
+    }
+}

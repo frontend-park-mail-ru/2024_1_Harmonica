@@ -5,3 +5,10 @@
     border-radius: variables.$pin-photo-border-radius;
     display: block;
 }
+
+@media screen and (max-width: 430px) {
+    .pin-photo__image{
+        border-radius: 15px 15px 0 0;
+        width: 100%;
+    }
+}

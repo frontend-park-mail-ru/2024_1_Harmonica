@@ -42,6 +42,8 @@ export class PinInformationBlock extends View {
                 event.preventDefault();
                 const addPin = new PinAddToBoardView();
                 await addPin.render(pin);
+                const modal = document.querySelector('#dialog-window');
+                modal.showModal();
             });
         }
     }

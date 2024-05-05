@@ -18,3 +18,22 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 430px) {
+    .pin-window {
+        flex-direction: column;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 0;
+    }
+
+    .pin-description{
+        gap: 40px;
+        width: calc(100% - 50px);
+    }
+
+    .pin-photo{
+        display: flex;
+        flex-direction: column;
+    }
+}

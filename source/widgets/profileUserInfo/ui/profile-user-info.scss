@@ -44,3 +44,16 @@
 .profile-text__subscriptions:hover{
     cursor: pointer;
 }
+
+@media screen and (max-width: 430px) {
+    .profile-info{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .profile-text{
+        justify-content: center;
+        align-items: center;
+    }
+}

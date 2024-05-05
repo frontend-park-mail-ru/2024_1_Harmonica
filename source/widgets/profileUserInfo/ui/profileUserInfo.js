@@ -102,10 +102,12 @@ export class ProfileUserInfo extends View {
         const avatar = new Avatar();
         avatar.render(userInfo.user.avatar_url);
 
-        if (userInfo.is_subscribed) {
-            await this.unsubscribe(userInfo.user.user_id);
-        } else {
-            await this.subscribe(userInfo.user.user_id);
+        if (!userInfo.is_owner) {
+            if (userInfo.is_subscribed) {
+                await this.unsubscribe(userInfo.user.user_id);
+            } else {
+                await this.subscribe(userInfo.user.user_id);
+            }
         }
     };
 }

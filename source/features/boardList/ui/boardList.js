@@ -35,8 +35,8 @@ export class BoardListView extends View {
                     const response = await pinAdd.api();
 
                     if (response.code) {
-                        const errorWindow = new ErrorWindowView();
-                        errorWindow.render(errors[response.code]);
+                        const errorField = document.querySelector('#add-to-board-error');
+                        errorField.innerHTML = errors[response.code];
                         return;
                     }
 

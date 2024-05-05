@@ -49,3 +49,9 @@
     cursor: pointer;
     background-color: variables.$secondary-button-color;
 }
+
+@media screen and (max-width: 430px) {
+    .button{
+        padding: 1vh 3vw;
+    }
+}
