@@ -5,6 +5,7 @@ import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {API} from '../../../shared/api/API.js';
 import {MessagesFeedView} from '../../../features/messagesFeed/ui/messagesFeed.js';
 import WebSocketService from '../../../shared/api/WebSocket.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 
 export class ChatWindow extends View {
     constructor(rootID, ...args) {
@@ -48,9 +49,13 @@ export class ChatWindow extends View {
                     };
 
                     const api = new API(`/messages/${user.user_id}`);
-                    await api.post(JSON.stringify(message));
+                    const response = await api.post(JSON.stringify(message));
 
-                    // TODO Обработка ошибки
+                    if (response.code) {
+                        const errorWindow = new ErrorWindowView();
+                        errorWindow.render('Возникла ошибка при отрпавке сообщения! Повторите позже.');
+                        return;
+                    }
 
                     const payload = {
                         ...message,

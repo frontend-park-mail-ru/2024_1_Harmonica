@@ -35,7 +35,9 @@
         min-width: 100px;
         width: 50vw;
     }
+}
 
+@media screen and (max-width: 1024px) {
     .cancel-icon{
         width: 40px;
         height: 40px;
