@@ -44,8 +44,11 @@ export class BoardPinFeedView extends View {
         delBtn.addEventListener('click', async (event) => {
             event.preventDefault();
             const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
-            await api.delete();
-            history.pushState(null, null, '/board/' + board.board_id);
+            const response = await api.delete();
+            if (response.code) {
+                return;
+            }
+            this.root.remove();
         });
     }
 }

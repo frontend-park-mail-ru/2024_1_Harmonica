@@ -39,6 +39,9 @@ export class BoardListView extends View {
                         return;
                     }
 
+                    const modal = document.querySelector('#dialog-window');
+                    modal.close();
+
                     const boardView = new BoardView();
                     await boardView.render(board.board_id);
                 });

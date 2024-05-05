@@ -50,7 +50,14 @@
   }
 
   .window-on-bottom{
-    z-index: 0;
+    z-index: -1;
     visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 431px) {
+  .chat-window{
+    height: 87vh;
+    width: 90vw;
   }
 }

@@ -50,7 +50,7 @@
     height: fit-content;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 1024px){
     .hover-photo-block__background{
         background-color: variables.$background-color;
         opacity: 1;

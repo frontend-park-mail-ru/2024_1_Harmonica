@@ -32,8 +32,8 @@ export class BoardEdit extends View {
 
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
-            const board = new BoardView();
-            board.render(board.board_id);
+            const boardView = new BoardView();
+            boardView.render(board.board_id);
         });
 
         const boardAPI = new BoardEditAPI(board.board_id);

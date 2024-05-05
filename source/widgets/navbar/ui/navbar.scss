@@ -93,12 +93,7 @@
     height: 100%;
 }
 
-@media screen and (max-width: 430px) {
-    .logo{
-        height: 50px;
-        width: 50px;
-    }
-
+@media screen and (max-width: 540px) {
     .navbar_right-block{
         position: fixed;
         width: 100%;
@@ -121,5 +116,12 @@
 
     .navbar_left-block{
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 1023px){
+    .logo{
+        height: 50px;
+        width: 50px;
     }
 }

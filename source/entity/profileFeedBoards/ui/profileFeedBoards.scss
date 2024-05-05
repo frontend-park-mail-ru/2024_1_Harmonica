@@ -28,7 +28,7 @@
     -webkit-line-clamp: 4;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 1024px) {
     .board__item{
         width: calc(100% - 40px);
     }
