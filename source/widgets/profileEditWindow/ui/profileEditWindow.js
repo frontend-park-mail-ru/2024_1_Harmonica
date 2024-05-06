@@ -124,7 +124,9 @@ export class ProfileEditWindow extends View {
                 const navbar = new NavbarView();
                 navbar.render();
 
-                window.location.pathname = '/profile/' + response.body.nickname;
+                // history.pushState(null, null, '/profile/' + response.body.nickname);
+                const profile = new Profile();
+                profile.render(response.body.nickname);
             }
         });
     }

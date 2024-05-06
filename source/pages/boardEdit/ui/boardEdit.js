@@ -5,6 +5,8 @@ import {BoardEditAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors, NORMAL_COLOR} from '../../../shared/config.js';
 import {boardValidation} from '../../../shared/utils/validation.js';
+import {Profile} from '../../profile/ui/profile.js';
+import {BoardView} from '../../board/ui/boardView.js';
 
 /**
  * Handle board create and update page
@@ -29,8 +31,10 @@ export class BoardEdit extends View {
         this.root.innerHTML = boardEditTemplate({board});
 
         const backButton = document.querySelector('#board-back-button');
+
+        const boardView = new BoardView();
         backButton.addEventListener('click', (event) => {
-            window.location.pathname = '/board/' + board.board_id;
+            boardView.render(board.board_id);
         });
 
         const boardAPI = new BoardEditAPI(board.board_id);
@@ -62,7 +66,7 @@ export class BoardEdit extends View {
 
                 const newBoard = response.body.board;
 
-                window.location.pathname = '/board/' + newBoard.board_id;
+                boardView.render(newBoard.board_id);
             }
         });
     }
@@ -77,7 +81,8 @@ export class BoardEdit extends View {
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
             const user = JSON.parse(localStorage.getItem('user'));
-            window.location.pathname = '/profile/' + user.nickname;
+            const profile = new Profile();
+            profile.render(user.nickname);
         });
 
         const boardAPI = new BoardEditAPI(null);
@@ -101,7 +106,7 @@ export class BoardEdit extends View {
 
                 const board = response.body;
 
-                window.location.pathname = '/board/' + board.board.board_id;
+                history.pushState(null, null, '/board/' + board.board.board_id);
             }
         });
     }

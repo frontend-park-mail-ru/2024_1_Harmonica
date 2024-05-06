@@ -15,7 +15,7 @@ export class BoardFeedView extends View {
 
         if (pins) {
             const feed = new FeedBlockView('board_feed');
-            feed.render(pins, BoardPinFeedView, 'pin_id', board);
+            feed.render(pins, BoardPinFeedView, board);
         }
     }
 }

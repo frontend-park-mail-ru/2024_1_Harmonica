@@ -6,6 +6,8 @@
     position: sticky;
     top: 0;
     background-color: variables.$background-color;
+    align-items: center;
+    z-index: 2;
 }
 
 .navbar_row{
@@ -17,19 +19,16 @@
 }
 
 .navbar_left-block{
-    width: 50%;
-    height: auto;
-    float: left;
+    height: 100%;
     display: flex;
-    gap: 10px;
+    gap: 20px;
+    align-items: center;
 }
 
 .logo{
-    font-size: 28px;
-    display: flex;
+    height: 30px;
     align-items: center;
     cursor: pointer;
-    margin-right: 10px;
     color: inherit;
     text-decoration: none;
 }
@@ -40,15 +39,15 @@
     gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-    align-content: center;
+    align-items: center;
 }
 
 .search{
-    width: 500px;
+    width: calc(100px + 20vw);
     border-width: 0;
     border-radius: variables.$input-border-radius;
-    height: 100%;
-    padding: 0 10px;
+    height: 44px;
+    padding: 0 35px 0 10px;
     font-size: variables.$focus-font-size;
     background-color: variables.$window-color;
 
@@ -57,7 +56,8 @@
     }
 
     &:focus{
-        outline-color: variables.$search-color;
+        border: variables.$search-color .5px solid;
+        outline: none;
         background-color: color-mix(in srgb, variables.$window-color, variables.$background-color);
     }
 }
@@ -65,4 +65,63 @@
 .navbar_user_name{
     margin: auto;
     font-size: variables.$focus-font-size;
+}
+
+.search-input-field{
+    position: relative;
+}
+
+.search__button{
+    position: absolute;
+    inset: 7px 3px auto auto;
+    width: auto;
+    height: 30px;
+}
+
+.search__button:hover{
+    cursor: pointer;
+}
+
+.logo-image{
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-logo-picture{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 540px) {
+    .navbar_right-block{
+        position: fixed;
+        width: 100%;
+        height: 50px;
+        inset: auto 0 0 0;
+        background-color: variables.$background-color;
+        gap: 20px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        z-index: 2;
+    }
+
+    .search-input-field{
+        width: calc(100vw - 90px);
+    }
+
+    .search{
+        width: calc(100% - 45px);
+    }
+
+    .navbar_left-block{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1023px){
+    .logo{
+        height: 50px;
+        width: 50px;
+    }
 }

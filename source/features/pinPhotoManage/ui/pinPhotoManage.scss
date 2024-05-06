@@ -49,3 +49,15 @@
     width: fit-content;
     height: fit-content;
 }
+
+@media screen and (max-width: 1024px){
+    .hover-photo-block__background{
+        background-color: variables.$background-color;
+        opacity: 1;
+    }
+
+    .hover-photo-block{
+        position: relative;
+        height: 75px;
+    }
+}

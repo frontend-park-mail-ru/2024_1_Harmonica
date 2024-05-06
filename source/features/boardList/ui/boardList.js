@@ -3,7 +3,6 @@ import './boardList.scss';
 import {View} from '../../../app/View.js';
 import {BoardView} from '../../../pages/board/ui/boardView.js';
 import {BoardListAPI} from '../api/api.js';
-import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
 
 /** Board list window view */
@@ -35,10 +34,13 @@ export class BoardListView extends View {
                     const response = await pinAdd.api();
 
                     if (response.code) {
-                        const errorWindow = new ErrorWindowView();
-                        errorWindow.render(errors[response.code]);
+                        const errorField = document.querySelector('#add-to-board-error');
+                        errorField.innerHTML = errors[response.code];
                         return;
                     }
+
+                    const modal = document.querySelector('#dialog-window');
+                    modal.close();
 
                     const boardView = new BoardView();
                     await boardView.render(board.board_id);

@@ -1,0 +1,22 @@
+.search-root{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-button-field{
+  width: fit-content;
+  align-items: center;
+}
+
+.search-control-buttons{
+  display: flex;
+  justify-content: center;
+}
+
+.search-button-field{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}

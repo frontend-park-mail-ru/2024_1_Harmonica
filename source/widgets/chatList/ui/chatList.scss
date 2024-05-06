@@ -1,0 +1,30 @@
+@use "../../../shared/styles/variables";
+
+$item-height: 50px;
+
+.chat__item{
+  padding: 10px;
+  display: grid;
+  grid-template-columns: $item-height 1fr;
+  height: $item-height;
+  align-content: center;
+  gap: 10px;
+}
+
+.chat__item:hover{
+  cursor: pointer;
+  background-color: variables.$border-color;
+}
+
+.chat__item-avatar{
+  width: $item-height;
+  height: $item-height;
+  display: block;
+}
+
+.chat__select-content{
+  align-content: center;
+}
+
+
+

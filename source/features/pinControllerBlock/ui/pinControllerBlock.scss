@@ -24,3 +24,15 @@
 .like-button:hover{
     cursor: pointer;
 }
+
+@media screen and (max-width: 430px) {
+    .pin-like-section{
+        position: absolute;
+        inset: auto 25px 25px auto;
+    }
+
+    .like-button{
+        width: 10vw;
+        height: 10vw;
+    }
+}

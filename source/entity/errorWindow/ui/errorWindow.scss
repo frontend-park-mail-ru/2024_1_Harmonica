@@ -7,7 +7,7 @@
     border-radius: variables.$element-border-radius;
     background-color: variables.$background-color;
     position: fixed;
-    inset: auto 20px 20px auto;
+    inset: auto 20px 60px auto;
     padding: 20px 35px 20px 20px;
 }
 
@@ -28,4 +28,18 @@
 
 .error-window__text{
     white-space: pre-line;
+}
+
+@media screen and (max-width: 430px) {
+    .error-window{
+        min-width: 100px;
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .cancel-icon{
+        width: 40px;
+        height: 40px;
+    }
 }

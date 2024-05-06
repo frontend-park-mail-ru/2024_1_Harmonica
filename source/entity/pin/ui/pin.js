@@ -19,7 +19,7 @@ export class PinFeedView extends View {
     * @param {int} pinID - Id of pin to go.
     */
     onClick(pinID) {
-        window.location.pathname = '/pin/' + pinID;
+        history.pushState(null, null, '/pin/' + pinID);
     }
 
     /**

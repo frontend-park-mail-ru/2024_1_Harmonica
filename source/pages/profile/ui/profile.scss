@@ -54,3 +54,37 @@
 .button-add__closed{
     transform: unset;
 }
+
+@media screen and (max-width: 430px) {
+    .profile-switcher{
+        margin-top: 50px;
+    }
+
+    .profile-pop-menu{
+        position: fixed;
+        inset: auto 0 0 0;
+        width: 100%;
+        flex-direction: row;
+        z-index: 3;
+        justify-content: center;
+        background-color: variables.$secondary-button-color;
+        align-items: start;
+        height: 150px;
+        padding-top: 40px;
+        gap: 20px;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .profile-pop-menu::backdrop{
+        background-color: variables.$font-color;
+        opacity: .5;
+    }
+
+    .profile-pop-menu__closed{
+        transform: translateY(60px);
+    }
+
+    .profile-add-button{
+        background-color: variables.$primary-button-color;
+    }
+}

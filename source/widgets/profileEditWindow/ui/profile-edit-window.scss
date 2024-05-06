@@ -20,3 +20,10 @@
     width: 150px;
     height: 150px;
 }
+
+@media screen and (max-width: 430px) {
+    .form{
+        flex-direction: column;
+        width: auto;
+    }
+}

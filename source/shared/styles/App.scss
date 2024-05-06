@@ -20,7 +20,7 @@ main{
     margin: 0;
     width: 100%;
     height: auto;
-    padding: 0 0 30px 0;
+    padding: 30px 0 30px 0;
 }
 
 .window_title{
@@ -50,3 +50,15 @@ main{
     gap: 20px;
 }
 
+.dialog-window{
+    position: relative;
+    border: variables.$border-color .5px solid;
+    border-radius: variables.$element-border-radius;
+    margin: auto;
+    outline: none;
+}
+
+.dialog-window::backdrop {
+    background-color: variables.$font-color;
+    opacity: .5;
+}

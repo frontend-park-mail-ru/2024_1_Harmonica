@@ -9,6 +9,9 @@ import {FeedView} from '../pages/feed/ui/FeedView.js';
 import {NavbarView} from '../widgets/navbar/ui/navbar.js';
 import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
+import WebSocketService from '../shared/api/WebSocket.js';
+import {SearchView} from '../pages/search/index.js';
+import {ChatView} from '../pages/chat/index.js';
 
 /**
  * Class provides class App, the initial class
@@ -26,10 +29,12 @@ export class App {
         router.register('/signup', new SignupView());
         router.register('/pin/{pin_id}', new PinView());
         router.register('/board/{board_id}', new BoardView());
+        router.register('/search/{search_query}', new SearchView());
+        router.register('/chat', new ChatView());
 
         const api = new API('');
         const response = await api.isAuth();
-        if (response.code !== 0) {
+        if (response.code) {
             try {
                 localStorage.removeItem('user');
             } catch (error) {
@@ -38,6 +43,7 @@ export class App {
         } else {
             try {
                 localStorage.setItem('user', JSON.stringify(response.body));
+                WebSocketService.initialize();
             } catch (error) {
                 Error();
             }
@@ -47,4 +53,3 @@ export class App {
         router.start();
     }
 }
-

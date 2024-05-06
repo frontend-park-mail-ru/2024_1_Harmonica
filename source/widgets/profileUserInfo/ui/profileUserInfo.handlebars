@@ -5,16 +5,24 @@
     <div class="profile-text__nickname">
         {{userInfo.user.nickname}}
     </div>
-    <div class="profile-text__followers">
-        {{userInfo.followers_count}} подписчиков
+    <div class="profile-counts">
+        <div class="profile-text__followers" id="profile-followers">
+            подписчиков <span class="profile-followers-count" id="profile-followers-count">{{userInfo.subscribers_count}}</span>
+        </div>
+        <div class="profile-counts-split">
+            •
+        </div>
+        <div class="profile-text__subscriptions" id="profile-subscriptions">
+            подписки <span class="profile-followers-count" id="profile-followers-count">{{userInfo.subscriptions_count}}</span>
+        </div>
     </div>
     {{#if userInfo.is_owner}}
         <div class="secondary-button button profile-text-button_margin-top" id="profile-edit">
             Изменить профиль
         </div>
     {{else}}
-        <div class="primary-button button profile-text-button_margin-top">
-            Подписаться
+        <div class="profile-text-button_margin-top" id="profile-sub-toggle-button">
+
         </div>
     {{/if}}
 </div>
