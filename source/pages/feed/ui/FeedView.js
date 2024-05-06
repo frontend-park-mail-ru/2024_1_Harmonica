@@ -1,5 +1,5 @@
 import {View} from '../../../app/View.js';
-import FeedViewTemplate from './FeedView.handlebars';
+import feedViewTemplate from './FeedView.handlebars';
 import './FeedView.scss';
 import {API} from '../../../shared/api/API.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
@@ -15,9 +15,9 @@ export class FeedView extends View {
     async render() {
         const navbar = new NavbarView();
         navbar.render();
-        this.root.innerHTML = FeedViewTemplate({});
+        this.root.innerHTML = feedViewTemplate({});
         const api = new API('/pins');
-        const response = await api.GET();
+        const response = await api.get();
         const pins = response.body.pins;
         const feedBlock = new FeedBlockView('feed');
         feedBlock.render(pins, PinFeedView);

@@ -47,7 +47,7 @@ export class LoginView extends View {
             let response = {code: 50};
             try {
                 response = await api.loginRequest(post);
-            } catch (error){
+            } catch (error) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors[response.code]);
                 return;

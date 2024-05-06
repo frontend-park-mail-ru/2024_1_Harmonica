@@ -1,0 +1,56 @@
+@use "../../../shared/styles/variables";
+
+.hint{
+  position: absolute;
+  border: 2px solid;
+  background-color: variables.$background-color;
+  border-radius: variables.$element-border-radius;
+  inset: 10% auto auto calc(100% + 35px);
+  padding: 10px;
+  width: 250px;
+  font-size: variables.$simple-font-size;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hint-item{
+  width: 100%;
+  height: fit-content;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.eye{
+  inset: 37px 10px auto auto;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  z-index: 1;
+}
+
+.eye:hover{
+  cursor: pointer;
+}
+
+.eye::after{
+  content: '';
+  position: absolute;
+  transform: rotate(45deg) scaleX(0);
+  transform-origin: top left;
+  background: variables.$window-color;
+  border-top: 0.1em solid variables.$background-color;
+  z-index: 2;
+  transition: transform 0.1s;
+}
+
+.slash::after{
+  transform: rotate(45deg) scaleX(1);
+}
+
+.eye-image{
+  font-size: 18px;
+  width: 1.4em;
+  height: 1.4em;
+  display: block;
+}

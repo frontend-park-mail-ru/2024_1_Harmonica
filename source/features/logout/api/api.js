@@ -15,6 +15,6 @@ export class LogoutAPI extends API {
      * @return {Promise<any>} - Request result promise.
      */
     async logoutRequest() {
-        return await super.GET();
+        return await super.get();
     }
 }

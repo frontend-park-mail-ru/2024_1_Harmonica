@@ -10,7 +10,6 @@ import {NavbarView} from '../widgets/navbar/ui/navbar.js';
 import {LoginView} from '../pages/login/ui/loginView.js';
 import {SignupView} from '../pages/signup/ui/signupView.js';
 
-
 /**
  * Class provides class App, the initial class
  */
