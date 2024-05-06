@@ -35,7 +35,8 @@
 
   .chat-list{
     position: absolute;
-    height: calc(100vh - 130px);
+    inset: 0;
+    height: 100%;
     width: 100%;
   }
 
