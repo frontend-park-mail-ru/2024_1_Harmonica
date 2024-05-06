@@ -6,9 +6,15 @@
     display: block;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 1024px) {
     .pin-photo__image{
         border-radius: 15px 15px 0 0;
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .pin-photo__image{
         width: 100%;
     }
 }

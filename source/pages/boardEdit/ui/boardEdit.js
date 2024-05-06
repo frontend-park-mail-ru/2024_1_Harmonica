@@ -31,8 +31,9 @@ export class BoardEdit extends View {
         this.root.innerHTML = boardEditTemplate({board});
 
         const backButton = document.querySelector('#board-back-button');
+
+        const boardView = new BoardView();
         backButton.addEventListener('click', (event) => {
-            const boardView = new BoardView();
             boardView.render(board.board_id);
         });
 
@@ -65,7 +66,7 @@ export class BoardEdit extends View {
 
                 const newBoard = response.body.board;
 
-                history.pushState(null, null, '/board/' + newBoard.board_id);
+                boardView.render(newBoard.board_id);
             }
         });
     }
