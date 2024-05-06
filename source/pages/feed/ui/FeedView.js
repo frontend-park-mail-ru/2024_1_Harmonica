@@ -1,10 +1,10 @@
 import {View} from '../../../app/View.js';
-import FeedViewTemplate from './FeedView.handlebars';
+import feedViewTemplate from './FeedView.handlebars';
 import './FeedView.scss';
 import {API} from '../../../shared/api/API.js';
-import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
-import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
+import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
+import {FeedWindowView} from '../../../widgets/feedWindow/ui/feedWindow.js';
 
 export class FeedView extends View {
     constructor(...args) {
@@ -12,15 +12,50 @@ export class FeedView extends View {
         this.root = document.querySelector('#root');
     }
 
+    async renderHomeFeed() {
+        const api = new API('/pins');
+        const response = await api.get();
+
+        const pins = response.body.pins;
+        const feed = new FeedWindowView('feed-block');
+        feed.render(pins);
+    }
+
+    async renderSubsFeed() {
+        const api = new API('/pins?type=subscriptions');
+        const response = await api.get();
+
+        const pins = response.body.pins;
+        const feed = new FeedWindowView('feed-block');
+        feed.render(pins);
+    }
+
     async render() {
         const navbar = new NavbarView();
         navbar.render();
-        this.root.innerHTML = FeedViewTemplate({});
-        const api = new API('/pins');
-        const response = await api.GET();
-        const pins = response.body.pins;
-        console.log(response.body.pins);
-        const feedBlock = new FeedBlockView('feed');
-        feedBlock.render(pins, PinFeedView);
+
+        const user = localStorageGetValue('user');
+        this.root.innerHTML = feedViewTemplate({user});
+
+        await this.renderHomeFeed();
+
+        if (user) {
+            const homeButton = document.querySelector('#feed-home-button');
+            const subsButton = document.querySelector('#feed-subs-button');
+
+            homeButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                await this.renderHomeFeed();
+                homeButton.classList.replace('secondary-button', 'primary-button');
+                subsButton.classList.replace('primary-button', 'secondary-button');
+            });
+
+            subsButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                await this.renderSubsFeed();
+                subsButton.classList.replace('secondary-button', 'primary-button');
+                homeButton.classList.replace('primary-button', 'secondary-button');
+            });
+        }
     }
 }

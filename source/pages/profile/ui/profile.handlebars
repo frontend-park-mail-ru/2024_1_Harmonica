@@ -4,23 +4,25 @@
     </div>
     <div class="profile-switcher" id="content-switch">
         <div class="switch-bundle">
-            <div class="button-active button_focus-font-size button" id="profile-content-pins">
+            <div class="primary-button button_focus-font-size button" id="profile-content-pins">
                 Созданные
             </div>
-            <div class="button-passive button" id="profile-content-boards">
+            <div class="secondary-button button" id="profile-content-boards">
                 Доски
             </div>
         </div>
         {{#if user.is_owner}}
             <div class="add-block">
-                <div class="button button_secondary-color" id="profile-pin-add">
-                    Добавить пин
+                <div class="profile-pop-menu profile-pop-menu__closed" id="profile-pop-menu">
+                    <div class="button secondary-button profile-add-button" id="profile-pin-add">
+                        Добавить пин
+                    </div>
+                    <div class="button secondary-button profile-add-button" id="profile-board-add">
+                        Добавить доску
+                    </div>
                 </div>
-                <div class="button button_secondary-color" id="profile-board-add">
-                    Добавить доску
-                </div>
-                <div class="button-add">
-                    <img src="/static/plus.svg" alt="">
+                <div class="button-add button-add__closed button-icon" id="profile-pop-menu__button">
+                    <img class="profile-image__full-size" src="/static/plus.svg" alt="">
                 </div>
             </div>
         {{/if}}

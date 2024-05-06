@@ -4,11 +4,11 @@ import {View} from '../../../app/View.js';
 import {PinDescription} from '../../../widgets/pinDescription/ui/pinDescription.js';
 import {PinPhotoManage} from '../../../features/pinPhotoManage/ui/pinPhotoManage.js';
 import {PinAPI} from '../api/api.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {errors} from '../../../shared/config.js';
-import {Error} from '../../error/error.js';
-import {boardValidation, pinValidation} from '../../../shared/utils/validation.js';
+import {Error} from '../../error/ui/error.js';
+import {pinValidation} from '../../../shared/utils/validation.js';
+import {Profile} from '../../profile/ui/profile.js';
 
 /**
  * Handle pin page
@@ -64,7 +64,7 @@ export class PinView extends View {
         backButton.addEventListener('click', async (event) => {
             event.preventDefault();
             const user = JSON.parse(localStorage.getItem('user'));
-            window.location.pathname = '/profile/' + user.nickname;
+            history.pushState(null, null, '/profile/' + user.nickname);
         });
 
         const createSubmit = this.root.querySelector('#pin-form-save');
@@ -76,7 +76,7 @@ export class PinView extends View {
             if (pinValidation(title, description)) {
                 const pinObj = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
 
                 const api = new PinAPI(pin.pin_id);
@@ -88,7 +88,7 @@ export class PinView extends View {
                     return;
                 }
 
-                window.location.pathname = '/pin/' + pin.pin_id;
+                history.pushState(null, null, '/pin/' + pin.pin_id);
             }
         });
     }
@@ -108,7 +108,8 @@ export class PinView extends View {
         profileButton.addEventListener('click', async (event) => {
             event.preventDefault();
             const user = JSON.parse(localStorage.getItem('user'));
-            window.location.pathname = '/profile/' + user.nickname;
+            const profile = new Profile();
+            profile.render(user.nickname);
         });
 
         const createSubmit = this.root.querySelector('#pin-form-save');
@@ -120,7 +121,7 @@ export class PinView extends View {
             if (pinValidation(title, description)) {
                 const pin = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
 
                 const uploadInput = document.querySelector('#pin-photo-input');
@@ -141,7 +142,7 @@ export class PinView extends View {
                         errorWindow.render(errors[response.code]);
                         return;
                     }
-                    window.location.pathname = '/pin/' + response.body.pin_id;
+                    history.pushState(null, null, '/pin/' + response.body.pin_id);
                 }
             }
         });

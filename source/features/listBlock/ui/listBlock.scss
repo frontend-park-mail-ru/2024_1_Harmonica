@@ -1,0 +1,14 @@
+@use "../../../shared/styles/variables";
+
+.list-item{
+  width: fit-content;
+  height: fit-content;
+  border-radius: variables.$input-border-radius;
+  transition: background-color .3s;
+  padding: 10px;
+}
+
+.list-item:hover{
+  cursor: pointer;
+  background-color: color-mix(in srgb, variables.$background-color, variables.$select-secondary-color);
+}

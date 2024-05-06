@@ -1,0 +1,65 @@
+@use "../../../shared/styles/variables";
+
+.feed_item{
+  margin-bottom: 20px;
+  border-radius: variables.$element-border-radius;
+  width: 250px;
+}
+
+.feed_item_error{
+  background-color: variables.$window-color;
+}
+
+.pin{
+  margin: auto;
+  border-radius: variables.$element-border-radius;
+  width: 100%;
+}
+
+.feed-control-buttons{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+}
+
+.feed-button-field{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.feed{
+  height: auto;
+  width: auto;
+  margin: 30px 50px;
+  columns: 250px 5;
+}
+
+
+@media screen and (max-width: 430px) {
+
+  $width: calc(10px + 35vw);
+
+  .feed_item{
+    width: $width;
+  }
+
+  .feed {
+    columns: $width 2;
+    margin: 30px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 431px) {
+  $width: calc(20px + 25vw);
+
+  .feed_item{
+    width: $width;
+  }
+
+  .feed {
+    columns: $width 3;
+    margin: 30px;
+  }
+}

@@ -8,7 +8,7 @@ export class PinFeedItem extends View {
         this.root = document.getElementById('pin-feed');
     }
 
-    render(pin_id) {
-        this.root.innerHTML = pinFeedTemplate({pin_id});
+    render(pinId) {
+        this.root.innerHTML = pinFeedTemplate({pinId});
     }
 }

@@ -6,6 +6,7 @@ import {ERROR_COLOR, errors} from '../../../shared/config.js';
 import {LoginAPI} from '../api/api.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import WebSocketService from '../../../shared/api/WebSocket.js';
 
 export class LoginView extends View {
     constructor(...args) {
@@ -45,17 +46,18 @@ export class LoginView extends View {
             const post = {'email': email, 'password': password};
             const api = new LoginAPI();
             let response = {code: 50};
-            console.log(response, response.code);
             try {
                 response = await api.loginRequest(post);
-            } catch (error){
-                console.log(error);
+            } catch (error) {
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors[response.code]);
+                return;
             }
-            console.log(response, response.code);
             switch (response.code) {
             case 0:
                 try {
                     localStorage.setItem('user', JSON.stringify(response.body));
+                    WebSocketService.initialize();
                 } catch (error) {
                     const errorWindow = new ErrorWindowView();
                     errorWindow.render(errors[60]);
@@ -63,7 +65,7 @@ export class LoginView extends View {
                 }
                 const navbar = new NavbarView();
                 navbar.render();
-                window.location.pathname = '/';
+                history.pushState(null, null, '/');
                 break;
             case 7:
                 this.errorHandle('#login_email', errors[7]);
@@ -80,7 +82,7 @@ export class LoginView extends View {
 
         const signupButton = this.root.querySelector('#login_signup_button');
         signupButton.addEventListener('click', () => {
-            window.location.pathname = '/signup';
+            history.pushState(null, null, '/signup');
         });
     }
 

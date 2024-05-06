@@ -1,3 +1,5 @@
+@use "../../../shared/styles/variables";
+
 .hover-photo-block{
     box-sizing: content-box;
     width: 100%;
@@ -5,7 +7,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: var(--pin-photo-border-radius);
+    border-radius: variables.$pin-photo-border-radius;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,8 +28,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    border-radius: var(--pin-photo-border-radius);
-    background-color: var(--window-color);
+    border-radius: variables.$pin-photo-border-radius;
+    background-color: variables.$window-color;
     opacity: .2;
 }
 
@@ -39,11 +41,23 @@
 .photo_size{
     width: 400px;
     height: 800px;
-    background-color: var(--window-color);
-    border-radius: var(--element-border-radius);
+    background-color: variables.$window-color;
+    border-radius: variables.$element-border-radius
 }
 
 .photo-block_fit-content{
     width: fit-content;
     height: fit-content;
+}
+
+@media screen and (max-width: 1024px){
+    .hover-photo-block__background{
+        background-color: variables.$background-color;
+        opacity: 1;
+    }
+
+    .hover-photo-block{
+        position: relative;
+        height: 75px;
+    }
 }

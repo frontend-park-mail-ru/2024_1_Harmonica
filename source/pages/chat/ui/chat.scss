@@ -1,0 +1,74 @@
+@use "../../../shared/styles/variables";
+
+.chat-window{
+  height: -webkit-calc(100vh - 150px);
+  width: 75vw;
+  display: flex;
+  flex-direction: row;
+  border-radius: variables.$element-border-radius;
+}
+
+.chat-list{
+  border-radius: variables.$element-border-radius 0 0 variables.$element-border-radius;
+  height: auto;
+  width: 300px;
+  border-right: variables.$border-color 1px solid;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.chat-window__input{
+  flex-grow: 1;
+  height: auto;
+  width: auto;
+  display: grid;
+  grid-template-rows: 70px 1fr 90px;
+}
+
+@media screen and (max-width: 430px) {
+  .chat-window {
+    width: 100%;
+    height: -webkit-calc(100vh - 130px);
+    position: relative;
+  }
+
+  .chat-list{
+    position: absolute;
+    inset: 0;
+    height: -webkit-calc(100vh - 130px);
+    width: 100%;
+  }
+
+  .chat-window__input{
+    position: absolute;
+    inset: 0;
+    height: -webkit-calc(100vh - 130px);
+    width: 100%;
+  }
+
+  .window-on-top{
+    z-index: 1;
+    visibility: visible;
+  }
+
+  .window-on-bottom{
+    z-index: -1;
+    visibility: hidden;
+  }
+
+  .window{
+    margin: 0 auto;
+  }
+
+  .root{
+    padding: 0 0 50px 0;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 431px) {
+  .chat-window{
+    height: 87vh;
+    width: 90vw;
+  }
+}

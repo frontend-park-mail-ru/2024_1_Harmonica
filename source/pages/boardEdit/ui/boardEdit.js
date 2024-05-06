@@ -1,12 +1,12 @@
 import boardEditTemplate from './boardEdit.handlebars';
 import './boardEdit.scss';
 import {View} from '../../../app/View.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {BoardEditAPI} from '../api/api.js';
-import {BoardView} from '../../board/ui/boardView.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
-import {ERROR_COLOR, errors, NORMAL_COLOR} from '../../../shared/config.js';
+import {errors, NORMAL_COLOR} from '../../../shared/config.js';
 import {boardValidation} from '../../../shared/utils/validation.js';
+import {Profile} from '../../profile/ui/profile.js';
+import {BoardView} from '../../board/ui/boardView.js';
 
 /**
  * Handle board create and update page
@@ -30,13 +30,11 @@ export class BoardEdit extends View {
     renderUpdateBoard(board) {
         this.root.innerHTML = boardEditTemplate({board});
 
-        console.log(board);
-
         const backButton = document.querySelector('#board-back-button');
-        backButton.addEventListener('click', (event) => {
 
-            const user = JSON.parse(localStorage.getItem('user'));
-            window.location.pathname = '/board/' + board.board_id;
+        const boardView = new BoardView();
+        backButton.addEventListener('click', (event) => {
+            boardView.render(board.board_id);
         });
 
         const boardAPI = new BoardEditAPI(board.board_id);
@@ -53,7 +51,7 @@ export class BoardEdit extends View {
                 const formData = new FormData();
                 const boardInfo = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
                 boardInfo.visibility_type = 'public';
                 formData.append('board', JSON.stringify(boardInfo));
@@ -68,7 +66,7 @@ export class BoardEdit extends View {
 
                 const newBoard = response.body.board;
 
-                window.location.pathname = '/board/' + newBoard.board_id;
+                boardView.render(newBoard.board_id);
             }
         });
     }
@@ -83,7 +81,8 @@ export class BoardEdit extends View {
         const backButton = document.querySelector('#board-back-button');
         backButton.addEventListener('click', (event) => {
             const user = JSON.parse(localStorage.getItem('user'));
-            window.location.pathname = '/profile/' + user.nickname;
+            const profile = new Profile();
+            profile.render(user.nickname);
         });
 
         const boardAPI = new BoardEditAPI(null);
@@ -95,7 +94,7 @@ export class BoardEdit extends View {
             if (boardValidation(title, description)) {
                 const boardInfo = {
                     title: title.value,
-                    description: description.value
+                    description: description.value,
                 };
                 const response = await boardAPI.api(JSON.stringify(boardInfo));
 
@@ -107,7 +106,7 @@ export class BoardEdit extends View {
 
                 const board = response.body;
 
-                window.location.pathname = '/board/' + board.board.board_id;
+                history.pushState(null, null, '/board/' + board.board.board_id);
             }
         });
     }

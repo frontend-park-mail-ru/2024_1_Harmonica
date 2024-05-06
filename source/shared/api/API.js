@@ -20,7 +20,7 @@ export class API {
         this.url = backendAPI + url;
     }
 
-    async GET() {
+    async get() {
         let response;
         try {
             response = await fetch(this.url, {
@@ -50,11 +50,11 @@ export class API {
         }
     }
 
-    async POST(post) {
+    async post(post) {
         let response;
         try {
             const addOptions = {
-                method: 'POST',
+                method: 'post',
                 body: post,
             };
             response = await fetch(this.url, {
@@ -65,10 +65,7 @@ export class API {
             return errCheck(error);
         }
         if (!response.ok) {
-            const body = await response.json();
-            return {
-                code: body.code,
-            };
+            return errCheck(response);
         }
         const body = await response.json();
         return {
@@ -77,11 +74,11 @@ export class API {
         };
     }
 
-    async DELETE() {
+    async delete() {
         let response;
         try {
             const addOptions = {
-                method: 'DELETE',
+                method: 'delete',
             };
             response = await fetch(this.url, {
                 ...fetchRequest,
@@ -115,7 +112,7 @@ export class API {
         let response;
         try {
             const addOptions = {
-                method: 'POST',
+                method: 'post',
                 body: JSON.stringify(post),
             };
             response = await fetch(url, {
@@ -232,8 +229,13 @@ export const errCheck = async (error) => {
         return {
             code: response.code,
         };
+    } else if (response.errors) {
+        return {
+            code: 51,
+            errors: response.errors,
+        };
     }
     return {
         code: 50,
-    }
+    };
 };

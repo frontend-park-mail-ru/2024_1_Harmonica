@@ -2,10 +2,9 @@ import boardViewTemplate from './boardView.handlebars';
 import './boardView.scss';
 import {View} from '../../../app/View.js';
 import {BoardAPI} from '../api/api.js';
-import {Profile} from '../../profile/ui/profile.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {BoardFeedView} from '../../../widgets/boardFeed/ui/boardFeed.js';
-import {Error} from '../../error/error.js';
+import {Error} from '../../error/ui/error.js';
 
 /**
  * Handle board page
@@ -42,13 +41,16 @@ export class BoardView extends View {
 
         if (board.is_owner) {
             const deleteButton = document.querySelector('#board-delete-button');
-            deleteButton.addEventListener('click', (event) => {
+            deleteButton.addEventListener('click', async (event) => {
                 event.preventDefault();
-                boardAPI.apiDELETE();
+                const response = await boardAPI.apiDELETE();
 
-                const profile = new Profile();
+                if (response.code) {
+                    return;
+                }
+
                 const user = JSON.parse(localStorage.getItem('user'));
-                profile.render(user.nickname);
+                history.pushState(null, null, `/profile/${user.nickname}`);
             });
 
             const editButton = document.querySelector('#board-edit-button');

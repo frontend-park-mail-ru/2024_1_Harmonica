@@ -3,7 +3,6 @@ import boardFeedTemplate from './boardFeed.handlebars';
 import './boardFeed.scss';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {BoardPinFeedView} from '../../../entity/boardPin/ui/boardPin.js';
-import {API} from '../../../shared/api/API.js';
 
 export class BoardFeedView extends View {
     constructor(...args) {
@@ -16,7 +15,7 @@ export class BoardFeedView extends View {
 
         if (pins) {
             const feed = new FeedBlockView('board_feed');
-            feed.render(pins, BoardPinFeedView, 'pin_id', board);
+            feed.render(pins, BoardPinFeedView, board);
         }
     }
 }

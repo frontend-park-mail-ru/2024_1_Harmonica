@@ -1,5 +1,3 @@
-/** @module source/modules/debounce */
-
 /**
  * Start debounce by debounceTimeout and function.
  * @function debounce

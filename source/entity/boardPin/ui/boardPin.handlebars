@@ -1,4 +1,6 @@
-<img src="{{ pin.content_url }}" alt="" class="pin" id="pin-{{ pin.pin_id }}">
-{{#if owner}}
-    <button class="btn button-active board-pin__button" id="pin-del-{{pin.pin_id}}">Удалить</button>
-{{/if}}
+<div class="feed-item_100-size">
+    <img src="{{ pin.content_url }}" alt="" class="pin" id="pin-{{ pin.pin_id }}">
+    {{#if owner}}
+        <button class="button primary-button board-pin__button" id="pin-del-{{pin.pin_id}}">Удалить</button>
+    {{/if}}
+</div>

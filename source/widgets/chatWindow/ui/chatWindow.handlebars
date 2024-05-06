@@ -1,0 +1,20 @@
+<div class="chat-info">
+    <div class="chat-back-button secondary-button" id="chat-back-button">
+        <img src="/static/arrow_left.svg" alt="" class="chat-back-button__image">
+    </div>
+    <div class="chat__selected-avatar" id="chat__selected-avatar">
+
+    </div>
+    <div class="chat-content">
+        {{user.nickname}}
+    </div>
+</div>
+<div class="chat-content" id="chat-messages">
+
+</div>
+<div class="chat-input" >
+    <textarea id="chat-input" autocapitalize="on" spellcheck="true" autocomplete="on" class="chat__input-field" placeholder="Написать сообщение" {{#unless user.nickname}}disabled{{/unless}}></textarea>
+    <div class="chat__enter-button" id="chat__enter-button">
+        <img src="/static/send.svg" alt="" class="chat__enter-image">
+    </div>
+</div>

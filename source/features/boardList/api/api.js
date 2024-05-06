@@ -1,11 +1,22 @@
 import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
+/** Like api class */
 export class BoardListAPI {
+    /**
+     * Constructs url.
+     * @param {int} boardID - Id of board.
+     * @param {int} pinID - Id of pin.
+     */
     constructor(boardID, pinID) {
         this.url = backendAPI + '/boards/' + boardID + '/pins/' + pinID;
     }
 
+    /**
+     * Makes post request to add pin to board.
+     * @async
+     * @return {object} - code of request status and body.
+     */
     async api() {
         let response;
         try {

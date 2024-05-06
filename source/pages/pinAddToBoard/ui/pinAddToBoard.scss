@@ -1,3 +1,5 @@
+@use "../../../shared/styles/variables";
+
 .add-to-board__window{
     width: 500px;
     display: flex;
@@ -10,4 +12,23 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.add-to-board-error{
+    color: variables.$error-color;
+    height: 20px;
+}
+
+.add-to-board__controller{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+}
+
+@media screen and (max-width: 430px) {
+    .add-to-board__window{
+        width: 80vw;
+        margin: 0;
+        padding: 5vw;
+    }
 }

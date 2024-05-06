@@ -1,5 +1,20 @@
+@use "../../../shared/styles/variables";
+
 .pin-photo__image{
     width: 400px;
-    border-radius: var(--pin-photo-border-radius);
+    border-radius: variables.$pin-photo-border-radius;
     display: block;
+}
+
+@media screen and (max-width: 1024px) {
+    .pin-photo__image{
+        border-radius: 15px 15px 0 0;
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .pin-photo__image{
+        width: 100%;
+    }
 }

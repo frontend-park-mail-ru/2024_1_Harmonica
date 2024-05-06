@@ -1,0 +1,93 @@
+@use "../../../shared/styles/variables";
+
+.chat-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding: 5px 20px;
+  align-items: center;
+  gap: 10px;
+  border-bottom: variables.$border-color 1px solid;
+}
+
+.chat__selected-avatar{
+  display: block;
+  height: 60px;
+  width: 60px;
+}
+
+.chat-content{
+  font-size: 24px;
+  align-content: center;
+}
+
+.chat-input{
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  padding: 10px 20px;
+  align-items: center;
+  gap: 5px;
+}
+
+.chat__enter-button{
+  width: 40px;
+  height: 40px;
+}
+
+.chat__input-field{
+  border-radius: variables.$input-border-radius;
+  padding: 10px;
+  font-size: 16px;
+  border: variables.$border-color 1px solid;
+  resize: none;
+  background-color: variables.$background-color;
+}
+
+.chat__input-field:disabled{
+  background-color: color-mix(in srgb, variables.$background-color, variables.$select-secondary-color);
+}
+
+.chat__enter-image{
+  width: 100%;
+  height: 100%;
+}
+
+.chat__enter-button:hover{
+  cursor: pointer;
+}
+
+.chat__enter-image{
+
+}
+
+.chat-content{
+  overflow-y: scroll;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+}
+
+.chat-back-button{
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 430px) {
+  .chat-back-button{
+    visibility: visible;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .chat-back-button__image{
+    width: 100%;
+    height: 100%;
+  }
+
+  .chat-info{
+    gap: 20px;
+  }
+}

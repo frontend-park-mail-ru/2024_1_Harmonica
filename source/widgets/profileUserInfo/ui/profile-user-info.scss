@@ -16,19 +16,6 @@
     font-size: 40px;
 }
 
-.profile-text__followers{
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.edit-button{
-    background-color: var(--secondary-button-color);
-}
-
-.subscribe-button{
-    background-color: var(--primary-button-color);
-}
-
 .profile-text-button_margin-top{
     margin-top: auto;
 }
@@ -40,4 +27,33 @@
 .profile-user-info__avatar{
     width: 150px;
     height: 150px;
+}
+
+.profile-text__followers:hover {
+    cursor: pointer;
+}
+
+.profile-counts{
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.profile-text__subscriptions:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 430px) {
+    .profile-info{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .profile-text{
+        justify-content: center;
+        align-items: center;
+    }
 }

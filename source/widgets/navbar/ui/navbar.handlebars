@@ -1,18 +1,25 @@
 <nav class="navbar">
     <div class="navbar_row">
         <div class="navbar_left-block">
-            <a href="/" class="logo" id="navbar_logo">
-                Harmonium
-            </a>
-            <input type="text" placeholder="Поиск" class="search">
+            <div class="logo" id="navbar_logo">
+                <picture class=navbar-logo-picture>
+                    <source media="(min-width: 1024px)" srcset="/static/logo.png" class="logo-image">
+                    <img src="/static/icon.png" alt="" class="logo-image">
+                </picture>
+            </div>
+            <div class="search-input-field">
+                <input type="text" placeholder="Поиск" class="search" id="search-input">
+                <img src="/static/loupe.svg" alt="" class="search__button" id="search__button">
+            </div>
         </div>
         <div class="navbar_right-block" id="navbar_login_menu">
             {{#if user}}
-                <button class="button-active btn" id="navbar-user-name">{{ user.nickname }}</button>
-                <button class="button-passive btn" id="navbar_logout_button">Выход</button>
+                <button class="primary-button button_medium button" id="navbar__chat-button">Чат</button>
+                <button class="primary-button button_medium button" id="navbar-user-name">{{ user.nickname }}</button>
+                <button class="secondary-button button_medium button" id="navbar_logout_button">Выход</button>
             {{else}}
-                <button class="button-active btn" id="navbar_login_button">Войти</button>
-                <button class="button-passive btn" id="navbar_signup_button">Регистрация</button>
+                <button class="primary-button button button_medium" id="navbar_login_button">Войти</button>
+                <button class="secondary-button button button_medium" id="navbar_signup_button">Регистрация</button>
             {{/if}}
         </div>
     </div>

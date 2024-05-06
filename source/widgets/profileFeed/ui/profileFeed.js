@@ -1,7 +1,7 @@
 import profileFeedTemplate from './profileFeed.handlebars';
 import './profile-feed.scss';
 import {View} from '../../../app/View.js';
-import {ProfileFeedBoardsView} from '../../profileFeedBoards/ui/profileFeedBoards.js';
+import {FeedBoardsView} from '../../../entity/profileFeedBoards/ui/profileFeedBoards.js';
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 import {API} from '../../../shared/api/API.js';
@@ -27,13 +27,15 @@ export class ProfileFeed extends View {
      */
     async renderFeed(user) {
         const feedAPI = new API('/pins/created/' + user.nickname);
-        const response = await feedAPI.GET();
+        const response = await feedAPI.get();
         const pins = response.body.pins;
 
         this.feed.innerHTML = profileFeedTemplate({pins});
 
-        const feed = new FeedBlockView('profile_feed');
-        feed.render(pins, PinFeedView);
+        if (pins) {
+            const feed = new FeedBlockView('profile_feed');
+            feed.render(pins, PinFeedView);
+        }
     }
 
     /**
@@ -43,12 +45,12 @@ export class ProfileFeed extends View {
      */
     async renderBoards(user) {
         const feedAPI = new API('/boards/created/' + user.nickname);
-        const response = await feedAPI.GET();
+        const response = await feedAPI.get();
         const boards = response.body.boards;
 
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
 
         const feed = new FeedBlockView('profile_feed');
-        feed.render(boards, ProfileFeedBoardsView, 'board_id');
+        feed.render(boards, FeedBoardsView);
     }
 }
