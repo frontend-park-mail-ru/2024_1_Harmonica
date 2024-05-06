@@ -1,6 +1,6 @@
 /** @module source/modules/validation */
 
-import {ERROR_COLOR, NORMAL_COLOR} from '../config.js';
+import {ERROR_COLOR, NORMAL_COLOR, SUCCESS_COLOR} from '../config.js';
 import {ErrorWindowView} from '../../entity/errorWindow/ui/errorWindow.js';
 
 /**
@@ -18,21 +18,44 @@ export const emailValidation = (email) => {
  * Check if password is valid
  * @function passwordValidation
  * @param {string} password - Password to check.
- * @return {boolean} True if password is valid and false otherwise.
+ * @return {{upperCase: boolean, length: boolean, digit: boolean}} True if password is valid
+ * and false otherwise.
  */
 export const passwordValidation = (password) => {
-    return /[A-Z]+/.test(password) && /[0-9]+/.test(password) &&
-      /^[a-zA-Z0-9]{8,24}$/.test(password);
+    const checks = {
+        length: false,
+        digit: false,
+        upperCase: false,
+    };
+    if (/^[a-zA-Z0-9\-_]{8,24}$/.test(password)) {
+        checks.length = true;
+    }
+    if (/[0-9]+/.test(password)) {
+        checks.digit = true;
+    }
+    if (/[A-Z]+/.test(password)) {
+        checks.upperCase = true;
+    }
+    return checks;
 };
 /**
  * Checks if nickname is valid
  * @function nicknameValidation
  * @param {string} nick - Nickname to check.
- * @return {boolean} True if nickname is valid and false otherwise.
+ * @return {{length: boolean, latin: boolean}} True if nickname is valid and false otherwise.
  */
 export const nicknameValidation = (nick) => {
-    const regular = new RegExp('^[0-9a-zA-Z_]{3,20}$');
-    return regular.test(nick);
+    const checks = {
+        length: false,
+        latin: false,
+    };
+    if (/^[0-9a-zA-Z_]{3,20}$/.test(nick)) {
+        checks.length = true;
+    }
+    if (/[0-9a-zA-Z_]+/.test(nick)) {
+        checks.latin = true;
+    }
+    return checks;
 };
 /**
  * Check if passwords are the same
@@ -73,4 +96,74 @@ export const pinValidation = (title, description) => {
         return true;
     }
     return false;
+};
+
+/**
+ * Set error content to block
+ * @function errContentChange
+ * @param {Object} block - Block object to change
+ * @param {string} content - Content to set
+ */
+export const errContentChange = (block, content) => {
+    const errBlock = document.querySelector('#' + block.errContent);
+    if (errBlock.innerHTML !== content) {
+        errBlock.innerHTML = content;
+    }
+};
+
+/**
+ * Sets error-style to block with specified color
+ * @function errCustomize
+ * @param {Object} block - Block object to change
+ * @param {string} color - Color to set
+ */
+export const errCustomize = (block, color) => {
+    const input = document.querySelector('#' + block.inputField);
+
+    input.style.borderColor = color;
+    input.style.outlineColor = color;
+};
+
+const hintCustomize = (block, check, errColor, successColor) => {
+    let noError = true;
+    const hint = document.querySelector('#' + block.hint);
+    for (const key in check) {
+        const item = hint.querySelector('#' + key);
+        if (!check[key]) {
+            item.style.color = errColor;
+            noError = false;
+            continue;
+        }
+        item.style.color = successColor;
+    }
+    if (noError) {
+        hint.style.borderColor = successColor;
+        hint.style.color = successColor;
+    } else {
+        hint.style.borderColor = errColor;
+        hint.style.color = errColor;
+    }
+    return noError;
+};
+
+/**
+ * Function provides validation of input and changes style of blocks if error detected
+ * @function inputValidate
+ * @param {Object} field - Object with: IDs of blocks where to display error/hint,
+ * validation function and message content
+ * @param {*} args - Arguments that needed to be passed in validation function
+ */
+export const inputValidate = (field, ...args) => {
+    const check = field.validationFunc(...args);
+    let errorContains = check;
+    if (check instanceof Object) {
+        errorContains = hintCustomize(field, check, ERROR_COLOR, SUCCESS_COLOR);
+    }
+    if (!errorContains) {
+        errContentChange(field, field.errText);
+        errCustomize(field, ERROR_COLOR);
+        return;
+    }
+    errContentChange(field, '');
+    errCustomize(field, '');
 };

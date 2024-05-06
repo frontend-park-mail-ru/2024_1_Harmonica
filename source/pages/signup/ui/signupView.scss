@@ -1,26 +1,27 @@
 @use "../../../shared/styles/variables";
 
-.hint{
-  position: absolute;
-  white-space: pre-line;
-  border: 2px solid;
-  background-color: variables.$background-color;
-  border-radius: variables.$element-border-radius;
-  left: 320px;
-  padding: 10px;
-  width: 250px;
-  font-size: variables.$simple-font-size;
-  visibility: hidden;
-}
-
 
 /*TODO: Поменять этот блок на input-block*/
 .input-item{
   position: relative;
-  width: auto;
-  flex-direction: column;
-  display: flex;
+  width: 100%;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input_error{
+  color: variables.$error-color;
+  height: 20px;
+}
+
+.window_input-fields{
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 @media screen and (max-width: 900px) {

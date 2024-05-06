@@ -13,7 +13,6 @@ import WebSocketService from '../shared/api/WebSocket.js';
 import {SearchView} from '../pages/search/index.js';
 import {ChatView} from '../pages/chat/index.js';
 
-
 /**
  * Class provides class App, the initial class
  */

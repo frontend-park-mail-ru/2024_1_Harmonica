@@ -17,34 +17,6 @@ export class SignupView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.getElementById('root');
-        this.errFields = {
-            'nickname': {
-                errContent: '#signup_nickname_error',
-                inputField: '#register_nickname',
-                hint: '#nick_hint',
-                validationFunc: nicknameValidation,
-                errText: 'Имя пользователя неверно!',
-            },
-            'email': {
-                errContent: '#signup_email_error',
-                inputField: '#register_email',
-                validationFunc: emailValidation,
-                errText: 'Это не похоже на email!',
-            },
-            'password': {
-                errContent: '#signup_password_error',
-                inputField: '#register_password',
-                hint: '#pass_hint',
-                validationFunc: passwordValidation,
-                errText: 'В поле введен невалидный пароль!',
-            },
-            'repPassword': {
-                errContent: '#signup_repeat_password_error',
-                inputField: '#register_repeat_password',
-                validationFunc: repPasswordValidation,
-                errText: 'Пароли не совпадают',
-            },
-        };
     }
 
 
@@ -116,33 +88,11 @@ export class SignupView extends View {
         signupButton.addEventListener('click', async (event) => {
             event.preventDefault();
 
-            let errorCheck;
-
-            for (const [key, value] of new Map(Object.entries(this.errFields))) {
-                const inputCont = [this.root.querySelector(value.inputField).value];
-                if (key === 'repPassword') {
-                    inputCont.push(this.root.querySelector(
-                        this.errFields.password.inputField).value);
-                }
-                if (!value.validationFunc(...inputCont)) {
-                    this.errContentChange(value, value.errText);
-                    this.errCustomize(value, ERROR_COLOR);
-                    errorCheck = true;
-                } else {
-                    this.errContentChange(value, '');
-                    this.errCustomize(value, '');
-                }
-            }
-
-            if (errorCheck) {
+            if (signupFields.errorCheck()) {
                 return;
             }
 
-            const post = {
-                'email': emailInput.value,
-                'password': passwordInput.value,
-                'nickname': nicknameInput.value,
-            };
+            const post = signupFields.takePostValues();
             const response = await api.registerRequest(post);
             switch (response.code) {
             case 0:
@@ -162,12 +112,10 @@ export class SignupView extends View {
                 for (const err of response.errors) {
                     switch (err.code) {
                     case 9:
-                        this.errContentChange(this.errFields.email, errors[9]);
-                        this.errCustomize(this.errFields.email, ERROR_COLOR);
+                        signupFields.addError('email', errors[9]);
                         break;
                     case 10:
-                        this.errContentChange(this.errFields.nickname, errors[10]);
-                        this.errCustomize(this.errFields.nickname, ERROR_COLOR);
+                        signupFields.addError('nickname', errors[10]);
                         break;
                     default:
                         const errorWindow = new ErrorWindowView();
@@ -188,57 +136,4 @@ export class SignupView extends View {
             history.pushState(null, null, '/login');
         });
     }
-
-    /**
-     * Set error content to block
-     * @function errContentChange
-     * @param {Object} block - Block object to change
-     * @param {string} content - Content to set
-     */
-    errContentChange(block, content) {
-        const errBlock = document.querySelector(block.errContent);
-        if (errBlock.innerHTML !== content) {
-            errBlock.innerHTML = content;
-        }
-    };
-
-    /**
-     * Sets error-style to block with specified color
-     * @function errCustomize
-     * @param {Object} block - Block object to change
-     * @param {string} color - Color to set
-     */
-    errCustomize(block, color) {
-        const input = document.querySelector(block.inputField);
-        const hint = document.querySelector(block.hint);
-
-        input.style.borderColor = color;
-        input.style.outlineColor = color;
-
-        if (hint) {
-            hint.style.borderColor = color;
-            hint.style.color = color;
-        }
-    };
-
-    /**
-     * Function provides validation of input and changes style of blocks if error detected
-     * @function inputValidate
-     * @param {Object} field - Object with: IDs of blocks where to display error/hint,
-     * validation function and message content
-     * @param {*} args - Arguments that needed to be passed in validation function
-     */
-    inputValidate(field, ...args) {
-        const hint = document.querySelector(field.hint);
-        if (!field.validationFunc(...args)) {
-            this.errContentChange(field, field.errText);
-            this.errCustomize(field, ERROR_COLOR);
-            if (hint) {
-                hint.style.visibility = 'visible';
-            }
-        } else {
-            this. errContentChange(field, '');
-            this.errCustomize(field, '');
-        }
-    };
 }

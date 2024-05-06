@@ -65,10 +65,7 @@ export class API {
             return errCheck(error);
         }
         if (!response.ok) {
-            const body = await response.json();
-            return {
-                code: body.code,
-            };
+            return errCheck(response);
         }
         const body = await response.json();
         return {
@@ -231,6 +228,11 @@ export const errCheck = async (error) => {
     if (response.code) {
         return {
             code: response.code,
+        };
+    } else if (response.errors) {
+        return {
+            code: 51,
+            errors: response.errors,
         };
     }
     return {
