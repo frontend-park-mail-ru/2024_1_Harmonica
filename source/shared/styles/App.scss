@@ -38,7 +38,7 @@ main{
     display: flex;
     flex-direction: column;
     vertical-align: bottom;
-    gap: 10px;
+    gap: 20px;
 }
 
 .user-form-window{
@@ -61,4 +61,13 @@ main{
 .dialog-window::backdrop {
     background-color: variables.$font-color;
     opacity: .5;
+}
+
+.link-text{
+    color: variables.$font-link-color;
+}
+
+.link-text:hover{
+    cursor: pointer;
+    color: variables.$font-link-selected-color;
 }
