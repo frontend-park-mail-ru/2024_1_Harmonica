@@ -65,3 +65,10 @@
 .eye__visibility-hidden{
   visibility: hidden;
 }
+
+@media screen and (max-width: 900px) {
+  .hint{
+    inset: 100px auto auto 0;
+    z-index: 2;
+  }
+}

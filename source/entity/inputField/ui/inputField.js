@@ -35,6 +35,11 @@ export class InputField extends View {
             event.preventDefault();
             const value = input.value;
             const check = debounce(inputValidate, debounceTimeout);
+            if (this.field.repeat) {
+                const repeatInput = document.querySelector('#' + this.field.repeat);
+                check(this.field, value, repeatInput.value);
+                return;
+            }
             check(this.field, value);
         });
         if (this.field.type === 'password') {

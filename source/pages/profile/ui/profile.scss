@@ -55,6 +55,20 @@
     transform: unset;
 }
 
+.message-field{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.message__button{
+    width: fit-content;
+    height: fit-content;
+}
+
 @media screen and (max-width: 430px) {
     .profile-switcher{
         margin-top: 50px;

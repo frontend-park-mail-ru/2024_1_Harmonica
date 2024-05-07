@@ -1,5 +1,5 @@
 <label for="{{field.inputField}}">{{field.label}}</label>
-<input type="{{field.type}}" class="input" id="{{field.inputField}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
+<input type="{{field.type}}" class="input" id="{{field.inputField}}" placeholder="{{field.placeholder}}" value="{{field.value}}" {{#if field.disabled}}disabled{{/if}}>
 {{#if isPassword}}
     <div class="eye" id="eye">
         <img src="/static/eye.svg" alt="" class="eye-image" id="eye-open">

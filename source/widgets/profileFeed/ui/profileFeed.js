@@ -5,6 +5,9 @@ import {FeedBoardsView} from '../../../entity/profileFeedBoards/ui/profileFeedBo
 import {FeedBlockView} from '../../../features/feedBlock/ui/feedBlock.js';
 import {PinFeedView} from '../../../entity/pin/ui/pin.js';
 import {API} from '../../../shared/api/API.js';
+import {ButtonView} from '../../../entity/button/ui/button.js';
+import {PinView} from '../../../pages/pin/ui/pinView.js';
+import {BoardEdit} from '../../../pages/boardEdit/ui/boardEdit.js';
 
 /**
  * Class for handle profile feed
@@ -34,8 +37,17 @@ export class ProfileFeed extends View {
 
         if (pins) {
             const feed = new FeedBlockView('profile_feed');
-            feed.render(pins, PinFeedView);
+            await feed.render(pins, PinFeedView);
+            return;
         }
+        const newPinButton = new ButtonView('message__button');
+        newPinButton.render('Создайте первый пин!', ['primary-button'], 'new-pin-button');
+
+        newPinButton.root.addEventListener('click', (event) => {
+            event.preventDefault();
+            const newPin = new PinView();
+            newPin.renderPinCreate();
+        });
     }
 
     /**
@@ -50,7 +62,19 @@ export class ProfileFeed extends View {
 
         this.feed.innerHTML = profileFeedTemplate({pins: boards});
 
-        const feed = new FeedBlockView('profile_feed');
-        feed.render(boards, FeedBoardsView);
+        if (boards) {
+            const feed = new FeedBlockView('profile_feed');
+            await feed.render(boards, FeedBoardsView);
+            return;
+        }
+
+        const newBoardButton = new ButtonView('message__button');
+        newBoardButton.render('Создайте первую доску!', ['primary-button'], 'new-board-button');
+
+        newBoardButton.root.addEventListener('click', (event) => {
+            event.preventDefault();
+            const newBoard = new BoardEdit();
+            newBoard.renderCreateBoard();
+        });
     }
 }
