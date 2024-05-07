@@ -2,7 +2,8 @@
 <input type="{{field.type}}" class="input" id="{{field.inputField}}" placeholder="{{field.placeholder}}" value="{{field.value}}">
 {{#if isPassword}}
     <div class="eye" id="eye">
-        <img src="/static/eye.svg" alt="" class="eye-image">
+        <img src="/static/eye.svg" alt="" class="eye-image" id="eye-open">
+        <img src="/static/eye_closed.svg" alt="" class="eye-image-close eye__visibility-hidden" id="eye-closed">
     </div>
 {{/if}}
 <div class="input_error" id="{{field.errContent}}"></div>
