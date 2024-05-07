@@ -14,8 +14,8 @@ export class InputField extends View {
 
     render(blockID) {
         this.root.innerHTML = inputFieldTemplate({
-                field: this.field,
-                isPassword: this.field.type === 'password',
+            field: this.field,
+            isPassword: this.field.type === 'password',
         });
         const input = this.root.querySelector('#' + this.field.inputField);
         if (this.field.hint) {
@@ -48,7 +48,7 @@ export class InputField extends View {
             const eyeOpen = document.querySelector('#eye-open');
             const eyeClosed = document.querySelector('#eye-closed');
             eyeButton.addEventListener('click', () => {
-                if (input.type === 'password'){
+                if (input.type === 'password') {
                     eyeOpen.classList.add('eye__visibility-hidden');
                     eyeClosed.classList.remove('eye__visibility-hidden');
                     input.type = 'text';

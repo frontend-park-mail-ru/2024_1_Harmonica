@@ -1,13 +1,7 @@
 import {View} from '../../../app/View.js';
-import {
-    emailValidation,
-    nicknameValidation,
-    passwordValidation, repPasswordValidation,
-} from '../../../shared/utils/validation.js';
 import signupTemplate from './signupView.handlebars';
 import './signupView.scss';
-import {debounce} from '../../../shared/utils/debounce.js';
-import {debounceTimeout, ERROR_COLOR, errors} from '../../../shared/config.js';
+import {errors} from '../../../shared/config.js';
 import {NavbarView} from '../../../widgets/navbar/ui/navbar.js';
 import {SignupAPI} from '../api/api.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
@@ -70,7 +64,7 @@ export class SignupView extends View {
                 break;
             default:
                 const errorWindow = new ErrorWindowView();
-                errorWindow.render(errors[response.code]);
+                errorWindow.render(errors['oops']);
                 break;
             }
         });
