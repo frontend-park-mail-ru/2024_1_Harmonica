@@ -31,6 +31,7 @@
     &:focus{
         background-color: #ffffff;
         outline: variables.$font-color solid 1px;
+        -moz-outline-radius: variables.$input-border-radius;
     }
 }
 

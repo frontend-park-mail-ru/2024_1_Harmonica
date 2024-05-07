@@ -29,21 +29,21 @@
 @media screen and (max-width: 430px) {
   .chat-window {
     width: 100%;
-    height: -webkit-calc(100vh - 130px);
+    height: -webkit-calc(100dvh - 130px);
     position: relative;
   }
 
   .chat-list{
     position: absolute;
     inset: 0;
-    height: -webkit-calc(100vh - 130px);
+    height: -webkit-calc(100dvh - 130px);
     width: 100%;
   }
 
   .chat-window__input{
     position: absolute;
     inset: 0;
-    height: -webkit-calc(100vh - 130px);
+    height: -webkit-calc(100dvh - 130px);
     width: 100%;
   }
 
