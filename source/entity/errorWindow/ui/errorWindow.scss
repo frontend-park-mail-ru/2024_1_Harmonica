@@ -3,7 +3,7 @@
 .error-window {
     min-width: 400px;
     min-height: 100px;
-    border: variables.$error-color 3px solid;
+    border: variables.$error-color 1px solid;
     border-radius: variables.$element-border-radius;
     background-color: variables.$background-color;
     position: fixed;
