@@ -48,6 +48,6 @@
     opacity: 0.5;
     &:focus{
         background-color: variables.$window-color;
-        outline-color: inherit;
+        outline: none;
     }
 }
