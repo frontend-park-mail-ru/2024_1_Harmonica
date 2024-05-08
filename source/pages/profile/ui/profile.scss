@@ -10,19 +10,18 @@
     width: auto;
     margin-top: 150px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-end;
     padding: 0 50px;
 }
 
 .add-block{
-    width: 40px;
     display: flex;
     flex-direction: column;
     gap: 5px;
     align-items: end;
-    //position: absolute;
-    inset: auto 20px auto auto;
+    position: absolute;
+    inset: auto 50px auto auto;
 }
 
 .profile-popup-button{
@@ -39,6 +38,8 @@
     justify-content: center;
     align-items: center;
     transition: .3s all;
+    position: absolute;
+    inset: auto auto auto 50px;
 }
 
 .profile-image-button__likes{
@@ -96,7 +97,6 @@
 @media screen and (max-width: 430px) {
     .profile-switcher{
         margin-top: 50px;
-        padding: 0 30px;
     }
 
     .profile-pop-menu{
@@ -125,5 +125,13 @@
 
     .profile-popup-button{
         background-color: variables.$primary-button-color;
+    }
+
+    .add-block{
+        inset: auto 30px auto auto;
+    }
+
+    .profile-like-button{
+        inset: auto auto auto 30px;
     }
 }

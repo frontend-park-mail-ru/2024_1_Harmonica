@@ -40,15 +40,17 @@ export class BoardPinFeedView extends View {
             this.onClick(pin.pin_id);
         });
 
-        const delBtn = document.querySelector('#pin-del-' + pin.pin_id);
-        delBtn.addEventListener('click', async (event) => {
-            event.preventDefault();
-            const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
-            const response = await api.delete();
-            if (response.code) {
-                return;
-            }
-            this.root.remove();
-        });
+        if (board.is_owner) {
+            const delBtn = document.querySelector('#pin-del-' + pin.pin_id);
+            delBtn.addEventListener('click', async (event) => {
+                event.preventDefault();
+                const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
+                const response = await api.delete();
+                if (response.code) {
+                    return;
+                }
+                this.root.remove();
+            });
+        }
     }
 }

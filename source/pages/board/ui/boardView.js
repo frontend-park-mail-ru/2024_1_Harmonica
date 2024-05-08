@@ -38,7 +38,7 @@ export class BoardView extends View {
             board = {
                 title: 'Понравившиеся',
                 description: 'Здесь появляются понравившиеся вам пины',
-                is_owner: true,
+                is_owner: false,
             };
             pins = response.body.pins;
         } else {
