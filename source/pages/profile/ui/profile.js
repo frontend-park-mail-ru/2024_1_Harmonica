@@ -11,6 +11,7 @@ import {Error} from '../../error/ui/error.js';
 import {ModalListWindowView} from '../../../widgets/modalListWindow/ui/modalListWindow.js';
 import {API} from '../../../shared/api/API.js';
 import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
+import {BoardView} from '../../board/ui/boardView.js';
 
 /**
  * Handle profile page
@@ -77,6 +78,14 @@ export class Profile extends View {
         });
 
         if (user.is_owner) {
+            const buttonLikes = document.querySelector('#profile-like-button');
+            buttonLikes.addEventListener('click', async (event) => {
+                event.preventDefault();
+                history.pushState(null, null, '/board/0');
+                // const boardView = new BoardView();
+                // await boardView.render(0);
+            });
+
             const pinAdd = document.querySelector('#profile-pin-add');
             pinAdd.addEventListener('click', (event) => {
                 event.preventDefault();

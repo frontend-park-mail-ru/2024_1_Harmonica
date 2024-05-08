@@ -1,7 +1,7 @@
 @use "../../../shared/styles/variables";
 
 .chat-window{
-  height: -webkit-calc(100vh - 150px);
+  height: -webkit-calc(100dvh - 150px);
   width: 75vw;
   display: flex;
   flex-direction: row;
@@ -68,7 +68,7 @@
 
 @media screen and (max-width: 1024px) and (min-width: 431px) {
   .chat-window{
-    height: 87vh;
+    height: 87dvh;
     width: 90vw;
   }
 }

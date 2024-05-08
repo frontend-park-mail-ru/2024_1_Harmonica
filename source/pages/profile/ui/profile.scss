@@ -10,25 +10,48 @@
     width: auto;
     margin-top: 150px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-end;
+    padding: 0 50px;
 }
 
 .add-block{
+    width: 40px;
     display: flex;
     flex-direction: column;
     gap: 5px;
     align-items: end;
-    position: absolute;
+    //position: absolute;
     inset: auto 20px auto auto;
+}
+
+.profile-popup-button{
+    width: auto;
+    display: inline-block;
+    text-wrap: nowrap;
+}
+
+.profile-like-button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s all;
+}
+
+.profile-image-button__likes{
+    width: 85%;
+    height: 85%;
 }
 
 .button-add{
     transform: rotate(45deg);
     transition: all .3s;
     justify-self: end;
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
@@ -43,6 +66,7 @@
     flex-direction: column;
     gap: 5px;
     align-items: end;
+    width: fit-content;
 }
 
 .profile-pop-menu__closed{
@@ -72,6 +96,7 @@
 @media screen and (max-width: 430px) {
     .profile-switcher{
         margin-top: 50px;
+        padding: 0 30px;
     }
 
     .profile-pop-menu{
@@ -98,7 +123,7 @@
         transform: translateY(60px);
     }
 
-    .profile-add-button{
+    .profile-popup-button{
         background-color: variables.$primary-button-color;
     }
 }
