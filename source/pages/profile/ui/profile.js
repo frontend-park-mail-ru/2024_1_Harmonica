@@ -11,7 +11,6 @@ import {Error} from '../../error/ui/error.js';
 import {ModalListWindowView} from '../../../widgets/modalListWindow/ui/modalListWindow.js';
 import {API} from '../../../shared/api/API.js';
 import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
-import {BoardView} from '../../board/ui/boardView.js';
 
 /**
  * Handle profile page

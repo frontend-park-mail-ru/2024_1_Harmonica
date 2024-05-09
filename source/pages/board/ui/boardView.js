@@ -32,7 +32,7 @@ export class BoardView extends View {
         if (boardID <= 0) {
             const api = new API('/favorites');
             const response = await api.get();
-            if(response.code){
+            if (response.code) {
                 return;
             }
             board = {

@@ -21,7 +21,7 @@ export class ErrorWindowView extends View {
     * @param {string} message - Error message entity.
     */
     render(message) {
-        if (!message){
+        if (!message) {
             message = errors['oops'];
         }
         this.root.innerHTML = errorViewTemplate({message});
