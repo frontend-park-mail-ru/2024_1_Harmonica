@@ -36,6 +36,9 @@ export class ChatView extends View {
             const chatElem = document.querySelector(`#chat-${chat.user_id}`);
             chatElem.addEventListener('click', async (event) => {
                 event.preventDefault();
+                if (this.currentChat){
+                    this.currentChat['inputValue'] = document.querySelector('#chat-input').value;
+                }
                 if (!this.currentChat || this.currentChat.user_id !== chat.user_id) {
                     await window.render(chat);
                     this.currentChat = chat;
