@@ -100,6 +100,8 @@ export class Router {
             this.currentPage = errorView;
             errorView.render();
         }
+        const ev = new Event('pageMovement');
+        dispatchEvent(ev);
     }
 
     /**

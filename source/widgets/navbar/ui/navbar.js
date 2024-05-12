@@ -72,5 +72,10 @@ export class NavbarView extends View {
                 history.pushState(null, null, '/signup');
             });
         }
+
+        addEventListener('pageMovement', (event) => {
+            event.preventDefault();
+            searchInput.value = '';
+        });
     }
 }
