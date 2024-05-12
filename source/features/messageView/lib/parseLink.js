@@ -4,7 +4,7 @@ export const parseMessageOnLink = (message) => {
     if (typeof message !== 'string') {
         return;
     }
-    var result = {
+    const result = {
         value: '',
         pin_id: undefined,
     };
@@ -14,6 +14,6 @@ export const parseMessageOnLink = (message) => {
         return result;
     }
     result.pin_id = parseInt(message.match(regex)[0].replace(/[^0-9]/g, ''), 10);
-    result.value = message.replace(regex, '').trim();
+    result.value = message.replace(regex, ' ').trim();
     return result;
 }
