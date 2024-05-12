@@ -1,7 +1,7 @@
 /** @module source/modules/config */
 
 /** The link to backend server. */
-export const frontendURL = 'https://harmoniums.ru'
+export const frontendURL = 'https://harmoniums.ru';
 export const backendAPI = 'https://harmoniums.ru/api/v1'; // PROD
 // export const backendAPI = 'http://localhost/api/v1'; // LOCAL
 
