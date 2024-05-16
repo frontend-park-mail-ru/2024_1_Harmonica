@@ -53,7 +53,7 @@ export class ChatWindow extends View {
 
                     if (response.code) {
                         const errorWindow = new ErrorWindowView();
-                        errorWindow.render('Возникла ошибка при отрпавке сообщения! ' +
+                        errorWindow.render('Возникла ошибка при отправке сообщения! ' +
                             'Повторите позже.');
                         return;
                     }
