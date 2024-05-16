@@ -13,10 +13,10 @@ export class ModalListWindowView extends View {
         this.root.innerHTML = modalListWindowTemplate({});
 
         this.root.addEventListener('mousedown', (event) => {
-            if (event.target === this.root){
+            if (event.target === this.root) {
                 this.root.close();
             }
-        })
+        });
 
         const list = new ListBlockView('modal-list');
         list.render(objects, RenderEntity);

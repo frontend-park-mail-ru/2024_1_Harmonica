@@ -28,11 +28,11 @@ export class ErrorWindowView extends View {
 
         const errorTimeLine = this.root.querySelector('#time-line');
 
-        errorTimeLine.classList.add("active");
+        errorTimeLine.classList.add('active');
 
         const time1 = setTimeout(() => {
             this.root.innerHTML = null;
-            errorTimeLine.classList.remove("active");
+            errorTimeLine.classList.remove('active');
         }, 5000);
 
         const cancelButton = document.querySelector('#error-cancel');
@@ -41,6 +41,5 @@ export class ErrorWindowView extends View {
             this.root.innerHTML = null;
             clearTimeout(time1);
         }, {once: true});
-
     }
 }
