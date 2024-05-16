@@ -88,7 +88,9 @@ export class PinView extends View {
                     return;
                 }
 
-                history.pushState(null, null, '/pin/' + pin.pin_id);
+                //TODO добавить сслыку на изменение
+                const newPin = new PinView();
+                newPin.render(pin.pin_id);
             }
         });
     }
