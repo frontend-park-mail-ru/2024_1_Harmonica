@@ -5,13 +5,14 @@ import {View} from '../../../app/View.js';
 /** Board list window view */
 export class BoardListView extends View {
     /**
-    * Default view constructor.
-    * @constructor
-    * @param {...any} args - args for constructor of view.
-    */
-    constructor(...args) {
+     * Default view constructor.
+     * @constructor
+     * @param elemID - element ID
+     * @param {...any} args - args for constructor of view.
+     */
+    constructor(elemID, ...args) {
         super(...args);
-        this.root = document.querySelector('#boards-list');
+        this.root = document.querySelector('#' + elemID);
     }
 
     /**
@@ -20,8 +21,6 @@ export class BoardListView extends View {
     * @param {object} pin - Pin entity.
     */
     render(boards) {
-        if (boards) {
-            this.root.innerHTML = boardListTemplate({boards});
-        }
+        this.root.innerHTML = boardListTemplate({boards, boardsNotEmpty: boards?.length > 0});
     }
 }

@@ -21,29 +21,31 @@ export class PinAddToBoardView extends View {
 
         const boards = response.body.boards;
 
-        const boardList = new BoardListView();
-        boardList.render(boards, pin);
+        const boardList = new BoardListView('boards-list');
+        boardList.render(boards);
 
-        for (const board of boards) {
-            const boardElem = document.querySelector('#board-' + board.board_id.toString());
-            boardElem.addEventListener('click', async (event) => {
-                event.preventDefault();
+        if (boards) {
+            for (const board of boards) {
+                const boardElem = document.querySelector('#board-' + board.board_id.toString());
+                boardElem.addEventListener('click', async (event) => {
+                    event.preventDefault();
 
-                const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
-                const response = await api.post({});
+                    const api = new API('/boards/' + board.board_id + '/pins/' + pin.pin_id);
+                    const response = await api.post({});
 
-                if (response.code) {
-                    const errorField = document.querySelector('#add-to-board-error');
-                    errorField.innerHTML = errors[response.code];
-                    return;
-                }
+                    if (response.code) {
+                        const errorField = document.querySelector('#add-to-board-error');
+                        errorField.innerHTML = errors[response.code];
+                        return;
+                    }
 
-                const modal = document.querySelector('#dialog-window');
-                modal.close();
+                    const modal = document.querySelector('#dialog-window');
+                    modal.close();
 
-                const boardView = new BoardView();
-                await boardView.render(board.board_id);
-            });
+                    const boardView = new BoardView();
+                    await boardView.render(board.board_id);
+                });
+            }
         }
 
         const backButton = document.querySelector('#pin-to-board-back');

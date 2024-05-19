@@ -55,7 +55,7 @@ export class PinView extends View {
             boardAdd.addEventListener('click', async (event) => {
                 event.preventDefault();
                 const addPin = new ModalListWindowView();
-                addPin.render(PinAddToBoardView, pin);
+                await addPin.render(PinAddToBoardView, pin);
             });
         }
     }
