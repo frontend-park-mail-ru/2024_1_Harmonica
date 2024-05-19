@@ -61,6 +61,7 @@ export class BoardView extends View {
             const deleteButton = document.querySelector('#board-delete-button');
             deleteButton.addEventListener('click', async (event) => {
                 event.preventDefault();
+                const boardAPI = new BoardAPI(boardID);
                 const response = await boardAPI.apiDELETE();
 
                 if (response.code) {
