@@ -9,7 +9,7 @@ export class ModalListWindowView extends View {
         this.root = document.querySelector('#dialog-window');
     }
 
-    render(objects, RenderEntity) {
+    render(objects, RenderEntity, blockView) {
         this.root.innerHTML = modalListWindowTemplate({});
 
         this.root.addEventListener('mousedown', (event) => {
