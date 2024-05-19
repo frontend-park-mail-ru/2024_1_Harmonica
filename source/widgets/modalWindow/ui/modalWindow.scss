@@ -1,10 +1,10 @@
 @use "../../../shared/styles/variables";
 
 .modal-window{
-  padding: 25px 10px 0 10px;
+  padding: 25px 10px;
   width: fit-content;
   height: fit-content;
-  min-height: 500px;
+  min-height: 200px;
 }
 
 .modal-close{
@@ -12,7 +12,7 @@
   width: 35px;
   height: 35px;
   position: absolute;
-  inset: 5px 5px auto auto;
+  inset: 7px 7px auto auto;
 }
 
 .modal-close-image{

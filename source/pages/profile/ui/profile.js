@@ -8,9 +8,10 @@ import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
 import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {Error} from '../../error/ui/error.js';
-import {ModalListWindowView} from '../../../widgets/modalListWindow/ui/modalListWindow.js';
+import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
 import {API} from '../../../shared/api/API.js';
 import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
+import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
 
 /**
  * Handle profile page
@@ -59,7 +60,7 @@ export class Profile extends View {
             if (!subscribers) {
                 return;
             }
-            modal.render(subscribers, UserListItemView);
+            modal.render(ListBlockView, subscribers, UserListItemView);
         });
 
         const subs = document.querySelector('#profile-subscriptions');
@@ -73,7 +74,7 @@ export class Profile extends View {
             if (!subscriptions) {
                 return;
             }
-            modal.render(subscriptions, UserListItemView);
+            modal.render(ListBlockView, subscriptions, UserListItemView);
         });
 
         if (user.is_owner) {

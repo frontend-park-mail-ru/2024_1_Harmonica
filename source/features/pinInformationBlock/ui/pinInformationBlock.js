@@ -2,7 +2,6 @@ import pinInfoBlockTemplate from './pinInformationBlock.handlebars';
 import './pinInformationBlock.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
-import {PinAddToBoardView} from '../../../pages/pinAddToBoard/ui/pinAddToBoard.js';
 
 /**
  * Handle information in pins page
@@ -35,16 +34,5 @@ export class PinInformationBlock extends View {
             history.pushState(null, null, '/profile/' + pin.author.nickname);
         },
         );
-
-        if (user) {
-            const boardAdd = document.querySelector('#pin-board-add');
-            boardAdd.addEventListener('click', async (event) => {
-                event.preventDefault();
-                const addPin = new PinAddToBoardView();
-                await addPin.render(pin);
-                const modal = document.querySelector('#dialog-window');
-                modal.showModal();
-            });
-        }
     }
 }

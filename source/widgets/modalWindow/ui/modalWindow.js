@@ -1,7 +1,6 @@
 import {View} from '../../../app/View.js';
-import modalListWindowTemplate from './modalListWindow.handlebars';
-import './modalListWindow.scss';
-import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
+import modalListWindowTemplate from './modalWindow.handlebars';
+import './modalWindow.scss';
 
 export class ModalListWindowView extends View {
     constructor(...args) {
@@ -9,7 +8,7 @@ export class ModalListWindowView extends View {
         this.root = document.querySelector('#dialog-window');
     }
 
-    render(objects, RenderEntity, blockView) {
+    render(blockView, ...args) {
         this.root.innerHTML = modalListWindowTemplate({});
 
         this.root.addEventListener('mousedown', (event) => {
@@ -18,8 +17,8 @@ export class ModalListWindowView extends View {
             }
         });
 
-        const list = new ListBlockView('modal-list');
-        list.render(objects, RenderEntity);
+        const list = new blockView('modal-list');
+        list.render(...args);
         this.root.showModal();
 
         const close = document.querySelector('#modal-close');
