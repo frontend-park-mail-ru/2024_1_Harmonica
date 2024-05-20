@@ -4,9 +4,11 @@
             <div class="message">
                 Здесь ничего нет
             </div>
+            {{#if isOwner}}
             <div class="message__button" id="message__button">
 
             </div>
+            {{/if}}
         </div>
     {{else}}
         <div class="feed" id="profile_feed">

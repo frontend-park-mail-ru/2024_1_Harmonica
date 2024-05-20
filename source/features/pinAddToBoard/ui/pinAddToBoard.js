@@ -42,8 +42,9 @@ export class PinAddToBoardView extends View {
                     const modal = document.querySelector('#dialog-window');
                     modal.close();
 
-                    const boardView = new BoardView();
-                    await boardView.render(board.board_id);
+                    history.pushState(null, null, '/board/' + board.board_id)
+                    // const boardView = new BoardView();
+                    // await boardView.render(board.board_id);
                 });
             }
         }

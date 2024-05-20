@@ -8,6 +8,7 @@ import {API} from '../../../shared/api/API.js';
 import {ButtonView} from '../../../entity/button/ui/button.js';
 import {PinView} from '../../../pages/pin/ui/pinView.js';
 import {BoardEdit} from '../../../pages/boardEdit/ui/boardEdit.js';
+import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
 
 /**
  * Class for handle profile feed
@@ -26,14 +27,18 @@ export class ProfileFeed extends View {
     /**
      * Render profile feed widget
      * @function renderFeed
-     * @param {Array} user – user info
+     * @param {Array} userObject – user info
      */
-    async renderFeed(user) {
+    async renderFeed(userObject) {
+        const user = userObject.user;
+
         const feedAPI = new API('/pins/created/' + user.nickname);
         const response = await feedAPI.get();
         const pins = response.body.pins;
 
-        this.feed.innerHTML = profileFeedTemplate({pins});
+        const isOwner = userObject.is_owner;
+
+        this.feed.innerHTML = profileFeedTemplate({pins, isOwner});
 
         if (pins) {
             const feed = new FeedBlockView('profile_feed');
@@ -43,24 +48,30 @@ export class ProfileFeed extends View {
         const newPinButton = new ButtonView('message__button');
         newPinButton.render('Создайте первый пин!', ['primary-button'], 'new-pin-button');
 
-        newPinButton.root.addEventListener('click', (event) => {
-            event.preventDefault();
-            const newPin = new PinView();
-            newPin.renderPinCreate();
-        });
+        if (isOwner) {
+            newPinButton.root.addEventListener('click', (event) => {
+                event.preventDefault();
+                const newPin = new PinView();
+                newPin.renderPinCreate();
+            });
+        }
     }
 
     /**
      * Function to render boards feed
-     * @param {json} user – info about user
+     * @param {json} userObject – info about user
      * @return {Promise<void>}
      */
-    async renderBoards(user) {
+    async renderBoards(userObject) {
+        const user = userObject.user;
+
         const feedAPI = new API('/boards/created/' + user.nickname);
         const response = await feedAPI.get();
         const boards = response.body.boards;
 
-        this.feed.innerHTML = profileFeedTemplate({pins: boards});
+        const isOwner = userObject.is_owner;
+
+        this.feed.innerHTML = profileFeedTemplate({pins: boards, isOwner});
 
         if (boards) {
             const feed = new FeedBlockView('profile_feed');
@@ -68,13 +79,15 @@ export class ProfileFeed extends View {
             return;
         }
 
-        const newBoardButton = new ButtonView('message__button');
-        newBoardButton.render('Создайте первую доску!', ['primary-button'], 'new-board-button');
+        if (isOwner) {
+            const newBoardButton = new ButtonView('message__button');
+            newBoardButton.render('Создайте первую доску!', ['primary-button'], 'new-board-button');
 
-        newBoardButton.root.addEventListener('click', (event) => {
-            event.preventDefault();
-            const newBoard = new BoardEdit();
-            newBoard.renderCreateBoard();
-        });
+            newBoardButton.root.addEventListener('click', (event) => {
+                event.preventDefault();
+                const newBoard = new BoardEdit();
+                newBoard.renderCreateBoard();
+            });
+        }
     }
 }
