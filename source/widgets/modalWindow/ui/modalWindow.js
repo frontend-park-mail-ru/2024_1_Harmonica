@@ -8,7 +8,7 @@ export class ModalListWindowView extends View {
         this.root = document.querySelector('#dialog-window');
     }
 
-    async render(blockView, ...args) {
+    async render(BlockView, ...args) {
         this.root.innerHTML = modalListWindowTemplate({});
 
         this.root.addEventListener('mousedown', (event) => {
@@ -17,7 +17,7 @@ export class ModalListWindowView extends View {
             }
         });
 
-        const list = new blockView('modal-list');
+        const list = new BlockView('modal-list');
         await list.render(...args);
         this.root.showModal();
 

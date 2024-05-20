@@ -7,7 +7,7 @@ export class BoardListView extends View {
     /**
      * Default view constructor.
      * @constructor
-     * @param elemID - element ID
+     * @param {string} elemID - element ID
      * @param {...any} args - args for constructor of view.
      */
     constructor(elemID, ...args) {

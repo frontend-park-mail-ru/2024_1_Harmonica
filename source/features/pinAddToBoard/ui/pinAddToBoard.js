@@ -4,7 +4,6 @@ import './pinAddToBoard.scss';
 import {BoardListView} from '../../../entity/boardList/index.js';
 import {PinAddToBoardAPI} from '../api/api.js';
 import {errors} from '../../../shared/config.js';
-import {BoardView} from '../../../pages/board/ui/boardView.js';
 import {API} from '../../../shared/api/API.js';
 
 export class PinAddToBoardView extends View {
@@ -42,7 +41,7 @@ export class PinAddToBoardView extends View {
                     const modal = document.querySelector('#dialog-window');
                     modal.close();
 
-                    history.pushState(null, null, '/board/' + board.board_id)
+                    history.pushState(null, null, '/board/' + board.board_id);
                     // const boardView = new BoardView();
                     // await boardView.render(board.board_id);
                 });

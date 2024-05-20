@@ -8,7 +8,6 @@ import {API} from '../../../shared/api/API.js';
 import {ButtonView} from '../../../entity/button/ui/button.js';
 import {PinView} from '../../../pages/pin/ui/pinView.js';
 import {BoardEdit} from '../../../pages/boardEdit/ui/boardEdit.js';
-import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
 
 /**
  * Class for handle profile feed
