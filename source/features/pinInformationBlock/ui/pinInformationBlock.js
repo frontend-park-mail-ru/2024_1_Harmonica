@@ -28,8 +28,8 @@ export class PinInformationBlock extends View {
         const avatar = new Avatar();
         avatar.render(pin.author.avatar_url);
 
-        const avatarObj = document.querySelector('#avatar');
-        avatarObj.addEventListener('click', async (event) => {
+        const userObj = document.querySelector('#pin__user-info');
+        userObj.addEventListener('click', async (event) => {
             event.preventDefault();
             history.pushState(null, null, '/profile/' + pin.author.nickname);
         },

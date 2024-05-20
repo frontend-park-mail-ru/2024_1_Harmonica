@@ -1,7 +1,24 @@
-.pin__user-info{
+@use "../../../shared/styles/variables";
+
+.pin-user-info-block{
     display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.pin__user-info{
+    width: fit-content;
+    display: flex;
+    padding: 3px 10px;
     gap: 10px;
     align-items: center;
+    transition: background-color .3s;
+    border-radius: variables.$input-border-radius;
+}
+
+.pin__user-info:hover{
+    background-color: color-mix(in srgb, variables.$background-color, variables.$secondary-button-color);
+    cursor: pointer;
 }
 
 .pin__user-avatar{

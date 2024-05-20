@@ -4,12 +4,14 @@
 <div class="description justify_content_left pin_text">
     {{pin.description}}
 </div>
-<div class="pin__user-info">
-    <div class="avatar pin__user-avatar" id="avatar">
+<div class="pin-user-info-block">
+    <div class="pin__user-info" id="pin__user-info">
+        <div class="avatar pin__user-avatar" id="avatar">
 
-    </div>
-    <div class="annotation" id="">
-        {{pin.author.nickname}}
+        </div>
+        <div class="annotation" id="">
+            {{pin.author.nickname}}
+        </div>
     </div>
 </div>
 {{#if user}}
