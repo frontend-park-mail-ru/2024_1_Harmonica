@@ -12,8 +12,8 @@ export class ChatList extends View {
     async render(chats) {
         this.root.innerHTML = chatListTemplate({chats});
         for (const chat of chats) {
-            const avatar = new Avatar(`chat__avatar-${chat.user_id}`);
-            avatar.render(chat.avatar_url);
+            const avatar = new Avatar(`chat__avatar-${chat.user.user_id}`);
+            avatar.render(chat.user.avatar_url);
         }
     }
 }
