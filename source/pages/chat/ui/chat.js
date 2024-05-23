@@ -24,8 +24,6 @@ export class ChatView extends View {
 
         const chats = body.chats;
 
-        console.log(chats);
-
         const list = new ChatList('chat-list');
         list.render(chats);
         const window = new ChatWindow('chat-window');

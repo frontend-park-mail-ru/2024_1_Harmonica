@@ -39,7 +39,7 @@
 .navbar_right-block{
     height: 100%;
     display: flex;
-    gap: 10px;
+    gap: 13px;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
@@ -159,6 +159,25 @@
 .popup-menu__danger-item{
     border-top: variables.$font-color 1px solid;
     color: variables.$error-color;
+}
+
+.navbar-icon{
+    border-radius: 50%;
+    padding: 8px;
+    width: 28px;
+    height: 28px;
+}
+
+.navbar-chat-button__icon{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.navbar-notification-button__icon{
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 @media screen and (max-width: 540px) {

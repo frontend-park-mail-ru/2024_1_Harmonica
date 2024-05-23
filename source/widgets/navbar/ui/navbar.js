@@ -67,16 +67,18 @@ export class NavbarView extends View {
             console.log(localStorageGetValue('user'));
             userAvatar.render(user.avatar_url);
 
-            /* const chatButton = this.root.querySelector('#navbar__chat-button');
+            const chatButton = this.root.querySelector('#navbar__chat-button');
             chatButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 history.pushState(null, null, '/chat');
-            });*/
+            });
+
             const profileButton = this.root.querySelector('#navbar-popup-menu__profile');
             profileButton.addEventListener('click', async () => {
                 const user = JSON.parse(localStorage.getItem('user'));
                 history.pushState(null, null, '/profile/' + user.nickname);
             });
+
             const logoutButton = this.root.querySelector('#navbar-popup-menu__exit');
             logoutButton.addEventListener('click', async () => {
                 await Logout('/');
@@ -103,6 +105,13 @@ export class NavbarView extends View {
         addEventListener('pageMovement', (event) => {
             event.preventDefault();
             searchInput.value = '';
+            if (user){
+                const arrowSign = this.root.querySelector('#navbar-popup__icon');
+                const popupMenu = this.root.querySelector('#navbar-popup-menu');
+
+                arrowSign.classList.add('navbar-popup__icon_closed');
+                popupMenu.classList.add('navbar-popup-menu_closed');
+            }
         });
     }
 }
