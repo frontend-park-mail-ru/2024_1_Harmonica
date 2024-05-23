@@ -14,9 +14,29 @@
         </div>
         <div class="navbar_right-block" id="navbar_login_menu">
             {{#if user}}
-                <button class="primary-button button_medium button" id="navbar__chat-button">Чат</button>
-                <button class="primary-button button_medium button" id="navbar-user-name">{{ user.nickname }}</button>
-                <button class="secondary-button button_medium button" id="navbar_logout_button">Выход</button>
+                <div class="navbar-chat-button secondary-button">
+                    <img src="" alt="" class="navbar-chat-button__icon">
+                </div>
+<!--                <button class="primary-button button_medium button" id="navbar__chat-button">Чат</button>-->
+                <div class="navbar-popup secondary-button" id="navbar-popup-button">
+                    <img src="/static/arrow_popup.svg" alt="" class="navbar-popup__icon navbar-popup__icon_closed" id="navbar-popup__icon">
+                    <div class="navbar-popup-button__avatar" id="navbar-popup-button__avatar">
+
+                    </div>
+                </div>
+                <div class="navbar-popup-menu navbar-popup-menu_closed" id="navbar-popup-menu">
+                    <div class="navbar-popup-menu__profile popup-menu__item description secondary-button" id="navbar-popup-menu__profile">
+                        Профиль
+                    </div>
+                    <div class="navbar-popup-menu__feed popup-menu__item description secondary-button" id="navbar-popup-menu__feed">
+                        Лента
+                    </div>
+                    <div class="navbar-popup-menu__exit popup-menu__item popup-menu__danger-item description secondary-button" id="navbar-popup-menu__exit">
+                        Выход
+                    </div>
+                </div>
+<!--                <button class="primary-button button_medium button" id="navbar-user-name">{{ user.nickname }}</button>-->
+<!--                <button class="secondary-button button_medium button" id="navbar_logout_button">Выход</button>-->
             {{else}}
                 <button class="primary-button button button_medium" id="navbar_login_button">Войти</button>
                 <button class="secondary-button button button_medium" id="navbar_signup_button">Регистрация</button>

@@ -96,6 +96,71 @@
     height: 100%;
 }
 
+.navbar-popup{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    transition: background-color .3s;
+    padding: 5px;
+    border-radius: variables.$input-border-radius;
+    z-index: 2;
+}
+
+.navbar-popup:hover{
+    cursor: pointer;
+}
+
+.navbar-popup-button__avatar{
+    width: 34px;
+    height: 34px;
+}
+
+.navbar-popup__icon{
+    width: 34px;
+    height: 34px;
+    color: variables.$font-color;
+    transform: rotate(180deg);
+    transition: all .3s;
+    user-select: none;
+}
+
+.navbar-popup__icon_closed{
+    transform: unset;
+}
+
+.navbar-popup-menu{
+    z-index: 1;
+    position: absolute;
+    inset: 60px 10px auto auto;
+    width: 150px;
+    height: fit-content;
+    border-radius: variables.$input-border-radius;
+    overflow: hidden;
+    transition: all .3s;
+    opacity: 1;
+}
+
+.navbar-popup-menu_closed{
+    visibility: hidden;
+    transform: translateY(-7px);
+    opacity: 0;
+}
+
+.popup-menu__item{
+    height: fit-content;
+    padding: 10px;
+    text-align: end;
+}
+
+.popup-menu__item:hover{
+    cursor: pointer;
+}
+
+.popup-menu__danger-item{
+    border-top: variables.$font-color 1px solid;
+    color: variables.$error-color;
+}
+
 @media screen and (max-width: 540px) {
     .navbar_right-block{
         position: fixed;

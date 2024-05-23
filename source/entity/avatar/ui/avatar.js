@@ -24,6 +24,7 @@ export class Avatar extends View {
      * @param {string} avatarUrl – URL for avatar image
      */
     render(avatarUrl) {
+        console.log(avatarUrl);
         if (!avatarUrl) {
             avatarUrl = '/static/avatar.svg';
         }
