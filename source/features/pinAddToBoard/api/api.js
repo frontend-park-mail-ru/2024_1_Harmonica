@@ -2,8 +2,8 @@ import {backendAPI} from '../../../shared/config.js';
 import {errCheck, fetchRequest} from '../../../shared/api/API.js';
 
 export class PinAddToBoardAPI {
-    constructor(nickname) {
-        this.url = backendAPI + '/boards/created/' + nickname;
+    constructor(userID) {
+        this.url = backendAPI + '/boards/excluding/' + userID;
     }
 
     async api() {
