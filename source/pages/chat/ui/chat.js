@@ -19,43 +19,11 @@ export class ChatView extends View {
     async render() {
         this.root.innerHTML = chatTemplate({});
 
-        const api = new API('/chats');
-        const response = await api.get();
-        const body = response.body;
+        const list = new ChatList('chat-list');
+        list.render();
 
-        // const follow = body.subscriptions_users ? body.subscriptions_users : [];
-        // const other = body?.other_users;
-
-        const chats = body.chats;
-
-        if (chats){
-            const list = new ChatList('chat-list');
-            list.render(chats);
-        }
         const window = new ChatWindow('chat-window');
         window.render();
-
-
-        if (chats) {
-            const listView = document.querySelector('#chat-list');
-            const chatWindowView = document.querySelector('#chat-window');
-
-            for (const chat of chats) {
-                const chatElem = document.querySelector(`#chat-${chat.user.user_id}`);
-                chatElem.addEventListener('click', async (event) => {
-                    event.preventDefault();
-                    if (this.currentChat) {
-                        this.currentChat['inputValue'] = document.querySelector('#chat-input').value;
-                    }
-                    if (!this.currentChat || this.currentChat.user_id !== chat.user.user_id) {
-                        await window.render(chat);
-                        this.currentChat = chat.user;
-                    }
-                    listView.classList.replace('window-on-top', 'window-on-bottom');
-                    chatWindowView.classList.replace('window-on-bottom', 'window-on-top');
-                });
-            }
-        }
 
         const chatAdd = this.root.querySelector('#chat-list-add-button');
         chatAdd.addEventListener('click', async (event) => {
