@@ -100,6 +100,7 @@ export class ChatWindow extends View {
 
         WebSocketService.register('CHAT_DRAFT', (payload) => {
             if (user.user_id === payload.receiver_id || user.user_id === payload.sender_id) {
+                console.log(payload);
                 const messageInput = document.querySelector('#chat-input');
                 messageInput.innerHTML = payload.text;
             }
