@@ -1,19 +1,20 @@
 .pin-window{
     padding: 0;
     display: flex;
-    width: fit-content;
+    width: 80vw;
+    max-width: 1000px;
     height: fit-content;
 }
 
 .pin-photo{
-    width: fit-content;
+    width: 400px;
     height: fit-content;
     position: relative;
 }
 
 .pin-description{
     padding: 25px;
-    max-width: 450px;
+    width: calc(80vw - 400px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,6 +22,8 @@
 
 @media screen and (max-width: 1024px) {
     .pin-window {
+        width: 80vw;
+        max-width: 400px;
         flex-direction: column;
         margin-bottom: 40px;
         position: relative;
@@ -29,10 +32,11 @@
 
     .pin-description{
         gap: 40px;
-        width: calc(100vw - 50px);
+        width: calc(80vw - 50px);
     }
 
     .pin-photo{
+        width: 100%;
         display: flex;
         flex-direction: column;
     }

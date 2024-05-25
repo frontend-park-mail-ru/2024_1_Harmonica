@@ -39,15 +39,14 @@
 }
 
 .photo_size{
-    width: 100dvw;
-    max-width: 400px;
-    height: 800px;
+    width: 400px;
+    height: auto;
     background-color: variables.$window-color;
     border-radius: variables.$element-border-radius
 }
 
 .photo-block_fit-content{
-    width: fit-content;
+    width: 100%;
     height: fit-content;
 }
 
@@ -64,9 +63,5 @@
     .hover-photo-block{
         position: relative;
         height: 75px;
-    }
-
-    .photo_size{
-        height: 30dvh;
     }
 }
