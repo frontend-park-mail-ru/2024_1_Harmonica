@@ -70,7 +70,7 @@ export class ChatWindow extends View {
                     await WebSocketService.send('CHAT_MESSAGE', payload);
 
                     const draftAPI = new API('/drafts/' + user.user_id);
-                    await draftAPI.post(JSON.stringify({'text': messageInput.value}));
+                    await draftAPI.post(JSON.stringify({'text': ''}));
 
                     const listAPI = new API('/chats');
                     const listResponse = await listAPI.get();
