@@ -23,7 +23,7 @@ export class ChatList extends View {
         const window = new ChatWindow('chat-window');
 
         if (chats) {
-            const listView = document.querySelector('#chat-list');
+            const listView = document.querySelector('#chat-list-block');
             const chatWindowView = document.querySelector('#chat-window');
 
             for (const chat of chats) {

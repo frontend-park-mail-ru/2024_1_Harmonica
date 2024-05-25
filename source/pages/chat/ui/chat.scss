@@ -33,6 +33,13 @@
   grid-template-rows: 70px 1fr 90px;
 }
 
+.chat-list-control-menu{
+  display: flex;
+  justify-content: right;
+  padding: 3px 5px;
+  border-bottom: variables.$border-color 1px solid;
+}
+
 @media screen and (max-width: 430px) {
   .chat-window {
     width: 100%;
@@ -40,7 +47,7 @@
     position: relative;
   }
 
-  .chat-list{
+  .chat-list-block {
     position: absolute;
     inset: 0;
     height: -webkit-calc(100dvh - 130px);
@@ -82,13 +89,6 @@
 
 .chat-list-add:hover{
   cursor: pointer;
-}
-
-.chat-list-control-menu{
-  display: flex;
-  justify-content: right;
-  padding: 3px 5px;
-  border-bottom: variables.$border-color 1px solid;
 }
 
 .chat-list-add__icon{

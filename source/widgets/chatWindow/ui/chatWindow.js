@@ -31,7 +31,7 @@ export class ChatWindow extends View {
         const backButton = document.querySelector('#chat-back-button');
         backButton.addEventListener('click', (event) => {
             event.preventDefault();
-            const listView = document.querySelector('#chat-list');
+            const listView = document.querySelector('#chat-list-block');
             const chatWindowView = document.querySelector('#chat-window');
 
             chatWindowView.classList.replace('window-on-top', 'window-on-bottom');
