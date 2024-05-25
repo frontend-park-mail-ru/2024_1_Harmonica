@@ -30,7 +30,7 @@ export class ChatView extends View {
             event.preventDefault();
             const api = new API('/search/\o');
             const response = await api.get();
-            if (!response?.body?.users){
+            if (!response?.body?.users) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors['oops']);
                 return;
@@ -39,7 +39,7 @@ export class ChatView extends View {
             const eventFunc = async (event) => {
                 event.preventDefault();
                 modalWindow.close();
-                const targetID = event.currentTarget.getAttribute("id");
+                const targetID = event.currentTarget.getAttribute('id');
                 console.log(targetID, targetID.slice(5));
 
                 const userAPI = new API('/users/' + targetID.slice(5));
@@ -48,7 +48,7 @@ export class ChatView extends View {
 
                 const chatWindow = new ChatWindow('chat-window');
                 chatWindow.render({user});
-            }
+            };
             modalWindow.render(ListBlockView, response.body.users, UserListItemView, eventFunc);
         });
     }

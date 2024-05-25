@@ -14,7 +14,6 @@ export class PinAddToBoardView extends View {
 
     async render(pin) {
         this.root.innerHTML = pinAddToBoardTemplate({pin});
-        const user = JSON.parse(localStorage.getItem('user'));
         const pinToBoardAPI = new PinAddToBoardAPI(pin.pin_id);
         const response = await pinToBoardAPI.api();
 

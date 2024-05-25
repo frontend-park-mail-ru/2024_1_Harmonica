@@ -31,7 +31,7 @@ export class ModalListWindowView extends View {
         });
     }
 
-    close(){
+    close() {
         this.root.close();
     }
 }

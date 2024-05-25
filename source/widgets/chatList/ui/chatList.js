@@ -34,7 +34,8 @@ export class ChatList extends View {
                 chatElem.addEventListener('click', async (event) => {
                     event.preventDefault();
                     if (this.currentChat) {
-                        this.currentChat['inputValue'] = document.querySelector('#chat-input').value;
+                        this.currentChat['inputValue'] =
+                            document.querySelector('#chat-input').value;
                     }
                     if (!this.currentChat || this.currentChat.user_id !== chat.user.user_id) {
                         await window.render(chat);

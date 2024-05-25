@@ -15,7 +15,7 @@ export class UserListItemView extends View {
     render(user, eventFunc = null) {
         this.root.innerHTML = userListTemplate({user});
         const eventRoot = document.querySelector('#user-' + user.nickname);
-        if (!eventFunc){
+        if (!eventFunc) {
             eventFunc = (event) => {
                 event.preventDefault();
                 this.onClick(user.nickname);

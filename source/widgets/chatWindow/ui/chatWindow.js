@@ -77,7 +77,7 @@ export class ChatWindow extends View {
                     const listBody = listResponse.body;
                     const chats = listBody.chats;
 
-                    if (chats){
+                    if (chats) {
                         const list = new ChatList('chat-list');
                         list.render(chats);
                     }
@@ -95,7 +95,7 @@ export class ChatWindow extends View {
                 event.preventDefault();
                 const api = new API('/drafts/' + user.user_id);
                 api.post(JSON.stringify({'text': messageInput.value}));
-            })
+            });
 
             const enterButton = document.querySelector('#chat__enter-button');
             enterButton.addEventListener('click', (event) => {

@@ -54,7 +54,7 @@ export class NavbarView extends View {
 
             navbarPopup.addEventListener('click', (event) => {
                 event.preventDefault();
-                if (arrowSign.classList.contains('navbar-popup__icon_closed')){
+                if (arrowSign.classList.contains('navbar-popup__icon_closed')) {
                     arrowSign.classList.remove('navbar-popup__icon_closed');
                     popupMenu.classList.remove('navbar-popup-menu_closed');
                     return;
@@ -104,7 +104,7 @@ export class NavbarView extends View {
         addEventListener('pageMovement', (event) => {
             event.preventDefault();
             searchInput.value = '';
-            if (user){
+            if (user) {
                 const arrowSign = this.root.querySelector('#navbar-popup__icon');
                 const popupMenu = this.root.querySelector('#navbar-popup-menu');
 
