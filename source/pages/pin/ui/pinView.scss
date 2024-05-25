@@ -13,7 +13,7 @@
 
 .pin-description{
     padding: 25px;
-    width: 450px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,7 +29,7 @@
 
     .pin-description{
         gap: 40px;
-        width: calc(400px - 50px);
+        width: calc(100vw - 50px);
     }
 
     .pin-photo{

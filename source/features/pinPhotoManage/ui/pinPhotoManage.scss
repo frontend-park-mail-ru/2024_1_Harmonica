@@ -39,7 +39,8 @@
 }
 
 .photo_size{
-    width: 400px;
+    width: 100dvw;
+    max-width: 400px;
     height: 800px;
     background-color: variables.$window-color;
     border-radius: variables.$element-border-radius
