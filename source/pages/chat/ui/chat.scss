@@ -83,6 +83,7 @@
   display: flex;
   justify-content: right;
   padding: 3px 5px;
+  border-bottom: variables.$border-color 1px solid;
 }
 
 .chat-list-add__icon{
