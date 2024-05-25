@@ -45,8 +45,8 @@ export class InputField extends View {
         if (this.field.type === 'password') {
             const eyeButton = this.root.querySelector('#eye');
 
-            const eyeOpen = document.querySelector('#eye-open');
-            const eyeClosed = document.querySelector('#eye-closed');
+            const eyeOpen = eyeButton.querySelector('#eye-open');
+            const eyeClosed = eyeButton.querySelector('#eye-closed');
             eyeButton.addEventListener('click', () => {
                 if (input.type === 'password') {
                     eyeOpen.classList.add('eye__visibility-hidden');
