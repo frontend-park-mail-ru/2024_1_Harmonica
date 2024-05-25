@@ -44,10 +44,11 @@ export class ProfileFeed extends View {
             await feed.render(pins, PinFeedView);
             return;
         }
-        const newPinButton = new ButtonView('message__button');
-        newPinButton.render('Создайте первый пин!', ['primary-button'], 'new-pin-button');
 
         if (isOwner) {
+            const newPinButton = new ButtonView('message__button');
+            newPinButton.render('Создайте первый пин!', ['primary-button'], 'new-pin-button');
+
             newPinButton.root.addEventListener('click', (event) => {
                 event.preventDefault();
                 const newPin = new PinView();
