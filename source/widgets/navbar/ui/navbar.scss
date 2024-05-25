@@ -166,6 +166,7 @@
     padding: 8px;
     width: 28px;
     height: 28px;
+    display: block;
 }
 
 .navbar-chat-button__icon{
@@ -180,6 +181,18 @@
     display: block;
 }
 
+.phone_visibility{
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+}
+
+.phone_visibility-false{
+    visibility: visible;
+    position: unset;
+    opacity: 1;
+}
+
 @media screen and (max-width: 540px) {
     .navbar_right-block{
         position: fixed;
@@ -191,6 +204,51 @@
         padding-bottom: 5px;
         padding-top: 5px;
         z-index: 2;
+    }
+
+    .navbar-popup{
+        visibility: hidden;
+        position: absolute;
+        opacity: 0;
+    }
+
+    .navbar-popup-menu {
+        position: unset;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: fit-content;
+        inset: auto auto auto auto;
+    }
+
+    .navbar-popup-menu_closed{
+        visibility: visible;
+        transform: unset;
+        opacity: 1;
+    }
+
+    .popup-menu__item{
+        border-radius: 50%;
+        height: fit-content;
+        display: block;
+        width: fit-content;
+        padding: inherit;
+    }
+
+    .phone_visibility{
+        visibility: visible;
+        position: unset;
+        opacity: 1;
+    }
+
+    .phone_visibility-false{
+        visibility: hidden;
+        position: absolute;
+        opacity: 0;
+    }
+
+    .popup-menu__danger-item{
+        border-top: unset;
     }
 
     .search-input-field{
