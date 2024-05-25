@@ -5,6 +5,8 @@
   width: fit-content;
   height: fit-content;
   min-height: 200px;
+  position: relative;
+  overflow: hidden;
 }
 
 .modal-close{
@@ -23,4 +25,9 @@
 
 .modal-close:hover{
   cursor: pointer;
+}
+
+.modal-list{
+  max-height: 50dvh;
+  overflow: scroll;
 }
