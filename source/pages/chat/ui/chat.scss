@@ -10,11 +10,16 @@
   border-radius: variables.$element-border-radius;
 }
 
-.chat-list{
+.chat-list-block{
   border-radius: variables.$element-border-radius 0 0 variables.$element-border-radius;
   height: auto;
   width: 300px;
   border-right: variables.$border-color 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-list{
   display: flex;
   flex-direction: column;
   overflow-y: scroll;

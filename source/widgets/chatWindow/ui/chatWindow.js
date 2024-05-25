@@ -6,6 +6,7 @@ import {API} from '../../../shared/api/API.js';
 import {MessagesFeedView} from '../../../features/messagesFeed/ui/messagesFeed.js';
 import WebSocketService from '../../../shared/api/WebSocket.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {ChatList} from '../../chatList/index.js';
 
 export class ChatWindow extends View {
     constructor(rootID, ...args) {
@@ -66,11 +67,20 @@ export class ChatWindow extends View {
                         receiver_id: user.user_id,
                     };
 
-                    WebSocketService.send('CHAT_MESSAGE', payload);
-                    messageInput.value = '';
+                    await WebSocketService.send('CHAT_MESSAGE', payload);
 
                     const draftAPI = new API('/drafts/' + user.user_id);
                     await draftAPI.post(JSON.stringify({'text': messageInput.value}));
+
+                    const listAPI = new API('/chats');
+                    const listResponse = await listAPI.get();
+                    const listBody = listResponse.body;
+                    const chats = listBody.chats;
+
+                    if (chats){
+                        const list = new ChatList('chat-list');
+                        list.render(chats);
+                    }
                 }
             };
 
