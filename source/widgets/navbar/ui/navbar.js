@@ -64,7 +64,6 @@ export class NavbarView extends View {
             });
 
             const userAvatar = new Avatar('navbar-popup-button__avatar', navbarPopup);
-            console.log(localStorageGetValue('user'));
             userAvatar.render(user.avatar_url);
 
             const chatButton = this.root.querySelector('#navbar__chat-button');

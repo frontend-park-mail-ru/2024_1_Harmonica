@@ -24,8 +24,10 @@ export class ChatView extends View {
 
         const chats = body.chats;
 
-        const list = new ChatList('chat-list');
-        list.render(chats);
+        if (chats){
+            const list = new ChatList('chat-list');
+            list.render(chats);
+        }
         const window = new ChatWindow('chat-window');
         window.render();
 
@@ -40,7 +42,7 @@ export class ChatView extends View {
                     this.currentChat['inputValue'] = document.querySelector('#chat-input').value;
                 }
                 if (!this.currentChat || this.currentChat.user_id !== chat.user.user_id) {
-                    await window.render(chat.user);
+                    await window.render(chat);
                     this.currentChat = chat.user;
                 }
                 listView.classList.replace('window-on-top', 'window-on-bottom');

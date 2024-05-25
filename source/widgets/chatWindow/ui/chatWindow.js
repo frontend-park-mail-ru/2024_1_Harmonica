@@ -13,14 +13,17 @@ export class ChatWindow extends View {
         this.root = document.querySelector(`#${rootID}`);
     }
 
-    async render(user = {}) {
+    async render(chat = {}) {
+        const user = chat.user;
         let messages = null;
+        let draft;
         if (user && user.user_id) {
             const api = new API(`/messages/${user.user_id}`);
             const response = await api.get();
             messages = response.body.messages;
+            draft = response.body.draft.text;
         }
-        this.root.innerHTML = chatWindowTemplate({user});
+        this.root.innerHTML = chatWindowTemplate({user, draft});
 
         const messageView = new MessagesFeedView('chat-messages');
 
@@ -74,6 +77,12 @@ export class ChatWindow extends View {
                     messageSend();
                 }
             });
+
+            messageInput.addEventListener('focusout', (event) => {
+                event.preventDefault();
+                const api = new API('/drafts/' + user.user_id);
+                api.post(JSON.stringify({'text': messageInput.value}));
+            })
 
             const enterButton = document.querySelector('#chat__enter-button');
             enterButton.addEventListener('click', (event) => {
