@@ -19,7 +19,7 @@ export class ChatListItemView extends View {
             event.preventDefault();
             const api = new API('/messages/' + chat.user.user_id);
             const response = await api.post(JSON.stringify({'text': url}));
-            if (response.code){
+            if (response.code) {
                 const error = new ErrorWindowView();
                 error.render(errors['oops']);
                 return;

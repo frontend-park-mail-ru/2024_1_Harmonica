@@ -225,7 +225,7 @@ export const errCheck = async (error) => {
     } else {
         try {
             response = await error.json();
-        } catch (err){
+        } catch (err) {
             return {
                 code: 50,
             };

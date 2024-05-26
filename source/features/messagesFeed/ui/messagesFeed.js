@@ -16,11 +16,11 @@ export class MessagesFeedView extends View {
     async addMessage(message, otherUserID) {
         message.isOwner = message.receiver_id === otherUserID;
         this.id++;
-        message.id = this.id
+        message.id = this.id;
 
         const parsedMessage = parseMessageOnLink(message.text);
         message.text = parsedMessage.value;
-        if (parsedMessage.pin_id){
+        if (parsedMessage.pin_id) {
             const api = new API('/pins/' + parsedMessage.pin_id);
             const response = await api.get();
 
@@ -30,7 +30,8 @@ export class MessagesFeedView extends View {
         this.root.insertAdjacentHTML('afterbegin', messagesFeedTemplate({messages: [message]}));
 
         if (message?.pin) {
-            const pinView = document.querySelector(`#message-${message.id}-pin-${message.pin.pin_id}`);
+            const pinView = document.querySelector(`#message-${message.id}
+                                        -pin-${message.pin.pin_id}`);
 
             const pinContent = new PinFeedView(pinView);
             pinContent.render(message.pin);
@@ -48,7 +49,7 @@ export class MessagesFeedView extends View {
 
                 const parsedMessage = parseMessageOnLink(message.text);
                 message.text = parsedMessage.value;
-                if (parsedMessage.pin_id){
+                if (parsedMessage.pin_id) {
                     const api = new API('/pins/' + parsedMessage.pin_id);
                     const response = await api.get();
 
@@ -56,9 +57,10 @@ export class MessagesFeedView extends View {
                 }
             }
             this.root.innerHTML = messagesFeedTemplate({messages});
-            for (const message of messages){
+            for (const message of messages) {
                 if (message?.pin) {
-                    const pinView = document.querySelector(`#message-${message.id}-pin-${message.pin.pin_id}`);
+                    const pinView = document.querySelector(`#message-${message.id}
+                                                -pin-${message.pin.pin_id}`);
 
                     const pinContent = new PinFeedView(pinView);
                     pinContent.render(message.pin);

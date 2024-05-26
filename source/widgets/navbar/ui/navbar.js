@@ -6,7 +6,6 @@ import {FeedView} from '../../../pages/feed/ui/FeedView.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
 import {API} from '../../../shared/api/API.js';
-import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
 
 export class NavbarView extends View {
     constructor(...args) {
@@ -99,7 +98,7 @@ export class NavbarView extends View {
             console.log(response);
 
             let notifications = null;
-            if (!response?.code){
+            if (!response?.code) {
                 notifications = response.body.notifications;
             }
 
@@ -108,8 +107,7 @@ export class NavbarView extends View {
                 event.preventDefault();
                 const notificationList = document.querySelector('#navbar-notification-list');
                 if (notifications) {
-
-                    console.log(notifications)
+                    console.log(notifications);
                     // const listBlock = new ListBlockView('')
                 }
                 notificationList.classList.toggle('navbar-popup-menu_closed');

@@ -36,7 +36,7 @@ export class ModalListWindowView extends View {
         addEventListener('modalClose', (event) => {
             event.preventDefault();
             this.close();
-        })
+        });
     }
 
     close() {
