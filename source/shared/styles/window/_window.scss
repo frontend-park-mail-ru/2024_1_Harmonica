@@ -1,7 +1,7 @@
 @use "../variables";
 
 .window{
-    margin: 30px auto 0 auto;
+    margin: 0 auto;
     background-color: variables.$background-color;
     box-shadow: 0 0 15px variables.$window-color;
     border-radius: variables.$element-border-radius;
