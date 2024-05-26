@@ -14,8 +14,13 @@
         </div>
         <div class="navbar_right-block" id="navbar_login_menu">
             {{#if user}}
-                <div class="navbar-icon button secondary-button">
-                    <img src="/static/notification.svg" alt="" class="navbar-notification-button__icon">
+                <div class="navbar-notification-block">
+                    <div class="navbar-icon button secondary-button" id="navbar-notification-button">
+                        <img src="/static/notification.svg" alt="" class="navbar-notification-button__icon">
+                    </div>
+                    <div class="navbar-notification-list navbar-popup-menu_closed" id="navbar-notification-list">
+
+                    </div>
                 </div>
                 <div class="navbar-icon button secondary-button" id="navbar__chat-button">
                     <img src="/static/chat.svg" alt="" class="navbar-chat-button__icon">

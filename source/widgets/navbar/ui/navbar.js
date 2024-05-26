@@ -90,6 +90,13 @@ export class NavbarView extends View {
                 event.preventDefault();
                 history.pushState(null, null, '/');
             });
+
+            const notificationButton = document.querySelector('#navbar-notification-button');
+            notificationButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const notificationList = document.querySelector('#navbar-notification-list');
+                notificationList.classList.toggle('navbar-popup-menu_closed');
+            });
         } else {
             const loginButton = this.root.querySelector('#navbar_login_button');
             const signupButton = this.root.querySelector('#navbar_signup_button');

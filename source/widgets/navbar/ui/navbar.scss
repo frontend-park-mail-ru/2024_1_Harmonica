@@ -141,9 +141,9 @@
 }
 
 .navbar-popup-menu_closed{
-    visibility: hidden;
     transform: translateY(-7px);
     opacity: 0;
+    pointer-events: none;
 }
 
 .popup-menu__item{
@@ -197,6 +197,26 @@
     opacity: 1;
 }
 
+.navbar-notification-block{
+    position: relative;
+}
+
+.navbar-notification-list{
+    position: absolute;
+    inset: 47px 0 auto auto;
+    width: 300px;
+    height: 300px;
+    background-color: variables.$background-color;
+    border: variables.$border-color 1px solid;
+    border-radius: variables.$element-border-radius;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 7px variables.$window-color;
+    overflow: hidden;
+    transition: all .3s;
+}
+
 @media screen and (max-width: 540px) {
     .navbar_right-block{
         position: fixed;
@@ -226,7 +246,7 @@
     }
 
     .navbar-popup-menu_closed{
-        visibility: visible;
+        pointer-events: unset;
         transform: unset;
         opacity: 1;
     }
