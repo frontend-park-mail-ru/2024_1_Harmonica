@@ -36,7 +36,7 @@ export class PinDescription extends View {
 
         const api = new API(`/pin/comments/${pin.pin_id}`);
         const response = await api.get();
-        if (response.code){
+        if (response.code) {
             response.body.comments = [];
         }
 

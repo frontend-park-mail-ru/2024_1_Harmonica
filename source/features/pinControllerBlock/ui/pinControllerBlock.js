@@ -103,7 +103,7 @@ export class PinControllerBlock extends View {
                 const commentList = new CommentView('pin-block-center');
                 commentList.render(comment, true);
             }
-        }
+        };
 
         inputBlock.addEventListener('keypress', async (event) => {
             if (event.key === 'Enter' && !event.shiftKey) {

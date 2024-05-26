@@ -3,7 +3,7 @@ import './comment.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../avatar/ui/avatar.js';
 
-export class CommentView extends View{
+export class CommentView extends View {
     constructor(rootID, ...args) {
         super(...args);
         this.root = document.querySelector(`#${rootID}`);

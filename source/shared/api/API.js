@@ -67,12 +67,13 @@ export class API {
         if (!response.ok) {
             return errCheck(response);
         }
+        let body;
         try {
-            const body = await response.json();
-        } catch (err){
+            body = await response.json();
+        } catch (err) {
             return {
                 code: 0,
-            }
+            };
         }
         return {
             code: 0,
