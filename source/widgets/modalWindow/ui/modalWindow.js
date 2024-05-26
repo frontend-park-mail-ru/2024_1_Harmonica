@@ -16,7 +16,7 @@ export class ModalListWindowView extends View {
 
         this.root.addEventListener('mousedown', (event) => {
             if (event.target === this.root) {
-                this.root.close();
+                this.close();
             }
         });
 
