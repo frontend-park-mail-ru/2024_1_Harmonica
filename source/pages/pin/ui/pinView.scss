@@ -14,11 +14,11 @@
 }
 
 .pin-description{
-    padding: 25px;
     width: calc(80vw - 400px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 10px;
 }
 
 @media screen and (max-width: 1024px) {

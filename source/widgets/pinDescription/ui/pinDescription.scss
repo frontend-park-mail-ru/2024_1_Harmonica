@@ -1,12 +1,28 @@
+@use '../../../shared/styles/variables';
+
 .pin__block-top{
+    padding: 15px 25px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.pin__block-bottom{
+.pin__block-center{
+    flex-grow: 1;
+    padding: 0 25px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 20px;
+}
+
+.pin__block-bottom{
+    padding: 15px 25px;
+    border-top: variables.$border-color 1px solid;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
     align-items: center;
+    row-gap: 10px;
 }
 

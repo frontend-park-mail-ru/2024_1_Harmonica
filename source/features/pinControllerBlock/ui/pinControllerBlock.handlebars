@@ -1,3 +1,6 @@
+<div class="pin-comments">
+
+</div>
 <div class="pin-control__owner-actions">
 {{#if pin.is_owner}}
     <div class="button secondary-button" id="pin-update">
@@ -14,5 +17,11 @@
     </div>
     <div class="like-button" id="pin-like">
 
+    </div>
+</div>
+<div class="pin-comment-block">
+    <input placeholder="Оставьте комментарий" type="text" class="input pin-comment-input" id="pin-comment-input">
+    <div class="pin-comment-send-button primary-button icon" id="pin-send-comment-button">
+        <img src="/static/send.svg" alt="" class="pin-comment-send-icon">
     </div>
 </div>
