@@ -17,7 +17,7 @@ export class CommentView extends View {
         const avatar = new Avatar('comment-avatar', commentElem);
         avatar.render(comment.user.avatar_url);
 
-        const pos = addNew ? 'beforeend' : 'afterbegin';
+        const pos = addNew ? 'afterbegin' : 'beforeend';
         this.root.insertAdjacentElement(pos, commentElem);
     }
 }
