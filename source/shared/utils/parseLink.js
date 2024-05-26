@@ -1,4 +1,4 @@
-import {frontendURL} from '../../../shared/config.js';
+import {frontendURL} from '../config.js';
 
 export const parseMessageOnLink = (message) => {
     if (typeof message !== 'string') {
