@@ -5,6 +5,7 @@
     max-width: 1000px;
     height: fit-content;
     min-height: 600px;
+    max-height: 800px;
 }
 
 .pin-photo{
@@ -29,6 +30,7 @@
         margin-bottom: 40px;
         position: relative;
         z-index: 0;
+        max-height: unset;
     }
 
     .pin-description{

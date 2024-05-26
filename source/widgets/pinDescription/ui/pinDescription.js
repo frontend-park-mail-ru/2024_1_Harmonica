@@ -34,16 +34,17 @@ export class PinDescription extends View {
         const topBlock = new PinInformationBlock();
         topBlock.render(pin);
 
-        // const commentBlock = document.querySelector('#pin-block-center');
         const api = new API(`/pin/comments/${pin.pin_id}`);
         const response = await api.get();
         if (response.code){
-            response.body.comments = null;
+            response.body.comments = [];
         }
 
         const commentView = new CommentView('pin-block-center');
-        for (const comment of response.body.comments){
-            commentView.render(comment);
+        if (response?.body?.comments) {
+            for (const comment of response.body.comments) {
+                commentView.render(comment);
+            }
         }
 
         const bottomBlock = new PinControllerBlock();
