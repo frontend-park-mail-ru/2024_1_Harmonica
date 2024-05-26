@@ -5,6 +5,8 @@ import {Logout} from '../../../features/logout/model/logout.js';
 import {FeedView} from '../../../pages/feed/ui/FeedView.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
+import {API} from '../../../shared/api/API.js';
+import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
 
 export class NavbarView extends View {
     constructor(...args) {
@@ -13,7 +15,7 @@ export class NavbarView extends View {
         this.eventListeners = [];
     }
 
-    render() {
+    async render() {
         let user;
         try {
             user = localStorageGetValue('user');
@@ -91,10 +93,25 @@ export class NavbarView extends View {
                 history.pushState(null, null, '/');
             });
 
+            const api = new API('/notifications');
+            const response = await api.get();
+
+            console.log(response);
+
+            let notifications = null;
+            if (!response?.code){
+                notifications = response.body.notifications;
+            }
+
             const notificationButton = document.querySelector('#navbar-notification-button');
             notificationButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 const notificationList = document.querySelector('#navbar-notification-list');
+                if (notifications) {
+
+                    console.log(notifications)
+                    // const listBlock = new ListBlockView('')
+                }
                 notificationList.classList.toggle('navbar-popup-menu_closed');
             });
         } else {
