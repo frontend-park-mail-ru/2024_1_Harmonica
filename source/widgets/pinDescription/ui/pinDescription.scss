@@ -7,6 +7,12 @@
     gap: 20px;
 }
 
+.pin-comment-title{
+    height: fit-content;
+    width: 100%;
+    padding: 0 0 15px 25px;
+}
+
 .pin__block-center{
     flex-grow: 1;
     padding: 0 25px;
@@ -25,4 +31,11 @@
     align-items: center;
     row-gap: 10px;
 }
+
+@media screen and (max-width: 1024px) {
+    .pin__block-center {
+        height: 300px;
+    }
+}
+
 
