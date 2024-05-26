@@ -32,6 +32,11 @@ export class ModalListWindowView extends View {
         window.navigation.addEventListener('navigate', () => {
             this.close();
         });
+
+        addEventListener('modalClose', (event) => {
+            event.preventDefault();
+            this.close();
+        })
     }
 
     close() {
