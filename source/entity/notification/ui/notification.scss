@@ -1,0 +1,15 @@
+.notification-block{
+  display: grid;
+  grid-template-areas: "a a b"
+                       "a a b";
+  grid-template-columns: repeat(2, 1fr) 50px;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.notification-text{
+  grid-area: a;
+}
+
+.notification-time{
+  grid-area: b;
+}

@@ -6,6 +6,9 @@ import {FeedView} from '../../../pages/feed/ui/FeedView.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
 import {API} from '../../../shared/api/API.js';
+import {NotificationView} from '../../../entity/notification/ui/notification.js';
+import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
+import WebSocketService from '../../../shared/api/WebSocket.js';
 
 export class NavbarView extends View {
     constructor(...args) {
@@ -102,15 +105,26 @@ export class NavbarView extends View {
                 notifications = response.body.notifications;
             }
 
+            const notificationList = document.querySelector('#navbar-notification-list');
             const notificationButton = document.querySelector('#navbar-notification-button');
+            const listBlock = new ListBlockView('navbar-notification-list');
+
             notificationButton.addEventListener('click', (event) => {
                 event.preventDefault();
-                const notificationList = document.querySelector('#navbar-notification-list');
                 if (notifications) {
-                    console.log(notifications);
-                    // const listBlock = new ListBlockView('')
+                    listBlock.render(notifications, NotificationView);
                 }
+
                 notificationList.classList.toggle('navbar-popup-menu_closed');
+            });
+
+            WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
+                listBlock.addRender([payload], NotificationView);
+            });
+
+            addEventListener("pageMovement", (event) => {
+                event.preventDefault();
+                notificationList.classList.add('navbar-popup-menu_closed');
             });
         } else {
             const loginButton = this.root.querySelector('#navbar_login_button');
