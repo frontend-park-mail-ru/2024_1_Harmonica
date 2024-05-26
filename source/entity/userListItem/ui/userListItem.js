@@ -1,6 +1,7 @@
 import {View} from '../../../app/View.js';
 import userListTemplate from './userListItem.handlebars';
 import './userListItem.scss';
+import {Avatar} from '../../avatar/ui/avatar.js';
 
 export class UserListItemView extends View {
     constructor(root, ...args) {
@@ -22,5 +23,8 @@ export class UserListItemView extends View {
             };
         }
         eventRoot.addEventListener('click', eventFunc);
+
+        const avatar = new Avatar('list-item-avatar', this.root);
+        avatar.render(user.avatar_url);
     }
 }

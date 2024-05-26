@@ -11,6 +11,9 @@ export class ModalListWindowView extends View {
     async render(BlockView, ...args) {
         this.root.innerHTML = modalListWindowTemplate({});
 
+        const bodyItem = document.querySelector('#body');
+        bodyItem.classList.add('modal-open');
+
         this.root.addEventListener('mousedown', (event) => {
             if (event.target === this.root) {
                 this.root.close();
@@ -23,15 +26,17 @@ export class ModalListWindowView extends View {
 
         const close = document.querySelector('#modal-close');
         close.addEventListener('click', () => {
-            this.root.close();
+            this.close();
         });
 
         window.navigation.addEventListener('navigate', () => {
-            this.root.close();
+            this.close();
         });
     }
 
     close() {
+        const bodyItem = document.querySelector('#body');
+        bodyItem.classList.remove('modal-open');
         this.root.close();
     }
 }

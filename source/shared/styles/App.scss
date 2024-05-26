@@ -4,6 +4,7 @@
 @import "input/input";
 @import "window/window";
 @import "text/text";
+@import "icon/icon";
 
 * {
     margin: 0;
@@ -21,6 +22,10 @@ main{
     width: 100%;
     height: auto;
     padding: 30px 0 30px 0;
+}
+
+body.modal-open{
+    overflow-y: hidden;
 }
 
 .window_title{
@@ -51,7 +56,7 @@ main{
 }
 
 .dialog-window{
-    position: relative;
+    position: fixed;
     border: variables.$border-color .5px solid;
     border-radius: variables.$element-border-radius;
     margin: auto;

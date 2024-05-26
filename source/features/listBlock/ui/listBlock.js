@@ -1,7 +1,6 @@
 import {View} from '../../../app/View.js';
 import listBlockTemplate from './listBlock.handlebars';
 import './listBlock.scss';
-import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 
 export class ListBlockView extends View {
     constructor(root, ...args) {
@@ -17,9 +16,6 @@ export class ListBlockView extends View {
 
             const entity = new RenderEntity(root);
             entity.render(objects[i], ...args);
-
-            const avatar = new Avatar('list-item-avatar', root);
-            avatar.render(objects[i].avatar_url);
         }
     }
 }

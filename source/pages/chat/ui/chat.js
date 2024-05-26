@@ -40,7 +40,6 @@ export class ChatView extends View {
                 event.preventDefault();
                 modalWindow.close();
                 const targetID = event.currentTarget.getAttribute('id');
-                console.log(targetID, targetID.slice(5));
 
                 const userAPI = new API('/users/' + targetID.slice(5));
                 const userResponse = await userAPI.get();

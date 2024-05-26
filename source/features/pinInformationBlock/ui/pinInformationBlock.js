@@ -2,6 +2,10 @@ import pinInfoBlockTemplate from './pinInformationBlock.handlebars';
 import './pinInformationBlock.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
+import {API} from '../../../shared/api/API.js';
+import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
+import {ListBlockView} from '../../listBlock/ui/listBlock.js';
+import {ChatListItemView} from '../../../entity/chatListItem/ui/chatListItem.js';
 
 /**
  * Handle information in pins page
@@ -32,7 +36,18 @@ export class PinInformationBlock extends View {
         userObj.addEventListener('click', async (event) => {
             event.preventDefault();
             history.pushState(null, null, '/profile/' + pin.author.nickname);
-        },
-        );
+        });
+
+        const sharedButton = document.querySelector('#pin-shared-button');
+        sharedButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const api = new API('/chats');
+            const response = await api.get();
+
+
+            const chatsList = new ModalListWindowView();
+            chatsList.render(ListBlockView, response.body.chats, ChatListItemView,
+                'https://harmoniums.ru/pin/' + pin.pin_id);
+        });
     }
 }
