@@ -9,14 +9,17 @@ export class ListBlockView extends View {
         this.id = 0;
     }
 
-    addRender(object, RenderEntity, ...args) {
-        const elem = document.createElement('div');
+    addRender(objects, RenderEntity, ...args) {
+        this.root.innerHTML += listBlockTemplate({objects, index: this.id});
+        const prefix = '#list-item-';
+        for (let i = this.id; i < this.id + objects.length; ++i) {
+            const root = document.querySelector(prefix + i);
+            console.log(root);
 
-        elem.innerHTML = listBlockTemplate({objects: [object]});
-
-        const entity = new RenderEntity(elem);
-        entity.render(object, ...args);
-        this.id++;
+            const entity = new RenderEntity(root);
+            entity.render(objects[i], ...args);
+        }
+        this.id = this.id + objects.length;
     }
     render(objects, RenderEntity, ...args) {
         this.root.innerHTML = listBlockTemplate({objects});
