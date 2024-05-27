@@ -120,8 +120,12 @@ export class NavbarView extends View {
 
             WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
                 payload.type = 'subscription';
-                const notificationNone = listBlock.root.querySelector('#notifications-none');
-                notificationNone.classList.add('notification-title-disable');
+                try {
+                    const notificationNone = listBlock.root.querySelector('#notifications-none');
+                    notificationNone.classList.add('notification-title-disable');
+                } catch (err){
+
+                }
 
                 if (notifications){
                     notifications.unshift(payload);
@@ -133,8 +137,12 @@ export class NavbarView extends View {
 
             WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
                 payload.type = 'new_pin';
-                const notificationNone = listBlock.root.querySelector('#notifications-none');
-                notificationNone.classList.add('notification-title-disable');
+                try {
+                    const notificationNone = listBlock.root.querySelector('#notifications-none');
+                    notificationNone.classList.add('notification-title-disable');
+                } catch (err){
+
+                }
 
                 if (notifications){
                     notifications.unshift(payload);
