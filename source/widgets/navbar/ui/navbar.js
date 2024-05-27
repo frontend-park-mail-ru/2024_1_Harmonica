@@ -124,7 +124,7 @@ export class NavbarView extends View {
                     listBlock.render([payload], NotificationView);
                     return;
                 }
-                listBlock.addRender([payload], NotificationView);
+                listBlock.addRender(payload, NotificationView);
             });
 
             WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
@@ -133,7 +133,7 @@ export class NavbarView extends View {
                     listBlock.render([payload], NotificationView);
                     return;
                 }
-                listBlock.addRender([payload], NotificationView);
+                listBlock.addRender(payload, NotificationView);
             });
 
             addEventListener("pageMovement", (event) => {
