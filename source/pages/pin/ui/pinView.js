@@ -58,6 +58,9 @@ export class PinView extends View {
                 await addPin.render(PinAddToBoardView, pin);
             });
         }
+
+        const centerBlock = document.querySelector('#pin-block-center');
+        centerBlock.classList.remove('block-hidden');
     }
 
     /**
@@ -105,6 +108,9 @@ export class PinView extends View {
                 newPin.render(pin.pin_id);
             }
         });
+
+        const centerBlock = document.querySelector('#pin-block-center');
+        centerBlock.classList.add('block-hidden');
     }
 
     /**
@@ -160,5 +166,8 @@ export class PinView extends View {
                 }
             }
         });
+
+        const centerBlock = document.querySelector('#pin-block-center');
+        centerBlock.classList.add('block-hidden');
     }
 }

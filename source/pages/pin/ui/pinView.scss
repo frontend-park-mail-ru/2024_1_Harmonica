@@ -22,6 +22,12 @@
     gap: 10px;
 }
 
+.block-hidden{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 @media screen and (max-width: 1024px) {
     .pin-window {
         width: 80vw;
