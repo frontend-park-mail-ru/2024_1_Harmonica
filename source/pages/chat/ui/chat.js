@@ -8,6 +8,7 @@ import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
 import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
 import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
 import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
+import {errors} from '../../../shared/config.js';
 
 export class ChatView extends View {
     constructor(...args) {
@@ -28,9 +29,9 @@ export class ChatView extends View {
         const chatAdd = this.root.querySelector('#chat-list-add-button');
         chatAdd.addEventListener('click', async (event) => {
             event.preventDefault();
-            const api = new API('/search/\o');
+            const api = new API('/all/users');
             const response = await api.get();
-            if (!response?.body?.users) {
+            if (!response?.body) {
                 const errorWindow = new ErrorWindowView();
                 errorWindow.render(errors['oops']);
                 return;
@@ -48,7 +49,7 @@ export class ChatView extends View {
                 const chatWindow = new ChatWindow('chat-window');
                 chatWindow.render({user});
             };
-            modalWindow.render(ListBlockView, response.body.users, UserListItemView, eventFunc);
+            modalWindow.render(ListBlockView, response.body, UserListItemView, eventFunc);
         });
     }
 }

@@ -118,16 +118,16 @@ export class NavbarView extends View {
                 notificationList.classList.toggle('navbar-popup-menu_closed');
             });
 
-            WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
+            WebSocketService.register('NOTIFICATION_SUBSCRIPTION', (payload) => {
                 payload.type = 'subscription';
                 try {
                     const notificationNone = listBlock.root.querySelector('#notifications-none');
                     notificationNone.classList.add('notification-title-disable');
-                } catch (err){
+                } catch (err) {
 
                 }
 
-                if (notifications){
+                if (notifications) {
                     notifications.unshift(payload);
                 } else {
                     notifications = [payload];
@@ -135,16 +135,16 @@ export class NavbarView extends View {
                 listBlock.render(notifications, NotificationView);
             });
 
-            WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
+            WebSocketService.register('NOTIFICATION_NEW_PIN', (payload) => {
                 payload.type = 'new_pin';
                 try {
                     const notificationNone = listBlock.root.querySelector('#notifications-none');
                     notificationNone.classList.add('notification-title-disable');
-                } catch (err){
+                } catch (err) {
 
                 }
 
-                if (notifications){
+                if (notifications) {
                     notifications.unshift(payload);
                 } else {
                     notifications = [payload];
@@ -152,16 +152,16 @@ export class NavbarView extends View {
                 listBlock.render(notifications, NotificationView);
             });
 
-            WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
+            WebSocketService.register('NOTIFICATION_NEW_PIN', (payload) => {
                 payload.type = 'comment';
                 try {
                     const notificationNone = listBlock.root.querySelector('#notifications-none');
                     notificationNone.classList.add('notification-title-disable');
-                } catch (err){
+                } catch (err) {
 
                 }
 
-                if (notifications){
+                if (notifications) {
                     notifications.unshift(payload);
                 } else {
                     notifications = [payload];
@@ -169,7 +169,7 @@ export class NavbarView extends View {
                 listBlock.render(notifications, NotificationView);
             });
 
-            addEventListener("pageMovement", (event) => {
+            addEventListener('pageMovement', (event) => {
                 event.preventDefault();
                 notificationList.classList.add('navbar-popup-menu_closed');
             });

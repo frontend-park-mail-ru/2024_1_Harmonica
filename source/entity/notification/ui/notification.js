@@ -2,7 +2,7 @@ import notificationTemplate from './notification.handlebars';
 import './notification.scss';
 import {View} from '../../../app/View.js';
 
-export class NotificationView extends View{
+export class NotificationView extends View {
     constructor(root, ...args) {
         super(...args);
         this.root = root;
@@ -13,7 +13,7 @@ export class NotificationView extends View{
             'new_pin': 'Пользователь на которого вы подписаны выложил новый пин',
             'subscription': `На вас подписался пользователь ${notification?.triggered_by_user?.nickname}`,
             'comment': `Под вашим постом оставилил комментарий`,
-        }
+        };
 
 
         const content = text[notification?.type];
@@ -27,21 +27,23 @@ export class NotificationView extends View{
 
         const element = document.createElement('div');
         element.classList.add('notification-block');
-        element.innerHTML = notificationTemplate({content, time: time.toLocaleString("ru", options)});
+        element.innerHTML = notificationTemplate({content,
+            time: time.toLocaleString('ru', options)});
 
         this.root.insertAdjacentElement('afterbegin', element);
 
         this.root.addEventListener('click', (event) => {
             event.preventDefault();
-            switch (notification?.type){
+            switch (notification?.type) {
             case 'subscription':
-                history.pushState(null, null, '/profile/' + notification?.triggered_by_user?.nickname)
+                history.pushState(null, null, '/profile/' +
+                    notification?.triggered_by_user?.nickname);
                 break;
             case 'new_pin':
                 history.pushState(null, null, '/pin/' + notification?.pin?.pin_id);
                 break;
             case 'comment':
-                history.pushState(null, null, '/pin/' + notification?.pin?.pin_id)
+                history.pushState(null, null, '/pin/' + notification?.pin?.pin_id);
                 break;
             }
         });
