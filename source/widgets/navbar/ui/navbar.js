@@ -152,6 +152,23 @@ export class NavbarView extends View {
                 listBlock.render(notifications, NotificationView);
             });
 
+            WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
+                payload.type = 'comment';
+                try {
+                    const notificationNone = listBlock.root.querySelector('#notifications-none');
+                    notificationNone.classList.add('notification-title-disable');
+                } catch (err){
+
+                }
+
+                if (notifications){
+                    notifications.unshift(payload);
+                } else {
+                    notifications = [payload];
+                }
+                listBlock.render(notifications, NotificationView);
+            });
+
             addEventListener("pageMovement", (event) => {
                 event.preventDefault();
                 notificationList.classList.add('navbar-popup-menu_closed');

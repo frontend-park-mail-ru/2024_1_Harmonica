@@ -12,7 +12,7 @@ export class NotificationView extends View{
         const text = {
             'new_pin': 'Пользователь на которого вы подписаны выложил новый пин',
             'subscription': `На вас подписался пользователь ${notification?.triggered_by_user?.nickname}`,
-            // 'comment': `Под вашим постом оставилил комментарий`,
+            'comment': `Под вашим постом оставилил комментарий`,
         }
 
 
@@ -40,9 +40,9 @@ export class NotificationView extends View{
             case 'new_pin':
                 history.pushState(null, null, '/pin/' + notification?.pin?.pin_id);
                 break;
-            // case 'comment':
-            //     history.pushState(null, null, '/pin/' + notification.pin.pin_id)
-            //     break;
+            case 'comment':
+                history.pushState(null, null, '/pin/' + notification?.pin?.pin_id)
+                break;
             }
         });
     }
