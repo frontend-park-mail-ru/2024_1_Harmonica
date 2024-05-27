@@ -10,7 +10,7 @@ export class ListBlockView extends View {
     }
 
     addRender(object, RenderEntity, ...args) {
-        const elem = document.createElement('');
+        const elem = document.createElement('div');
 
         elem.innerHTML = listBlockTemplate({objects: [object]});
 
