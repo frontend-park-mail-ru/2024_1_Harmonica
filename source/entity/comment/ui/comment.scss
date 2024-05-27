@@ -7,6 +7,10 @@
   height: 30px;
 }
 
+.comment-avatar:hover, .comment-nickname:hover{
+  cursor: pointer;
+}
+
 .comment-nickname{
   grid-row: 1 / 2;
   grid-column: 2 / 3;

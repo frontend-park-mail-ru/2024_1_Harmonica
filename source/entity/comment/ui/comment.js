@@ -19,5 +19,13 @@ export class CommentView extends View {
 
         const pos = addNew ? 'afterbegin' : 'beforeend';
         this.root.insertAdjacentElement(pos, commentElem);
+
+        const func = (event) => {
+            event.preventDefault();
+            history.pushState(null, null, '/profile/' + comment.user.nickname);
+        }
+        const nickname = commentElem.querySelector('#comment-nickname');
+        nickname.addEventListener('click', func);
+        avatar.root.addEventListener('click', func);
     }
 }
