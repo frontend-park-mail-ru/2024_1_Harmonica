@@ -103,6 +103,7 @@ export class PinControllerBlock extends View {
                 const commentList = new CommentView('pin-block-comments');
                 commentList.render(comment, true);
             }
+            inputBlock.value = '';
         };
 
         inputBlock.addEventListener('keypress', async (event) => {
