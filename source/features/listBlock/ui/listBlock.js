@@ -10,9 +10,11 @@ export class ListBlockView extends View {
     }
 
     addRender(objects, RenderEntity, ...args) {
+        this.root.innerHTML += listBlockTemplate({objects});
         const prefix = '#list-item-';
         for (let i = this.id; i < this.id + objects.length; ++i) {
             const root = document.querySelector(prefix + i);
+            console.log(root);
 
             const entity = new RenderEntity(root);
             entity.render(objects[i], ...args);
