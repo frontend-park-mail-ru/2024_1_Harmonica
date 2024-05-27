@@ -217,6 +217,12 @@
     transition: all .3s;
 }
 
+.notification-title-disable{
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 @media screen and (max-width: 540px) {
     .navbar_right-block{
         position: fixed;

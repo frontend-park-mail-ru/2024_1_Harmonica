@@ -118,23 +118,20 @@ export class NavbarView extends View {
                 notificationList.classList.toggle('navbar-popup-menu_closed');
             });
 
+Clt
             WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
                 payload.type = 'subscription';
-                console.log(listBlock, listBlock?.root?.firstChild?.tagName, listBlock?.root?.firstChild);
-                if (listBlock.root.firstChild.tagName === 'span'){
-                    listBlock.render([payload], NotificationView);
-                    return;
-                }
+                const notificationNone = listBlock.root.querySelector('#notifications-none');
+                notificationNone.classList.add('notification-title-disable');
+
                 listBlock.addRender(payload, NotificationView);
             });
 
             WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
                 payload.type = 'new_pin';
-                console.log(listBlock, listBlock?.root?.firstChild?.tagName, listBlock?.root?.firstChild);
-                if (listBlock.root.firstChild.tagName === 'span'){
-                    listBlock.render([payload], NotificationView);
-                    return;
-                }
+                const notificationNone = listBlock.root.querySelector('#notifications-none');
+                notificationNone.classList.add('notification-title-disable');
+
                 listBlock.addRender(payload, NotificationView);
             });
 
