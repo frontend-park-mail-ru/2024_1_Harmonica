@@ -120,6 +120,7 @@ export class NavbarView extends View {
 
             WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
                 payload.type = 'subscription';
+                console.log(listBlock, listBlock?.root?.firstChild?.tagName, listBlock?.root?.firstChild);
                 if (listBlock.root.firstChild.tagName === 'span'){
                     listBlock.render([payload], NotificationView);
                     return;
@@ -129,6 +130,7 @@ export class NavbarView extends View {
 
             WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
                 payload.type = 'new_pin';
+                console.log(listBlock, listBlock?.root?.firstChild?.tagName, listBlock?.root?.firstChild);
                 if (listBlock.root.firstChild.tagName === 'span'){
                     listBlock.render([payload], NotificationView);
                     return;
