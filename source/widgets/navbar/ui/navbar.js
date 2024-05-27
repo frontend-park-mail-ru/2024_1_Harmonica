@@ -120,6 +120,19 @@ export class NavbarView extends View {
 
             WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
                 payload.type = 'subscription';
+                if (listBlock.root.firstChild.tagName === 'span'){
+                    listBlock.render([payload], NotificationView);
+                    return;
+                }
+                listBlock.addRender([payload], NotificationView);
+            });
+
+            WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
+                payload.type = 'new_pin';
+                if (listBlock.root.firstChild.tagName === 'span'){
+                    listBlock.render([payload], NotificationView);
+                    return;
+                }
                 listBlock.addRender([payload], NotificationView);
             });
 
