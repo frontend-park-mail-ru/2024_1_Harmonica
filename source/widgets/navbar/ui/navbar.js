@@ -123,7 +123,12 @@ export class NavbarView extends View {
                 const notificationNone = listBlock.root.querySelector('#notifications-none');
                 notificationNone.classList.add('notification-title-disable');
 
-                listBlock.addRender(payload, NotificationView);
+                if (notifications){
+                    notifications.unshift(payload);
+                } else {
+                    notifications = [payload];
+                }
+                listBlock.render(notifications, NotificationView);
             });
 
             WebSocketService.register("NOTIFICATION_NEW_PIN", (payload) => {
@@ -131,7 +136,12 @@ export class NavbarView extends View {
                 const notificationNone = listBlock.root.querySelector('#notifications-none');
                 notificationNone.classList.add('notification-title-disable');
 
-                listBlock.addRender(payload, NotificationView);
+                if (notifications){
+                    notifications.unshift(payload);
+                } else {
+                    notifications = [payload];
+                }
+                listBlock.render(notifications, NotificationView);
             });
 
             addEventListener("pageMovement", (event) => {
