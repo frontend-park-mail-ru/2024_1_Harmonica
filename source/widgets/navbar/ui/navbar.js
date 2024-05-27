@@ -118,7 +118,6 @@ export class NavbarView extends View {
                 notificationList.classList.toggle('navbar-popup-menu_closed');
             });
 
-Clt
             WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
                 payload.type = 'subscription';
                 const notificationNone = listBlock.root.querySelector('#notifications-none');
