@@ -100,7 +100,7 @@ export class PinControllerBlock extends View {
                     value: message.value,
                     user: user,
                 };
-                const commentList = new CommentView('pin-block-center');
+                const commentList = new CommentView('pin-block-comments');
                 commentList.render(comment, true);
             }
         };

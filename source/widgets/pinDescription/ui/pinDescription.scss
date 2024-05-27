@@ -10,16 +10,22 @@
 .pin-comment-title{
     height: fit-content;
     width: 100%;
-    padding: 0 0 15px 25px;
 }
 
 .pin__block-center{
     flex-grow: 1;
     padding: 0 25px;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pin-block-comments{
+    display: flex;
     flex-direction: column-reverse;
     overflow-y: scroll;
     gap: 20px;
+    width: 100%;
 }
 
 .pin__block-bottom{

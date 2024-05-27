@@ -40,7 +40,7 @@ export class PinDescription extends View {
             response.body.comments = [];
         }
 
-        const commentView = new CommentView('pin-block-center');
+        const commentView = new CommentView('pin-block-comments');
         if (response?.body?.comments) {
             for (const comment of response.body.comments) {
                 commentView.render(comment);
