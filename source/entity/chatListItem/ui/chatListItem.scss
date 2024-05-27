@@ -1,0 +1,15 @@
+.chat-list-item{
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 10px;
+  align-items: center;
+  text-align: start;
+  width: 300px;
+  min-width: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+  .chat-list-item {
+    width: 50vw;
+  }
+}

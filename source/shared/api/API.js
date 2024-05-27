@@ -67,7 +67,14 @@ export class API {
         if (!response.ok) {
             return errCheck(response);
         }
-        const body = await response.json();
+        let body;
+        try {
+            body = await response.json();
+        } catch (err) {
+            return {
+                code: 0,
+            };
+        }
         return {
             code: 0,
             body: body,
@@ -215,7 +222,7 @@ export class API {
  */
 export const errCheck = async (error) => {
     let response;
-    if (error.message && error.message === 'Failed to fetch') {
+    if (error?.message === 'Failed to fetch') {
         response = {
             method: 'ERROR',
             body: {
@@ -223,7 +230,13 @@ export const errCheck = async (error) => {
             },
         };
     } else {
-        response = await error.json();
+        try {
+            response = await error.json();
+        } catch (err) {
+            return {
+                code: 50,
+            };
+        }
     }
     if (response.code) {
         return {

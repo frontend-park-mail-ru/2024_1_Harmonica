@@ -3,6 +3,11 @@
 
     </div>
     <div class="profile-switcher" id="content-switch">
+        {{#if user.is_owner}}
+            <div class="button-icon profile-like-button" id="profile-like-button">
+                <img src="/static/like_filled.svg" alt="" class="profile-image-button__likes">
+            </div>
+        {{/if}}
         <div class="switch-bundle">
             <div class="primary-button button_focus-font-size button" id="profile-content-pins">
                 Созданные
@@ -14,10 +19,10 @@
         {{#if user.is_owner}}
             <div class="add-block">
                 <div class="profile-pop-menu profile-pop-menu__closed" id="profile-pop-menu">
-                    <div class="button secondary-button profile-add-button" id="profile-pin-add">
+                    <div class="button secondary-button profile-popup-button" id="profile-pin-add">
                         Добавить пин
                     </div>
-                    <div class="button secondary-button profile-add-button" id="profile-board-add">
+                    <div class="button secondary-button profile-popup-button" id="profile-board-add">
                         Добавить доску
                     </div>
                 </div>

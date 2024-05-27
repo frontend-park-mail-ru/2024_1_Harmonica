@@ -1,5 +1,5 @@
 {{#each objects}}
-    <div class="list-item" id="list-item-{{@index}}">
+    <div class="list-item" id="list-item-{{#if index}}{{index}}{{else}}{{@index}}{{/if}}">
 
     </div>
 {{/each}}

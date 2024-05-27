@@ -2,7 +2,10 @@ import pinInfoBlockTemplate from './pinInformationBlock.handlebars';
 import './pinInformationBlock.scss';
 import {View} from '../../../app/View.js';
 import {Avatar} from '../../../entity/avatar/ui/avatar.js';
-import {PinAddToBoardView} from '../../../pages/pinAddToBoard/ui/pinAddToBoard.js';
+import {API} from '../../../shared/api/API.js';
+import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
+import {ListBlockView} from '../../listBlock/ui/listBlock.js';
+import {ChatListItemView} from '../../../entity/chatListItem/ui/chatListItem.js';
 
 /**
  * Handle information in pins page
@@ -29,22 +32,22 @@ export class PinInformationBlock extends View {
         const avatar = new Avatar();
         avatar.render(pin.author.avatar_url);
 
-        const avatarObj = document.querySelector('#avatar');
-        avatarObj.addEventListener('click', async (event) => {
+        const userObj = document.querySelector('#pin__user-info');
+        userObj.addEventListener('click', async (event) => {
             event.preventDefault();
             history.pushState(null, null, '/profile/' + pin.author.nickname);
-        },
-        );
+        });
 
-        if (user) {
-            const boardAdd = document.querySelector('#pin-board-add');
-            boardAdd.addEventListener('click', async (event) => {
-                event.preventDefault();
-                const addPin = new PinAddToBoardView();
-                await addPin.render(pin);
-                const modal = document.querySelector('#dialog-window');
-                modal.showModal();
-            });
-        }
+        const sharedButton = document.querySelector('#pin-shared-button');
+        sharedButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const api = new API('/chats');
+            const response = await api.get();
+
+
+            const chatsList = new ModalListWindowView();
+            chatsList.render(ListBlockView, response.body.chats, ChatListItemView,
+                'https://harmoniums.ru/pin/' + pin.pin_id);
+        });
     }
 }

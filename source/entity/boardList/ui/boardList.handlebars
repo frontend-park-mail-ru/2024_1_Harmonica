@@ -1,0 +1,11 @@
+{{#if boardsNotEmpty}}
+    {{#each boards}}
+        <div class="board-item" id="board-{{this.board_id}}">
+            <div class="title">{{this.title}}</div>
+        </div>
+    {{/each}}
+{{else}}
+    <div class="board-list-message">
+        <span class="board-list__title description">Нет доступных досок</span>
+    </div>
+{{/if}}

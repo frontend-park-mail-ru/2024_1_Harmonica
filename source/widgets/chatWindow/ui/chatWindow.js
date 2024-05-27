@@ -6,6 +6,7 @@ import {API} from '../../../shared/api/API.js';
 import {MessagesFeedView} from '../../../features/messagesFeed/ui/messagesFeed.js';
 import WebSocketService from '../../../shared/api/WebSocket.js';
 import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {ChatList} from '../../chatList/index.js';
 
 export class ChatWindow extends View {
     constructor(rootID, ...args) {
@@ -13,21 +14,24 @@ export class ChatWindow extends View {
         this.root = document.querySelector(`#${rootID}`);
     }
 
-    async render(user = {}) {
+    async render(chat = {}) {
+        const user = chat.user;
         let messages = null;
+        let draft;
         if (user && user.user_id) {
             const api = new API(`/messages/${user.user_id}`);
             const response = await api.get();
             messages = response.body.messages;
+            draft = response.body.draft.text;
         }
-        this.root.innerHTML = chatWindowTemplate({user});
+        this.root.innerHTML = chatWindowTemplate({user, draft});
 
         const messageView = new MessagesFeedView('chat-messages');
 
         const backButton = document.querySelector('#chat-back-button');
         backButton.addEventListener('click', (event) => {
             event.preventDefault();
-            const listView = document.querySelector('#chat-list');
+            const listView = document.querySelector('#chat-list-block');
             const chatWindowView = document.querySelector('#chat-window');
 
             chatWindowView.classList.replace('window-on-top', 'window-on-bottom');
@@ -53,7 +57,8 @@ export class ChatWindow extends View {
 
                     if (response.code) {
                         const errorWindow = new ErrorWindowView();
-                        errorWindow.render('Возникла ошибка при отрпавке сообщения! Повторите позже.');
+                        errorWindow.render('Возникла ошибка при отправке сообщения! ' +
+                            'Повторите позже.');
                         return;
                     }
 
@@ -62,8 +67,20 @@ export class ChatWindow extends View {
                         receiver_id: user.user_id,
                     };
 
-                    WebSocketService.send('CHAT_MESSAGE', payload);
-                    messageInput.value = '';
+                    await WebSocketService.send('CHAT_MESSAGE', payload);
+
+                    const draftAPI = new API('/drafts/' + user.user_id);
+                    await draftAPI.post(JSON.stringify({'text': ''}));
+
+                    const listAPI = new API('/chats');
+                    const listResponse = await listAPI.get();
+                    const listBody = listResponse.body;
+                    const chats = listBody.chats;
+
+                    if (chats) {
+                        const list = new ChatList('chat-list');
+                        list.render(chats);
+                    }
                 }
             };
 
@@ -72,6 +89,12 @@ export class ChatWindow extends View {
                     event.preventDefault();
                     messageSend();
                 }
+            });
+
+            messageInput.addEventListener('focusout', (event) => {
+                event.preventDefault();
+                const api = new API('/drafts/' + user.user_id);
+                api.post(JSON.stringify({'text': messageInput.value}));
             });
 
             const enterButton = document.querySelector('#chat__enter-button');
@@ -85,6 +108,13 @@ export class ChatWindow extends View {
             if (user.user_id === payload.receiver_id || user.user_id === payload.sender_id) {
                 const messageView = new MessagesFeedView('chat-messages');
                 messageView.addMessage(payload, user.user_id);
+            }
+        });
+
+        WebSocketService.register('CHAT_DRAFT', (payload) => {
+            if (user.user_id === payload.receiver_id || user.user_id === payload.sender_id) {
+                const messageInput = document.querySelector('#chat-input');
+                messageInput.value = payload.text;
             }
         });
     }

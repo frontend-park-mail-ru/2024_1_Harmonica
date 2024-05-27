@@ -18,13 +18,23 @@
 .message-widget{
   width: fit-content;
   height: fit-content;
-  max-width: 70%;
+  max-width: 90%;
   overflow-wrap: normal;
   padding: 8px 10px;
   border: variables.$border-color .3px solid;
   border-radius: variables.$input-border-radius;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .message-text{
+  word-wrap: break-word;
   white-space: pre-line;
+}
+
+.message-pin-preview{
+  width: 250px;
+  max-width: 30vw;
+  border-radius: variables.$input-border-radius + 4px;
 }

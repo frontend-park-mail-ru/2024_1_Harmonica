@@ -1,7 +1,24 @@
-.pin__user-info{
+@use "../../../shared/styles/variables";
+
+.pin-user-info-block{
     display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.pin__user-info{
+    width: fit-content;
+    display: flex;
+    padding: 3px 10px;
     gap: 10px;
     align-items: center;
+    transition: background-color .3s;
+    border-radius: variables.$input-border-radius;
+}
+
+.pin__user-info:hover{
+    background-color: color-mix(in srgb, variables.$background-color, variables.$secondary-button-color);
+    cursor: pointer;
 }
 
 .pin__user-avatar{
@@ -11,8 +28,21 @@
 
 .pin_text{
     overflow: hidden;
-    line-clamp: 1;
+    line-clamp: 6;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 6;
+}
+
+.pin-description-top-block-controller{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px){
+    .pin_text{
+        line-clamp: 10;
+        -webkit-line-clamp: 10;
+    }
 }

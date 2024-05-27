@@ -49,10 +49,10 @@ export const nicknameValidation = (nick) => {
         length: false,
         latin: false,
     };
-    if (/^[0-9a-zA-Z_]{3,20}$/.test(nick)) {
+    if (/^.{3,20}$/.test(nick)) {
         checks.length = true;
     }
-    if (/[0-9a-zA-Z_]+/.test(nick)) {
+    if (/^[0-9a-zA-Z_]+$/.test(nick)) {
         checks.latin = true;
     }
     return checks;
