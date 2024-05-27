@@ -18,20 +18,20 @@ class WebSocketService {
         this.ws = new WebSocket(this.url);
 
         this.ws.addEventListener('open', () => {
-            console.log('open');
+            // console.log('open');
         });
 
         this.ws.addEventListener('message',
             (event) => this.messageReceive(event));
 
         this.ws.addEventListener('error', (event) => {
-            console.log('Ошибка WS:', event.message);
+            // console.log('Ошибка WS:', event.message);
             // this.ws = new WebSocket(this.url);
         });
 
         this.ws.addEventListener('close', (event) => {
-            console.log(`Код: ${event.code}`);
-            console.log(`Причина: ${event.reason}`);
+            // console.log(`Код: ${event.code}`);
+            // console.log(`Причина: ${event.reason}`);
         });
     }
 

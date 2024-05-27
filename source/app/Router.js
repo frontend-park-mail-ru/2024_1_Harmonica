@@ -68,7 +68,6 @@ export class Router {
     async go(path) {
         path = this.slashDel(path);
         const url = decodeURI(this.root + path);
-        window.history.pushState(null, null, url);
         const args = [];
         const reqRoute = this.routes.find((route) => {
             route = route.path;
@@ -101,6 +100,8 @@ export class Router {
             this.currentPage = errorView;
             errorView.render();
         }
+        const ev = new Event('pageMovement');
+        dispatchEvent(ev);
     }
 
     /**

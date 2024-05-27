@@ -4,6 +4,7 @@
 @import "input/input";
 @import "window/window";
 @import "text/text";
+@import "icon/icon";
 
 * {
     margin: 0;
@@ -23,6 +24,10 @@ main{
     padding: 30px 0 30px 0;
 }
 
+body.modal-open{
+    overflow-y: hidden;
+}
+
 .window_title{
     text-align: center;
     font-size: variables.$title-font-size;
@@ -38,20 +43,20 @@ main{
     display: flex;
     flex-direction: column;
     vertical-align: bottom;
-    gap: 10px;
+    gap: 20px;
 }
 
 .user-form-window{
     width: 300px;
     height: fit-content;
-    padding: 30px;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .dialog-window{
-    position: relative;
+    position: fixed;
     border: variables.$border-color .5px solid;
     border-radius: variables.$element-border-radius;
     margin: auto;
@@ -61,4 +66,17 @@ main{
 .dialog-window::backdrop {
     background-color: variables.$font-color;
     opacity: .5;
+}
+
+.link-text{
+    color: variables.$font-link-color;
+}
+
+.link-text:hover{
+    cursor: pointer;
+    color: variables.$font-link-selected-color;
+}
+
+.text-center{
+    margin: auto;
 }

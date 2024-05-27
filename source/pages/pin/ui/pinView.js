@@ -9,6 +9,9 @@ import {errors} from '../../../shared/config.js';
 import {Error} from '../../error/ui/error.js';
 import {pinValidation} from '../../../shared/utils/validation.js';
 import {Profile} from '../../profile/ui/profile.js';
+import {PinAddToBoardView} from '../../../features/pinAddToBoard/ui/pinAddToBoard.js';
+import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
+import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
 
 /**
  * Handle pin page
@@ -46,6 +49,18 @@ export class PinView extends View {
 
         const pinDesc = new PinDescription();
         pinDesc.renderView(pin);
+
+        if (localStorageGetValue('user')) {
+            const boardAdd = document.querySelector('#pin-board-add');
+            boardAdd.addEventListener('click', async (event) => {
+                event.preventDefault();
+                const addPin = new ModalListWindowView();
+                await addPin.render(PinAddToBoardView, pin);
+            });
+        }
+
+        const centerBlock = document.querySelector('#pin-block-center');
+        centerBlock.classList.remove('block-hidden');
     }
 
     /**
@@ -88,9 +103,14 @@ export class PinView extends View {
                     return;
                 }
 
-                history.pushState(null, null, '/pin/' + pin.pin_id);
+                // TODO добавить сслыку на изменение
+                const newPin = new PinView();
+                newPin.render(pin.pin_id);
             }
         });
+
+        const centerBlock = document.querySelector('#pin-block-center');
+        centerBlock.classList.add('block-hidden');
     }
 
     /**
@@ -146,5 +166,8 @@ export class PinView extends View {
                 }
             }
         });
+
+        const centerBlock = document.querySelector('#pin-block-center');
+        centerBlock.classList.add('block-hidden');
     }
 }

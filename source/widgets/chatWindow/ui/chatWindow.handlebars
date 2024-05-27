@@ -5,7 +5,7 @@
     <div class="chat__selected-avatar" id="chat__selected-avatar">
 
     </div>
-    <div class="chat-content">
+    <div class="chat-name">
         {{user.nickname}}
     </div>
 </div>
@@ -13,7 +13,7 @@
 
 </div>
 <div class="chat-input" >
-    <textarea id="chat-input" autocapitalize="on" spellcheck="true" autocomplete="on" class="chat__input-field" placeholder="Написать сообщение" {{#unless user.nickname}}disabled{{/unless}}></textarea>
+    <textarea id="chat-input" autocapitalize="on" spellcheck="true" autocomplete="on" class="chat__input-field" placeholder="Написать сообщение" maxlength="500" {{#unless user.nickname}}disabled{{/unless}}>{{draft}}</textarea>
     <div class="chat__enter-button" id="chat__enter-button">
         <img src="/static/send.svg" alt="" class="chat__enter-image">
     </div>

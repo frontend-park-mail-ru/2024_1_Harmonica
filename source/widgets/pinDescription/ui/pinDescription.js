@@ -7,6 +7,8 @@ import {PinFormBlock} from '../../../features/pinFormBlock/ui/pinFormBlock.js';
 import {
     PinFormControllerBlock,
 } from '../../../features/pinFormControllerBlock/ui/pinFormControllerBlock.js';
+import {CommentView} from '../../../entity/comment/ui/comment.js';
+import {API} from '../../../shared/api/API.js';
 
 /**
  * Handle pin description block
@@ -27,10 +29,24 @@ export class PinDescription extends View {
      * @function renderView
      * @param {json} pin – pin info
      */
-    renderView(pin) {
+    async renderView(pin) {
         this.root.innerHTML = pinDescTemplate({pin});
         const topBlock = new PinInformationBlock();
         topBlock.render(pin);
+
+        const api = new API(`/pin/comments/${pin.pin_id}`);
+        const response = await api.get();
+        if (response.code) {
+            response.body.comments = [];
+        }
+
+        const commentView = new CommentView('pin-block-comments');
+        if (response?.body?.comments) {
+            for (const comment of response.body.comments) {
+                commentView.render(comment);
+            }
+        }
+
         const bottomBlock = new PinControllerBlock();
         bottomBlock.render(pin);
     }

@@ -8,9 +8,10 @@ import {ProfileEdit} from '../../profileEdit/ui/profileEdit.js';
 import {PinView} from '../../pin/ui/pinView.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {Error} from '../../error/ui/error.js';
-import {ModalListWindowView} from '../../../widgets/modalListWindow/ui/modalListWindow.js';
+import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
 import {API} from '../../../shared/api/API.js';
 import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
+import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
 
 /**
  * Handle profile page
@@ -44,7 +45,7 @@ export class Profile extends View {
         this.profileUserInfo = new ProfileUserInfo();
         const profileFeed = new ProfileFeed();
         this.profileUserInfo.render(user);
-        await profileFeed.renderFeed(user.user);
+        await profileFeed.renderFeed(user);
 
         const modal = new ModalListWindowView();
 
@@ -59,7 +60,7 @@ export class Profile extends View {
             if (!subscribers) {
                 return;
             }
-            modal.render(subscribers, UserListItemView);
+            modal.render(ListBlockView, subscribers, UserListItemView);
         });
 
         const subs = document.querySelector('#profile-subscriptions');
@@ -73,10 +74,16 @@ export class Profile extends View {
             if (!subscriptions) {
                 return;
             }
-            modal.render(subscriptions, UserListItemView);
+            modal.render(ListBlockView, subscriptions, UserListItemView);
         });
 
         if (user.is_owner) {
+            const buttonLikes = document.querySelector('#profile-like-button');
+            buttonLikes.addEventListener('click', async (event) => {
+                event.preventDefault();
+                history.pushState(null, null, '/board/0');
+            });
+
             const pinAdd = document.querySelector('#profile-pin-add');
             pinAdd.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -116,13 +123,13 @@ export class Profile extends View {
         const boardButton = document.querySelector('#profile-content-boards');
         boardButton.addEventListener('click', (event) =>{
             event.preventDefault();
-            profileFeed.renderBoards(user.user);
+            profileFeed.renderBoards(user);
         });
 
         const feedButton = document.querySelector('#profile-content-pins');
         feedButton.addEventListener('click', (event) => {
             event.preventDefault();
-            profileFeed.renderFeed(user.user);
+            profileFeed.renderFeed(user);
         });
     };
 }

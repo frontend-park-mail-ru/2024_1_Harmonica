@@ -20,7 +20,7 @@
     padding: 0 15px;
     height: 45px;
     font-size: variables.$focus-font-size;
-    border: 2px solid;
+    border: .5px solid;
     background-color: variables.$background-color;
 
     &::placeholder{
@@ -30,7 +30,8 @@
 
     &:focus{
         background-color: #ffffff;
-        outline-color: variables.$font-color;
+        outline: variables.$font-color solid 1px;
+        -moz-outline-radius: variables.$input-border-radius;
     }
 }
 
@@ -48,6 +49,6 @@
     opacity: 0.5;
     &:focus{
         background-color: variables.$window-color;
-        outline-color: inherit;
+        outline: none;
     }
 }

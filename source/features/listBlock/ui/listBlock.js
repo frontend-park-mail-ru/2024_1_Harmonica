@@ -1,14 +1,26 @@
 import {View} from '../../../app/View.js';
 import listBlockTemplate from './listBlock.handlebars';
 import './listBlock.scss';
-import {Avatar} from '../../../entity/avatar/ui/avatar.js';
 
 export class ListBlockView extends View {
     constructor(root, ...args) {
         super(...args);
         this.root = document.querySelector(`#${root}`);
+        this.id = 0;
     }
 
+    addRender(objects, RenderEntity, ...args) {
+        this.root.innerHTML += listBlockTemplate({objects, index: this.id});
+        const prefix = '#list-item-';
+        for (let i = this.id; i < this.id + objects.length; ++i) {
+            const root = document.querySelector(prefix + i);
+            console.log(root);
+
+            const entity = new RenderEntity(root);
+            entity.render(objects[i], ...args);
+        }
+        this.id = this.id + objects.length;
+    }
     render(objects, RenderEntity, ...args) {
         this.root.innerHTML = listBlockTemplate({objects});
         const prefix = '#list-item-';
@@ -17,9 +29,7 @@ export class ListBlockView extends View {
 
             const entity = new RenderEntity(root);
             entity.render(objects[i], ...args);
-
-            const avatar = new Avatar('list-item-avatar', root);
-            avatar.render(objects[i].avatar_url);
         }
+        this.id = objects.length;
     }
 }

@@ -4,16 +4,21 @@
 <div class="description justify_content_left pin_text">
     {{pin.description}}
 </div>
-<div class="pin__user-info">
-    <div class="avatar pin__user-avatar" id="avatar">
+<div class="pin-user-info-block">
+    <div class="pin__user-info" id="pin__user-info">
+        <div class="avatar pin__user-avatar" id="avatar">
 
-    </div>
-    <div class="annotation" id="">
-        {{pin.author.nickname}}
+        </div>
+        <div class="annotation" id="">
+            {{pin.author.nickname}}
+        </div>
     </div>
 </div>
 {{#if user}}
-<div class="justify_content_left">
+<div class="pin-description-top-block-controller">
     <button class="secondary-button button button_small" id="pin-board-add"> Добавить на доску</button>
+    <div class="secondary-button icon-button" id="pin-shared-button">
+        <img src="/static/share.svg" alt="" class="icon">
+    </div>
 </div>
 {{/if}}

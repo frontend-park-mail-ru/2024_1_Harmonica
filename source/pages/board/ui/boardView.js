@@ -5,6 +5,7 @@ import {BoardAPI} from '../api/api.js';
 import {BoardEdit} from '../../boardEdit/ui/boardEdit.js';
 import {BoardFeedView} from '../../../widgets/boardFeed/ui/boardFeed.js';
 import {Error} from '../../error/ui/error.js';
+import {API} from '../../../shared/api/API.js';
 
 /**
  * Handle board page
@@ -26,23 +27,41 @@ export class BoardView extends View {
      * @param {json} boardID – board's ID
      */
     async render(boardID) {
-        const boardAPI = new BoardAPI(boardID);
-        const response = await boardAPI.api();
-        if (response.code !== 0) {
-            const errorView = new Error();
-            errorView.render();
-            return;
+        let board;
+        let pins;
+        if (boardID <= 0) {
+            const api = new API('/favorites');
+            const response = await api.get();
+            if (response.code) {
+                return;
+            }
+            board = {
+                title: 'Понравившиеся',
+                description: 'Здесь появляются понравившиеся вам пины',
+                is_owner: false,
+            };
+            pins = response.body.pins;
+        } else {
+            const boardAPI = new BoardAPI(boardID);
+            const response = await boardAPI.api();
+            if (response.code !== 0) {
+                const errorView = new Error();
+                errorView.render();
+                return;
+            }
+            board = response.body.board;
+            pins = response.body.pins;
         }
-        const board = response.body.board;
         this.root.innerHTML = boardViewTemplate({board});
 
         const boardFeed = new BoardFeedView();
-        boardFeed.render(response.body.board, response.body.pins);
+        boardFeed.render(board, pins);
 
         if (board.is_owner) {
             const deleteButton = document.querySelector('#board-delete-button');
             deleteButton.addEventListener('click', async (event) => {
                 event.preventDefault();
+                const boardAPI = new BoardAPI(boardID);
                 const response = await boardAPI.apiDELETE();
 
                 if (response.code) {

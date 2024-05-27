@@ -4,6 +4,11 @@ import './chat.scss';
 import {ChatList} from '../../../widgets/chatList/index.js';
 import {ChatWindow} from '../../../widgets/chatWindow/index.js';
 import {API} from '../../../shared/api/API.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {ModalListWindowView} from '../../../widgets/modalWindow/ui/modalWindow.js';
+import {ListBlockView} from '../../../features/listBlock/ui/listBlock.js';
+import {UserListItemView} from '../../../entity/userListItem/ui/userListItem.js';
+import {errors} from '../../../shared/config.js';
 
 export class ChatView extends View {
     constructor(...args) {
@@ -15,34 +20,36 @@ export class ChatView extends View {
     async render() {
         this.root.innerHTML = chatTemplate({});
 
-        const api = new API('/chats');
-        const response = await api.get();
-        const body = response.body;
-
-        const follow = body.subscriptions_users ? body.subscriptions_users: [];
-        const other = body.other_users;
-
-        const chats = follow.concat(other);
-
         const list = new ChatList('chat-list');
-        list.render(chats);
+        list.render();
+
         const window = new ChatWindow('chat-window');
         window.render();
 
-        const listView = document.querySelector('#chat-list');
-        const chatWindowView = document.querySelector('#chat-window');
-
-        for (const chat of chats) {
-            const chatElem = document.querySelector(`#chat-${chat.user_id}`);
-            chatElem.addEventListener('click', async (event) => {
+        const chatAdd = this.root.querySelector('#chat-list-add-button');
+        chatAdd.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const api = new API('/all/users');
+            const response = await api.get();
+            if (!response?.body) {
+                const errorWindow = new ErrorWindowView();
+                errorWindow.render(errors['oops']);
+                return;
+            }
+            const modalWindow = new ModalListWindowView();
+            const eventFunc = async (event) => {
                 event.preventDefault();
-                if (!this.currentChat || this.currentChat.user_id !== chat.user_id) {
-                    await window.render(chat);
-                    this.currentChat = chat;
-                }
-                listView.classList.replace('window-on-top', 'window-on-bottom');
-                chatWindowView.classList.replace('window-on-bottom', 'window-on-top');
-            });
-        }
+                modalWindow.close();
+                const targetID = event.currentTarget.getAttribute('id');
+
+                const userAPI = new API('/users/' + targetID.slice(5));
+                const userResponse = await userAPI.get();
+                const user = userResponse.body.user;
+
+                const chatWindow = new ChatWindow('chat-window');
+                chatWindow.render({user});
+            };
+            modalWindow.render(ListBlockView, response.body, UserListItemView, eventFunc);
+        });
     }
 }

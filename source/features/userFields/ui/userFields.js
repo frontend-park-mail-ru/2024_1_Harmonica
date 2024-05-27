@@ -73,6 +73,7 @@ export class UserFields extends View {
             'repPassword': {
                 label: 'Повторите пароль',
                 type: 'password',
+                repeat: 'register_password',
                 placeholder: 'Введите пароль повторно',
                 value: '',
                 errContent: 'signup_repeat_password_error',
@@ -112,7 +113,7 @@ export class UserFields extends View {
             const inputCont = [this.root.querySelector('#' + value.inputField).value];
             if (key === 'repPassword') {
                 inputCont.push(this.root.querySelector('#' +
-                    this.errFields.password.inputField).value);
+                    this.errFields['password'].inputField).value);
             }
             if (!value.validationFunc(...inputCont)) {
                 errContentChange(value, value.errText);

@@ -13,11 +13,10 @@ export class InputField extends View {
     }
 
     render(blockID) {
-        this.root.innerHTML = inputFieldTemplate(
-            {
-                field: this.field,
-                isPassword: this.field.type === 'password',
-            });
+        this.root.innerHTML = inputFieldTemplate({
+            field: this.field,
+            isPassword: this.field.type === 'password',
+        });
         const input = this.root.querySelector('#' + this.field.inputField);
         if (this.field.hint) {
             const hint = this.root.querySelector('#' + this.field.hint);
@@ -36,12 +35,28 @@ export class InputField extends View {
             event.preventDefault();
             const value = input.value;
             const check = debounce(inputValidate, debounceTimeout);
+            if (this.field.repeat) {
+                const repeatInput = document.querySelector('#' + this.field.repeat);
+                check(this.field, value, repeatInput.value);
+                return;
+            }
             check(this.field, value);
         });
         if (this.field.type === 'password') {
             const eyeButton = this.root.querySelector('#eye');
+
+            const eyeOpen = eyeButton.querySelector('#eye-open');
+            const eyeClosed = eyeButton.querySelector('#eye-closed');
             eyeButton.addEventListener('click', () => {
-                eyeButton.classList.toggle('slash');
+                if (input.type === 'password') {
+                    eyeOpen.classList.add('eye__visibility-hidden');
+                    eyeClosed.classList.remove('eye__visibility-hidden');
+                    input.type = 'text';
+                } else {
+                    eyeOpen.classList.remove('eye__visibility-hidden');
+                    eyeClosed.classList.add('eye__visibility-hidden');
+                    input.type = 'password';
+                }
             });
         }
     }

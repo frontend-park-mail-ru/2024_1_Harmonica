@@ -5,6 +5,10 @@ import {PinView} from '../../../pages/pin/ui/pinView.js';
 import {PinAPI} from '../../../pages/pin/api/api.js';
 import {Like} from '../../../entity/like/ui/like.js';
 import {LikeAPI} from '../../../entity/like/api/api.js';
+import {API} from '../../../shared/api/API.js';
+import {ErrorWindowView} from '../../../entity/errorWindow/ui/errorWindow.js';
+import {localStorageGetValue} from '../../../shared/utils/localStorage.js';
+import {CommentView} from '../../../entity/comment/ui/comment.js';
 
 /**
  * Class to render and handle edit and like buttons on pin
@@ -67,5 +71,53 @@ export class PinControllerBlock extends View {
                 likeView.render(checked);
             });
         }
+
+        const inputBlock = document.querySelector('#pin-comment-input');
+
+        const commentSend = async () => {
+            const user = localStorageGetValue('user');
+            const errorWindow = new ErrorWindowView();
+            if (!user) {
+                errorWindow.render('Пользователь не авторизован');
+                return;
+            }
+            if (inputBlock.value.replace(/(\s|\t)*/, '')) {
+                const message = {
+                    value: inputBlock.value,
+                };
+
+                const api = new API(`/pin/comments/${pin.pin_id}`);
+                const response = await api.post(JSON.stringify(message));
+
+                if (response.code) {
+                    errorWindow.render('Возникла ошибка при отправке комментария! ' +
+                        'Повторите позже.');
+                    return;
+                }
+
+                console.log(response);
+                const comment = {
+                    value: message.value,
+                    user: user,
+                };
+                const commentList = new CommentView('pin-block-comments');
+                commentList.render(comment, true);
+            }
+            inputBlock.value = '';
+        };
+
+        inputBlock.addEventListener('keypress', async (event) => {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                await commentSend();
+            }
+        });
+
+        const enterButton = document.querySelector('#pin-send-comment-button');
+
+        enterButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            await commentSend();
+        });
     }
 }

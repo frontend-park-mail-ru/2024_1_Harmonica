@@ -6,19 +6,19 @@
   justify-content: left;
   padding: 5px 20px;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   border-bottom: variables.$border-color 1px solid;
+}
+
+.chat-name{
+  font-size: 24px;
+  align-content: center;
 }
 
 .chat__selected-avatar{
   display: block;
-  height: 60px;
-  width: 60px;
-}
-
-.chat-content{
-  font-size: 24px;
-  align-content: center;
+  height: 54px;
+  width: 54px;
 }
 
 .chat-input{
@@ -62,7 +62,7 @@
 
 .chat-content{
   overflow-y: scroll;
-  padding: 10px 0;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column-reverse;
   gap: 20px;
