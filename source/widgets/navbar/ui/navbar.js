@@ -119,6 +119,7 @@ export class NavbarView extends View {
             });
 
             WebSocketService.register("NOTIFICATION_SUBSCRIPTION", (payload) => {
+                payload.type = 'subscription';
                 listBlock.addRender([payload], NotificationView);
             });
 
