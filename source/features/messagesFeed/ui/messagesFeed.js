@@ -59,8 +59,8 @@ export class MessagesFeedView extends View {
             this.root.innerHTML = messagesFeedTemplate({messages});
             for (const message of messages) {
                 if (message?.pin) {
-                    const pinView = document.querySelector(`#message-${message.id}
-                                                -pin-${message.pin.pin_id}`);
+                    const pinView = document.querySelector('#message-' +
+                        message.id + '-pin-' + message.pin.pin_id);
 
                     const pinContent = new PinFeedView(pinView);
                     pinContent.render(message.pin);
