@@ -49,7 +49,7 @@ export class ChatView extends View {
                 const chatWindow = new ChatWindow('chat-window');
                 chatWindow.render({user});
             };
-            modalWindow.render(ListBlockView, response.body, UserListItemView, eventFunc);
+            modalWindow.render(ListBlockView, response.body.users, UserListItemView, eventFunc);
         });
     }
 }
