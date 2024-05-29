@@ -10,6 +10,7 @@ export class FeedView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');
+        this.user = localStorageGetValue('user');
     }
 
     async renderHomeFeed() {
@@ -31,8 +32,11 @@ export class FeedView extends View {
     }
 
     async render() {
-        const navbar = new NavbarView();
-        navbar.render();
+        if (localStorageGetValue('user') !== this.user) {
+            const navbar = new NavbarView();
+            navbar.render();
+            this.user = localStorageGetValue('user');
+        }
 
         const user = localStorageGetValue('user');
         this.root.innerHTML = feedViewTemplate({user});
