@@ -31,7 +31,9 @@ export class NotificationView extends View {
         element.innerHTML = notificationTemplate({content,
             time: time.toLocaleString('ru', options)});
 
-        this.root.insertAdjacentElement('afterbegin', element);
+        if (!notification?.delete) {
+            this.root.insertAdjacentElement('afterbegin', element);
+        }
 
         this.root.addEventListener('click', async (event) => {
             event.preventDefault();
@@ -50,6 +52,9 @@ export class NotificationView extends View {
                 history.pushState(null, null, '/pin/' + notification?.pin?.pin_id);
                 break;
             }
+
+            this.root.remove();
+            notification.delete = true;
         });
     }
 }
