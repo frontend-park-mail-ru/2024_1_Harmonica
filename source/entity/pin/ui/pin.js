@@ -27,6 +27,9 @@ export class PinFeedView extends View {
     * @param {object} pin - Pin entity.
     */
     render(pin) {
+        const ratio = 250 / pin.content_width;
+        pin.content_width *= ratio;
+        pin.content_height *= ratio;
         this.root.innerHTML = pinFeedTemplate({pin});
         const eventRoot = document.querySelector('#pin-' + pin.pin_id);
         eventRoot.addEventListener('click', (event) => {
