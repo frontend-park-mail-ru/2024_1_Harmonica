@@ -21,36 +21,38 @@ export class FeedView extends View {
         const feed = new FeedWindowView('feed-block');
         feed.render(pins);
 
-        const widthRecount = () => {
-            const width = window.innerWidth;
-            let pinWidth = 250;
-            let columnsCount = 5;
-            if (width < 1024) {
-                if (width > 430) {
-                    pinWidth = 200;
-                    columnsCount = 5;
-                } else {
-                    pinWidth = 150;
-                    columnsCount = 2;
-                }
-            }
-
-            if (this.currentWidth !== pinWidth) {
-                this.currentWidth = pinWidth;
-
-                let elemWidth = columnsCount * pinWidth + (columnsCount - 1) * 20;
-
-                const feedInnerBlock = document.querySelector('#feed');
+        const feedInnerBlock = document.querySelector('#feed');
                 feedInnerBlock.style.width = elemWidth + "px";
-            }
-        }
-
-        widthRecount();
-
-        addEventListener('resize', (event) => {
-            event.preventDefault();
-            widthRecount();
-        })
+        // const widthRecount = () => {
+        //     const width = window.innerWidth;
+        //     let pinWidth = 250;
+        //     let columnsCount = 5;
+        //     if (width < 1024) {
+        //         if (width > 430) {
+        //             pinWidth = 200;
+        //             columnsCount = 5;
+        //         } else {
+        //             pinWidth = 150;
+        //             columnsCount = 2;
+        //         }
+        //     }
+        //
+        //     if (this.currentWidth !== pinWidth) {
+        //         this.currentWidth = pinWidth;
+        //
+        //         let elemWidth = columnsCount * pinWidth + (columnsCount - 1) * 20;
+        //
+        //         const feedInnerBlock = document.querySelector('#feed');
+        //         feedInnerBlock.style.width = elemWidth + "px";
+        //     }
+        // }
+        //
+        // widthRecount();
+        //
+        // addEventListener('resize', (event) => {
+        //     event.preventDefault();
+        //     widthRecount();
+        // })
     }
 
     async renderSubsFeed() {

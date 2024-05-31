@@ -34,7 +34,7 @@
   align-content: center;
   height: auto;
   width: auto;
-  margin: 30px 0;
+  margin: 30px 50px;
   columns: 250px;
 }
 
@@ -49,6 +49,7 @@
 
   .feed {
     columns: 150px;
+    margin: 30px;
   }
 }
 
@@ -61,5 +62,6 @@
 
   .feed {
     columns: 200px;
+    margin: 30px;
   }
 }
