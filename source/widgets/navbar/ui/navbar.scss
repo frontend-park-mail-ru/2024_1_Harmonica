@@ -286,6 +286,12 @@
         opacity: 1;
     }
 
+
+    .navbar-notification-block > .navbar-popup-menu_closed{
+        pointer-events: none;
+        opacity: 0;
+    }
+
     .popup-menu__item{
         border-radius: 50%;
         height: fit-content;
@@ -320,6 +326,10 @@
 
     .navbar_left-block{
         width: 100%;
+    }
+
+    .navbar-notification-popup{
+        inset: auto auto 60px 0;
     }
 }
 
