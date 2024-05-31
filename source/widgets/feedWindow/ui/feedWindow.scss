@@ -30,10 +30,12 @@
 }
 
 .feed{
+  align-items: center;
+  align-content: center;
   height: auto;
   width: auto;
-  margin: 30px 50px;
-  columns: 250px 5;
+  margin: 30px 0;
+  columns: 250px;
 }
 
 
@@ -42,12 +44,11 @@
   $width: calc(10px + 35vw);
 
   .feed_item{
-    width: $width;
+    width: 150px;
   }
 
   .feed {
-    columns: $width 2;
-    margin: 30px;
+    columns: 150px;
   }
 }
 
@@ -55,11 +56,10 @@
   $width: calc(20px + 25vw);
 
   .feed_item{
-    width: $width;
+    width: 200px;
   }
 
   .feed {
-    columns: $width 3;
-    margin: 30px;
+    columns: 200px;
   }
 }
