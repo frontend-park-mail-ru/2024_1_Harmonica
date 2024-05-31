@@ -95,7 +95,6 @@ export class PinControllerBlock extends View {
                     return;
                 }
 
-                console.log(response);
                 const comment = {
                     value: message.value,
                     user: user,

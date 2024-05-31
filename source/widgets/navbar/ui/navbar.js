@@ -98,8 +98,6 @@ export class NavbarView extends View {
             const api = new API('/notifications');
             const response = await api.get();
 
-            console.log(response);
-
             let notifications = null;
             if (!response?.code) {
                 notifications = response.body.notifications;
