@@ -21,8 +21,8 @@ export class FeedView extends View {
         const feed = new FeedWindowView('feed-block');
         feed.render(pins);
 
-        const feedInnerBlock = document.querySelector('#feed');
-                feedInnerBlock.style.width = elemWidth + "px";
+        // const feedInnerBlock = document.querySelector('#feed');
+        //         feedInnerBlock.style.width = elemWidth + "px";
         // const widthRecount = () => {
         //     const width = window.innerWidth;
         //     let pinWidth = 250;
