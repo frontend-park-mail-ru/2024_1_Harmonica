@@ -120,16 +120,20 @@ export class Profile extends View {
             });
         }
 
+        const feedButton = document.querySelector('#profile-content-pins');
         const boardButton = document.querySelector('#profile-content-boards');
         boardButton.addEventListener('click', (event) =>{
             event.preventDefault();
             profileFeed.renderBoards(user);
+            boardButton.classList.replace('secondary-button', 'primary-button');
+            feedButton.classList.replace('primary-button', 'secondary-button');
         });
 
-        const feedButton = document.querySelector('#profile-content-pins');
         feedButton.addEventListener('click', (event) => {
             event.preventDefault();
             profileFeed.renderFeed(user);
+            feedButton.classList.replace('secondary-button', 'primary-button');
+            boardButton.classList.replace('primary-button', 'secondary-button');
         });
     };
 }
