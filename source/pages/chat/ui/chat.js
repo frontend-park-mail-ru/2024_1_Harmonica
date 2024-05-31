@@ -46,6 +46,12 @@ export class ChatView extends View {
                 const userResponse = await userAPI.get();
                 const user = userResponse.body.user;
 
+                const listBlock = document.querySelector('#chat-list-block');
+                const windowBlock = document.querySelector('#chat-window');
+
+                listBlock.classList.replace('window-on-top', 'window-on-bottom');
+                windowBlock.classList.replace('window-on-bottom', 'window-on-top');
+
                 const chatWindow = new ChatWindow('chat-window');
                 chatWindow.render({user});
             };
