@@ -1,6 +1,7 @@
 import notificationTemplate from './notification.handlebars';
 import './notification.scss';
 import {View} from '../../../app/View.js';
+import {API} from '../../../shared/api/API.js';
 
 export class NotificationView extends View {
     constructor(root, ...args) {
@@ -30,10 +31,15 @@ export class NotificationView extends View {
         element.innerHTML = notificationTemplate({content,
             time: time.toLocaleString('ru', options)});
 
-        this.root.insertAdjacentElement('afterbegin', element);
+        if (!notification?.delete) {
+            this.root.insertAdjacentElement('afterbegin', element);
+        }
 
-        this.root.addEventListener('click', (event) => {
+        this.root.addEventListener('click', async (event) => {
             event.preventDefault();
+            const api = new API('/notifications/read/' + notification.notification_id);
+            await api.post({});
+
             switch (notification?.type) {
             case 'subscription':
                 history.pushState(null, null, '/profile/' +
@@ -46,6 +52,9 @@ export class NotificationView extends View {
                 history.pushState(null, null, '/pin/' + notification?.pin?.pin_id);
                 break;
             }
+
+            this.root.remove();
+            notification.delete = true;
         });
     }
 }

@@ -98,16 +98,14 @@ export class NavbarView extends View {
             const api = new API('/notifications');
             const response = await api.get();
 
-            console.log(response);
-
             let notifications = null;
             if (!response?.code) {
                 notifications = response.body.notifications;
             }
 
-            const notificationList = document.querySelector('#navbar-notification-list');
+            const notificationList = document.querySelector('#navbar-notification-popup');
             const notificationButton = document.querySelector('#navbar-notification-button');
-            const listBlock = new ListBlockView('navbar-notification-list');
+            const listBlock = new ListBlockView('navbar-notification__list');
 
             notificationButton.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -117,6 +115,17 @@ export class NavbarView extends View {
 
                 notificationList.classList.toggle('navbar-popup-menu_closed');
             });
+
+            const readAllNotificationButton = document.querySelector('#navbar-notification-clear-button');
+            readAllNotificationButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                if (notifications) {
+                    const api = new API('/notifications/read/all');
+                    await api.post({});
+                    listBlock.root.innerHTML = `<span class="text-center description" id="notifications-none">Уведомлений нет</span>`
+                    notifications = null;
+                }
+            })
 
             WebSocketService.register('NOTIFICATION_SUBSCRIPTION', (payload) => {
                 payload.type = 'subscription';

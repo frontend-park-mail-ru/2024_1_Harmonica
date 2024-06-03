@@ -27,11 +27,33 @@ export class PinFeedView extends View {
     * @param {object} pin - Pin entity.
     */
     render(pin) {
-        this.root.innerHTML = pinFeedTemplate({pin});
-        const eventRoot = document.querySelector('#pin-' + pin.pin_id);
-        eventRoot.addEventListener('click', (event) => {
-            event.preventDefault();
-            this.onClick(pin.pin_id);
-        });
+        const renderPinFunc = () => {
+            const width = window.innerWidth;
+            let pinWidth = 250;
+            if (width < 1024){
+                if (width > 430){
+                    pinWidth = 200;
+                } else {
+                    pinWidth = 150;
+                }
+            }
+            if (this.currentWidth !== pinWidth){
+                this.currentWidth = pinWidth;
+
+                const ratio = pinWidth / pin.content_width;
+                pin.content_width *= ratio;
+                pin.content_height *= ratio;
+                this.root.innerHTML = pinFeedTemplate({pin});
+                const eventRoot = document.querySelector('#pin-' + pin.pin_id);
+                eventRoot.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    this.onClick(pin.pin_id);
+                });
+            }
+        }
+
+        renderPinFunc();
+
+        addEventListener('resize', renderPinFunc);
     }
 }
