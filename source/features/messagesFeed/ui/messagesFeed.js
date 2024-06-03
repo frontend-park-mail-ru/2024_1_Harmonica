@@ -39,7 +39,7 @@ export class MessagesFeedView extends View {
     }
 
     async render(messages) {
-        if (!messages?.isEmpty) {
+        if (messages) {
             const user = localStorageGetValue('user');
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];

@@ -10,6 +10,7 @@ export class FeedView extends View {
     constructor(...args) {
         super(...args);
         this.root = document.querySelector('#root');
+        this.user = localStorageGetValue('user');
     }
 
     async renderHomeFeed() {
@@ -19,6 +20,39 @@ export class FeedView extends View {
         const pins = response.body.pins;
         const feed = new FeedWindowView('feed-block');
         feed.render(pins);
+
+        // const feedInnerBlock = document.querySelector('#feed');
+        //         feedInnerBlock.style.width = elemWidth + "px";
+        // const widthRecount = () => {
+        //     const width = window.innerWidth;
+        //     let pinWidth = 250;
+        //     let columnsCount = 5;
+        //     if (width < 1024) {
+        //         if (width > 430) {
+        //             pinWidth = 200;
+        //             columnsCount = 5;
+        //         } else {
+        //             pinWidth = 150;
+        //             columnsCount = 2;
+        //         }
+        //     }
+        //
+        //     if (this.currentWidth !== pinWidth) {
+        //         this.currentWidth = pinWidth;
+        //
+        //         let elemWidth = columnsCount * pinWidth + (columnsCount - 1) * 20;
+        //
+        //         const feedInnerBlock = document.querySelector('#feed');
+        //         feedInnerBlock.style.width = elemWidth + "px";
+        //     }
+        // }
+        //
+        // widthRecount();
+        //
+        // addEventListener('resize', (event) => {
+        //     event.preventDefault();
+        //     widthRecount();
+        // })
     }
 
     async renderSubsFeed() {
@@ -31,8 +65,11 @@ export class FeedView extends View {
     }
 
     async render() {
-        const navbar = new NavbarView();
-        navbar.render();
+        if (localStorageGetValue('user') !== this.user) {
+            const navbar = new NavbarView();
+            navbar.render();
+            this.user = localStorageGetValue('user');
+        }
 
         const user = localStorageGetValue('user');
         this.root.innerHTML = feedViewTemplate({user});

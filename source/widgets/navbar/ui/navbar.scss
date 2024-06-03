@@ -201,7 +201,7 @@
     position: relative;
 }
 
-.navbar-notification-list{
+.navbar-notification-popup{
     position: absolute;
     inset: 47px 0 auto auto;
     width: 300px;
@@ -213,14 +213,43 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 7px variables.$window-color;
-    overflow-y: scroll;
+    overflow-y: hidden;
     transition: all .3s;
+    padding: 7px;
+    gap: 10px;
+}
+
+.navbar-notification__list{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.navbar-notification__list::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+.navbar-notification__list::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
 .notification-title-disable{
     position: absolute;
     opacity: 0;
     pointer-events: none;
+}
+
+.navbar-notification-control-menu{
+    width: calc(100% - 20px);
+    height: 10px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: end;
 }
 
 @media screen and (max-width: 540px) {
@@ -257,6 +286,12 @@
         opacity: 1;
     }
 
+
+    .navbar-notification-block > .navbar-popup-menu_closed{
+        pointer-events: none;
+        opacity: 0;
+    }
+
     .popup-menu__item{
         border-radius: 50%;
         height: fit-content;
@@ -291,6 +326,10 @@
 
     .navbar_left-block{
         width: 100%;
+    }
+
+    .navbar-notification-popup{
+        inset: auto auto 60px 0;
     }
 }
 
